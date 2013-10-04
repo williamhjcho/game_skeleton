@@ -9,13 +9,16 @@ package {
 import flash.display.MovieClip;
 
 import utils.Utils;
+import utils.managers.serializer.SerializerManager;
 
 [SWF(width=800, height=600, backgroundColor=0x808080, frameRate=60, pageTitle="BLAHBLASDF")]
 public class Client extends MovieClip {
 
     public function Client() {
-        Utils.UtilsStatic();
-        SCORMUtils.SCORMUtilsStatic();
+        var str:String = "{\"a\":0,\"b\":[0,0,0]}";
+        var obj:Object = SerializerManager.decodeFromString(str);
+        trace(obj.a, "////", obj.b);
+        trace(SerializerManager.encodeAndStringfy(obj));
     }
 
 }
