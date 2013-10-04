@@ -64,9 +64,19 @@ public class SerializerManager {
         return JSON.stringify(encoded);
     }
 
+
+
     public static function decodeFromString(src:String):Object {
         var obj:Object = JSON.parse(src);
         return decode(obj);
+    }
+
+    public static function JSONstringfy(obj:Object):String {
+        return JSON.stringify(obj);
+    }
+
+    public static function JSONparse(str:String):Object {
+        return JSON.parse(str);
     }
 
     private static function serialize(obj:Object, path:String = ""):Object {
