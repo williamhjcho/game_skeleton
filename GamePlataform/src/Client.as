@@ -15,7 +15,9 @@ import utils.managers.serializer.SerializerManager;
 public class Client extends MovieClip {
 
     public function Client() {
-        var str:String = "{\"a\":0,\"b\":[0,0,0]}";
+        Utils.UtilsStatic;
+        SCORMUtils.SCORMUtilsStatic();
+        var str:String = '{"a":0,"b":[0,0,0,1,1,1,88]}';
         var obj:Object = SerializerManager.decodeFromString(str);
         trace(obj.a, "////", obj.b);
         trace(SerializerManager.encodeAndStringfy(obj));

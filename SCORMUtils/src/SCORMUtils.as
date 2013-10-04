@@ -10,7 +10,7 @@ public class SCORMUtils {
     public function SCORMUtils() {
     }
     public static function SCORMUtilsStatic():void {
-        trace('SCORMUtils Static');
+        trace('SCORMUtils ');
     }
 }
 }
