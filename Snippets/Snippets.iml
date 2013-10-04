@@ -3,9 +3,9 @@
   <component name="DBNavigator.Module.ConnectionManager">
     <connections />
   </component>
-  <component name="FlexBuildConfigurationManager" active="GamePlataform">
+  <component name="FlexBuildConfigurationManager" active="Snippets">
     <configurations>
-      <configuration name="GamePlataform" pure-as="true" main-class="Client" output-file="main.swf" output-folder="$MODULE_DIR$/../output/app">
+      <configuration name="Snippets" pure-as="true" main-class="Main" output-file="main.swf" output-folder="$MODULE_DIR$/output">
         <dependencies target-player="11.1">
           <entries>
             <entry library-name="greensock" library-level="project">
@@ -15,12 +15,6 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="starling" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry module-name="Utils" build-configuration-name="Utils">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry module-name="SCORMUtils" build-configuration-name="SCORMUtils">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -41,8 +35,6 @@
     </content>
     <orderEntry type="jdk" jdkName="flex_sdk_4.6" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="Utils" exported="" />
-    <orderEntry type="module" module-name="SCORMUtils" exported="" />
     <orderEntry type="library" exported="" name="greensock" level="project" />
     <orderEntry type="library" exported="" name="MonsterDebugger" level="project" />
     <orderEntry type="library" exported="" name="starling" level="project" />

@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/SCORMUtils/SCORMUtils.iml" filepath="$PROJECT_DIR$/SCORMUtils/SCORMUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/Snippets/Snippets.iml" filepath="$PROJECT_DIR$/Snippets/Snippets.iml" />
       <module fileurl="file://$PROJECT_DIR$/Utils/Utils.iml" filepath="$PROJECT_DIR$/Utils/Utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UtilsDisplay/UtilsDisplay.iml" filepath="$PROJECT_DIR$/UtilsDisplay/UtilsDisplay.iml" />
     </modules>
   </component>
 </project>

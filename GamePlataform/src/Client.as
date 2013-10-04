@@ -19,6 +19,7 @@ public class Client extends MovieClip {
         var obj:Object = SerializerManager.decodeFromString(str);
         trace(obj.a, "////", obj.b);
         trace(SerializerManager.encodeAndStringfy(obj));
+
     }
 
 }
