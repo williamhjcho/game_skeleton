@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="GamePlataform">
+    <configurations>
+      <configuration name="GamePlataform" pure-as="true" main-class="Client" output-file="main.swf" output-folder="$MODULE_DIR$/../output/app">
+        <dependencies target-player="11.1">
+          <entries>
+            <entry library-name="greensock" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="MonsterDebugger" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="starling" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="Utils" build-configuration-name="Utils">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="SCORMUtils" build-configuration-name="SCORMUtils">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="flex_sdk_4.6.0.23201B" />
+        </dependencies>
+        <compiler-options />
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="flex_sdk_4.6.0.23201B" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="Utils" exported="" />
+    <orderEntry type="module" module-name="SCORMUtils" exported="" />
+    <orderEntry type="library" exported="" name="greensock" level="project" />
+    <orderEntry type="library" exported="" name="MonsterDebugger" level="project" />
+    <orderEntry type="library" exported="" name="starling" level="project" />
+  </component>
+</module>
+
