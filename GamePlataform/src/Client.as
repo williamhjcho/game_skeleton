@@ -8,7 +8,6 @@
 package {
 import flash.display.MovieClip;
 
-import utils.Utils;
 import utils.managers.serializer.SerializerManager;
 
 [SWF(width=800, height=600, backgroundColor=0x808080, frameRate=60, pageTitle="BLAHBLASDF")]
