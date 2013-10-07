@@ -5,7 +5,7 @@
  * Time: 16:14
  * To change this template use File | Settings | File Templates.
  */
-package {
+package worker {
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.ProgressEvent;

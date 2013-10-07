@@ -5,7 +5,7 @@
  * Time: 11:45 AM
  * To change this template use File | Settings | File Templates.
  */
-package {
+package worker {
 import flash.display.MovieClip;
 import flash.events.Event;
 import flash.events.MouseEvent;
@@ -21,7 +21,8 @@ import fr.kikko.lab.ShineMP3Encoder;
 
 [SWF(width=800, height=600, backgroundColor=0x808080, frameRate=30, pageTitle="BLAHBLASDF")]
 public class Main extends MovieClip {
-    [Embed(source="../output/BackWorker.swf", mimeType="application/octet-stream")]
+
+    [Embed(source="../../output/BackWorker.swf", mimeType="application/octet-stream")]
     private var WorkerSWFClass:Class;
     private var worker:Worker;
     private var gui:ui;
@@ -33,7 +34,7 @@ public class Main extends MovieClip {
     private var memory:ByteArray;
 
     private var mp3Encoder:ShineMP3Encoder;
-    private var USEWORKER:Boolean = false;
+    private var USEWORKER:Boolean = true;
 
     public function Main() {
         var xm:XML = new XML();
@@ -100,8 +101,6 @@ public class Main extends MovieClip {
             mp3Encoder.addEventListener(ProgressEvent.PROGRESS, onProgress);
             mp3Encoder.start();
         }
-
-
     }
 
     private function onBackTOMain(event:Event):void {
