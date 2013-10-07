@@ -1,0 +1,11 @@
+﻿{
+    "___className": "model.Config",
+
+    "allowedDomain" : "*",
+    "serverTest"    : "localhost",
+    "loadLink"      : "",
+    "saveLink"      : "",
+    
+    "preLoaderPath" : "",
+    "assetsXML_path": "data/assets.xml"
+}

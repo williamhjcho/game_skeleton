@@ -26,7 +26,7 @@ public class Main extends MovieClip {
     private var worker:Worker;
     private var gui:ui;
 
-    private var list:FileReferenceList
+    private var list:FileReferenceList;
     private var file:FileReference;
     private var bm:MessageChannel;
     private var mb:MessageChannel;
@@ -60,8 +60,6 @@ public class Main extends MovieClip {
         bm.addEventListener(Event.CHANNEL_MESSAGE, onBackTOMain);
         worker.start();
         memory = bm.receive(true);
-
-
     }
 
 
@@ -73,7 +71,7 @@ public class Main extends MovieClip {
     }
 
     private function onProgress(event:ProgressEvent):void {
-        trace(event.bytesLoaded)
+        trace(event.bytesLoaded);
         gui.loadbar.scaleX = event.bytesLoaded / event.bytesTotal;
     }
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+    <LoaderMax name="assets" load="true">
+        <DataLoader url="data/_gameConfig.txt"              name="_gameConfig"/>
+        <DataLoader url="data/_gameSaveData.txt"            name="_gameSaveData"    type="SAVE_DATA"/>
+        <DataLoader url="data/_gameVariables.txt"           name="_gameVariables"   type="GAME_VARIABLES"/>
+        <DataLoader url="data/_gameModels.txt"              name="_gameModels"      type="MODEL"   />
+        <DataLoader url="data/_gameText_PT.txt"             name="_gameText_PT"     type="TEXT"  acronym="PT"  />
+        <DataLoader url="data/_gameText_US.txt"             name="_gameText_US"     type="TEXT"  acronym="US"  />
+        <DataLoader url="data/_styles.css"                  name="_styles"          type="CSS" />
+
+        <!--<SWFLoader  url="data/assets/IsometricAssets.swf"   name="IsometricAssets" autoPlay="false"/>-->
+
+        <MP3Loader url="data/sounds/trilha.mp3" name="trilha" autoPlay="false" />
+        <MP3Loader url="data/sounds/over.mp3" name="over" autoPlay="false" />
+        <MP3Loader url="data/sounds/popup.mp3" name="popup" autoPlay="false" />
+    </LoaderMax>
+
+    <LoaderMax name="assets2" load="false">
+        <ImageLoader url="data/img/orange_tree.jpg" name="orange_tree" width="786" height="1017"/>
+    </LoaderMax>
+
+    <LoaderMax name="assets3" load="false">
+        <ImageLoader url="data/img/mona_lisa.jpg" name="mona_lisa"/>
+    </LoaderMax>
+</data>
