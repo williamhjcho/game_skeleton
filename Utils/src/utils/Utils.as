@@ -11,7 +11,7 @@ public class Utils {
     }
 
     public static function UtilsStatic():void {
-        trace('Utils Staticasdfasdfa');
+        trace('Utils');
     }
 }
 }
