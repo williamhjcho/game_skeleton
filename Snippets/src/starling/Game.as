@@ -7,14 +7,13 @@
  */
 package starling {
 
-import starling.core.Starling;
 import starling.display.Sprite;
 import starling.events.EnterFrameEvent;
 import starling.events.Event;
 import starling.events.KeyboardEvent;
 import starling.events.TouchEvent;
+import starling.hero.states.HeroOrientation;
 import starling.images.Ball;
-import starling.images.GifMovieClip;
 import starling.hero.Hero;
 import starling.images.MonaLisa;
 
@@ -44,14 +43,6 @@ public class Game extends Sprite {
 
     private static const MAX_N:uint = 300;
 
-    private function drawGifMovieClip(x:Number,y:Number):void {
-        var movie:GifMovieClip = new GifMovieClip();
-        movie.x = x;
-        movie.y = y;
-        Starling.juggler.add(movie);
-        addChild(movie);
-    }
-
 
     private var hero:Hero;
     private function drawHero():void {
@@ -70,22 +61,22 @@ public class Game extends Sprite {
     }
 
     private function moveHeroKeyboardDown(e:KeyboardEvent):void {
-        //37, 39, 38, 40
-        //left right top down
         switch(e.keyCode) {
-            case 37: { hero.walk(Hero.LEFT); break; }
-            case 39: { hero.walk(Hero.RIGHT); break; }
-            case 38: { }
-            case 40: { }
+            case 37: { hero.onLeftDown(); break; }
+            case 39: { hero.onRightDown(); break; }
+            case 38: { hero.onUpDown(); break; }
+            case 40: { hero.onDownDown(); break; }
+            case 32: { hero.onSpaceDown(); break; }
         }
     }
 
     private function moveHeroKeyboardUp(e:KeyboardEvent):void {
         switch(e.keyCode) {
-            case 37:
-            case 39: hero.stop(); break;
-            case 38: { }
-            case 40: { }
+            case 37: { hero.onLeftUp(); break; }
+            case 39: { hero.onRightUp(); break; }
+            case 38: { hero.onUpUp(); break; }
+            case 40: { hero.onDownUp(); break; }
+            case 32: { hero.onSpaceUp(); break; }
         }
     }
 

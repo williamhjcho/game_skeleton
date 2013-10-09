@@ -49,8 +49,8 @@ public class GameData {
         library.add(model, overwrite);
     }
 
-    public static function getText(id:String):String { return DataManager(textLibrary[_currentLanguageAcronym]).getData(id) as String; }
-    public static function getTextSpecific(id:String, acronym:String):String { return DataManager(textLibrary[acronym]).getData(id) as String; }
+    public static function getText(id:String):String { return DataManager(textLibrary[_currentLanguageAcronym]).get(id) as String; }
+    public static function getTextSpecific(id:String, acronym:String):String { return DataManager(textLibrary[acronym]).get(id) as String; }
 
     public static function get currentLanguage():String { return _currentLanguageAcronym; }
     public static function set currentLanguage(acronym:String):void { _currentLanguageAcronym = acronym; }

@@ -1,4 +1,4 @@
-﻿package utils {
+﻿package utils.managers {
 
 /**
  * @author filiperp / bona

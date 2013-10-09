@@ -21,7 +21,7 @@ import flash.utils.Dictionary;
 
 import model.GameData;
 
-import utils.AssetsManager;
+import utils.managers.AssetsManager;
 import utils.managers.serializer.SerializerManager;
 import utils.managers.sounds.SoundManager;
 

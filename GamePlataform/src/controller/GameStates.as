@@ -34,7 +34,7 @@ public class GameStates {
     }
 
     public function set state(s:String):void { stateMachine.changeTo(s); }
-    public function get state():String { return stateMachine.currentState; }
+    public function get state():String { return stateMachine.currentName; }
 
 
     /** States **/

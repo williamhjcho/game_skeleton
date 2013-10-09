@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<TextureAtlas imagePath="hero.png">
+    <!-- Created with Adobe Flash CS6 version 12.0.0.481 -->
+    <!-- http://www.adobe.com/products/flash.html -->
+    <SubTexture name="side.png" x="140" y="2" width="66" height="92"/>
+</TextureAtlas>

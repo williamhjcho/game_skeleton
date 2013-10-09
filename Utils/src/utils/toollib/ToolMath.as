@@ -10,14 +10,8 @@ public class ToolMath {
     public static const e:Number = 2.7182818284590455;
     public static const precision:Number = 0.0000000000000000001;
 
-    public static const radToDeg:Number = Math.PI/180;
-    public static const degToRad:Number = 180/Math.PI;
-
     private static var _fibonacci:Vector.<uint> = new <uint>[0,1,1,2];
     private static var _primes:Vector.<uint> = new <uint>[2,3,5,7,9,11,13,17,19,23,27];
-
-    public static function toDeg(rad:Number):Number { return rad * degToRad; }
-    public static function toRad(deg:Number):Number { return deg * radToDeg; }
 
     public static function random():Number { return (Math.random() + (1/GOLDEN_RATIO)) % 1; }
 
@@ -130,11 +124,24 @@ public class ToolMath {
 
     public static function delta(a:Number, b:Number, c:Number):Number { return (b*b) - (4*a*c); }
 
-    public static function GCD(a:int, b:int):int {
+    public static function GCD(u:int, v:int):int {
         //Greatest Common Divisor
-        //Ex: a=18,b=30  -> GCD = 6
-        if(a%b == 0) return b;
-        return GCD(b, a%b);
+        if(u == v) return u;
+        if(u == 0) return v;
+        if(v == 0) return u;
+
+        if(u & 1) { //u is even
+            if(v & 1) //v is odd
+                return GCD(u >> 1, v);
+            else
+                return GCD(u >> 1, v >> 1) << 1;
+        }
+        //u is odd
+        if(v & 1) return GCD(u, v >> 1);
+
+        if(u > v) return GCD((u - v) >> 1, v);
+
+        return GCD((v - u) >> 1, u);
     }
 
     public static function LCM(a:int, b:int):int {

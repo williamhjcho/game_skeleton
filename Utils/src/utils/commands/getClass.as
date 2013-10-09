@@ -7,6 +7,7 @@
  */
 package utils.commands {
 public function getClass(target:*):Class {
+    if(target == null) return null;
     return Object(target).constructor;
 }
 }

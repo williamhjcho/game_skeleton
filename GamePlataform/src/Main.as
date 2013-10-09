@@ -24,7 +24,7 @@ import flash.text.TextField;
 import model.Config;
 import model.GameData;
 
-import utils.AssetsManager;
+import utils.managers.AssetsManager;
 import utils.managers.DebuggerManager;
 import utils.managers.EnvironmentManager;
 
