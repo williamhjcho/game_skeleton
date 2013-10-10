@@ -7,13 +7,24 @@
  */
 package starling {
 
+import flash.display.Stage;
+import flash.geom.Point;
+import flash.geom.Rectangle;
+
+import starling.core.Starling;
+
 import starling.display.Sprite;
 import starling.events.EnterFrameEvent;
 import starling.events.Event;
 import starling.events.KeyboardEvent;
+import starling.events.Touch;
 import starling.events.TouchEvent;
+import starling.events.TouchPhase;
+import starling.hero.HeroAssets;
+import starling.hero.HeroButton;
+import starling.hero.HeroButtonExtended;
 import starling.hero.states.HeroOrientation;
-import starling.images.Ball;
+import starling.minigame.Ball;
 import starling.hero.Hero;
 import starling.images.MonaLisa;
 
@@ -39,6 +50,8 @@ public class Game extends Sprite {
         addChild(hud);
 
         drawHero();
+        //drawHeroButton();
+        drawHeroButtonExtended();
     }
 
     private static const MAX_N:uint = 300;
@@ -81,36 +94,65 @@ public class Game extends Sprite {
     }
 
 
-    private var balls:Vector.<Ball>;
-    private function drawBalls():void {
-        balls = new Vector.<Ball>(MAX_N);
+    private var ball1:Ball, ball2:Ball;
+    private function drawBall():void {
+        ball1 = new Ball(5); addChild(ball1); ball1.x = 50;
+        ball2 = new Ball(10); addChild(ball2); ball2.x = 220;
+        ball1.y = ball2.y = 420;
 
-        for (var i:int = 0; i < MAX_N; i++) {
-            var img:Ball = new Ball();
-            img.x = ToolMath.randomRange(0, stage.stageWidth);
-            img.y = ToolMath.randomRange(0, stage.stageHeight);
-            var rad:Number = ToolMath.randomRange(0,ToolMath.TAU);
-            var strength:Number = ToolMath.randomRange(1,5);
-            img.velocity.setTo(Math.cos(rad) * strength, Math.sin(rad)*strength);
+        //ball1.addEventListener(TouchEvent.TOUCH, onTouchBall);
 
-            img.color = ToolColor.random();
-            img.scaleX = img.scaleY = ToolMath.randomRange(0.1,1);
-
-            balls[i] = img;
-
-            addChild(img);
-        }
-
-        this.addEventListener(EnterFrameEvent.ENTER_FRAME, onUpdateBalls);
-    }
-    private function onUpdateBalls(e:Event):void {
-        for each (var ball:Ball in balls) {
-            ball.update();
-            if(ball.x < 0 || ball.x > stage.stageWidth)     ball.velocity.x *= -1;
-            if(ball.y < 0 || ball.y > stage.stageHeight)    ball.velocity.y *= -1;
-        }
+        ball1.play();
+        ball2.play();
     }
 
+    private function onTouchBall(e:TouchEvent):void {
+        var touch:Touch = e.getTouch(ball1);
+        if(touch != null) {
+            switch (touch.phase) {
+                case TouchPhase.BEGAN :
+                    ball1.isPressed = true;
+                    ball1.isRolledOver = true;
+                    break;
+                case TouchPhase.ENDED :
+                    if(this.hitTest(new Point(touch.globalX, touch.globalY), true) == ball1) {
+                        trace("Click");
+                    }
+                    ball1.isPressed = false;
+                    ball1.isRolledOver = false;
+                    break;
+                case TouchPhase.HOVER :
+                    break;
+                case TouchPhase.STATIONARY :
+                    break;
+                case TouchPhase.MOVED :
+                    if(this.hitTest(new Point(touch.globalX, touch.globalY), true) != ball1) {
+                        ball1.isPressed = false;
+                        ball1.isRolledOver = false;
+                    }
+                    break;
+            }
+        } else {
+            ball1.isPressed = false;
+
+        }
+    }
+
+
+    private var heroButtonExtended:HeroButtonExtended;
+    private var countBtnEx:uint = 0;
+    private function drawHeroButtonExtended():void {
+        heroButtonExtended = new HeroButtonExtended(HeroAssets.ATLAS_FRONT.getTextures(),HeroAssets.ATLAS_JUMP.getTextures(),HeroAssets.ATLAS_WALK.getTextures());
+        heroButtonExtended.x = 600;
+        heroButtonExtended.y = 450;
+        addChild(heroButtonExtended);
+
+        heroButtonExtended.addEventListener(Event.TRIGGERED, onTriggerHeroButtonExtended);
+    }
+    private function onTriggerHeroButtonExtended(e:Event):void {
+        countBtnEx++;
+        if(countBtnEx == 3) heroButtonExtended.enabled = false;
+    }
 
     private var monaLisas:Vector.<MonaLisa>;
     private function drawMonalisa():void {

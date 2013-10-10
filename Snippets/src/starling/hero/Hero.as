@@ -27,26 +27,7 @@ import utils.toollib.vector.v2d;
 
 public class Hero extends Sprite {
 
-    [Embed(source="../../../output/sheets/hero.png")]
-    private static const HERO_SPRITE:Class;
-    [Embed(source="../../../output/sheets/hero_walk.xml", mimeType="application/octet-stream")]
-    private static const XML_WALK:Class;
-    [Embed(source="../../../output/sheets/hero_jump.xml", mimeType="application/octet-stream")]
-    private static const XML_JUMP:Class;
-    [Embed(source="../../../output/sheets/hero_front.xml", mimeType="application/octet-stream")]
-    private static const XML_FRONT:Class;
-    [Embed(source="../../../output/sheets/hero_idle.xml", mimeType="application/octet-stream")]
-    private static const XML_IDLE:Class;
 
-    private static var TEXTURE       :Texture       = Texture.fromBitmap(new HERO_SPRITE());
-    private static var TEXTURE_WALK  :XML           = XML(new XML_WALK());
-    private static var TEXTURE_JUMP  :XML           = XML(new XML_JUMP());
-    private static var TEXTURE_FRONT :XML           = XML(new XML_FRONT());
-    private static var TEXTURE_IDLE  :XML           = XML(new XML_IDLE());
-    private static var ATLAS_WALK    :TextureAtlas  = new TextureAtlas(TEXTURE, TEXTURE_WALK);
-    private static var ATLAS_JUMP    :TextureAtlas  = new TextureAtlas(TEXTURE, TEXTURE_JUMP);
-    private static var ATLAS_FRONT   :TextureAtlas  = new TextureAtlas(TEXTURE, TEXTURE_FRONT);
-    private static var ATLAS_IDLE    :TextureAtlas  = new TextureAtlas(TEXTURE, TEXTURE_IDLE);
 
     private var stateMachine:StateMachine;
 
@@ -60,10 +41,10 @@ public class Hero extends Sprite {
         stateMachine = new StateMachine();
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_DENIED, onDenied);
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_COMPLETE, onComplete);
-        stateMachine.add(new Hero_Idle  (createAnimation(ATLAS_IDLE.getTextures()   , 12), stateMachine.changeTo));
-        stateMachine.add(new Hero_Front (createAnimation(ATLAS_FRONT.getTextures()  , 12), stateMachine.changeTo));
-        stateMachine.add(new Hero_Walk  (createAnimation(ATLAS_WALK.getTextures()   , 12), stateMachine.changeTo));
-        stateMachine.add(new Hero_Jump  (createAnimation(ATLAS_JUMP.getTextures()   , 12), stateMachine.changeTo));
+        stateMachine.add(new Hero_Idle  (createAnimation(HeroAssets.ATLAS_IDLE.getTextures()   , 12), stateMachine.changeTo));
+        stateMachine.add(new Hero_Front (createAnimation(HeroAssets.ATLAS_FRONT.getTextures()  , 12), stateMachine.changeTo));
+        stateMachine.add(new Hero_Walk  (createAnimation(HeroAssets.ATLAS_WALK.getTextures()   , 12), stateMachine.changeTo));
+        stateMachine.add(new Hero_Jump  (createAnimation(HeroAssets.ATLAS_JUMP.getTextures()   , 12), stateMachine.changeTo));
         stateMachine.changeTo(HeroStates.IDLE);
 
         orientation = HeroOrientation.LEFT;

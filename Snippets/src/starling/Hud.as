@@ -11,18 +11,23 @@ import feathers.controls.Button;
 import feathers.controls.Callout;
 import feathers.controls.Label;
 
-import flash.geom.Point;
-
 import starling.display.Sprite;
 import starling.events.Event;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
+import starling.text.TextField;
+import starling.text.TextFieldAutoSize;
+import starling.texts.Fonts;
 import starling.themes.MetalWorksMobileTheme;
+import starling.utils.HAlign;
+import starling.utils.VAlign;
 
 public class Hud extends Sprite {
 
     private var button:Button;
+
+    private var txtField:TextField;
 
     public function Hud() {
     }
@@ -38,14 +43,18 @@ public class Hud extends Sprite {
         button.y = 100;
         addChild(button);
 
+        //txtField = new TextField(300,200,"Simple Text Example", "Verdana", 12, 0xf0ff00, false);
+        txtField = new TextField(300,200,"Simple Text Example", Fonts.Kashuan_Script.fontName, 12, 0xf0ff00, false);
+        txtField.x = 100;
+        txtField.border = true;
+        txtField.autoSize = TextFieldAutoSize.NONE;
+        txtField.vAlign = VAlign.TOP;
+        txtField.hAlign = HAlign.LEFT;
+        addChild(txtField);
+
         button.addEventListener(TouchEvent.TOUCH     , buttonInteracted);
     }
 
-    private function onTriggered(e:Event):void {
-        const label:Label = new Label();
-        label.text = "Hi, I'm Feathers!\nHave a nice day.";
-        Callout.show(label, button);
-    }
 
     private function buttonInteracted(e:TouchEvent):void {
         const label:Label = new Label();
