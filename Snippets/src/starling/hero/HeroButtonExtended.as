@@ -41,7 +41,7 @@ public class HeroButtonExtended extends DisplayObjectContainer {
 
     public function HeroButtonExtended(up:Vector.<Texture>, down:Vector.<Texture> = null, over:Vector.<Texture> = null, disabled:Vector.<Texture> = null) {
         if(up == null) throw new Error("Up texture cannot be null.");
-        super();
+
         super.useHandCursor = true;
 
         canvas = new Sprite();
@@ -103,7 +103,7 @@ public class HeroButtonExtended extends DisplayObjectContainer {
         var i:int = 0, n:uint = m.numFrames, l:uint = t.length;
         var min:int = Math.min(n,l);
 
-        //swap texture of already existing frames
+        //swap texture for already existing frames
         while(i < min) {
             m.setFrameTexture(i, t[i++]);
         }

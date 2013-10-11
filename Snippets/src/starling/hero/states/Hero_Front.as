@@ -14,5 +14,8 @@ public class Hero_Front extends BaseHeroState {
     public function Hero_Front(animation:MovieClip, changeTo:Function) {
         super(HeroStates.FRONT, animation, changeTo, [HeroStates.IDLE]);
     }
+
+    override public function onLeftDown  ():void { changeTo.call(this, HeroStates.WALK); }
+    override public function onRightDown ():void { changeTo.call(this, HeroStates.WALK); }
 }
 }

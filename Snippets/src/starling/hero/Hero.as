@@ -6,10 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 package starling.hero {
+import starling.assets.Assets;
+import starling.assets.HeroAssets;
 import starling.core.Starling;
 import starling.display.MovieClip;
 import starling.display.Sprite;
-import starling.events.Event;
 import starling.hero.states.HeroOrientation;
 import starling.hero.states.HeroStates;
 import starling.hero.states.Hero_Front;
@@ -17,17 +18,13 @@ import starling.hero.states.Hero_Idle;
 import starling.hero.states.Hero_Jump;
 import starling.hero.states.Hero_Walk;
 import starling.hero.states.base.BaseHeroState;
-import utils.managers.state.StateMachine;
 import starling.textures.Texture;
-import starling.textures.TextureAtlas;
 
+import utils.managers.state.StateMachine;
 import utils.managers.state.StateMachineEvent;
-
 import utils.toollib.vector.v2d;
 
 public class Hero extends Sprite {
-
-
 
     private var stateMachine:StateMachine;
 
@@ -41,10 +38,10 @@ public class Hero extends Sprite {
         stateMachine = new StateMachine();
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_DENIED, onDenied);
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_COMPLETE, onComplete);
-        stateMachine.add(new Hero_Idle  (createAnimation(HeroAssets.ATLAS_IDLE.getTextures()   , 12), stateMachine.changeTo));
-        stateMachine.add(new Hero_Front (createAnimation(HeroAssets.ATLAS_FRONT.getTextures()  , 12), stateMachine.changeTo));
-        stateMachine.add(new Hero_Walk  (createAnimation(HeroAssets.ATLAS_WALK.getTextures()   , 12), stateMachine.changeTo));
-        stateMachine.add(new Hero_Jump  (createAnimation(HeroAssets.ATLAS_JUMP.getTextures()   , 12), stateMachine.changeTo));
+        stateMachine.add(new Hero_Idle  (createAnimation(HeroAssets.textures_idle, 12), stateMachine.changeTo));
+        stateMachine.add(new Hero_Front (createAnimation(HeroAssets.textures_front, 12), stateMachine.changeTo));
+        stateMachine.add(new Hero_Walk  (createAnimation(HeroAssets.textures_walk, 12), stateMachine.changeTo));
+        stateMachine.add(new Hero_Jump  (createAnimation(HeroAssets.textures_jump, 12), stateMachine.changeTo));
         stateMachine.changeTo(HeroStates.IDLE);
 
         orientation = HeroOrientation.LEFT;

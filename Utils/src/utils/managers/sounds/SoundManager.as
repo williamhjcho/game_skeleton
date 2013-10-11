@@ -42,7 +42,7 @@ public class SoundManager {
                 soundItem.sound = preloadedSound;
             }
         } else {
-            soundItem.sound = new customSoundClass;
+            soundItem.sound = new customSoundClass();
         }
 
         soundItem.name          = name;

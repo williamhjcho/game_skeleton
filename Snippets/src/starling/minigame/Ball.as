@@ -15,9 +15,9 @@ import utils.toollib.vector.v2d;
 
 public class Ball extends MovieClip {
 
-    [Embed(source="../../../output/sheets/ball.png")]
+    [Embed(source="../../../../Assets/sheets/ball.png")]
     private static const BALL_SPRITE:Class;
-    [Embed(source="../../../output/sheets/ball.xml", mimeType="application/octet-stream")]
+    [Embed(source="../../../../Assets/sheets/ball.xml", mimeType="application/octet-stream")]
     private static const XML_BALL:Class;
 
     private static var ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new BALL_SPRITE()), XML(new XML_BALL()));

@@ -13,7 +13,7 @@ public class Hero_Walk extends BaseHeroState {
 
 
     public function Hero_Walk(animation:MovieClip, changeTo:Function) {
-        super(HeroStates.WALK,animation, changeTo, [HeroStates.IDLE, HeroStates.RUN]);
+        super(HeroStates.WALK,animation, changeTo, [HeroStates.IDLE, HeroStates.RUN, HeroStates.FRONT]);
 
     }
 

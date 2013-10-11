@@ -7,12 +7,11 @@
  */
 package starling {
 
-import flash.display.Stage;
+import com.greensock.events.LoaderEvent;
+
 import flash.geom.Point;
-import flash.geom.Rectangle;
 
-import starling.core.Starling;
-
+import starling.assets.Assets;
 import starling.display.Sprite;
 import starling.events.EnterFrameEvent;
 import starling.events.Event;
@@ -20,15 +19,12 @@ import starling.events.KeyboardEvent;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
-import starling.hero.HeroAssets;
-import starling.hero.HeroButton;
-import starling.hero.HeroButtonExtended;
-import starling.hero.states.HeroOrientation;
-import starling.minigame.Ball;
 import starling.hero.Hero;
+import starling.hero.HeroButtonExtended;
 import starling.images.MonaLisa;
+import starling.minigame.Ball;
 
-import utils.toollib.ToolColor;
+import utils.managers.AssetsManager;
 import utils.toollib.ToolMath;
 
 public class Game extends Sprite {
@@ -44,6 +40,13 @@ public class Game extends Sprite {
 
     private function onAdded(e:Event):void {
         this.removeEventListener(Event.ADDED_TO_STAGE, onAdded);
+        AssetsManager.loadSWFAsset("assets/assets.swf",{name:"assets", onComplete:onLoad,autoPlay:false});
+        AssetsManager.initialize();
+
+    }
+
+    private function onLoad(l:LoaderEvent):void {
+        Assets.initialize();
 
         hud = new Hud();
         hud.initialize();
@@ -51,7 +54,7 @@ public class Game extends Sprite {
 
         drawHero();
         //drawHeroButton();
-        drawHeroButtonExtended();
+      //  drawHeroButtonExtended();
     }
 
     private static const MAX_N:uint = 300;
@@ -142,7 +145,7 @@ public class Game extends Sprite {
     private var heroButtonExtended:HeroButtonExtended;
     private var countBtnEx:uint = 0;
     private function drawHeroButtonExtended():void {
-        heroButtonExtended = new HeroButtonExtended(HeroAssets.ATLAS_FRONT.getTextures(),HeroAssets.ATLAS_JUMP.getTextures(),HeroAssets.ATLAS_WALK.getTextures());
+     //  heroButtonExtended = new HeroButtonExtended(HeroAssets.atlas_front.getTextures(), HeroAssets.atlas_jump.getTextures(), HeroAssets.atlas_walk.getTextures());
         heroButtonExtended.x = 600;
         heroButtonExtended.y = 450;
         addChild(heroButtonExtended);
@@ -151,7 +154,6 @@ public class Game extends Sprite {
     }
     private function onTriggerHeroButtonExtended(e:Event):void {
         countBtnEx++;
-        if(countBtnEx == 3) heroButtonExtended.enabled = false;
     }
 
     private var monaLisas:Vector.<MonaLisa>;

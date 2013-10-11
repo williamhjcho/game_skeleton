@@ -58,19 +58,23 @@ public class StateMachine extends EventDispatcher {
         var from:State = states[_currentName], to:State = states[name];
 
         if(!hasState(name) || !canChangeTo(name)) {
-            e = new StateMachineEvent(StateMachineEvent.TRANSITION_DENIED, false, false);
-            e.set(_currentName, name, _currentName, from.from);
-            dispatchEvent(e);
+            if(hasEventListener(StateMachineEvent.TRANSITION_DENIED)) {
+                e = new StateMachineEvent(StateMachineEvent.TRANSITION_DENIED, false, false);
+                e.set(_currentName, name, _currentName, from.from);
+                dispatchEvent(e);
+            }
             return from;
         }
 
-        _currentName = name;
         from.callExit(parametersExit);
         to.callEnter(parametersEnter);
 
-        e = new StateMachineEvent(StateMachineEvent.TRANSITION_COMPLETE, false, false);
-        e.set(_currentName, name, _currentName, from.from);
-        dispatchEvent(e);
+        if(hasEventListener(StateMachineEvent.TRANSITION_COMPLETE)) {
+            e = new StateMachineEvent(StateMachineEvent.TRANSITION_COMPLETE, false, false);
+            e.set(_currentName, name, _currentName, from.from);
+            dispatchEvent(e);
+        }
+        _currentName = name;
 
         return to;
     }

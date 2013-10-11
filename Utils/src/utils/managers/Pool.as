@@ -72,8 +72,8 @@ public class Pool {
 
     public static function getAllRegisteredClasses():Vector.<Class> {
         var copy:Vector.<Class> = new Vector.<Class>();
-        for each (var clss:Class in types)
-            copy.push(clss);
+        for each (var type:Class in types)
+            copy.push(type);
         return copy;
     }
 

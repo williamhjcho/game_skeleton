@@ -102,7 +102,7 @@ public class Stats extends Sprite {
         time = getTimer();
 
         if(ms > 1000) {
-            memory = System.totalMemory / 1000000;
+            memory = System.totalMemory * 0.000000954;
             memoryMax = Math.max(memory, memoryMax);
 
             graph.scroll(-1,0);

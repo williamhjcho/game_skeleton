@@ -50,8 +50,7 @@ public class SoundItem extends EventDispatcher {
             if(ins == null) {
                 if(ID == null)
                     ID = name + "_" + counter++;
-                ins                 = new SoundInstance(ID, Pool.getItem(SoundTransform));
-                _instances[ins.ID]  = ins;
+                ins =  _instances[ins.ID] = new SoundInstance(ID, Pool.getItem(SoundTransform));
             } else {
                 if(!ins.paused) return ins.ID; //already playing
                 ins.channel = null; //removing reference to old channel

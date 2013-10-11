@@ -28,6 +28,7 @@ public class Hero_Idle extends BaseHeroState {
 
     override public function onLeftDown  ():void { changeTo.call(this, HeroStates.WALK); }
     override public function onRightDown ():void { changeTo.call(this, HeroStates.WALK); }
+    override public function onDownDown  ():void { changeTo.call(this,HeroStates.FRONT); }
     override public function onSpaceDown ():void { changeTo.call(this, HeroStates.JUMP); }
 }
 }

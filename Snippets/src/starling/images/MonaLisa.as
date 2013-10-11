@@ -14,7 +14,7 @@ import utils.toollib.vector.v2d;
 
 public class MonaLisa extends Image {
 
-    [Embed(source="../../../output/mona_lisa.jpg")]
+  //  [Embed(source="../../../output/mona_lisa.jpg")]
     private static const MONA_LISA:Class;
     private static const TEXTURE:Texture = Texture.fromBitmap(new MONA_LISA());
 
