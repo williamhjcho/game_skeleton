@@ -66,7 +66,7 @@ public class SerializerManager {
 
 
 
-    public static function decodeFromString(src:String):Object {
+    public static function decodeFromString(src:String):* {
         var obj:Object = JSON.parse(src);
         return decode(obj);
     }

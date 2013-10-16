@@ -81,7 +81,7 @@ public class Matrix {
 
 
     /** Transformations **/
-    public function setIdentity():Matrix {
+    public function identity():Matrix {
         for (var i:int = 0; i < _rows; i++) {
             for (var j:int = 0; j < i; j++)
                 matrix[i][j] = 0;
@@ -92,7 +92,7 @@ public class Matrix {
         return this;
     }
 
-    public function setZero():Matrix {
+    public function zero():Matrix {
         for (var i:int = 0; i < _rows; i++) {
             for (var j:int = 0; j < _columns; j++) {
                 matrix[i][j] = 0;
@@ -105,6 +105,40 @@ public class Matrix {
         for (var i:int = 0; i < this._rows; i++)
             for (var j:int = i + 1; j < this._columns; j++)
                 swap(i,j,j,i);
+        return this;
+    }
+
+    public function rotateClockWise():Matrix {
+        if(!isSquare) throw new Error("Must be square matrix.");
+
+        var r:int = _rows - 1, c:int = _columns - 1, temp:*;
+        for (var i:int = 0; i < _rows / 2; i++) {
+            for (var j:int = i; j < _columns - i - 1; j++) {
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[r-j][i];
+                matrix[r-j][i] = matrix[r-i][c-j];
+                matrix[r-i][c-j] = matrix[j][c-i];
+                matrix[j][c-i] = temp;
+            }
+        }
+        return this;
+    }
+
+    public function rotateCounterClockWise():Matrix {
+        if(!isSquare) throw new Error("Must be square matrix.");
+
+        var r:int = _rows - 1, c:int = _columns - 1, temp:*;
+
+        for (var i:int = 0; i < _rows/2; i++) {
+            for (var j:int = i; j < _columns - i - 1; j++) {
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[j][c-i];
+                matrix[j][c-i] = matrix[r-i][c-j];
+                matrix[r-i][c-j] = matrix[r-j][i];
+                matrix[r-j][i] = temp;
+            }
+        }
+
         return this;
     }
 

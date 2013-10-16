@@ -10,9 +10,9 @@ import flash.events.Event;
 
 public final class DataEvent extends Event {
 
-    public static const DATA_LOADED     :String = "customEvent.data.loaded";
-    public static const XML_LOADED      :String = "customEvent.xml.loaded";
-    public static const FROM_XML_FINISHED:String = "customEvent.from.xml.finished";
+    public static const DATA_LOADED         :String = "data.loaded";
+    public static const XML_LOADED          :String = "xml.loaded";
+    public static const FROM_XML_FINISHED   :String = "from.xml.finished";
 
     public var data:*;
 

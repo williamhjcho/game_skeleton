@@ -375,9 +375,7 @@ public class ToolMath {
 
     public static function clamp(a:Number, min:Number, max:Number):Number {
         //returns a number between [min,max], included
-        if (a < min) return min;
-        if (a > max) return max;
-        return a;
+        return (a < min)? min : (a > max)? max : a;
     }
 
     //COMPARISON

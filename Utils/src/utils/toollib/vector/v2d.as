@@ -30,8 +30,14 @@ public class v2d {
 
     public function get normalize():v2d {
         var l:Number = this.length;
-        l = (l == 0) ? 1 : l;
+        if(l == 0) return this;
         return multiply(1/l);
+    }
+
+    public function abs():v2d {
+        if(x < 0) x = -x;
+        if(y < 0) y = -y;
+        return this;
     }
 
     public function add         (v:Object)          :v2d { return setTo(this.x + v.x, this.y + v.y); }
