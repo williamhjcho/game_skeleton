@@ -9,15 +9,11 @@ package utils.toollib {
 public class Searcher {
 
     public static function compareASC(a:*, b:*):int {
-        if(a > b) return 1;
-        if(a < b) return -1;
-        return 0;
+        return (a > b)? 1 : (a < b)? -1 : 0;
     }
 
     public static function compareDESC(a:*, b:*):int {
-        if(a > b) return -1;
-        if(a < b) return 1;
-        return 0;
+        return (a > b)? -1 : (a < b)? 1 : 0;
     }
 
 

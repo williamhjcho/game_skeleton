@@ -52,6 +52,15 @@ public class CMYK {
         return (alpha << 24) | (0xff*(1-c)*kMinus) << 16 | (0xff*(1-m)*kMinus) << 8 | (0xff*(1-y)*kMinus);
     }
 
+    public function copy(model:CMYK):CMYK {
+        return setTo(model.c,model.m,model.y,model.k);
+    }
+
+    public function getCopy(output:CMYK):CMYK {
+        if(output == null) return new CMYK(c,m,y,k);
+        return output.setTo(c,m,y,k);
+    }
+
     public function toString():String {
         return "(C:" + c + ", M:" + m + ", Y:" + y + ", K:" + k +")";
     }

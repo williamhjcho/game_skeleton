@@ -6,24 +6,23 @@
  * To change this template use File | Settings | File Templates.
  */
 package {
-import flash.display.Sprite;
-import flash.utils.getTimer;
+import com.demonsters.debugger.MonsterDebugger;
 
-import utils.commands.getClass;
-import utils.toollib.Matrix;
+import flash.display.Sprite;
+import flash.utils.Dictionary;
 
 public class Main extends Sprite {
 
     public function Main() {
-        var matrix:Matrix = new Matrix(4,4);
-        matrix.setRow(0, ["a", "b", "c", "d"]);
-        matrix.setRow(1, ["e", "f", "g", "h"]);
-        matrix.setRow(2, ["i", "j", "k", "l"]);
-        matrix.setRow(3, ["m", "n", "o", "p"]);
-        trace(matrix);
+        MonsterDebugger.initialize(this);
+        load();
+    }
 
-        //trace(matrix.rotateClockWise());
-        trace(matrix.rotateCounterClockWise());
+    private function load():void {
+        var o:MyCls = new MyCls();
+
+        var t:Sprite = o as Sprite;
+        trace(t)
     }
 }
 }

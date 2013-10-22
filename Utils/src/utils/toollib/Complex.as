@@ -62,7 +62,6 @@ public class Complex {
     public function addScalar(scalar:Number)        :Complex { return setTo(this.x + scalar, this.y + scalar); }
     public function multiplyScalar(scalar:Number)   :Complex { return setTo(this.x * scalar, this.y * scalar); }
 
-
     public function exp():Complex { return new Complex(Math.exp(this.x) * Math.cos(this.y), Math.exp(this.x) * Math.sin(this.y)); }
 
     public function powerBy(n:int):Complex {

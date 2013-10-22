@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package model {
-public class SaveData {
+public class Save {
 
 
 

@@ -25,7 +25,7 @@ public class Polygon {
         return this;
     }
 
-    public function getVertex(idx:int)          :v2d    { return vertices[idx];                 }
+    public function getVertex(idx:int):v2d { return vertices[idx]; }
     public function setVertex(idx:int, obj:Object):Polygon {
         vertices[idx].setTo(obj.x, obj.y);
         return this;

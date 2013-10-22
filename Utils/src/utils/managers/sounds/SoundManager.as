@@ -13,7 +13,7 @@ import flash.media.SoundLoaderContext;
 import flash.net.URLRequest;
 import flash.utils.Dictionary;
 
-import utils.toollib.ToolMath;
+import utils.commands.clamp;
 
 public class SoundManager {
     private static var soundItemLibrary :Dictionary = new Dictionary();
@@ -21,14 +21,12 @@ public class SoundManager {
     private static var _muted           :Boolean = false;
     private static var _volume          :Number = 1;
 
-    public function SoundManager() {
-
-    }
+    public function SoundManager() {}
 
     /** SOUND MANAGEMENT **/
     private static function add(name:String, customSoundClass:Class, preloadedSound:Sound, path:String, buffer:Number = 1000, checkPolicyFile:Boolean = false, params:Object=null):void {
         if(isRegistered(name))
-            throw new Error("Already registered name: \""+name+"\".");
+            throw new ArgumentError("Already registered name: \""+name+"\".");
 
         var soundItem:SoundItem = new SoundItem();
 
@@ -91,9 +89,11 @@ public class SoundManager {
 
 
     /** Public Sound Control **/
-    public static function play(name:String, ID:String = null, volume:Number = 1, pan:Number = 0, startTime:Number = 0, loops:int = 0):void {
+    public static function play(name:String, ID:String = null, volume:Number = 1, pan:Number = 0, startTime:Number = 0, loops:int = 0):String {
         var soundItem:SoundItem = soundItemLibrary[name] as SoundItem;
-        soundItem.play(ID, startTime, volume * _volume, pan, loops);
+        ID = soundItem.play(ID, startTime, volume * _volume, pan, loops);
+        if(_muted) soundItem.mute(ID);
+        return ID;
     }
 
     public static function pause(name:String, ID:String = null):void {
@@ -116,9 +116,10 @@ public class SoundManager {
 
     public static function get volume()         :Number { return _volume; }
     public static function set volume(v:Number) :void   {
-        v = ToolMath.clamp(v,0,1);
+        if(_muted) return;
+        v = clamp(v,0,1);
         for each (var item:SoundItem in soundItemLibrary) {
-            item.volume = v;
+            item.volume = v * item.volume / _volume;
         }
         _volume = v;
     }
@@ -161,7 +162,7 @@ public class SoundManager {
     public static function getPosition(name:String,ID:String):Number                    { return SoundItem(soundItemLibrary[name]).getPosition(ID);    }
     public static function setPosition(name:String,ID:String,position:Number):void      { SoundItem(soundItemLibrary[name]).setPosition(ID, position); }
     public static function getVolume(name:String):Number                                { return SoundItem(soundItemLibrary[name]).volume/_volume      }
-    public static function setVolume(name:String, volume:Number):void                   { SoundItem(soundItemLibrary[name]).volume = (_muted) ? 0 : volume*_volume;   }
+    public static function setVolume(name:String, volume:Number):void                   { SoundItem(soundItemLibrary[name]).volume = (_muted) ? 0 : clamp(volume,0,1) * _volume;   }
     public static function getPan(name:String):Number                                   { return SoundItem(soundItemLibrary[name]).pan; }
     public static function setPan(name:String, pan:Number):void                         { SoundItem(soundItemLibrary[name]).pan = pan; }
 

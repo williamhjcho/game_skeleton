@@ -9,6 +9,8 @@ package utils.managers.state {
 import flash.events.EventDispatcher;
 import flash.utils.Dictionary;
 
+import utils.events.StateMachineEvent;
+
 public class StateMachine extends EventDispatcher {
 
     private var states:Dictionary = new Dictionary();
@@ -22,35 +24,17 @@ public class StateMachine extends EventDispatcher {
     public function get currentName():String { return _currentName; }
     public function get currentState():State { return states[_currentName]; }
 
-    public function create(name:String, parameters:Object):State {
-        if(name == null) throw new Error("Type cannot be null.");
-        if(hasState(name)) throw new Error("Type already registered :\""+name+"\".");
-        parameters ||= {};
-
-        states[name] = new State(name, parameters.from, parameters.onEnter, parameters.onExit);
-        return states[name];
-    }
-
     public function add(state:State):void {
-        if(hasState(state.name)) throw new Error("Type already registered:\""+state.name+"\".");
+        if(hasState(state.name)) throw new ArgumentError("Type already registered:\""+state.name+"\".");
+        state.setMachine(this);
         states[state.name] = state;
     }
 
     public function remove(name:String):State {
         var state:State = states[name];
+        if(state == null) return null;
         delete states[name];
         return state;
-    }
-
-    public function hasState(name:String):Boolean {
-        return (states[name] != null && states[name] != undefined);
-    }
-
-    public function canChangeTo(name:String):Boolean {
-        var state:State = states[name];
-        if(!state) return false;
-        if(_currentName == null) return true;
-        return (name != _currentName) && (state.isOpen || state.from.indexOf(_currentName) != -1);
     }
 
     public function changeTo(name:String, parametersExit:Array = null, parametersEnter:Array = null):State {
@@ -77,6 +61,17 @@ public class StateMachine extends EventDispatcher {
         _currentName = name;
 
         return to;
+    }
+
+    public function hasState(name:String):Boolean {
+        return (states[name] != null && states[name] != undefined);
+    }
+
+    public function canChangeTo(name:String):Boolean {
+        var state:State = states[name];
+        if(!state) return false;
+        if(_currentName == null) return true;
+        return (name != _currentName) && (state.isOpen || state.from.indexOf(_currentName) != -1);
     }
 
 }

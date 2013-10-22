@@ -7,6 +7,7 @@
  */
 package utils.toollib.geometry {
 import utils.toollib.ToolGeometry;
+import utils.toollib.ToolMath;
 
 public class Circle {
 
@@ -25,7 +26,7 @@ public class Circle {
 
     public function get diameter        ():Number { return this.radius * 2;             }
     public function get area            ():Number { return Math.PI * radius * radius;   }
-    public function get circumference   ():Number { return 2 * Math.PI * radius;        }
+    public function get circumference   ():Number { return ToolMath.TAU * radius;       }
 
     public function sagitta(x0:Number, y0:Number, x1:Number, y1:Number):Number {
         var d:Number = ToolGeometry.pythagoras(x1-x0, y1-y0) / 2;

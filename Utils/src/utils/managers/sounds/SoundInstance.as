@@ -9,7 +9,7 @@ package utils.managers.sounds {
 import flash.media.SoundChannel;
 import flash.media.SoundTransform;
 
-import utils.toollib.ToolMath;
+import utils.commands.clamp;
 
 public class SoundInstance {
 
@@ -34,7 +34,7 @@ public class SoundInstance {
 
     public function get volume():Number { return _volume; }
     public function set volume(v:Number):void {
-        _volume = ToolMath.clamp(v, 0, 1);
+        _volume = clamp(v, 0, 1);
         if(soundTransform != null)
             soundTransform.volume = _volume;
         if(channel != null)
@@ -43,7 +43,7 @@ public class SoundInstance {
 
     public function get pan():Number { return _pan; }
     public function set pan(p:Number):void {
-        _pan = ToolMath.clamp(p, -1, 1);
+        _pan = clamp(p, -1, 1);
         if(soundTransform != null)
             soundTransform.pan = _pan;
         if(channel != null)

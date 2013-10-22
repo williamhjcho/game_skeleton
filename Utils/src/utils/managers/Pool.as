@@ -11,7 +11,6 @@ public class Pool {
     private static var poolList:Dictionary = new Dictionary();
     private static var types:Vector.<Class> = new Vector.<Class>();
 
-
     public static function add(type:Class, n:int = 10):void {
         var pool:Array = poolList[type];
 

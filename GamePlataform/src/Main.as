@@ -9,10 +9,11 @@ package {
 import com.demonsters.debugger.MonsterDebugger;
 import com.greensock.events.LoaderEvent;
 import com.greensock.loading.LoaderMax;
+import com.greensock.loading.LoaderStatus;
+import com.greensock.loading.XMLLoader;
 
-import controller.GameController;
+import controller.Game;
 import controller.data.DataController;
-import controller.event.DataEvent;
 
 import flash.display.MovieClip;
 import flash.display.Sprite;
@@ -22,11 +23,11 @@ import flash.system.Security;
 import flash.text.TextField;
 
 import model.Config;
-import model.GameData;
+import model.Data;
 
-import utils.managers.AssetsManager;
 import utils.managers.DebuggerManager;
 import utils.managers.EnvironmentManager;
+import utils.managers.LoaderManager;
 
 import utilsDisplay.managers.PreloaderManager;
 import utilsDisplay.view.Stats;
@@ -40,7 +41,7 @@ public class Main extends MovieClip {
     private var _mapLayer:MovieClip;
     private var _hudLayer:MovieClip;
     private var _popUpLayer:MovieClip;
-    private var gameController:GameController;
+    private var gameController:Game;
     private var stats:Stats;
 
     public static function get instance():Main { return _instance; }
@@ -60,7 +61,7 @@ public class Main extends MovieClip {
 
         var config:Config = Client.config;
         if(config.preLoaderPath != null && config.preLoaderPath != "") {
-            AssetsManager.loadSWFAsset(config.preLoaderPath, {name:"preLoader", estimatedBytes:4800, onComplete:onPreLoaderLoaded});
+            LoaderManager.loadSWF(config.preLoaderPath, {name:"preLoader", estimatedBytes:4800}, onPreLoaderLoaded);
         } else {
             onPreLoaderLoaded(null);
         }
@@ -68,23 +69,28 @@ public class Main extends MovieClip {
 
     private function onPreLoaderLoaded(e:LoaderEvent = null):void {
         PreloaderManager.initialize(_stage);
-        PreloaderManager.setLoadingMovie((e == null)? null : LoaderMax.getContent("preLoader").rawContent["preLoader"], true);
+        PreloaderManager.setLoadingMovie((e == null)? null : LoaderMax(e.target).getContent("preLoader").rawContent["preLoader"], true);
         PreloaderManager.setVisible(true);
         loadAssets();
     }
 
     private function loadAssets():void {
         var config:Config = Client.config;
-        if(config.assetsXML_path == null || config.assetsXML_path == "") {
+        if(config.assets == null || config.assets.length == 0) {
             onLoadAssets(null);
         } else {
-            DataController.addEventListener(DataEvent.XML_LOADED, onLoadAssets);
-            DataController.loadXML(config.assetsXML_path, updatePreLoader);
+            LoaderManager.loadList(config.assets, "", onLoadAssets, updatePreLoader, null);
         }
     }
 
-    private function onLoadAssets(e:DataEvent = null):void {
-        DataController.removeEventListener(DataEvent.XML_LOADED, onLoadAssets);
+    private function onLoadAssets(e:LoaderEvent = null):void {
+        if(e != null) {
+            for each (var asset:String in Client.config.assets) {
+                var loader:* = LoaderManager.getLoader(asset);
+                DataController.analyzeLoader(loader);
+            }
+        }
+
         initializeControllers();
         initializeBases();
         initializeGame();
@@ -127,12 +133,12 @@ public class Main extends MovieClip {
         stats.alpha = 0.75;
         addChild(stats);
 
-        gameController = new GameController(_mapLayer, _hudLayer, _popUpLayer);
+        gameController = new Game(_mapLayer, _hudLayer, _popUpLayer);
     }
 
     private function initializeGame():void {
         //start game
-        GameData.stage = _stage;
+        Data.stage = _stage;
         PreloaderManager.setVisible(false);
 
         gameController.initialize();

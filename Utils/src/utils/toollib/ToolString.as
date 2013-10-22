@@ -10,6 +10,10 @@ public class ToolString {
         return s.match(/\bw+\b/g).length;
     }
 
+    public static function replaceExtraSpaces(s:String):String {
+        return s.replace(/( )*/g," ");
+    }
+
     public static function between(s:String, start:String, end:String):String {
         var r:String = "";
         if(s == null) return r;

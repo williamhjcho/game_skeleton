@@ -73,6 +73,15 @@ public class HSV {
         return alpha << 24 | (0xff*(r+m)) << 16 | (0xff*(g+m)) << 8 | (0xff*(b+m));
     }
 
+    public function copy(model:HSV):HSV {
+        return setTo(model.h,model.s,model.v);
+    }
+
+    public function getCopy(output:HSV = null):HSV {
+        if(output == null) return new HSV(h,s,v);
+        return output.setTo(h,s,v);
+    }
+
     public function toString():String {
         return "(H:"+h+", S:"+s+", V:"+v+")";
     }

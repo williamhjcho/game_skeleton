@@ -6,9 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package {
-import Main;
-import controller.data.DataController;
-import controller.event.DataEvent;
+import com.greensock.events.LoaderEvent;
+import com.greensock.loading.LoaderMax;
 
 import flash.display.MovieClip;
 import flash.events.Event;
@@ -16,6 +15,8 @@ import flash.ui.ContextMenu;
 import flash.ui.ContextMenuItem;
 
 import model.Config;
+
+import utils.managers.LoaderManager;
 
 import utils.managers.serializer.SerializerManager;
 
@@ -36,16 +37,13 @@ public class Client extends MovieClip {
     }
 
     private function loadConfigFile():void {
-        DataController.addEventListener(DataEvent.DATA_LOADED, onConfigLoaded);
-        DataController.loadData("data/_gameConfig.txt");
+        LoaderManager.loadData("data/files/_gameConfig.txt", {name:"config"}, onConfigLoaded);
     }
 
-    private function onConfigLoaded(e:DataEvent):void {
-        DataController.removeEventListener(DataEvent.DATA_LOADED, onConfigLoaded);
-        _config = SerializerManager.decode(JSON.parse(e.data));
+    private function onConfigLoaded(e:LoaderEvent):void {
+        _config = SerializerManager.decodeFromString(LoaderMax(e.target).getContent("config"));
         this.addChild(new Main(this.stage));
     }
-
 
     public static function get config():Config { return _config; }
 

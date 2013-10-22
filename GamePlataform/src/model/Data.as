@@ -13,16 +13,19 @@ import flash.utils.Dictionary;
 
 import utils.managers.DataManager;
 
-public class GameData {
+public class Data {
 
     private static var _stage           :Stage;
     private static var _fps             :Number; //Frames Per Second
     private static var _spf             :Number; //Seconds Per Frame
 
+    public static var user              :String;
+    public static var password          :String;
     public static var defaultSaveData   :String;
-    public static var saveData          :SaveData;
-    public static var variables         :GameVariables;
+    public static var saveData          :Save;
+    public static var variables         :Variables;
     public static var styleSheet        :StyleSheet;
+
     private static var textLibrary      :Dictionary = new Dictionary();
 
     private static var _currentLanguageAcronym:String;

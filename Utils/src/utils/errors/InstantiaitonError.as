@@ -7,7 +7,7 @@
  */
 package utils.errors {
 
-public class InstantiaitonError extends Error {
+public final class InstantiaitonError extends Error {
     public function InstantiaitonError(msg:String = "Cannot instantiate this class.", id:* = 0) {
         super(msg,id);
     }

@@ -6,31 +6,26 @@
  * To change this template use File | Settings | File Templates.
  */
 package controller.data {
-import com.greensock.events.LoaderEvent;
-import com.greensock.loading.DataLoader;
 import com.greensock.loading.LoaderMax;
 import com.greensock.loading.LoaderStatus;
 import com.greensock.loading.XMLLoader;
 
-import controller.event.DataEvent;
+import constants.AssetType;
 
 import flash.events.Event;
 import flash.events.EventDispatcher;
 import flash.text.StyleSheet;
 import flash.utils.Dictionary;
 
-import model.GameData;
+import model.Data;
 
-import utils.managers.AssetsManager;
 import utils.managers.serializer.SerializerManager;
 import utils.managers.sounds.SoundManager;
 
 public class DataController {
 
     private static var dispatchingUnit:EventDispatcher = new EventDispatcher();
-
-    private static var _loadedXMLs:Dictionary = new Dictionary();
-
+    private static var analyzedLoaders:Dictionary = new Dictionary();
 
     public function DataController() {}
 
@@ -48,45 +43,20 @@ public class DataController {
     }
 
     /** Core **/
-    public static function loadData(path:String):void {
-        AssetsManager.loadDataAssets(path, {name:path, onComplete:onDataLoaded}, null, null);
-    }
+    public static function analyzeLoader(loader:*):void {
+        if(loader in analyzedLoaders)
+            return; //already analyzed
 
-    private static function onDataLoaded(e:LoaderEvent):void {
-        var dl:DataLoader = e.target as DataLoader;
-        dispatchEvent(new DataEvent(DataEvent.DATA_LOADED, dl.content, false, false));
-    }
-
-
-    public static function loadXML(path:String, onProgress:Function = null):void {
-        AssetsManager.loadXMLAssets(path, {name:path, onComplete:onLoadXML}, onProgress, null);
-    }
-
-    public static function onLoadXML(e:LoaderEvent):void {
-        var xmlLoader:XMLLoader = e.target as XMLLoader;
-        var xml:XML = xmlLoader.content;
-        _loadedXMLs[xmlLoader.url] = xml;
-
-        for (var c:int = 0; c < xml.children().length(); c++) {
-            var loader:LoaderMax = LoaderMax.getLoader(xml.child(c).@name);
-            if(loader.status == LoaderStatus.COMPLETED)  //load="true"
-                analyzeXML(xml, loader);
+        analyzedLoaders[loader] = true;
+        if(loader is XMLLoader) {
+            var xml:XML = XMLLoader(loader).content;
+            for (var c:int = 0; c < xml.children().length(); c++) {
+                var ldr:LoaderMax = LoaderMax.getLoader(xml.child(c).@name);
+                if(ldr.status == LoaderStatus.COMPLETED)
+                    analyzeXML(xml, ldr);
+            }
         }
-        dispatchEvent(new DataEvent(DataEvent.XML_LOADED, xml, false, false));
     }
-
-
-    public static function loadFromXML(xmlPath:String, loaderName:String):void {
-        AssetsManager.loadExternalLoader(loaderName, {onComplete:onLoadFromXML, xmlPath:xmlPath});
-    }
-
-    private static function onLoadFromXML(e:LoaderEvent):void {
-        var loader:LoaderMax = e.target as LoaderMax;
-        var xml:XML = _loadedXMLs[loader.vars.xmlPath];
-        analyzeXML(xml, loader);
-        dispatchEvent(new DataEvent(DataEvent.FROM_XML_FINISHED, xml, false,false));
-    }
-
 
     private static function analyzeXML(xml:XML, loader:LoaderMax):void {
         var xmlList:XMLList;
@@ -110,23 +80,23 @@ public class DataController {
                 case "DataLoader": {
                     data = loader.getContent(childName);
                     switch(String(xmlList[i].@type)) {
-                        case "GAME_VARIABLES": {
-                            GameData.variables = SerializerManager.decode(JSON.parse(data));
+                        case AssetType.VARIABLES: {
+                            Data.variables = SerializerManager.decodeFromString(data);
                             break;
                         }
-                        case "SAVE_DATA": {
-                            GameData.defaultSaveData = data;
-                            GameData.saveData = SerializerManager.decode(JSON.parse(data));
+                        case AssetType.SAVE: {
+                            Data.defaultSaveData = data;
+                            Data.saveData = SerializerManager.decodeFromString(data);
                             break;
                         }
-                        case "TEXT": {
-                            GameData.addText(JSON.parse(data), String(xmlList.@acronym), true);
-                            GameData.currentLanguage = String(xmlList.@acronym);
+                        case AssetType.TEXT: {
+                            Data.addText(SerializerManager.decodeFromString(data), String(xmlList.@acronym), true);
+                            Data.currentLanguage = String(xmlList.@acronym);
                             break;
                         }                        
-                        case "CSS": {
-                            GameData.styleSheet = new StyleSheet();
-                            GameData.styleSheet.parseCSS(data);
+                        case AssetType.CSS: {
+                            Data.styleSheet = new StyleSheet();
+                            Data.styleSheet.parseCSS(data);
                             break;
                         }
                     }

@@ -5,7 +5,7 @@
  * Time: 18:39
  * To change this template use File | Settings | File Templates.
  */
-package utils.managers.serializer {
+package utils.errors {
 public final class SerializerError extends Error {
 
     public static const VARIABLE_NOT_FOUND:int = 0;

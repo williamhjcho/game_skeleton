@@ -6,17 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib.geometry {
-import utils.toollib.vector.v2d;
-
 public class Ellipse {
 
+    public var x:Number;
+    public var y:Number;
     public var a:Number;
     public var b:Number;
-    public var center:v2d = new v2d(0,0);
 
     public function Ellipse(x:Number, y:Number, a:Number, b:Number) {
-        center.x = x;
-        center.y = y;
+        this.x = x;
+        this.y = y;
         this.a = a;
         this.b = b;
     }
@@ -30,8 +29,8 @@ public class Ellipse {
         return Math.sqrt(1 - t*t);
     }
 
-    public function getX(t:Number):Number { return a * Math.cos(t); }
-    public function getY(t:Number):Number { return b * Math.sin(t); }
+    public function getX(t:Number):Number { return x + a * Math.cos(t); }
+    public function getY(t:Number):Number { return y + b * Math.sin(t); }
 
 }
 }

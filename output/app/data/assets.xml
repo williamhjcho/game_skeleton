@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
     <LoaderMax name="assets" load="true">
-        <DataLoader url="data/_gameConfig.txt"              name="_gameConfig"/>
-        <DataLoader url="data/_gameSaveData.txt"            name="_gameSaveData"    type="SAVE_DATA"/>
-        <DataLoader url="data/_gameVariables.txt"           name="_gameVariables"   type="GAME_VARIABLES"/>
-        <DataLoader url="data/_gameModels.txt"              name="_gameModels"      type="MODEL"   />
-        <DataLoader url="data/_gameText_PT.txt"             name="_gameText_PT"     type="TEXT"  acronym="PT"  />
-        <DataLoader url="data/_gameText_US.txt"             name="_gameText_US"     type="TEXT"  acronym="US"  />
-        <DataLoader url="data/_styles.css"                  name="_styles"          type="CSS" />
+        <DataLoader url="data/files/_gameConfig.txt"        name="_gameConfig"/>
+        <DataLoader url="data/files/_gameSave.txt"          name="_gameSave"        type="SAVE_DATA"/>
+        <DataLoader url="data/files/_gameVariables.txt"     name="_gameVariables"   type="VARIABLES"/>
+        <DataLoader url="data/files/_gameModels.txt"        name="_gameModels"      type="MODEL"   />
+        <DataLoader url="data/files/_gameText_PT.txt"       name="_gameText_PT"     type="TEXT"  acronym="PT"  />
+        <DataLoader url="data/files/_gameText_US.txt"       name="_gameText_US"     type="TEXT"  acronym="US"  />
+        <DataLoader url="data/files/_styles.css"            name="_styles"          type="CSS" />
 
         <!--<SWFLoader  url="data/assets/IsometricAssets.swf"   name="IsometricAssets" autoPlay="false"/>-->
 

@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib {
+import flash.errors.IllegalOperationError;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 
@@ -109,7 +110,7 @@ public class Matrix {
     }
 
     public function rotateClockWise():Matrix {
-        if(!isSquare) throw new Error("Must be square matrix.");
+        if(!isSquare) throw new IllegalOperationError("Must be square matrix.");
 
         var r:int = _rows - 1, c:int = _columns - 1, temp:*;
         for (var i:int = 0; i < _rows / 2; i++) {
@@ -125,7 +126,7 @@ public class Matrix {
     }
 
     public function rotateCounterClockWise():Matrix {
-        if(!isSquare) throw new Error("Must be square matrix.");
+        if(!isSquare) throw new IllegalOperationError("Must be square matrix.");
 
         var r:int = _rows - 1, c:int = _columns - 1, temp:*;
 
@@ -342,7 +343,7 @@ public class Matrix {
         while(i < _columns && i < _rows) { matrix[i][i] = model[i]; i++; }
     }
 
-    public function setSecondaryDiagonal(model:Array):void {
+    public function setSecundaryDiagonal(model:Array):void {
         var i:int = 0, j:int = _columns-1;
         while(i < _rows && j >= 0) { matrix[i][j] = model[i]; i++; j--; }
     }
@@ -381,29 +382,19 @@ public class Matrix {
     public function forEach(f:Function):void {
         for (var i:int = 0; i < _rows; i++) {
             for (var j:int = 0; j < _columns; j++) {
-                f.apply(this, matrix[i][j]);
+                f.call(this, matrix[i][j]);
             }
         }
     }
 
-    public function forEachRow(f:Function):void {
-        for (var i:int = 0; i < _rows; i++)
-            f.apply(this, getRow(i));
-    }
-
-    public function forEachColumn(f:Function):void {
+    public function forEachRow(r:int, f:Function):void {
         for (var i:int = 0; i < _columns; i++)
-            f.apply(this, getColumn(i));
+            f.call(this, matrix[r][i]);
     }
 
-    public function forEachRowElement(r:int, f:Function):void {
-        for (var i:int = 0; i < _columns; i++)
-            f.apply(this, matrix[r][i]);
-    }
-
-    public function forEachColumnElement(c:int, f:Function):void {
+    public function forEachColumn(c:int, f:Function):void {
         for (var i:int = 0; i < _rows; i++)
-            f.apply(this, matrix[i][c]);
+            f.call(this, matrix[i][c]);
     }
 
 

@@ -13,6 +13,7 @@ import flash.xml.XMLNode;
 import utils.commands.getClass;
 import utils.commands.getClassByPath;
 import utils.commands.getClassName;
+import utils.errors.SerializerError;
 
 public class SerializerManager {
 
@@ -63,8 +64,6 @@ public class SerializerManager {
         var encoded:Object = encode(obj, ignoreSameReference, onError);
         return JSON.stringify(encoded);
     }
-
-
 
     public static function decodeFromString(src:String):* {
         var obj:Object = JSON.parse(src);

@@ -5,7 +5,8 @@
  * Time: 10:03 PM
  * To change this template use File | Settings | File Templates.
  */
-package utils.managers.sounds {
+package utils.events {
+import utils.managers.sounds.*;
 
 import flash.events.Event;
 

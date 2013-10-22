@@ -13,8 +13,9 @@ import flash.media.SoundChannel;
 import flash.media.SoundTransform;
 import flash.utils.Dictionary;
 
+import utils.commands.clamp;
+import utils.events.SoundEvent;
 import utils.managers.Pool;
-import utils.toollib.ToolMath;
 
 public class SoundItem extends EventDispatcher {
 
@@ -53,7 +54,7 @@ public class SoundItem extends EventDispatcher {
                 ins =  _instances[ins.ID] = new SoundInstance(ID, Pool.getItem(SoundTransform));
             } else {
                 if(!ins.paused) return ins.ID; //already playing
-                ins.channel = null; //removing reference to old channel
+                ins.channel = null; //removing reference to old channel (no need to remove eventListener, at this point it is already removed, see 'onSoundComplete')
             }
 
             this._paused    = false;
@@ -181,7 +182,7 @@ public class SoundItem extends EventDispatcher {
     public function get volume():Number { return _volume; }
 
     public function set volume(v:Number):void {
-        _volume = (muted)? 0 : ToolMath.clamp(v,0,1);
+        _volume = (muted)? 0 : clamp(v,0,1);
         for each(var ins:SoundInstance in _instances) {
             ins.volume = _volume;
         }
@@ -190,7 +191,7 @@ public class SoundItem extends EventDispatcher {
     public function get pan():Number { return _pan; }
 
     public function set pan(p:Number):void {
-        _pan = ToolMath.clamp(p, -1, 1);
+        _pan = clamp(p, -1, 1);
         for each(var ins:SoundInstance in _instances) {
             ins.pan = _pan;
         }

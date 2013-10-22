@@ -28,6 +28,16 @@ public class RGBA {
         return this;
     }
 
+    public function getCopy(output:RGBA = null):RGBA {
+        if(output == null) return new RGBA(r,g,b,a);
+        return output.setTo(r,g,b,a);
+    }
+
+    public function copy(model:RGBA):RGBA {
+        return setTo(model.r,model.g,model.b,model.a);
+    }
+
+
     public function get R():uint { return this.r; }
     public function get G():uint { return this.g; }
     public function get B():uint { return this.b; }

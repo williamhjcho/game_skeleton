@@ -1,5 +1,6 @@
 {
-    "___className": "model.GameVariables",
+    "___className": "model.Variables",
+
     "volumeMain"      : 1,
     "volumeSFX"       : 1,
     "volumeBackground": 1    

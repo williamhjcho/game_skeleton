@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package model {
-public class GameVariables {
+public class Variables {
 
     public var volumeMain       :Number = 1;
     public var volumeSFX        :Number = 1;

@@ -2,6 +2,7 @@
  * william.cho
  */
 package utils.toollib {
+import utils.errors.InstantiaitonError;
 
 public class ToolMath {
 
@@ -12,6 +13,10 @@ public class ToolMath {
 
     private static var _fibonacci:Vector.<uint> = new <uint>[0,1,1,2];
     private static var _primes:Vector.<uint> = new <uint>[2,3,5,7,9,11,13,17,19,23,27];
+
+    public function ToolMath() {
+        throw new InstantiaitonError();
+    }
 
     public static function random():Number { return (Math.random() + (1/GOLDEN_RATIO)) % 1; }
 
@@ -229,11 +234,10 @@ public class ToolMath {
     //Geometry
     public static function getQuadrant(x:Number, y:Number):int {
         var theta:Number = Math.atan2(y,x);
-        if(theta < 0) {
+        if(theta < 0)
             return (-theta < Math.PI / 2)? 1 : 2;
-        } else  {
+        else
             return (theta < Math.PI / 2)? 4 : 3;
-        }
     }
 
 
@@ -400,14 +404,21 @@ public class ToolMath {
         return true;
     }
 
-
-
     public static function numberOfDigits(num:int):int {
         var n:int = Math.abs(num);
         for (var i:int = 0; n / 10 >= 1; i++) {
             n /= 10;
         }
         return i + 1 + (num < 0? 1 : 0);
+    }
+
+    //Interest
+    public static function interest(initial:Number, tax:Number, time:Number):Number {
+        return initial * tax * time;
+    }
+
+    public static function interestCompound(initial:Number, tax:Number, time:Number, precision:Number = 5):Number {
+        return (initial * round(Math.pow(1 + tax,time), precision)) - initial;
     }
 
     //Fourier Transform
@@ -511,17 +522,6 @@ public class ToolMath {
         return y;
     }
     //*/
-
-    //Interest
-    public static function interest(initial:Number, tax:Number, time:Number):Number {
-        return initial * tax * time;
-    }
-
-    public static function interestCompound(initial:Number, tax:Number, time:Number, precision:Number = 5):Number {
-        return (initial * round(Math.pow(1 + tax,time), precision)) - initial;
-    }
-
-
 
 }
 }

@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.managers.state {
-import utils.commands.getClass;
 
 public class State {
 
@@ -14,42 +13,34 @@ public class State {
     private var _onEnter:Function;
     private var _onExit:Function;
     private var _isOpen:Boolean = false;
-    private var _from:Vector.<String> = new Vector.<String>();
+    private var _from:Array = [];
 
-    public function State(type:String, from:* = null, onEnter:Function = null, onExit:Function = null) {
+    protected var machine:StateMachine;
+
+    public function State(type:String, from:Array = null, onEnter:Function = null, onExit:Function = null) {
         this._name = type;
         this._onEnter = onEnter;
         this._onExit = onExit;
         this.from = from;
     }
 
-    /** utils.managers.state.State Controls **/
+    /** State Controls **/
     public function get name():String { return _name; }
 
     public function get isOpen():Boolean { return _isOpen; }
 
-    public function get from():Vector.<String> { return _from; }
+    public function get from():Array { return _from; }
 
-    public function set from(f:*):void {
-        var clss:Class = getClass(f);
-        var list:Object, state:String;
+    public function set from(f:Array):void {
+        clearFrom();
 
-        switch (clss) {
-            case Vector.<String>:   //fall-through
-            case Array:             list = f; break;
-            case String:            list = [f]; break;
-            case null:              break;
-            default: throw new Error("Invalid Parameter of class : " + clss);
-        }
-
-        if(f == null || f == "*" || list.length == 0 || (list.length == 1 && list[0] == "*") || list.indexOf("*") != -1) {
+        if(f == null || f.indexOf("*") != -1) {
             _isOpen = true;
-            return;
-        }
-
-        _isOpen = false;
-        for each (state in list) {
-            _from.push(state);
+        } else {
+            _isOpen = false;
+            for each (var state:String in f) {
+                _from.push(state);
+            }
         }
     }
 
@@ -57,9 +48,12 @@ public class State {
     public function callExit     (parameters:Array = null):void { if(_onExit != null) _onExit.apply(this, parameters); }
 
     public function clearFrom():void {
-        _from = new Vector.<String>();
+        _isOpen = true;
+        _from.splice(0, _from.length);
     }
 
+    /** Internal **/
+    internal function setMachine(m:StateMachine):void { this.machine = m; }
 
     /** Misc **/
     public function destroy():void {

@@ -10,15 +10,22 @@ public class DataManager {
 
     private var _data:Object;
     private var _name:String;
-    private var _onError:Function = null;
+    private var _onError:Function;
+    private var _locked:Boolean;
 
     public function DataManager(data:Object, name:String, onError:Function = null):void {
         this._onError = onError;
         this._data = data;
         this._name = name
+        this._locked = false;
     }
 
     public function add(data:Object, overwrite:Boolean):void {
+        if(_locked) {
+            trace("[DataManager is locked. Cannot add more properties. Use unlock() first.");
+
+            return;
+        }
         for (var property:String in data) {
             if(_data[property] == null || (_data[property] != null && overwrite)) {
                 _data[property] = data[property];
@@ -46,5 +53,8 @@ public class DataManager {
 
     public function get name():String { return this._name; }
 
+    public function lock():void { _locked = true; }
+    public function unlock():void { _locked = false; }
+    public function get isLocked():Boolean { return _locked; }
 }
 }

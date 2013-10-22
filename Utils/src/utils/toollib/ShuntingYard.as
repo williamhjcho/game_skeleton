@@ -8,12 +8,18 @@
 package utils.toollib {
 import flash.utils.Dictionary;
 
+import utils.errors.InstantiaitonError;
+
 public class ShuntingYard {
 
     private static const LEFT:int = 0;
     private static const RIGHT:int = 1;
     private static var OPERATORS:Dictionary = generateOperators();
     public static const SYNTAX_BREAKERS:Vector.<String> = new <String>[' ','\t','\n'];
+
+    public function ShuntingYard() {
+        throw new InstantiaitonError();
+    }
 
     private static function generateOperators():Dictionary {
         var d:Dictionary = new Dictionary();

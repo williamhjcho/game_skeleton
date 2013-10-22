@@ -8,6 +8,8 @@
 package utils.toollib {
 import flash.utils.Dictionary;
 
+import utils.errors.InstantiaitonError;
+
 public class Units {
 
     public static var CELCIUS   :String = "CELCIUS"     ;
@@ -34,6 +36,10 @@ public class Units {
     private static var unitGlossary     :Dictionary = initializeUnits();
     private static var prefixGlossary   :Dictionary = initializePrefixes();
     private static const HEX_CHARS      :Dictionary = initializeHexCharacters();
+
+    public function Units() {
+        throw new InstantiaitonError();
+    }
 
     private static function initializeUnits():Dictionary {
         var units:Dictionary = new Dictionary();
