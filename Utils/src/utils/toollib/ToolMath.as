@@ -62,8 +62,6 @@ public class ToolMath {
         return fat;
     }
 
-    public static function sqrSum(a:Number, b:Number):Number { return a*a + b*b; }
-
     public static function hypothenuse(a:Number, b:Number):Number { return Math.sqrt(a*a + b*b); }
 
     public static function hypot(x:Number, y:Number):Number {

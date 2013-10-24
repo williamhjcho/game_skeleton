@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.base.interfaces {
-public interface IRenewable {
+public interface IRecyclable {
 
     function reset():void;
     function returnThis():void;
