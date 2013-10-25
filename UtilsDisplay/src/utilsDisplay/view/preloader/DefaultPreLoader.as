@@ -16,13 +16,16 @@ import flash.text.TextFormat;
 
 import utils.toollib.ToolColor;
 
+import utilsDisplay.bases.interfaces.IPreLoader;
+
 import utilsDisplay.font.FontUbuntuRegular;
 
-public class DefaultPreLoader extends MovieClip {
+public class DefaultPreLoader extends MovieClip implements IPreLoader {
 
     public var txtLabel:TextField;
     public var mcBackground:Sprite;
     public var dimensions:Rectangle = new Rectangle(0,0,600,400);
+    private var _percentage:Number = 0;
 
     public function DefaultPreLoader() {
         mcBackground= new Sprite();
@@ -43,7 +46,27 @@ public class DefaultPreLoader extends MovieClip {
         txtLabel.width = 400;
         this.addChild(txtLabel);
 
-        visible = true;
+        this.addEventListener(Event.ADDED_TO_STAGE, onAdded);
+    }
+
+    public function set percentage(p:Number):void {
+        _percentage = p;
+        txtLabel.text = "Loading\n" + int(p * 100) + "%";
+    }
+
+    public function get percentage():Number {
+        return _percentage;
+    }
+
+    private function onAdded(e:Event):void {
+        this.removeEventListener(Event.ADDED_TO_STAGE, onAdded);
+        this.addEventListener(Event.ENTER_FRAME, onEF);
+        this.addEventListener(Event.REMOVED_FROM_STAGE, onRemoved);
+    }
+    private function onRemoved(e:Event):void {
+        this.removeEventListener(Event.REMOVED_FROM_STAGE, onRemoved);
+        this.removeEventListener(Event.ENTER_FRAME, onEF);
+        this.addEventListener(Event.ADDED_TO_STAGE, onAdded);
     }
 
     private var offSet:Object = {r:0.01, g:0.01, b:0.01};
@@ -61,6 +84,7 @@ public class DefaultPreLoader extends MovieClip {
         mcBackground.graphics.beginFill(ToolColor.RGBtoInt(r,g,b), 1);
         mcBackground.graphics.drawRect(dimensions.x, dimensions.y, dimensions.width, dimensions.height);
     }
+
 
     override public function set visible(v:Boolean):void {
         super.visible = v;

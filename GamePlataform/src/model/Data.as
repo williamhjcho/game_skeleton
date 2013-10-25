@@ -16,11 +16,10 @@ import utils.managers.DataManager;
 public class Data {
 
     private static var _stage           :Stage;
-    private static var _fps             :Number; //Frames Per Second
-    private static var _spf             :Number; //Seconds Per Frame
 
     public static var user              :String;
     public static var password          :String;
+
     public static var defaultSaveData   :String;
     public static var saveData          :Save;
     public static var variables         :Variables;
@@ -30,19 +29,12 @@ public class Data {
 
     private static var _currentLanguageAcronym:String;
 
-    public static function get stage():Stage { return _stage; }
-    public static function set stage(value:Stage):void {
-        _stage = value;
-        _fps = _stage.frameRate;
-        _spf = 1 / _stage.frameRate;
-    }
+    public static function get stage():Stage            { return _stage; }
+    public static function set stage(value:Stage):void  { _stage = value; }
 
-    public static function get stageWidth():Number { return _stage.stageWidth; }
-    public static function get stageHeight():Number { return _stage.stageHeight; }
-    public static function get stageRect():Rectangle { return new Rectangle(0,0,_stage.stageWidth, _stage.stageHeight); }
-    public static function get fps  ():Number { return _fps; }
-    public static function get spf  ():Number { return _spf; }
-    public static function get mspf ():Number { return _spf * 1000; }
+    public static function get stageWidth   ():Number { return _stage.stageWidth; }
+    public static function get stageHeight  ():Number { return _stage.stageHeight; }
+    public static function get stageRect    ():Rectangle { return new Rectangle(0,0,_stage.stageWidth, _stage.stageHeight); }
 
     /** Data/Library Management **/
     public static function addText(model:Object, acronym:String, overwrite:Boolean):void {

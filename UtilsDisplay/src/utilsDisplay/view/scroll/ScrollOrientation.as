@@ -5,7 +5,7 @@
  * Time: 3:18 PM
  * To change this template use File | Settings | File Templates.
  */
-package scrl {
+package utilsDisplay.view.scroll {
 public class ScrollOrientation {
 
     public static const AUTO        :String = "auto";

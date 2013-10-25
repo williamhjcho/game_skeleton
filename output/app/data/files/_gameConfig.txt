@@ -7,6 +7,5 @@
     "saveLink"      : "",
     
     "preLoaderPath" : "",
-    "assets"        : ["data/assets.xml"],
-    "assetsXML_path": "data/assets.xml"
+    "assets"        : ["data/assets.xml"]
 }

@@ -8,15 +8,14 @@
 package {
 import com.demonsters.debugger.MonsterDebugger;
 
-import flash.display.MovieClip;
-
 import flash.display.Sprite;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.geom.Rectangle;
 
-import scrl.Scroll;
-import scrl.ScrollParams;
+import utilsDisplay.view.scroll.Scroll;
+
+import utilsDisplay.view.scroll.ScrollParameters;
 
 [SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=60)]
 public class Main extends Sprite {
@@ -24,25 +23,32 @@ public class Main extends Sprite {
     public function Main() {
         MonsterDebugger.initialize(this);
 
-        scrollTest();
+        classTest();
     }
 
-    private var scroll:Scroll, sParams:ScrollParams = new ScrollParams();
+    //==================================
+    //
+    //==================================
+    private var scroll:Scroll, sParams:ScrollParameters = new ScrollParameters();
     private var container:SimpleChild = new SimpleChild(300,200,"rect", 0x00ff0000);
     private var content:SimpleChild = new SimpleChild(200,100,"circle", 0xff00ff00);
-    private var tV:SimpleChild = new SimpleChild(30,100), kV:SimpleChild = new SimpleChild(30, 30);
-    private var tH:SimpleChild = new SimpleChild(100,30), kH:SimpleChild = new SimpleChild(30, 30);
+    private var tV:SimpleChild = new SimpleChild(30,100), kV:SimpleChild = new SimpleChild(30, 30), bVU:SimpleChild = new SimpleChild(30,30), bVD:SimpleChild = new SimpleChild(30,30);
+    private var tH:SimpleChild = new SimpleChild(100,30), kH:SimpleChild = new SimpleChild(30, 30), bHU:SimpleChild = new SimpleChild(30,30), bHD:SimpleChild = new SimpleChild(30,30);
     private function scrollTest():void {
         container.x = 10;
         container.y = 10;
         addChild(container);
         addChild(tV);
         addChild(kV);
+        addChild(bVU);
+        addChild(bVD);
         addChild(tH);
         addChild(kH);
+        addChild(bHU);
+        addChild(bHD);
         scroll = new Scroll(container, content, sParams);
-        scroll.setVerticalComponents(tV,kV);
-        scroll.setHorizontalComponents(tH,kH);
+        scroll.setVerticalComponents(tV,kV, bVU, bVD);
+        scroll.setHorizontalComponents(tH,kH, bHU, bHD);
 
         stage.addEventListener(KeyboardEvent.KEY_UP, press);
     }
@@ -50,16 +56,32 @@ public class Main extends Sprite {
     private function press(e:KeyboardEvent):void {
         //trace(e.keyCode);
         switch(e.keyCode) {
-            case 87: content.height += 50; break;
-            case 65: content.width  -= 50; break;
-            case 83: content.height -= 50; break;
-            case 68: content.width  += 50; break;
+            case 87: content.height += 50; scroll.update(); break;
+            case 65: content.width  -= 50; scroll.update(); break;
+            case 83: content.height -= 50; scroll.update(); break;
+            case 68: content.width  += 50; scroll.update(); break;
         }
     }
 
 
+    //==================================
+    //
+    //==================================
+    private function classTest():void {
+        for(var s:String in MyCls) {
+            trace(s);
+        }
+        trace("-=-=-=-");
+        var ins:MyCls = new MyCls();
+        for(s in ins) {
+            trace(s);
+        }
+    }
 
 
+    //==================================
+    //
+    //==================================
     private var bar:Bar;
     private var drag:Rectangle;
     private function barTest():void {
@@ -82,7 +104,6 @@ public class Main extends Sprite {
         bar.removeEventListener(MouseEvent.MOUSE_UP, onUp);
         bar.stopDrag();
     }
-
     private function onOver(e:MouseEvent):void {
         trace("over");
         bar.addEventListener(MouseEvent.MOUSE_DOWN, onDown);

@@ -7,10 +7,6 @@
  */
 package {
 import com.demonsters.debugger.MonsterDebugger;
-import com.greensock.events.LoaderEvent;
-import com.greensock.loading.LoaderMax;
-import com.greensock.loading.LoaderStatus;
-import com.greensock.loading.XMLLoader;
 
 import controller.Game;
 import controller.data.DataController;
@@ -29,7 +25,6 @@ import utils.managers.DebuggerManager;
 import utils.managers.EnvironmentManager;
 import utils.managers.LoaderManager;
 
-import utilsDisplay.managers.PreloaderManager;
 import utilsDisplay.view.Stats;
 
 public class Main extends MovieClip {
@@ -41,54 +36,30 @@ public class Main extends MovieClip {
     private var _mapLayer:MovieClip;
     private var _hudLayer:MovieClip;
     private var _popUpLayer:MovieClip;
-    private var gameController:Game;
+    private var game:Game;
     private var stats:Stats;
 
-    public static function get instance():Main { return _instance; }
-    public static function get stage():Stage { return _stage; }
-
+    public static function get instance ():Main { return _instance; }
+    public static function get stage    ():Stage { return _stage; }
 
     public function Main(stage:Stage) {
         if(stage == null) throw new Error();
         if(_stage != null || _instance != null) throw new Error();
         _instance = this;
         _stage = stage;
-        addEventListener(Event.ADDED_TO_STAGE, loadPreLoader);
+        addEventListener(Event.ADDED_TO_STAGE, onAdded);
     }
 
-    private function loadPreLoader(e:Event):void {
-        removeEventListener(Event.ADDED_TO_STAGE, loadPreLoader);
+    private function onAdded(e:Event):void {
+        removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 
-        var config:Config = Client.config;
-        if(config.preLoaderPath != null && config.preLoaderPath != "") {
-            LoaderManager.loadSWF(config.preLoaderPath, {name:"preLoader", estimatedBytes:4800}, onPreLoaderLoaded);
-        } else {
-            onPreLoaderLoaded(null);
-        }
+        onLoadAssets()
     }
 
-    private function onPreLoaderLoaded(e:LoaderEvent = null):void {
-        PreloaderManager.initialize(_stage);
-        PreloaderManager.setLoadingMovie((e == null)? null : LoaderMax(e.target).getContent("preLoader").rawContent["preLoader"], true);
-        PreloaderManager.setVisible(true);
-        loadAssets();
-    }
-
-    private function loadAssets():void {
-        var config:Config = Client.config;
-        if(config.assets == null || config.assets.length == 0) {
-            onLoadAssets(null);
-        } else {
-            LoaderManager.loadList(config.assets, "", onLoadAssets, updatePreLoader, null);
-        }
-    }
-
-    private function onLoadAssets(e:LoaderEvent = null):void {
-        if(e != null) {
-            for each (var asset:String in Client.config.assets) {
-                var loader:* = LoaderManager.getLoader(asset);
-                DataController.analyzeLoader(loader);
-            }
+    private function onLoadAssets():void {
+        for each (var asset:String in Client.config.assets) {
+            var loader:* = LoaderManager.getLoader(asset);
+            DataController.analyzeLoader(loader);
         }
 
         initializeControllers();
@@ -133,24 +104,19 @@ public class Main extends MovieClip {
         stats.alpha = 0.75;
         addChild(stats);
 
-        gameController = new Game(_mapLayer, _hudLayer, _popUpLayer);
+        game = new Game(_mapLayer, _hudLayer, _popUpLayer);
     }
 
     private function initializeGame():void {
-        //start game
         Data.stage = _stage;
-        PreloaderManager.setVisible(false);
 
-        gameController.initialize();
+        game.initialize();
     }
 
 
-
-    /*---------------------------------------------------------------------------------------------*/
-    private function updatePreLoader(p:Number):void {
-        PreloaderManager.loadingMovie.txtLabel.text = (int(p*100).toFixed(1) + "%");
-    }
-
+    //==================================
+    //
+    //==================================
     public function showLoadError():void {
         var container:Sprite = new Sprite();
         container.x = 0;

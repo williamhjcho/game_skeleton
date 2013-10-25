@@ -7,7 +7,22 @@
  */
 package {
 public class MyCls {
+
+    public static const CONST:String = "wat";
+    public static var VAR:Vector.<String> = new <String>["w","a","t"];
+    public var wot:int = -9999;
+    public var string:Number = 0.9999;
+
     public function MyCls() {
     }
+
+    public function f1():void {
+
+    }
+
+    public function f2():void {
+
+    }
+
 }
 }

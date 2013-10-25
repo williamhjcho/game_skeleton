@@ -10,7 +10,6 @@ public class Config {
 
     public var preLoaderPath    :String;
     public var assets           :Vector.<String>;
-    public var assetsXML_path   :String;
 
     public var allowedDomain:String;
     public var serverTest   :String;
