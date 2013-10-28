@@ -11,7 +11,6 @@ import com.demonsters.debugger.MonsterDebugger;
 import controller.Game;
 import controller.data.DataController;
 
-import flash.display.MovieClip;
 import flash.display.Sprite;
 import flash.display.Stage;
 import flash.events.Event;
@@ -27,15 +26,15 @@ import utils.managers.LoaderManager;
 
 import utilsDisplay.view.Stats;
 
-public class Main extends MovieClip {
+public class Main extends Sprite {
 
     private static var _instance:Main = null;
     private static var _stage:Stage = null;
 
-    private var _baseSprite:Sprite;
-    private var _mapLayer:MovieClip;
-    private var _hudLayer:MovieClip;
-    private var _popUpLayer:MovieClip;
+    private var _baseSprite :Sprite;
+    private var _mapLayer   :Sprite;
+    private var _hudLayer   :Sprite;
+    private var _popUpLayer :Sprite;
     private var game:Game;
     private var stats:Stats;
 
@@ -53,22 +52,22 @@ public class Main extends MovieClip {
     private function onAdded(e:Event):void {
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 
-        onLoadAssets()
-    }
-
-    private function onLoadAssets():void {
-        for each (var asset:String in Client.config.assets) {
-            var loader:* = LoaderManager.getLoader(asset);
-            DataController.analyzeLoader(loader);
-        }
-
+        analyzeAssets();
         initializeControllers();
         initializeBases();
         initializeGame();
     }
 
+    private function analyzeAssets():void {
+        Data.stage = _stage;
+
+        for each (var asset:String in Client.config.assets) {
+            var loader:* = LoaderManager.getLoader(asset);
+            DataController.analyzeLoader(loader);
+        }
+    }
+
     private function initializeControllers():void {
-        //initialize
         var config:Config = Client.config;
 
         Security.allowDomain(config.allowedDomain);
@@ -89,15 +88,15 @@ public class Main extends MovieClip {
         this.addChild(_baseSprite);
 
         //MapLayer
-        _mapLayer = new MovieClip;
+        _mapLayer = new Sprite();
         this.addChild(_mapLayer);
 
         //HudLayer
-        _hudLayer = new MovieClip;
+        _hudLayer = new Sprite();
         this.addChild(_hudLayer);
 
         //PopUpLayer
-        _popUpLayer = new MovieClip;
+        _popUpLayer = new Sprite();
         this.addChild(_popUpLayer);
 
         stats = new Stats();
@@ -108,8 +107,6 @@ public class Main extends MovieClip {
     }
 
     private function initializeGame():void {
-        Data.stage = _stage;
-
         game.initialize();
     }
 

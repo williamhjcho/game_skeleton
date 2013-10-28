@@ -20,9 +20,10 @@ public class LoaderManager {
     private static var _onComplete  :Function = null;
 
     public static function initialize():Boolean {
+        if(_isInitialized) return true;
+        _isInitialized = true;
         LoaderMax.activate([ImageLoader, SWFLoader, DataLoader, MP3Loader]);
         //queue.prependURLs(Main.instance.returnPath(), true);
-        _isInitialized = true;
         return true;
     }
 
@@ -60,7 +61,7 @@ public class LoaderManager {
     }
 
     private static function singleLoadCore(loaderClass:Class, urlOrRequest:*, params:Object, cf:Function, pf:Function, ef:Function):void {
-        if(!_isInitialized) initialize();
+        initialize();
         _onComplete = cf;
         _onProgress = pf;
         _onError = ef;
@@ -92,7 +93,7 @@ public class LoaderManager {
     public static function appendVideo  (urlOrRequest:*, params:Object):void { groupLoadCore(VideoLoader, urlOrRequest, params); }
 
     private static function groupLoadCore(loaderClass:Class, urlOrRequest:*, params:Object):void {
-        if(!_isInitialized) initialize();
+        initialize();
         if(!_isGroupOpen) throw new IllegalOperationError("Use openGroupLoad() first.");
         queue.append(new loaderClass(urlOrRequest, params));
     }
@@ -130,6 +131,8 @@ public class LoaderManager {
     /** Specific Load/Loader **/
     public static function loadByName(loaderName:String, vars:Object):void {
         var loader:LoaderMax = LoaderMax.getLoader(loaderName);
+        if(loader == null)
+            throw new ArgumentError("Loader with name \""+loaderName+"\" not found.");
         loader.vars = vars;
         loader.addEventListener(LoaderEvent.COMPLETE, onLoadComplete);
         loader.load();

@@ -50,5 +50,12 @@ public class Data {
     public static function get currentLanguage():String { return _currentLanguageAcronym; }
     public static function set currentLanguage(acronym:String):void { _currentLanguageAcronym = acronym; }
 
+    public static function get acronyms():Vector.<String> {
+        var list:Vector.<String> = new Vector.<String>();
+        for (var acronym:String in textLibrary) {
+            list.push(acronym);
+        }
+        return list;
+    }
 }
 }

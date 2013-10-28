@@ -27,8 +27,8 @@ public class v3d {
 
     public function get normalize():v3d {
         var l:Number = length;
-        l = (l == 0) ? 1 : l;
-        return multiply(1/(l == 0 ? 1 : l));
+        if(l == 0) return this;
+        return multiply(1/l);
     }
 
     public function get length()    :Number { return Math.sqrt(x * x + y * y + z * z); }
@@ -58,10 +58,18 @@ public class v3d {
     public function dotXYZ  (x:Number, y:Number, z:Number)  :Number { return this.x * x + this.y * y + this.z * z;          }
 
     public function cross(u:Object):v3d {
-        return new v3d(this.y * u.z - this.z * u.y, this.z * u.x - this.x * u.z, this.x * u.y - this.y * u.x);
+        return new v3d(
+                this.y * u.z - this.z * u.y,
+                this.z * u.x - this.x * u.z,
+                this.x * u.y - this.y * u.x
+        );
     }
-    public function crossXYZ(x:Number,y:Number,z:Number): v3d {
-        return new v3d(this.y * z - this.z * y, this.z * x - this.z * x, this.x * y - this.y * x);
+    public function crossXYZ(x:Number,y:Number,z:Number):v3d {
+        return new v3d(
+                this.y * z - this.z * y,
+                this.z * x - this.z * x,
+                this.x * y - this.y * x
+        );
     }
 
     public function round():v3d { return setTo(Math.round(x), Math.round(y), Math.round(z));    }
@@ -82,9 +90,13 @@ public class v3d {
         return x*x + y*y + z*z;
     }
 
-    /************************
-     *      STATICs
-     ************************/
+    public function toString(fixed:int = 4):String {
+        return "(x:" + this.x.toFixed(fixed) + ", y:" + this.y.toFixed(fixed) + ",z:" + this.z.toFixed(fixed) + ")";
+    }
+
+    //==================================
+    //     Static
+    //==================================
     public static function setTo(v:Object, x:Number, y:Number, z:Number):Object {
         v.x = x;
         v.y = y;
@@ -92,16 +104,10 @@ public class v3d {
         return v;
     }
 
-    public static function normalize(v:Object):Object {
+    public static function normalize(v:Object):v3d {
         var l:Number = length(v);
-        l = (l == 0) ? 1 : l;
-        return multiply(v, 1/l);
-    }
-
-    public static function getNormalized(v:Object):v3d {
-        var l:Number = length(v);
-        l = (l == 0) ? 1 : l;
-        return new v3d(v.x/l, v.y/l, v.z/l);
+        if(l == 0) return new v3d(v.x, v.y, v.z);
+        return new v3d(v.x / l, v.y / l, v.z / l);
     }
 
     public static function length(v:Object)                 :Number { return Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);  }
@@ -111,7 +117,7 @@ public class v3d {
     public static function multiply(v:Object,scalar:Number) :v3d    { return new v3d(v.x*scalar, v.y*scalar, v.z*scalar);   }
     public static function negative(v:Object)               :Object { return multiply(v,-1);                                }
     public static function getNegative(v:Object)            :v3d    { return new v3d(-v.x, -v.y, -v.z);                     }
-    public static function copy(v:Object,u:Object)          :Object { return setTo(v, u.x,u.y,u.z);                         }
+    public static function copy(v:Object)                   :v3d    { return new v3d(v.x, v.y, v.z); }
     public static function getCopy(v:Object)                :v3d    { return new v3d(v.x, v.y, v.z);                        }
     public static function equals(v:Object,u:Object)        :Boolean{ return (v.x == u.x && v.y == u.y && v.z == u.z);      }
     public static function dot(u:Object,v:Object)           :Number { return v.x * u.x + v.y * u.y + v.z * u.z;             }
@@ -135,13 +141,6 @@ public class v3d {
         var y:Number = v.y - u.y;
         var z:Number = v.z - u.z;
         return x*x + y*y + z*z;
-    }
-
-    /************************
-     *          MISC
-     ************************/
-    public function toString(fixed:int = 4):String {
-        return "(x:" + this.x.toFixed(fixed) + ", y:" + this.y.toFixed(fixed) + ",z:" + this.z.toFixed(fixed) + ")";
     }
 }
 }

@@ -1,12 +1,12 @@
 ﻿package controller.layer {
 
-import flash.display.MovieClip;
+import flash.display.DisplayObjectContainer;
 
 import utilsDisplay.bases.LayerControllerBase;
 
 public class MapController extends LayerControllerBase {
 
-    public function MapController(inPlaceHolder:MovieClip, layerName:String) {
+    public function MapController(inPlaceHolder:DisplayObjectContainer, layerName:String) {
         super(inPlaceHolder, layerName);
     }
 

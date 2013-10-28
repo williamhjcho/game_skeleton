@@ -1,6 +1,6 @@
 package controller.layer {
 
-import flash.display.MovieClip;
+import flash.display.DisplayObjectContainer;
 
 import utilsDisplay.bases.LayerControllerBase;
 
@@ -10,7 +10,7 @@ import utilsDisplay.bases.LayerControllerBase;
 
 public class PopUpController extends LayerControllerBase {
 
-    public function PopUpController(inPlaceHolder:MovieClip, layerName:String) {
+    public function PopUpController(inPlaceHolder:DisplayObjectContainer, layerName:String) {
         super(inPlaceHolder, layerName);
     }
 

@@ -13,19 +13,19 @@ import com.greensock.plugins.TweenPlugin;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;
+import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.geom.Rectangle;
 
 import utils.base.interfaces.IDestructible;
-
-import utils.commands.clamp;
+import utils.toollib.Easing;
 
 public class Scroll implements IDestructible {
 
     private var container       :DisplayObjectContainer;
     private var content         :DisplayObject;
     private var visibleArea     :Rectangle;
-    private var lastDimensions  :Rectangle = new Rectangle(0,0,0,0);
+    private var lastDimensions  :Rectangle;
     private var _enabled        :Boolean = false;
     private var hTrack:Components, vTrack:Components;
     private var tween:TweenMax;
@@ -38,12 +38,13 @@ public class Scroll implements IDestructible {
         if(container == null) throw new ArgumentError("Container cannot be null.");
         if(content == null) throw new ArgumentError("Content cannot be null.");
 
-        this.container = container;
-        this.content = content;
-        this.parameters = parameters || new ScrollParameters();
-        this.hTrack = new Components(this, ScrollOrientation.HORIZONTAL);
-        this.vTrack = new Components(this, ScrollOrientation.VERTICAL);
-        this.visibleArea = new Rectangle(0,0,container.width, container.height);
+        this.container      = container;
+        this.content        = content;
+        this.parameters     = parameters || new ScrollParameters();
+        this.hTrack         = new Components(this, ScrollOrientation.HORIZONTAL);
+        this.vTrack         = new Components(this, ScrollOrientation.VERTICAL);
+        this.visibleArea    = new Rectangle(0,0,container.width, container.height);
+        this.lastDimensions = new Rectangle(0,0,0,0);
 
         container.addChild(content);
         content.x = 0;
@@ -80,9 +81,22 @@ public class Scroll implements IDestructible {
             visibleArea.y = (content.height - visibleArea.height) * vTrack.percentageY;
         }
 
-        if(tween != null) tween.kill();
-        var p:Object = {scrollRect: {x:visibleArea.x, y:visibleArea.y}};
-        tween = TweenMax.to(container, parameters.time, p);
+
+        //*
+        dt = 0.01;
+        var r:Rectangle = container.scrollRect;
+        startpos.x = r.x;
+        startpos.y = r.y;
+        startpos.width = visibleArea.x - startpos.x;
+        startpos.height = visibleArea.y - startpos.y;
+        if(!container.hasEventListener(Event.ENTER_FRAME)) {
+            container.addEventListener(Event.ENTER_FRAME, onEF);
+        }
+        /*/
+        if(tween != null)
+            tween.kill();
+        tween = TweenMax.to(container, parameters.time, {scrollRect:{x:visibleArea.x, y:visibleArea.y}});
+        //*/
     }
 
     public function enable():void {
@@ -113,6 +127,24 @@ public class Scroll implements IDestructible {
     //==================================
     //     Events
     //==================================
+    private var startpos:Rectangle = new Rectangle(0,0);
+    private var dt:Number = 1;
+    private function onEF(e:Event):void {
+        if(parameters.time == 0) {
+            dt = 1;
+        } else {
+            dt += 1 / (container.stage.frameRate * parameters.time);
+        }
+        var r:Rectangle = container.scrollRect;
+        r.x = Easing.linear(dt, startpos.x, startpos.width, 1);
+        r.y = Easing.linear(dt, startpos.y, startpos.height, 1);
+        container.scrollRect = r;
+
+        if(dt >= 1) {
+            container.removeEventListener(Event.ENTER_FRAME, onEF);
+        }
+    }
+
     private function onWheel(e:MouseEvent):void {
         var d:Number = parameters.wheelSpeed * (e.delta < 0 ? 1 : -1);
         if(vTrack.hasComponents)      vTrack.positionY += d;
@@ -133,6 +165,8 @@ public class Scroll implements IDestructible {
 
     private function removeEvents():void {
         container.removeEventListener(MouseEvent.MOUSE_WHEEL, onWheel);
+        container.removeEventListener(Event.ENTER_FRAME, onEF);
+        container.scrollRect = visibleArea;
     }
 
     //==================================
@@ -162,14 +196,13 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.geom.Rectangle;
 
+import utils.base.interfaces.IDestructible;
+import utils.commands.clamp;
+import utils.toollib.vector.v2d;
+
 import utilsDisplay.view.scroll.Scroll;
 import utilsDisplay.view.scroll.ScrollComponentParameters;
 import utilsDisplay.view.scroll.ScrollOrientation;
-
-import utils.base.interfaces.IDestructible;
-
-import utils.commands.clamp;
-import utils.toollib.vector.v2d;
 
 class Components implements IDestructible {
 
@@ -238,14 +271,22 @@ class Components implements IDestructible {
     }
 
     public function show(t:Number):void {
+        var components:Array;
         if(_hasComponents && (track.alpha != 1 || tracker.alpha != 1)) {
-            TweenMax.allTo([track, tracker], t, {autoAlpha:1});
+            components = [track, tracker];
+            if(_hasButtonComponents)
+                components = components.concat(buttonUp, buttonDown);
+            TweenMax.allTo(components, t, {autoAlpha:1});
         }
     }
 
     public function hide(t:Number):void {
+        var components:Array;
         if(_hasComponents && (track.alpha != 0 || tracker.alpha != 0)) {
-            TweenMax.allTo([track, tracker], t, {autoAlpha:0});
+            components = [track, tracker];
+            if(_hasButtonComponents)
+                components = components.concat(buttonUp, buttonDown);
+            TweenMax.allTo(components, t, {autoAlpha:0});
         }
     }
 

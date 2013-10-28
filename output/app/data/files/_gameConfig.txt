@@ -5,7 +5,6 @@
     "serverTest"    : "localhost",
     "loadLink"      : "",
     "saveLink"      : "",
-    
-    "preLoaderPath" : "",
+
     "assets"        : ["data/assets.xml"]
 }

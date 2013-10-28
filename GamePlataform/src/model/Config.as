@@ -8,13 +8,11 @@
 package model {
 public class Config {
 
-    public var preLoaderPath    :String;
     public var assets           :Vector.<String>;
 
     public var allowedDomain:String;
     public var serverTest   :String;
     public var saveLink     :String;
     public var loadLink     :String;
-
 }
 }

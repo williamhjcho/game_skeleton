@@ -14,16 +14,16 @@ import controller.layer.PopUpController;
 import controller.state.StateA;
 import controller.state.StateB;
 
-import flash.display.MovieClip;
+import flash.display.Sprite;
 import flash.events.Event;
 
 import model.Data;
 
 import utils.base.FunctionObject;
+import utils.events.StateMachineEvent;
 import utils.managers.Pool;
 import utils.managers.sounds.SoundManager;
 import utils.managers.state.StateMachine;
-import utils.events.StateMachineEvent;
 
 public class Game {
 
@@ -33,7 +33,7 @@ public class Game {
 
     private var stateMachine:StateMachine;
 
-    public function Game(mapLayer:MovieClip, hudLayer:MovieClip, popupLayer:MovieClip) {
+    public function Game(mapLayer:Sprite, hudLayer:Sprite, popupLayer:Sprite) {
         mapController   = new MapController     (mapLayer, "MapController");
         hudController   = new HudController     (hudLayer, "HudController");
         popUpController = new PopUpController   (popupLayer, "PopupController");
@@ -46,8 +46,6 @@ public class Game {
         SoundManager.volume = Data.variables.volumeMain;
 
         initializeStates();
-
-        stateMachine.changeTo(States.STATE_A);
     }
 
     private function initializeStates():void {
@@ -56,6 +54,8 @@ public class Game {
 
         stateMachine.add(new StateA(this));
         stateMachine.add(new StateB(this));
+
+        stateMachine.changeTo(States.STATE_A);
     }
 
     /** **/

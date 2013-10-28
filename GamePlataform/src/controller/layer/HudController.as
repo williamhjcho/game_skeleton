@@ -1,5 +1,5 @@
 package controller.layer {
-import flash.display.MovieClip;
+import flash.display.DisplayObjectContainer;
 
 import utilsDisplay.bases.LayerControllerBase;
 
@@ -8,9 +8,8 @@ import utilsDisplay.bases.LayerControllerBase;
  */
 public class HudController extends LayerControllerBase {
 
-    public function HudController(inPlaceHolder:MovieClip, layerName:String) {
+    public function HudController(inPlaceHolder:DisplayObjectContainer, layerName:String) {
         super(inPlaceHolder, layerName);
-
     }
 
 }

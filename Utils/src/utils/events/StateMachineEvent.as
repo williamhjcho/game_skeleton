@@ -10,8 +10,8 @@ import flash.events.Event;
 
 public class StateMachineEvent extends Event {
 
-    public static const TRANSITION_DENIED:String = "state.transition.denied";
-    public static const TRANSITION_COMPLETE:String = "state.transition.complete";
+    public static const TRANSITION_DENIED:String = "transition.denied";
+    public static const TRANSITION_COMPLETE:String = "transition.complete";
 
     public var from:String;
     public var to:String;
@@ -30,7 +30,7 @@ public class StateMachineEvent extends Event {
     }
 
     override public function toString():String {
-        return "["+ type +", from:" + from + ", to:" + to + ", current:" + currentState + " -- allowed:[" + allowed + "]";
+        return "[StateMachine:\""+ type +"\", from:\"" + from + "\", to:\"" + to + "\", current:\"" + currentState + "\" =-= allowed:" + (allowed == null || allowed.length == 0? "*" : "[" + allowed + "]") + "]";
     }
 }
 }

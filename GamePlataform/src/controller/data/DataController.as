@@ -19,30 +19,38 @@ import flash.utils.Dictionary;
 
 import model.Data;
 
+import utils.managers.event.UDispatcher;
+
+import utils.managers.event.UEvent;
+
 import utils.managers.serializer.SerializerManager;
 import utils.managers.sounds.SoundManager;
 
 public class DataController {
 
-    private static var dispatchingUnit:EventDispatcher = new EventDispatcher();
+    private static var dispatchingUnit:UDispatcher = new UDispatcher();
     private static var analyzedLoaders:Dictionary = new Dictionary();
 
     public function DataController() {}
 
-    /** Event Management **/
-    public static function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void {
-        dispatchingUnit.addEventListener(type, listener, useCapture, priority, useWeakReference);
+    //==================================
+    //     Event Management
+    //==================================
+    public static function addEventListener(type:String, listener:Function):void {
+        dispatchingUnit.addEventListener(type, listener);
     }
 
-    public static function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void {
-        dispatchingUnit.removeEventListener(type, listener, useCapture)
+    public static function removeEventListener(type:String, listener:Function):void {
+        dispatchingUnit.removeEventListener(type, listener);
     }
 
-    public static function dispatchEvent(e:Event):void {
-        dispatchingUnit.dispatchEvent(e);
+    public static function dispatchEvent(type:String, data:* = null):void {
+        dispatchingUnit.dispatchEvent(type, data);
     }
 
-    /** Core **/
+    //==================================
+    //     Core
+    //==================================
     public static function analyzeLoader(loader:*):void {
         if(loader in analyzedLoaders)
             return; //already analyzed

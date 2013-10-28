@@ -8,9 +8,11 @@
 package {
 import com.greensock.events.LoaderEvent;
 
-import flash.display.MovieClip;
+import flash.display.DisplayObject;
+import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
+import flash.errors.IllegalOperationError;
 import flash.events.Event;
 import flash.ui.ContextMenu;
 import flash.ui.ContextMenuItem;
@@ -24,19 +26,23 @@ import utilsDisplay.bases.interfaces.IPreLoader;
 import utilsDisplay.view.preloader.DefaultPreLoader;
 
 [SWF(width=800, height=600, backgroundColor=0x808080, frameRate=60, pageTitle="BLAHBLASDF")]
-public class Client extends MovieClip {
+public class Client extends Sprite {
+
+    private static var instance:Client;
 
     [Embed(source="../../output/app/data/files/_gameConfig.txt", mimeType="application/octet-stream")]
     private static const CONFIG:Class;
-
     private static const PRE_LOADER:Class;
 
     private static var _config:Config;
-    private static var _preLoader:MovieClip;
+    private static var _preLoader:DisplayObject;
 
 
     public function Client() {
-        stage.align = StageAlign.TOP_LEFT;
+        if(instance != null) throw new IllegalOperationError("Singleton Class, cannot be instantiated twice.");
+        instance = this;
+
+        stage.align = StageAlign.TOP;
         stage.scaleMode = StageScaleMode.NO_SCALE;
 
         setCustomMenu("Custom Menu", "v1.0", "1/1/2013");
@@ -51,7 +57,7 @@ public class Client extends MovieClip {
         _preLoader = (PRE_LOADER == null) ? new DefaultPreLoader() : new PRE_LOADER();
         (_preLoader).x = stage.stageWidth  - (_preLoader).width >> 1;
         (_preLoader).y = stage.stageHeight - (_preLoader).height >> 1;
-        addChild(_preLoader);
+        showPreLoader();
 
         //Config
         _config = SerializerManager.decodeFromString(new CONFIG());
@@ -60,18 +66,29 @@ public class Client extends MovieClip {
         LoaderManager.loadList(_config.assets, "", onLoadAssets, updatePreLoader, null);
     }
 
-    private function updatePreLoader(p:Number):void {
-        IPreLoader(_preLoader).percentage = p;
-    }
-
     private function onLoadAssets(e:LoaderEvent):void {
-        removeChild(_preLoader);
+        hidePreLoader();
         this.addChild(new Main(this.stage));
     }
 
     //==================================
     //
     //==================================
+    public static function showPreLoader(startingPercentage:Number = 0, alpha:Number = 1):void {
+        _preLoader.alpha = alpha;
+        IPreLoader(_preLoader).percentage = startingPercentage;
+        instance.addChild(_preLoader);
+    }
+
+    public static function hidePreLoader():void {
+        if(instance.contains(_preLoader))
+            instance.removeChild(_preLoader);
+    }
+
+    public function updatePreLoader(p:Number):void {
+        IPreLoader(_preLoader).percentage = p;
+    }
+
     public static function get config():Config {
         return _config;
     }
@@ -79,12 +96,12 @@ public class Client extends MovieClip {
     //==================================
     //
     //==================================
-    private function setCustomMenu(name:String, version:String, data:String):void {
+    private function setCustomMenu(name:String, version:String, date:String):void {
         var gameMenu:ContextMenu = new ContextMenu();
         gameMenu.hideBuiltInItems();
         gameMenu.customItems.push(new ContextMenuItem(name));
         gameMenu.customItems.push(new ContextMenuItem('Version: ' + version));
-        gameMenu.customItems.push(new ContextMenuItem('Date: ' + data));
+        gameMenu.customItems.push(new ContextMenuItem('Date: ' + date));
         this.contextMenu = gameMenu;
     }
 

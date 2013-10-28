@@ -38,13 +38,13 @@ public class StateMachine extends EventDispatcher {
     }
 
     public function changeTo(name:String, parametersExit:Array = null, parametersEnter:Array = null):State {
-        var e:StateMachineEvent;
         var from:State = states[_currentName], to:State = states[name];
+        var e:StateMachineEvent;
 
         if(!hasState(name) || !canChangeTo(name)) {
             if(hasEventListener(StateMachineEvent.TRANSITION_DENIED)) {
                 e = new StateMachineEvent(StateMachineEvent.TRANSITION_DENIED, false, false);
-                e.set(_currentName, name, _currentName, from.from);
+                e.set(from.name, name, from.name, from.from);
                 dispatchEvent(e);
             }
             return from;
@@ -53,12 +53,12 @@ public class StateMachine extends EventDispatcher {
         from.callExit(parametersExit);
         to.callEnter(parametersEnter);
 
+        _currentName = name;
         if(hasEventListener(StateMachineEvent.TRANSITION_COMPLETE)) {
             e = new StateMachineEvent(StateMachineEvent.TRANSITION_COMPLETE, false, false);
-            e.set(_currentName, name, _currentName, from.from);
+            e.set(from.name, to.name, to.name, to.from);
             dispatchEvent(e);
         }
-        _currentName = name;
 
         return to;
     }

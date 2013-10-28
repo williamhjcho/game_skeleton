@@ -111,7 +111,7 @@ public class ButtonManager {
 
         p.status = ENABLED;
 
-        if(p.buttonMode && (button is MovieClip || button is Sprite))
+        if(p.buttonMode && button is Sprite)
             button["buttonMode"] = true;
         button.addEventListener(MouseEvent.ROLL_OVER, onOver, p.useCapture, p.priority, p.useWeakReference);
         button.addEventListener(MouseEvent.ROLL_OUT , onOut, p.useCapture, p.priority, p.useWeakReference);

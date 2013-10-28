@@ -6,19 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 package controller.event {
-import flash.events.Event;
+import utils.managers.event.UEvent;
 
-public final class DataEvent extends Event {
+public final class DataEvent extends UEvent {
 
     public static const DATA_LOADED         :String = "data.loaded";
     public static const XML_LOADED          :String = "xml.loaded";
-    public static const FROM_XML_FINISHED   :String = "from.xml.finished";
 
-    public var data:*;
-
-    public function DataEvent(type:String, data:* = null, bubbles:Boolean = false, cancelable:Boolean = false) {
-        super(type, bubbles, cancelable);
-        this.data = data;
+    public function DataEvent(type:String, data:* = null) {
+        super(type, data);
     }
 }
 }

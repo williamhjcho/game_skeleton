@@ -9,7 +9,9 @@ package utils.toollib {
 
 public final class Bezier {
 
-    /** Generating Methods **/
+    //==================================
+    //     Generating Methods
+    //==================================
     public static function generate(points:*, segments:int = 100):Vector.<Object> {
         var curve:Vector.<Object> = new Vector.<Object>();
         var t:Number = 0, step:Number = 1 / segments;
@@ -50,7 +52,9 @@ public final class Bezier {
         return curve;
     }
 
-    /** Tools/Custom Methods **/
+    //==================================
+    //     Tools
+    //==================================
     public static function interpolatePoints(points:*, K:Number = 1):Vector.<Object> {
         var iPoints:Vector.<Object> = new Vector.<Object>();
         var p0:Object, p1:Object, p2:Object;
@@ -127,8 +131,10 @@ public final class Bezier {
         }
     }
 
-    
-    /** Equations **/
+
+    //==================================
+    //     Equations
+    //==================================
     public static function equationLinear(p0:Object, p1:Object, t:Number):Object {
         return {
             x:(1-t)*p0.x + t*p1.x,

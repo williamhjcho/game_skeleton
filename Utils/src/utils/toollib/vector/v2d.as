@@ -34,11 +34,7 @@ public class v2d {
         return multiply(1/l);
     }
 
-    public function abs():v2d {
-        if(x < 0) x = -x;
-        if(y < 0) y = -y;
-        return this;
-    }
+
 
     public function add         (v:Object)          :v2d { return setTo(this.x + v.x, this.y + v.y); }
     public function addN        (n:Number)          :v2d { return setTo(this.x + n, this.y + n);     }
@@ -68,6 +64,7 @@ public class v2d {
     public function getPerpendicularRight():v2d { return new v2d(this.y, -this.x);  }
     public function getPerpendicularLeft ():v2d { return new v2d(-this.y, this.x);  }
 
+    public function abs  ():v2d { return setTo(x < 0? -x : x, y < 0? -y : y); }
     public function round():v2d { return setTo(Math.round(x),Math.round(y)); }
     public function floor():v2d { return setTo(Math.floor(x),Math.floor(y)); }
     public function ceil ():v2d { return setTo(Math.ceil (x),Math.ceil (y)); }
@@ -99,25 +96,23 @@ public class v2d {
         return setTo(scalar * v.x, scalar * v.y);
     }
 
-    /************************
-     *      STATICS
-     ************************/
+    public function toString(fixed:int = 4):String {
+        return "(x:" + this.x.toFixed(fixed) + ", y:" + this.y.toFixed(fixed) + ")";
+    }
+
+    //==================================
+    //     Static
+    //==================================
     public static function setTo(v:Object, x:Number, y:Number):Object {
         v.x = x;
         v.y = y;
         return v;
     }
 
-    public static function normalize(v:Object):Object {
+    public static function normalize(v:Object):v2d {
         var l:Number = length(v);
-        l = (l == 0) ? 1 : l;
-        return multiply(v, 1/l);
-    }
-
-    public static function getNormalized(v:Object):v2d {
-        var l:Number = length(v);
-        l = (l == 0) ? 1 : l;
-        return new v2d(v.x/l, v.y/l);
+        if(l == 0) return new v2d(v.x, v.y);
+        return new v2d(v.x / l, v.y / l);
     }
 
     public static function length   (v:Object) :Number { return Math.sqrt(v.x * v.x + v.y * v.y);      }
@@ -134,8 +129,8 @@ public class v2d {
     public static function multiply     (v:Object, n:Number)            :v2d { return new v2d(v.x * n, v.y * n); }
     public static function multiplyXY   (v:Object, x:Number, y:Number)  :v2d { return new v2d(v.x * x, v.y * y); }
 
-    public static function negative     (v:Object)  :v2d { return new v2d(-v.x,-v.y);  }
-    public static function getNegative  (v:Object)  :v2d { return new v2d(-v.x, -v.y); }
+    public static function negative     (v:Object):v2d { return new v2d(-v.x,-v.y);  }
+    public static function getNegative  (v:Object):v2d { return new v2d(-v.x, -v.y); }
 
     public static function equals(u:Object, v:Object):Boolean { return (u.x == v.x && u.y == v.y); }
 
@@ -171,13 +166,6 @@ public class v2d {
         //FORMULA: (a.b_n)*b_n   or   ((a.b)/b.length^2) * b
         var scalar:Number = dot(projected, projectedOnto)/dot(projectedOnto, projectedOnto);
         return new v2d(scalar * projectedOnto.x, scalar * projectedOnto.y);
-    }
-
-    /************************
-     *          MISC
-     ************************/
-    public function toString(fixed:int = 4):String {
-        return "(x:" + this.x.toFixed(fixed) + ", y:" + this.y.toFixed(fixed) + ")";
     }
 }
 }

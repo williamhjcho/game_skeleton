@@ -24,8 +24,11 @@ public class SerializerManager {
     private static var reference        :Dictionary;
     private static var priorities       :Dictionary;
     private static var ignoreReference  :Boolean = false;
-    private static var onError:Function = null;
+    private static var onError          :Function = null;
 
+    //==================================
+    //     Public
+    //==================================
     public static function encode(obj:Object, ignoreSameReference:Boolean = false, onError:Function = null):Object {
         reference = new Dictionary();
         priorities = new Dictionary();
@@ -78,6 +81,10 @@ public class SerializerManager {
         return JSON.parse(str);
     }
 
+
+    //==================================
+    //     Serialization
+    //==================================
     private static function serialize(obj:Object, path:String = ""):Object {
         var classType:Class  = getClass(obj);
 
@@ -136,8 +143,9 @@ public class SerializerManager {
         return null;
     }
 
-
-    /** Function-type Method **/
+    //==================================
+    //     Function-Type Methods
+    //==================================
     private static function srlz_Object     (obj:Object, path:String):Object {
         var result:Object = {};
         for (var property:String in obj) {
@@ -279,8 +287,10 @@ public class SerializerManager {
     }
 
 
-    /** Internal Tools **/
-    public static function navigate(root:Object, path:String):Object {
+    //==================================
+    //     Internal Tools
+    //==================================
+    private static function navigate(root:Object, path:String):Object {
         if(path == null) return root;
         var paths:Array = path.split(/\./);
         var target:Object = root;

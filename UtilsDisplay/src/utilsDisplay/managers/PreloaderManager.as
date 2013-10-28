@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package utilsDisplay.managers {
+import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
 import flash.display.Sprite;
 import flash.display.Stage;
@@ -19,7 +20,7 @@ public class PreloaderManager {
 
     private static var _stage:Stage;
 
-    public static var loadingMovie:MovieClip;
+    public static var loadingMovie:DisplayObjectContainer;
     public static var background:Sprite;
 
     private static var movieContainer:MovieClip;
@@ -35,7 +36,7 @@ public class PreloaderManager {
         _stage.scaleMode = StageScaleMode.NO_SCALE;
     }
 
-    public static function setLoadingMovie(movie:MovieClip, centralize:Boolean):void {
+    public static function setLoadingMovie(movie:DisplayObjectContainer, centralize:Boolean):void {
         if(!isInitialized) throw new Error("Initialize first.");
         _centralize = centralize;
         loadingMovie = movie || new DefaultPreLoader();

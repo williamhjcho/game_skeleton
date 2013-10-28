@@ -8,10 +8,14 @@
 package {
 import com.demonsters.debugger.MonsterDebugger;
 
+import flash.display.MovieClip;
+
 import flash.display.Sprite;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.geom.Rectangle;
+
+import utils.managers.event.UDispatcher;
 
 import utilsDisplay.view.scroll.Scroll;
 
@@ -23,7 +27,7 @@ public class Main extends Sprite {
     public function Main() {
         MonsterDebugger.initialize(this);
 
-        classTest();
+        scrollTest();
     }
 
     //==================================
@@ -67,15 +71,10 @@ public class Main extends Sprite {
     //==================================
     //
     //==================================
+    private var ed:UDispatcher;
     private function classTest():void {
-        for(var s:String in MyCls) {
-            trace(s);
-        }
-        trace("-=-=-=-");
-        var ins:MyCls = new MyCls();
-        for(s in ins) {
-            trace(s);
-        }
+        var m:MovieClip = new MovieClip();
+        trace(m is MovieClip, m is Sprite)
     }
 
 

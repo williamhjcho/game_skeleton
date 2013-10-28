@@ -5,10 +5,10 @@
  * Time: 14:37
  * To change this template use File | Settings | File Templates.
  */
-package utils.managers {
+package utils.managers.event {
 import flash.utils.Dictionary;
 
-public class EventManager {
+public class GlobalEventManager {
 
     private static var registeredEvents:Dictionary = new Dictionary();
 
