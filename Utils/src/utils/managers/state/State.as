@@ -34,7 +34,7 @@ public class State {
     public function set from(f:Array):void {
         clearFrom();
 
-        if(f == null || f.indexOf("*") != -1) {
+        if(f == null || f.length == 0 || f.indexOf("*") != -1) {
             _isOpen = true;
         } else {
             _isOpen = false;

@@ -19,6 +19,8 @@ import flash.ui.ContextMenuItem;
 
 import model.Config;
 
+import utils.errors.SingletonError;
+
 import utils.managers.LoaderManager;
 import utils.managers.serializer.SerializerManager;
 

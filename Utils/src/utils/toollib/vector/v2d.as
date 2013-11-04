@@ -34,8 +34,6 @@ public class v2d {
         return multiply(1/l);
     }
 
-
-
     public function add         (v:Object)          :v2d { return setTo(this.x + v.x, this.y + v.y); }
     public function addN        (n:Number)          :v2d { return setTo(this.x + n, this.y + n);     }
     public function addXY       (x:Number,y:Number) :v2d { return setTo(this.x + x, this.y + y);     }

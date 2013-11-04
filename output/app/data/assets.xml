@@ -11,9 +11,13 @@
 
         <!--<SWFLoader  url="data/assets/IsometricAssets.swf"   name="IsometricAssets" autoPlay="false"/>-->
 
-        <MP3Loader url="data/sounds/trilha.mp3" name="trilha" autoPlay="false" />
-        <MP3Loader url="data/sounds/over.mp3" name="over" autoPlay="false" />
-        <MP3Loader url="data/sounds/popup.mp3" name="popup" autoPlay="false" />
+        <MP3Loader url="data/sounds/click.mp3"      name="click"    autoPlay="false" />
+        <MP3Loader url="data/sounds/over.mp3"       name="over"     autoPlay="false" />
+        <MP3Loader url="data/sounds/popup.mp3"      name="popup"    autoPlay="false" />
+        <MP3Loader url="data/sounds/right.mp3"      name="right"    autoPlay="false" />
+        <MP3Loader url="data/sounds/track.mp3"      name="track"    autoPlay="false" />
+        <MP3Loader url="data/sounds/trilha.mp3"     name="trilha"   autoPlay="false" />
+        <MP3Loader url="data/sounds/wrong.mp3"      name="wrong"    autoPlay="false" />
     </LoaderMax>
 
     <LoaderMax name="assets2" load="false">

@@ -353,9 +353,8 @@ public class ToolMath {
 
     //ROUNDING
     public static function round(num:Number, precision:int = 1):Number {
-        num = num * Math.pow(10, precision);
-        num = Math.round(num);
-        return num / Math.pow(10, precision);
+        var pow:Number = Math.pow(10, precision);
+        return Math.round(num * pow) / pow;
     }
 
     public static function roundMult(num:Number, mult:int):Number {

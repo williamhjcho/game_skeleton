@@ -74,5 +74,9 @@ public class StateMachine extends EventDispatcher {
         return (name != _currentName) && (state.isOpen || state.from.indexOf(_currentName) != -1);
     }
 
+    public function getState(name:String):State {
+        return (states[name]);
+    }
+
 }
 }

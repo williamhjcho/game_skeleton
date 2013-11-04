@@ -17,7 +17,7 @@ import utils.errors.SerializerError;
 
 public class SerializerManager {
 
-    private static const CLASSNAME:String = "___className";
+    private static const CLASS_NAME:String = "___className";
     private static const PRIORITY :String = "___priority";
     private static const REFERENCE:String = "___reference";
 
@@ -144,7 +144,7 @@ public class SerializerManager {
     }
 
     //==================================
-    //     Function-Type Methods
+    //     Function to Type Methods
     //==================================
     private static function srlz_Object     (obj:Object, path:String):Object {
         var result:Object = {};
@@ -234,8 +234,8 @@ public class SerializerManager {
         if(obj.hasOwnProperty(REFERENCE)) {
             return reference[obj[REFERENCE]];
         }
-        if(obj.hasOwnProperty(CLASSNAME)) {
-            imageClass = getClassByPath(obj[CLASSNAME]);
+        if(obj.hasOwnProperty(CLASS_NAME)) {
+            imageClass = getClassByPath(obj[CLASS_NAME]);
         }
         if(obj.hasOwnProperty(PRIORITY)) {
             var priority:Array = obj[PRIORITY];
@@ -261,7 +261,7 @@ public class SerializerManager {
     private static function dsrlz_Simple_Object (obj:Object, path:String, result:Object = null):Object {
         if(result == null) result = {};
         for (var property:String in obj) {
-            if(property == CLASSNAME || property == PRIORITY) continue;
+            if(property == CLASS_NAME || property == PRIORITY) continue;
             result[property] = deSerialize(obj[property], null, path + "." + property);
         }
         return result;
@@ -274,7 +274,7 @@ public class SerializerManager {
 
         //Remaining of Variables/Properties
         for (var property:String in obj) {
-            if(property == CLASSNAME || property == PRIORITY) continue;
+            if(property == CLASS_NAME || property == PRIORITY) continue;
             cap = architecture.getVariable(property);
             if(cap == null) {
                 throwError("Variable :\"" + property + "\" not found in \"" + imageClass +"\".", SerializerError.VARIABLE_NOT_FOUND);

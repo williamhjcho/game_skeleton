@@ -3,13 +3,14 @@
  */
 package utils.toollib {
 import flash.geom.Point;
-import flash.utils.getQualifiedClassName;
+
+import utils.errors.InstantiaitonError;
 
 import utils.toollib.vector.v2d;
 
 public class ToolTrigo {
     public function ToolTrigo() {
-        throw new Error(getQualifiedClassName(ToolTrigo) + " is not supposed to be instantiated.");
+        throw new InstantiaitonError();
     }
 
     /**     CONVERSION     **/
@@ -24,32 +25,12 @@ public class ToolTrigo {
     }
 
     /**     QUADRANTS       **/
-    public static function getQuadrantRad(value:Number, isInverted:Boolean = false):int {
-        while (value >= 2 * Math.PI)
-            value -= 2 * Math.PI;
-
-        if (value <= Math.PI / 2)
-            return (!isInverted) ? 1 : 4;
-        else if (value <= Math.PI)
-            return (!isInverted) ? 2 : 3;
-        else if (value <= 3 * Math.PI / 2)
-            return (!isInverted) ? 3 : 2;
+    public static function getQuadrant(x:Number, y:Number):int {
+        var theta:Number = Math.atan2(y,x);
+        if(theta < 0)
+            return (-theta < Math.PI / 2)? 1 : 2;
         else
-            return (!isInverted) ? 4 : 1;
-    }
-
-    public static function getQuadrantAngle(value:Number, isInverted:Boolean = false):int {
-        while (value >= 360)
-            value -= 360;
-
-        if (value <= 90)
-            return (!isInverted) ? 1 : 4;
-        else if (value <= 180)
-            return (!isInverted) ? 2 : 3;
-        else if (value <= 270)
-            return (!isInverted) ? 3 : 2;
-        else
-            return (!isInverted) ? 4 : 1;
+            return (theta < Math.PI / 2)? 4 : 3;
     }
 
     /**     ANGLES     **/
@@ -83,10 +64,6 @@ public class ToolTrigo {
         var v1:v2d = new v2d(lp.x - p.x, lp.y - p.y);
         var v2:v2d = v2d.getProjection(v1,l);
         return v2.negative.add(v1).length;
-    }
-
-    public static function parallel(u:Object, v:Object):Boolean {
-        return v2d.equals(v2d.getNormalized(u), v2d.getNormalized(v));
     }
 
 

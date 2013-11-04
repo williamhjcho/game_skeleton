@@ -8,17 +8,17 @@
 package {
 import com.demonsters.debugger.MonsterDebugger;
 
-import flash.display.MovieClip;
-
 import flash.display.Sprite;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.geom.Rectangle;
 
-import utils.managers.event.UDispatcher;
+import menu.ItemCustom;
+import menu.MenuContainer;
 
+import utilsDisplay.view.menu.Menu;
+import utilsDisplay.view.menu.MenuItem;
 import utilsDisplay.view.scroll.Scroll;
-
 import utilsDisplay.view.scroll.ScrollParameters;
 
 [SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=60)]
@@ -71,11 +71,22 @@ public class Main extends Sprite {
     //==================================
     //
     //==================================
-    private var ed:UDispatcher;
-    private function classTest():void {
-        var m:MovieClip = new MovieClip();
-        trace(m is MovieClip, m is Sprite)
+    private var _menu:Menu, menuContainer:MenuContainer;
+
+    private function menuTest():void {
+        menuContainer = new MenuContainer(400,600,0x000ff0);
+        menuContainer.x = 20;
+        menuContainer.y = 20;
+        addChild(menuContainer);
+        _menu = new Menu(menuContainer, null);
+        var item:MenuItem;
+        item = _menu.add(new ItemCustom(200, 50, 0x0f00f0));
+        item = _menu.add(new ItemCustom(200, 50, 0x0f00f0));
+        item = _menu.add(new ItemCustom(200, 50, 0x0f00f0));
+        item = _menu.add(new ItemCustom(200, 50, 0x0f00f0));
+        item = _menu.add(new ItemCustom(200, 50, 0x0f00f0));
     }
+
 
 
     //==================================
