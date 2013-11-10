@@ -17,14 +17,14 @@ import utils.toollib.vector.v2d;
 
 public class TurtleGraphics {
 
-    protected var drawOrder:String; //string containing the rules of how to draw
-    protected var orders:Dictionary; //contains functions to be executed for every character in drawOrder
+    protected var drawOrder :String; //string containing the rules of what to execute
+    protected var orders    :Dictionary; //contains functions to be executed for every character in drawOrder
 
     protected var turtle:Shape;  //the drawing mechanism
 
-    protected var direction:v2d;         //direction to where the turtle will be heading in case of 'move forward'
-    protected var currentPoint:v2d;      //current point from which the turtle will draw the next step
-    protected var currentAngle:Number;   //(in radians)
+    protected var direction     :v2d;    //direction to where the turtle will be heading in case of 'move forward'
+    protected var currentPoint  :v2d;    //current point from which the turtle will draw the next step
+    protected var currentAngle  :Number; //(in radians)
     protected var angleVariation:Number; //(in radians) angle to add/subtract for every 'turn left/right'
 
     protected var l:Number;     //length in pixels of every stroke (draw line)
