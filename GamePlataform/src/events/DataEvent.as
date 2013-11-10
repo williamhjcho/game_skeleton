@@ -5,7 +5,7 @@
  * Time: 11:45 PM
  * To change this template use File | Settings | File Templates.
  */
-package controller.event {
+package events {
 import utils.managers.event.UEvent;
 
 public final class DataEvent extends UEvent {

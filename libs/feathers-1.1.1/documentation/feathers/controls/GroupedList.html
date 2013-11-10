@@ -863,7 +863,7 @@
 		 <div class="listing" version="3.0"><pre>
          function list_changeHandler( event:Event ):void
          {
-             var list:List = GroupedList(event.currentTarget);
+             var list:List = GroupedList(events.currentTarget);
              var groupIndex:int = list.selectedGroupIndex;
              var itemIndex:int = list.selectedItemIndex;
          
@@ -880,7 +880,7 @@
 		 <div class="listing" version="3.0"><pre>
          function list_changeHandler( event:Event ):void
          {
-             var list:GroupedList = GroupedList( event.currentTarget );
+             var list:GroupedList = GroupedList( events.currentTarget );
              var item:Object = list.selectedItem;
          
          }
@@ -900,7 +900,7 @@
 		 <div class="listing" version="3.0"><pre>
          function list_changeHandler( event:Event ):void
          {
-             var list:GroupedList = GroupedList( event.currentTarget );
+             var list:GroupedList = GroupedList( events.currentTarget );
              var groupIndex:int = list.selectedGroupIndex;
              var itemIndex:int = list.selectedItemIndex;
          

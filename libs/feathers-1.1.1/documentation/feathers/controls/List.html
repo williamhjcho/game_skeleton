@@ -427,7 +427,7 @@
 		 <div class="listing" version="3.0"><pre>
          function list_changeHandler( event:Event ):void
          {
-             var list:List = List( event.currentTarget );
+             var list:List = List( events.currentTarget );
              var index:int = list.selectedIndex;
          
          }
@@ -454,8 +454,8 @@
 		 <div class="listing" version="3.0"><pre>
          function list_changeHandler( event:Event ):void
          {
-             var list:List = List( event.currentTarget );
-             var indices:Vector.&lt;int&gt; = list.selectedIndices;
+             var list:List = List( events.currentTarget );
+             var indices:Vector.&amp;lt;int&amp;gt; = list.selectedIndices;
          
          }
          list.addEventListener( Event.CHANGE, list_changeHandler );</pre></div>
@@ -480,7 +480,7 @@
 		 <div class="listing" version="3.0"><pre>
          function list_changeHandler( event:Event ):void
          {
-             var list:List = List( event.currentTarget );
+             var list:List = List( events.currentTarget );
              var item:Object = list.selectedItem;
          
          }
@@ -509,8 +509,8 @@
 		 <div class="listing" version="3.0"><pre>
          function list_changeHandler( event:Event ):void
          {
-             var list:List = List( event.currentTarget );
-             var items:Vector.&lt;Object&gt; = list.selectedItems;
+             var list:List = List( events.currentTarget );
+             var items:Vector.&amp;lt;Object&amp;gt; = list.selectedItems;
          
          }
          list.addEventListener( Event.CHANGE, list_changeHandler );</pre></div>
