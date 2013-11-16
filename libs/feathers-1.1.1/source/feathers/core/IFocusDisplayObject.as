@@ -10,16 +10,16 @@ package feathers.core
 	/**
 	 * Dispatched when the display object receives focus.
 	 *
-	 * @eventType feathers.events.FeathersEventType.FOCUS_IN
+	 * @eventType feathers.gameplataform.events.FeathersEventType.FOCUS_IN
 	 */
-	[Event(name="focusIn",type="starling.events.Event")]
+	[Event(name="focusIn",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the display object loses focus.
 	 *
-	 * @eventType feathers.events.FeathersEventType.FOCUS_OUT
+	 * @eventType feathers.gameplataform.events.FeathersEventType.FOCUS_OUT
 	 */
-	[Event(name="focusOut",type="starling.events.Event")]
+	[Event(name="focusOut",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * A component that can receive focus.

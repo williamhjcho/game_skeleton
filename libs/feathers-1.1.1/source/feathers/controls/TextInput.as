@@ -27,9 +27,9 @@ package feathers.controls
 	/**
 	 * Dispatched when the text input's <code>text</code> property changes.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the user presses the Enter key while the text input
@@ -40,23 +40,23 @@ package feathers.controls
 	 * please see the specific text editor's API documentation for complete
 	 * details of this event's limitations and requirements.
 	 *
-	 * @eventType feathers.events.FeathersEventType.ENTER
+	 * @eventType feathers.gameplataform.events.FeathersEventType.ENTER
 	 */
-	[Event(name="enter",type="starling.events.Event")]
+	[Event(name="enter",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the text input receives focus.
 	 *
-	 * @eventType feathers.events.FeathersEventType.FOCUS_IN
+	 * @eventType feathers.gameplataform.events.FeathersEventType.FOCUS_IN
 	 */
-	[Event(name="focusIn",type="starling.events.Event")]
+	[Event(name="focusIn",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the text input loses focus.
 	 *
-	 * @eventType feathers.events.FeathersEventType.FOCUS_OUT
+	 * @eventType feathers.gameplataform.events.FeathersEventType.FOCUS_OUT
 	 */
-	[Event(name="focusOut",type="starling.events.Event")]
+	[Event(name="focusOut",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * A text entry control that allows users to enter and edit a single line of

@@ -21,8 +21,8 @@ public class Circle {
         this.radius = radius;
     }
 
-    public function getX(t:Number):Number { return x + radius * Math.cos(t); }
-    public function getY(t:Number):Number { return y + radius * Math.sin(t); }
+    public function getX(angle:Number):Number { return x + radius * Math.cos(angle); }
+    public function getY(angle:Number):Number { return y + radius * Math.sin(angle); }
 
     public function get diameter        ():Number { return this.radius * 2;             }
     public function get area            ():Number { return Math.PI * radius * radius;   }

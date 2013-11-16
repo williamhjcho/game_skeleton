@@ -76,7 +76,7 @@ package feathers.core
 				_defaultFocusManager = pushFocusManager();
 
 				//we need a native display object on the native stage to receive
-				//key focus change events!
+				//key focus change gameplataform.events!
 				_nativeFocusTarget = new Sprite();
 				_nativeFocusTarget.tabEnabled = true;
 				_nativeFocusTarget.mouseEnabled = false;

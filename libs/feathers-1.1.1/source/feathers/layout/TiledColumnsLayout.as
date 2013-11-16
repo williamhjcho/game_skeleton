@@ -19,9 +19,9 @@ package feathers.layout
 	 * Dispatched when a property of the layout changes, indicating that a
 	 * redraw is probably needed.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Positions items as tiles (equal width and height) from top to bottom
@@ -460,7 +460,7 @@ package feathers.layout
 
 		/**
 		 * If the total combined width of the columns is larger than the width
-		 * of the view port, the layout will be split into pages where each
+		 * of the gameplataform.view port, the layout will be split into pages where each
 		 * page is filled with the maximum number of columns that may be
 		 * displayed without cutting off any items.
 		 */
@@ -511,7 +511,7 @@ package feathers.layout
 
 		/**
 		 * Determines if items will be set invisible if they are outside the
-		 * view port. Can improve performance, especially for non-virtual
+		 * gameplataform.view port. Can improve performance, especially for non-virtual
 		 * layouts. If <code>true</code>, you will not be able to manually
 		 * change the <code>visible</code> property of any items in the layout.
 		 */

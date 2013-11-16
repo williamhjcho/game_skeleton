@@ -10,9 +10,9 @@ package feathers.core
 	/**
 	 * Dispatched when the selection changes.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * An interface for something that may be selected.

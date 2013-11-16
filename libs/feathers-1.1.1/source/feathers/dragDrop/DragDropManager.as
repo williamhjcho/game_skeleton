@@ -23,7 +23,7 @@ package feathers.dragDrop
 	import starling.events.TouchPhase;
 
 	/**
-	 * Handles drag and drop operations based on Starling touch events.
+	 * Handles drag and drop operations based on Starling touch gameplataform.events.
 	 *
 	 * @see IDragSource
 	 * @see IDropTarget

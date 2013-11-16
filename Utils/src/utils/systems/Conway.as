@@ -10,58 +10,58 @@ package utils.systems {
 public class Conway {
 
     private var _width:uint, _height:uint;
-    private var currentHolder:Boolean;
+    private var currentHolder:uint;
     private var _generation:uint;
-    private var cells0:Vector.<Vector.<uint>>;
-    private var cells1:Vector.<Vector.<uint>>;
+    private var cellHolder:Vector.<Vector.<Vector.<uint>>>;
+    private var original:Vector.<Vector.<uint>>;
 
-    public function Conway(width:uint, height:uint) {
+    public function Conway(width:uint, height:uint, initialCells:Vector.<Vector.<uint>> = null) {
         _width = width;
         _height = height;
         _generation = 0;
-        currentHolder = true;
+        currentHolder = 0;
+        cellHolder = new <Vector.<Vector.<uint>>>[
+            new Vector.<Vector.<uint>>(_width),
+            new Vector.<Vector.<uint>>(_width)
+        ];
 
-        checkCells();
-    }
-
-    private function checkCells():void {
-        if(cells0 == null)  cells0 = new Vector.<Vector.<uint>>(_width);
-        else                cells0.length = _width;
-        if(cells1 == null)  cells1 = new Vector.<Vector.<uint>>(_width);
-        else                cells1.length = _width;
-        for (var i:int = 0; i < _width; i++) {
-            if(cells0[i] == null)   cells0[i] = new Vector.<uint>(_height);
-            else                    cells0[i].length = _height;
-            if(cells1[i] == null)   cells1[i] = new Vector.<uint>(_height);
-            else                    cells1[i].length = _height;
+        if(initialCells == null) {
+            original = new Vector.<Vector.<uint>>(_width);
+            for (var i:int = 0; i < _width; i++) {
+                original[i] = new Vector.<uint>(_height);
+            }
+            cells = original;
+        } else {
+            cells = initialCells;
         }
     }
 
-    public function get width():uint { return _width; }
-    public function set width(v:uint):void {
-        _width = v;
-        checkCells();
+    //==================================
+    //  Methods
+    //==================================
+    private function checkCells():void {
+        for (var i:int = 0; i < _width; i++) {
+            if(cellHolder[0][i] == null)    cellHolder[0][i] = new Vector.<uint>(_height);
+            else                            cellHolder[0][i].length = _height;
+            if(cellHolder[1][i] == null)    cellHolder[1][i] = new Vector.<uint>(_height);
+            else                            cellHolder[1][i].length = _height;
+        }
     }
-
-    public function get height():uint { return _height; }
-    public function set height(v:uint) {
-        _height = v;
-        checkCells();
-    }
-
-    public function setDimenisions(width:uint, height:uint):void {
-        _width = width;
-        _height = height;
-        checkCells();
-    }
-
-    public function get generation():int { return this._generation; }
 
     public function randomize():void {
-        var cells:Vector.<Vector.<uint>> = (currentHolder)? cells0 : cells1;
         for (var i:int = 0; i < _width; i++) {
             for (var j:int = 0; j < _height; j++) {
-                cells[i][j] = Math.round(Math.random());
+                original[i][j] = (Math.random() > 0.5)? 1 : 0;
+            }
+        }
+        cells = original;
+    }
+
+    public function reset():void {
+        _generation = 0;
+        for (var i:int = 0; i < _width; i++) {
+            for (var j:int = 0; j < _height; j++) {
+                cellHolder[currentHolder][i][j] = original[i][j];
             }
         }
     }
@@ -73,35 +73,91 @@ public class Conway {
         //Any live cell with more than three live neighbours dies, as if by overcrowding.
         //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
-        var cells:Vector.<Vector.<uint>>, next:Vector.<Vector.<uint>>;
-        if(currentHolder) {
-            cells = cells0;
-            next = cells1;
-        } else {
-            cells = cells1;
-            next = cells0;
-        }
-        currentHolder = !currentHolder;
+        var lastCells:uint = currentHolder;
+        currentHolder = (currentHolder + 1) & 1;
         _generation++;
 
         for (var i:int = 1; i < _width - 1; i++) {
             for (var j:int = 1; j < _height - 1; j++) {
-                var n:uint =
-                    cells[i - 1][j - 1] + cells[i][j - 1] + cells[i + 1][j - 1] +
-                    cells[i - 1][j    ] +                   cells[i + 1][j    ] +
-                    cells[i - 1][j + 1] + cells[i][j + 1] + cells[i + 1][j + 1];
+                var n:uint = cellHolder[lastCells][i - 1][j - 1] + cellHolder[lastCells][i][j - 1] + cellHolder[lastCells][i + 1][j - 1] +
+                             cellHolder[lastCells][i - 1][j    ] +                                   cellHolder[lastCells][i + 1][j    ] +
+                             cellHolder[lastCells][i - 1][j + 1] + cellHolder[lastCells][i][j + 1] + cellHolder[lastCells][i + 1][j + 1];
 
-                if(cells[i][j] == 1) {
-                    if(n == 2 || n == 3)
-                        next[i][j] = 1;
+                if(cellHolder[lastCells][i][j] == 1) {
+                    cellHolder[currentHolder][i][j] = (n == 2 || n == 3) ? 1 : 0;
                 } else {
-                    if(n == 3)
-                        next[i][j] = 1;
+                    cellHolder[currentHolder][i][j] = (n == 3)? 1 : 0;
                 }
             }
         }
     }
 
+    //==================================
+    //  Get/Set
+    //==================================
+    public function get generation():int { return this._generation; }
+
+    public function get width():uint { return _width; }
+    public function set width(v:uint):void {
+        _width = v;
+        checkCells();
+    }
+
+    public function get height():uint { return _height; }
+    public function set height(v:uint):void {
+        _height = v;
+        checkCells();
+    }
+
+    public function get cells():Vector.<Vector.<uint>> { return cellHolder[currentHolder]; }
+    public function set cells(v:Vector.<Vector.<uint>>):void {
+        if(v == null) return;
+        original = v;
+        _width = v.length;
+        _height = v[0].length;
+        checkCells();
+        for (var i:int = 1; i < _width - 1; i++) {
+            for (var j:int = 1; j < _height - 1; j++) {
+                cellHolder[currentHolder][i][j] = v[i][j];
+            }
+        }
+
+        //borders are 0
+        for (i = 0; i < _width; i++) {
+            cellHolder[0][i][0]         =
+            cellHolder[0][i][_height-1] =
+            cellHolder[1][i][0]         =
+            cellHolder[1][i][_height-1] = 0;
+        }
+
+        for (j = 0; j < _height; j++) {
+            cellHolder[0][0][j]         =
+            cellHolder[0][_width-1][j]  =
+            cellHolder[1][0][j]         =
+            cellHolder[1][_width-1][j]  = 0;
+        }
+    }
+
+    public function setCell(x:int, y:int, alive:Boolean):void { cellHolder[currentHolder][x][y] = alive? 1 : 0; }
+    public function isAlive(x:int, y:int):Boolean { return cellHolder[currentHolder][x][y] == 1; }
+
+    public function setDimenisions(width:uint, height:uint):void {
+        _width = width;
+        _height = height;
+        checkCells();
+    }
+
+    public function toString():String {
+        var s:String = "";
+        for each (var cc:Vector.<uint> in cellHolder[currentHolder]) {
+            s += "[";
+            for each (var cell:uint in cc) {
+                s += cell;
+            }
+            s += "]\n"
+        }
+        return s;
+    }
 
 }
 }

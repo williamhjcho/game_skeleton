@@ -18,13 +18,13 @@ package feathers.examples.layoutExplorer.screens
 	import starling.events.Event;
 	import starling.textures.Texture;
 
-	[Event(name="showHorizontal",type="starling.events.Event")]
+	[Event(name="showHorizontal",type="starling.gameplataform.events.Event")]
 
-	[Event(name="showVertical",type="starling.events.Event")]
+	[Event(name="showVertical",type="starling.gameplataform.events.Event")]
 
-	[Event(name="showTiledRows",type="starling.events.Event")]
+	[Event(name="showTiledRows",type="starling.gameplataform.events.Event")]
 
-	[Event(name="showTiledColumns",type="starling.events.Event")]
+	[Event(name="showTiledColumns",type="starling.gameplataform.events.Event")]
 
 	public class MainMenuScreen extends PanelScreen
 	{

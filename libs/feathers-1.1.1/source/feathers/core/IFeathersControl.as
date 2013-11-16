@@ -12,16 +12,16 @@ package feathers.core
 	 * drawn for the first time. Typically, the component's children will have
 	 * been created by this point.
 	 *
-	 * @eventType feathers.events.FeathersEventType.INITIALIZE
+	 * @eventType feathers.gameplataform.events.FeathersEventType.INITIALIZE
 	 */
-	[Event(name="initialize",type="starling.events.Event")]
+	[Event(name="initialize",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the width or height of the control changes.
 	 *
-	 * @eventType feathers.events.FeathersEventType.RESIZE
+	 * @eventType feathers.gameplataform.events.FeathersEventType.RESIZE
 	 */
-	[Event(name="resize",type="starling.events.Event")]
+	[Event(name="resize",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Basic interface for Feathers UI controls. A Feathers control must also

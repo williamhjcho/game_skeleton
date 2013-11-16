@@ -12,28 +12,28 @@ package feathers.core
 	/**
 	 * Dispatched when the text property changes.
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the user presses the Enter key while the editor has focus.
 	 *
-	 * @eventType feathers.events.FeathersEventType.ENTER
+	 * @eventType feathers.gameplataform.events.FeathersEventType.ENTER
 	 */
-	[Event(name="enter",type="starling.events.Event")]
+	[Event(name="enter",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the text editor receives focus.
 	 *
-	 * @eventType feathers.events.FeathersEventType.FOCUS_IN
+	 * @eventType feathers.gameplataform.events.FeathersEventType.FOCUS_IN
 	 */
-	[Event(name="focusIn",type="starling.events.Event")]
+	[Event(name="focusIn",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the text editor loses focus.
 	 *
-	 * @eventType feathers.events.FeathersEventType.FOCUS_OUT
+	 * @eventType feathers.gameplataform.events.FeathersEventType.FOCUS_OUT
 	 */
-	[Event(name="focusOut",type="starling.events.Event")]
+	[Event(name="focusOut",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Handles the editing of text.

@@ -23,9 +23,9 @@ package feathers.examples.youtube.screens
 	import starling.display.DisplayObject;
 	import starling.events.Event;
 
-	[Event(name="complete",type="starling.events.Event")]
+	[Event(name="complete",type="starling.gameplataform.events.Event")]
 
-	[Event(name="showVideoDetails",type="starling.events.Event")]
+	[Event(name="showVideoDetails",type="starling.gameplataform.events.Event")]
 
 	public class ListVideosScreen extends PanelScreen
 	{

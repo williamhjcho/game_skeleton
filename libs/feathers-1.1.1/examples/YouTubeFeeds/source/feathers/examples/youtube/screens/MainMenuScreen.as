@@ -14,7 +14,7 @@ package feathers.examples.youtube.screens
 	import starling.events.Event;
 	import starling.textures.Texture;
 
-	[Event(name="listVideos",type="starling.events.Event")]
+	[Event(name="listVideos",type="starling.gameplataform.events.Event")]
 
 	public class MainMenuScreen extends PanelScreen
 	{

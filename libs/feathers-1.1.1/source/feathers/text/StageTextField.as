@@ -353,7 +353,7 @@ package feathers.text
 			}
 			if(bitmap.width != this._viewPort.width || bitmap.height != this._viewPort.height)
 			{
-				throw new ArgumentError("The bitmap's width or height is different from view port's width or height.");
+				throw new ArgumentError("The bitmap's width or height is different from gameplataform.view port's width or height.");
 			}
 			bitmap.draw(this._textField);
 		}

@@ -27,9 +27,9 @@ package feathers.controls
 	/**
 	 * Dispatched when the stepper's value changes.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Select a value between a minimum and a maximum by using increment and

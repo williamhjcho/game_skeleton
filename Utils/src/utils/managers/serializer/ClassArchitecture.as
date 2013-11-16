@@ -13,6 +13,7 @@ public class ClassArchitecture {
 
     private static var architectures:Dictionary = new Dictionary();
 
+    private var _target             :Class;
     private var _xml                :XML;
     private var _isDynamic          :Boolean = false;
     private var _isFinal            :Boolean = false;
@@ -25,7 +26,7 @@ public class ClassArchitecture {
 
     /** Static Methods **/
     public static function getArchitecture(target:Class):ClassArchitecture {
-        if(architectures[target] == null || architectures[target] == undefined)
+        if(!(target in architectures))
             architectures[target] = new ClassArchitecture(target);
         return architectures[target];
     }
@@ -89,9 +90,10 @@ public class ClassArchitecture {
 
     /** Instance Methods **/
     public function ClassArchitecture(target:Class) {
-        if(architectures[target] == null || architectures[target] == undefined) {
+        if(!(target in architectures)) {
             architectures[target] = this;
         }
+        _target = target;
         _xml = describeType(target);
         filter(this);
     }
@@ -117,6 +119,7 @@ public class ClassArchitecture {
         return s;
     }
 
+    public function get target          ():Class { return _target; }
     public function get xml             ():XML { return _xml; }
     public function get isDynamic       ():Boolean { return _isDynamic; }
     public function get isFinal         ():Boolean { return _isFinal; }

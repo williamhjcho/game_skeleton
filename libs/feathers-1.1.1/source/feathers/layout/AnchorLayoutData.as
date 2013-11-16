@@ -14,7 +14,7 @@ package feathers.layout
 	/**
 	 * @inheritDoc
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Extra, optional data used by an <code>AnchorLayout</code> instance to

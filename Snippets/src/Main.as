@@ -8,13 +8,24 @@
 package {
 import com.demonsters.debugger.MonsterDebugger;
 
+import flash.display.Bitmap;
+import flash.display.BitmapData;
+import flash.display.Graphics;
+import flash.display.Shape;
 import flash.display.Sprite;
+import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.geom.Rectangle;
+import flash.utils.setInterval;
 
 import menu.ItemCustom;
 import menu.MenuContainer;
+
+import utils.commands.Benchmark;
+import utils.systems.CellularAutomata;
+import utils.systems.Conway;
+import utils.toollib.ToolColor;
 
 import utilsDisplay.view.menu.Menu;
 import utilsDisplay.view.menu.MenuItem;
@@ -24,10 +35,15 @@ import utilsDisplay.view.scroll.ScrollParameters;
 [SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=60)]
 public class Main extends Sprite {
 
+    private var color0:uint, color1:uint;
+
     public function Main() {
         MonsterDebugger.initialize(this);
 
-        scrollTest();
+        color0 = ToolColor.random();
+        color1 = ToolColor.opposite(color0);
+
+        testConway();
     }
 
     //==================================
@@ -88,41 +104,115 @@ public class Main extends Sprite {
     }
 
 
+    //==================================
+    //  Cellular Automata
+    //==================================
+    private var automata:CellularAutomata;
+    private var automataCanvas:BitmapData;
+    private function testCellularAutomata():void {
+        automataCanvas = new BitmapData(250, stage.stageHeight, true, 0xffffff);
+        automata = new CellularAutomata(automataCanvas.width);
+
+        var canvas:Bitmap = new Bitmap(automataCanvas);
+        canvas.x = stage.stageWidth - canvas.width >> 1;
+        addChild(canvas);
+
+        var g:Graphics = this.graphics;
+        g.beginFill(color0);
+        g.drawRect(canvas.x - 100, 30, 30, 30);
+        g.beginFill(color1);
+        g.drawRect(canvas.x - 50, 30, 30, 30);
+        g.endFill();
+
+        trace(automata);
+
+        setInterval(automataEF, 15);
+    }
+
+    private function automataEF():void {
+        var cells:Vector.<uint> = automata.cells;
+        var gen:int = automata.generation;
+        for (var i:int = 0; i < automata.length; i++) {
+            automataCanvas.setPixel32(i, gen, cells[i] == 0? color0 : color1);
+        }
+
+        if(gen >= stage.stageHeight) {
+            color0 = ToolColor.random();
+            color1 = ToolColor.opposite(color0);
+            automata.reset();
+            automata.randomizeCells();
+            automata.randomizeRules();
+            trace(automata);
+        } else {
+            automata.iterate();
+        }
+    }
 
     //==================================
-    //
+    //  Conway
     //==================================
-    private var bar:Bar;
-    private var drag:Rectangle;
-    private function barTest():void {
-        bar = new Bar(20, 70);
-        bar.x = stage.stageWidth/2;
-        bar.y = stage.stageHeight/2;
-        drag = new Rectangle(bar.x, bar.y, 0, 100);
-        addChild(bar);
+    private var conway:Conway;
+    private var cc:Shape;
+    private var cSize:Rectangle = new Rectangle(0,0,5,5);
 
-        bar.addEventListener(MouseEvent.ROLL_OVER, onOver);
+    private function testConway():void {
+        conway = new Conway(30,30);
+        conway.randomize();
+
+        cc = new Shape();
+        cc.x = stage.stageWidth - conway.width * cSize.width * 2 >> 1;
+        cc.y = stage.stageHeight - conway.height * cSize.height * 2 >> 1;
+        addChild(cc);
+
+        conwayRender();
+        //setInterval(conwayEF, 50);
+        stage.addEventListener(MouseEvent.MOUSE_WHEEL, conwayEF);
     }
 
-    private function onDown(e:MouseEvent):void {
-        trace("down");
-        bar.addEventListener(MouseEvent.MOUSE_UP, onUp);
-        bar.startDrag(false, drag);
+    private function conwayEF(e:Event = null):void {
+        conway.iterate();
+        conwayRender();
     }
-    private function onUp(e:MouseEvent):void {
-        trace("up");
-        bar.removeEventListener(MouseEvent.MOUSE_UP, onUp);
-        bar.stopDrag();
+
+    private function conwayRender():void {
+        var cells:Vector.<Vector.<uint>> = conway.cells;
+        var g:Graphics = cc.graphics;
+        g.clear();
+        g.lineStyle(0);
+
+        for (var i:int = 0; i < conway.width; i++) {
+            for (var j:int = 0; j < conway.height; j++) {
+                var c:uint = cells[i][j] == 0? color0 : color1;
+                g.beginFill(c);
+                g.drawCircle(i * cSize.width*2, j * cSize.width*2, cSize.width);
+            }
+        }
+        g.endFill();
     }
-    private function onOver(e:MouseEvent):void {
-        trace("over");
-        bar.addEventListener(MouseEvent.MOUSE_DOWN, onDown);
-        bar.addEventListener(MouseEvent.ROLL_OUT, onOut);
+
+    //==================================
+    //  Class Arch
+    //==================================
+    private function testClassArch():void {
+
     }
-    private function onOut(e:MouseEvent):void {
-        trace("out");
-        bar.stopDrag();
-        bar.removeEventListener(MouseEvent.ROLL_OUT, onOut);
+
+
+    //==================================
+    //      Benchmark
+    //==================================
+    private var vec:Vector.<Vector.<uint>> = new <Vector.<uint>>[new <uint>[0], new <uint>[0]];
+    private function benchmarkStuff():void {
+        trace(Benchmark(90000,f1,vec));
+        trace(Benchmark(90000,f2,vec[1]));
+    }
+
+    private function f1(v:Vector.<Vector.<uint>>):void {
+        v[0][0] += 1;
+    }
+
+    private function f2(v:Vector.<uint>):void {
+        v[0] += 1;
     }
 }
 }

@@ -14,7 +14,7 @@ package feathers.examples.componentsExplorer.screens
 	import starling.display.DisplayObject;
 	import starling.events.Event;
 
-	[Event(name="complete",type="starling.events.Event")]
+	[Event(name="complete",type="starling.gameplataform.events.Event")]
 
 	public class TextInputSettingsScreen extends PanelScreen
 	{

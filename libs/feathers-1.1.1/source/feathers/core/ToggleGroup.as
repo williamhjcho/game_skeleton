@@ -15,9 +15,9 @@ package feathers.core
 	/**
 	 * Dispatched when the selection changes.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Controls the selection of two or more IToggle instances where only one

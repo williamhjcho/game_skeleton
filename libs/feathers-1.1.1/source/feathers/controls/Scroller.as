@@ -33,18 +33,18 @@ package feathers.controls
 	import starling.events.TouchPhase;
 
 	/**
-	 * Dispatched when the scroller scrolls in either direction or when the view
+	 * Dispatched when the scroller scrolls in either direction or when the gameplataform.view
 	 * port's scrolling bounds have changed. Listen for <code>FeathersEventType.SCROLL_START</code>
 	 * to know when scrolling starts as a result of user interaction or when
 	 * scrolling is triggered by an animation. Similarly, listen for
 	 * <code>FeathersEventType.SCROLL_COMPLETE</code> to know when the scrolling
 	 * ends.
 	 *
-	 * @eventType starling.events.Event.SCROLL
-	 * @see feathers.events.FeathersEventType.SCROLL_START
-	 * @see feathers.events.FeathersEventType.SCROLL_COMPLETE
+	 * @eventType starling.gameplataform.events.Event.SCROLL
+	 * @see feathers.gameplataform.events.FeathersEventType.SCROLL_START
+	 * @see feathers.gameplataform.events.FeathersEventType.SCROLL_COMPLETE
 	 */
-	[Event(name="scroll",type="starling.events.Event")]
+	[Event(name="scroll",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the scroller starts scrolling in either direction
@@ -53,14 +53,14 @@ package feathers.controls
 	 * <p>Note: If <code>horizontalScrollPosition</code> or <code>verticalScrollPosition</code>
 	 * is set manually (in other words, the scrolling is not triggered by user
 	 * interaction or an animated scroll), no <code>FeathersEventType.SCROLL_START</code>
-	 * or <code>FeathersEventType.SCROLL_COMPLETE</code> events will be
+	 * or <code>FeathersEventType.SCROLL_COMPLETE</code> gameplataform.events will be
 	 * dispatched.</p>
 	 *
-	 * @eventType feathers.events.FeathersEventType.SCROLL_START
-	 * @see feathers.events.FeathersEventType.SCROLL_COMPLETE
-	 * @see feathers.events.FeathersEventType.SCROLL
+	 * @eventType feathers.gameplataform.events.FeathersEventType.SCROLL_START
+	 * @see feathers.gameplataform.events.FeathersEventType.SCROLL_COMPLETE
+	 * @see feathers.gameplataform.events.FeathersEventType.SCROLL
 	 */
-	[Event(name="scrollStart",type="starling.events.Event")]
+	[Event(name="scrollStart",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the scroller finishes scrolling in either direction
@@ -71,14 +71,14 @@ package feathers.controls
 	 * <p>Note: If <code>horizontalScrollPosition</code> or <code>verticalScrollPosition</code>
 	 * is set manually (in other words, the scrolling is not triggered by user
 	 * interaction or an animated scroll), no <code>FeathersEventType.SCROLL_START</code>
-	 * or <code>FeathersEventType.SCROLL_COMPLETE</code> events will be
+	 * or <code>FeathersEventType.SCROLL_COMPLETE</code> gameplataform.events will be
 	 * dispatched.</p>
 	 *
-	 * @eventType feathers.events.FeathersEventType.SCROLL_COMPLETE
-	 * @see feathers.events.FeathersEventType.SCROLL_START
-	 * @see feathers.events.FeathersEventType.SCROLL
+	 * @eventType feathers.gameplataform.events.FeathersEventType.SCROLL_COMPLETE
+	 * @see feathers.gameplataform.events.FeathersEventType.SCROLL_START
+	 * @see feathers.gameplataform.events.FeathersEventType.SCROLL
 	 */
-	[Event(name="scrollComplete",type="starling.events.Event")]
+	[Event(name="scrollComplete",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the user starts dragging the scroller when
@@ -88,14 +88,14 @@ package feathers.controls
 	 * <p>Note: If <code>horizontalScrollPosition</code> or <code>verticalScrollPosition</code>
 	 * is set manually (in other words, the scrolling is not triggered by user
 	 * interaction), no <code>FeathersEventType.BEGIN_INTERACTION</code>
-	 * or <code>FeathersEventType.END_INTERACTION</code> events will be
+	 * or <code>FeathersEventType.END_INTERACTION</code> gameplataform.events will be
 	 * dispatched.</p>
 	 *
-	 * @eventType feathers.events.FeathersEventType.BEGIN_INTERACTION
-	 * @see feathers.events.FeathersEventType.END_INTERACTION
-	 * @see feathers.events.FeathersEventType.SCROLL
+	 * @eventType feathers.gameplataform.events.FeathersEventType.BEGIN_INTERACTION
+	 * @see feathers.gameplataform.events.FeathersEventType.END_INTERACTION
+	 * @see feathers.gameplataform.events.FeathersEventType.SCROLL
 	 */
-	[Event(name="beginInteraction",type="starling.events.Event")]
+	[Event(name="beginInteraction",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the user stops dragging the scroller when
@@ -107,17 +107,17 @@ package feathers.controls
 	 * <p>Note: If <code>horizontalScrollPosition</code> or <code>verticalScrollPosition</code>
 	 * is set manually (in other words, the scrolling is not triggered by user
 	 * interaction), no <code>FeathersEventType.BEGIN_INTERACTION</code>
-	 * or <code>FeathersEventType.END_INTERACTION</code> events will be
+	 * or <code>FeathersEventType.END_INTERACTION</code> gameplataform.events will be
 	 * dispatched.</p>
 	 *
-	 * @eventType feathers.events.FeathersEventType.END_INTERACTION
-	 * @see feathers.events.FeathersEventType.BEGIN_INTERACTION
-	 * @see feathers.events.FeathersEventType.SCROLL
+	 * @eventType feathers.gameplataform.events.FeathersEventType.END_INTERACTION
+	 * @see feathers.gameplataform.events.FeathersEventType.BEGIN_INTERACTION
+	 * @see feathers.gameplataform.events.FeathersEventType.SCROLL
 	 */
-	[Event(name="endInteraction",type="starling.events.Event")]
+	[Event(name="endInteraction",type="starling.gameplataform.events.Event")]
 
 	/**
-	 * Allows horizontal and vertical scrolling of a <em>view port</em>. Not
+	 * Allows horizontal and vertical scrolling of a <em>gameplataform.view port</em>. Not
 	 * meant to be used as a standalone container or component. Generally meant
 	 * to be the super class of another component that needs to support
 	 * scrolling. To put components in a generic scrollable container (with
@@ -155,7 +155,7 @@ package feathers.controls
 		protected static const INVALIDATION_FLAG_PENDING_SCROLL:String = "pendingScroll";
 
 		/**
-		 * The scroller may scroll if the view port is larger than the
+		 * The scroller may scroll if the gameplataform.view port is larger than the
 		 * scroller's bounds. If the interaction mode is touch, the elastic
 		 * edges will only be active if the maximum scroll position is greater
 		 * than zero. If the scroll bar display mode is fixed, the scroll bar
@@ -188,7 +188,7 @@ package feathers.controls
 		public static const SCROLL_POLICY_OFF:String = "off";
 
 		/**
-		 * The scroll bars appear above the scroller's view port, and fade out
+		 * The scroll bars appear above the scroller's gameplataform.view port, and fade out
 		 * when not in use.
 		 *
 		 * @see feathers.controls.Scroller#scrollBarDisplayMode
@@ -197,7 +197,7 @@ package feathers.controls
 
 		/**
 		 * The scroll bars are always visible and appear next to the scroller's
-		 * view port, making the view port smaller than the scroller.
+		 * gameplataform.view port, making the gameplataform.view port smaller than the scroller.
 		 *
 		 * @see feathers.controls.Scroller#scrollBarDisplayMode
 		 */
@@ -2508,7 +2508,7 @@ package feathers.controls
 
 			//if scroll bars are fixed, we're going to include the offsets even
 			//if they may not be needed in the final pass. if not fixed, the
-			//view port fills the entire bounds.
+			//gameplataform.view port fills the entire bounds.
 			this._viewPort.visibleWidth = this.explicitWidth - horizontalWidthOffset;
 			this._viewPort.visibleHeight = this.explicitHeight - verticalHeightOffset;
 			this._viewPort.minVisibleWidth = Math.max(0, this._minWidth - horizontalWidthOffset);
@@ -3574,7 +3574,7 @@ package feathers.controls
 			
 			//we need to listen on the stage because if we scroll the bottom or
 			//right edge past the top of the scroller, it gets stuck and we stop
-			//receiving touch events for "this".
+			//receiving touch gameplataform.events for "this".
 			this.stage.addEventListener(TouchEvent.TOUCH, stage_touchHandler);
 		}
 

@@ -16,17 +16,17 @@ package feathers.data
 	 * Dispatched when the underlying data source changes and the ui will
 	 * need to redraw the data.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the collection has changed drastically, such as when
 	 * the underlying data source is replaced completely.
 	 *
-	 * @eventType feathers.events.CollectionEventType.RESET
+	 * @eventType feathers.gameplataform.events.CollectionEventType.RESET
 	 */
-	[Event(name="reset",type="starling.events.Event")]
+	[Event(name="reset",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when an item is added to the collection.
@@ -35,9 +35,9 @@ package feathers.data
 	 * item that has been added. It is of type <code>Array</code> and contains
 	 * objects of type <code>int</code>.</p>
 	 *
-	 * @eventType feathers.events.CollectionEventType.ADD_ITEM
+	 * @eventType feathers.gameplataform.events.CollectionEventType.ADD_ITEM
 	 */
-	[Event(name="addItem",type="starling.events.Event")]
+	[Event(name="addItem",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when an item is removed from the collection.
@@ -46,9 +46,9 @@ package feathers.data
 	 * item that has been removed. It is of type <code>Array</code> and contains
 	 * objects of type <code>int</code>.</p>
 	 *
-	 * @eventType feathers.events.CollectionEventType.REMOVE_ITEM
+	 * @eventType feathers.gameplataform.events.CollectionEventType.REMOVE_ITEM
 	 */
-	[Event(name="removeItem",type="starling.events.Event")]
+	[Event(name="removeItem",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when an item is replaced in the collection.
@@ -57,9 +57,9 @@ package feathers.data
 	 * item that has been replaced. It is of type <code>Array</code> and contains
 	 * objects of type <code>int</code>.</p>
 	 *
-	 * @eventType feathers.events.CollectionEventType.REPLACE_ITEM
+	 * @eventType feathers.gameplataform.events.CollectionEventType.REPLACE_ITEM
 	 */
-	[Event(name="replaceItem",type="starling.events.Event")]
+	[Event(name="replaceItem",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when a property of an item in the collection has changed
@@ -67,16 +67,16 @@ package feathers.data
 	 * is only dispatched when the <code>updateItemAt()</code> function is
 	 * called on the <code>HierarchicalCollection</code>.
 	 *
-	 * <p>In general, it's better for the items themselves to dispatch events
+	 * <p>In general, it's better for the items themselves to dispatch gameplataform.events
 	 * or signals when their properties change.</p>
 	 *
 	 * <p>The <code>data</code> property of the event is the index path of the
 	 * item that has been updated. It is of type <code>Array</code> and contains
 	 * objects of type <code>int</code>.</p>
 	 *
-	 * @eventType feathers.events.CollectionEventType.UPDATE_ITEM
+	 * @eventType feathers.gameplataform.events.CollectionEventType.UPDATE_ITEM
 	 */
-	[Event(name="updateItem",type="starling.events.Event")]
+	[Event(name="updateItem",type="starling.gameplataform.events.Event")]
 
 	[DefaultProperty("data")]
 	/**

@@ -239,7 +239,7 @@
 		 Feathers UI control is added to the display list for the first time.
 		 </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isInitialized():Boolean</code><br/></div><a name="propertyDetail"></a><a name="isQuickHitAreaEnabled"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isQuickHitAreaEnabled</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>isQuickHitAreaEnabled:Boolean</code><p></p><p></p><p>
 		 Similar to mouseChildren on the classic display list. If true,
-		 children cannot dispatch touch events, but hit tests will be much
+		 children cannot dispatch touch gameplataform.events, but hit tests will be much
 		 faster.
 		 </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isQuickHitAreaEnabled():Boolean</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set isQuickHitAreaEnabled(value:Boolean):void</code><br/></div><a name="propertyDetail"></a><a name="layoutData"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">layoutData</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>layoutData:<a href="../../feathers/layout/ILayoutData.html">ILayoutData</a></code><p></p><p></p><p>
 		 
@@ -318,11 +318,11 @@
 		 Override to customize layout and to adjust properties of children.
 		 Called when the component validates, if any flags have been marked
 		 to indicate that validation is pending.
-		 </p></div><a name="focusInHandler()"></a><a name="focusInHandler(starling.events.Event)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">focusInHandler</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function focusInHandler(event:Event):void</code><p></p><p></p><p>
+		 </p></div><a name="focusInHandler()"></a><a name="focusInHandler(starling.gameplataform.events.Event)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">focusInHandler</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function focusInHandler(event:Event):void</code><p></p><p></p><p>
 		 Default event handler for <code>FeathersEventType.FOCUS_IN</code>
 		 that may be overridden in subclasses to perform additional actions
 		 when the component receives focus.
-		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">event</span>:Event</code></td></tr></table></p></div><a name="focusOutHandler()"></a><a name="focusOutHandler(starling.events.Event)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">focusOutHandler</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function focusOutHandler(event:Event):void</code><p></p><p></p><p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">event</span>:Event</code></td></tr></table></p></div><a name="focusOutHandler()"></a><a name="focusOutHandler(starling.gameplataform.events.Event)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">focusOutHandler</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function focusOutHandler(event:Event):void</code><p></p><p></p><p>
 		 Default event handler for <code>FeathersEventType.FOCUS_OUT</code>
 		 that may be overridden in subclasses to perform additional actions
 		 when the component loses focus.
@@ -342,7 +342,7 @@
 		 After this function is called, <code>FeathersEventType.INITIALIZE</code>
 		 is dispatched.
 		 
-		 </p><p><span class="label">See also</span></p><div class="seeAlso"><a href="../../feathers/events/FeathersEventType.html#INITIALIZE" target="">feathers.events.FeathersEventType.INITIALIZE</a></div></div><a name="invalidate()"></a><a name="invalidate(String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">invalidate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function invalidate(flag:String):void</code><p></p><p></p><p>
+		 </p><p><span class="label">See also</span></p><div class="seeAlso"><a href="../../feathers/gameplataform.events/FeathersEventType.html#INITIALIZE" target="">feathers.gameplataform.gameplataform.events.FeathersEventType.INITIALIZE</a></div></div><a name="invalidate()"></a><a name="invalidate(String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">invalidate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function invalidate(flag:String):void</code><p></p><p></p><p>
 		 Call this function to tell the UI control that a redraw is pending.
 		 The redraw will happen immediately before Starling renders the UI
 		 control to the screen. The validation system exists to ensure that
@@ -400,7 +400,7 @@
 		 stage and if it hasn't initialized yet. A component initializes the
 		 first time that it has been added to the stage.</p>
 		 
-		 </p><p><span class="label">See also</span></p><div class="seeAlso"><a href="FeathersControl.html#invalidate()" target="">invalidate()</a><br/><a href="FeathersControl.html#initialize()" target="">initialize()</a><br/><a href="../../feathers/events/FeathersEventType.html#INITIALIZE" target="">feathers.events.FeathersEventType.INITIALIZE</a></div></div><div class="detailSectionHeader"> Event Detail </div><a name="event:initialize"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">initialize</td><td class="detailHeaderType"> Event </td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.events.FeathersEventType.INITIALIZE</code><br/><p></p><p></p><p>
+		 </p><p><span class="label">See also</span></p><div class="seeAlso"><a href="FeathersControl.html#invalidate()" target="">invalidate()</a><br/><a href="FeathersControl.html#initialize()" target="">initialize()</a><br/><a href="../../feathers/gameplataform.events/FeathersEventType.html#INITIALIZE" target="">feathers.gameplataform.gameplataform.events.FeathersEventType.INITIALIZE</a></div></div><div class="detailSectionHeader"> Event Detail </div><a name="event:initialize"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">initialize</td><td class="detailHeaderType"> Event </td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.gameplataform.gameplataform.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.gameplataform.gameplataform.events.FeathersEventType.INITIALIZE</code><br/><p></p><p></p><p>
 	 Dispatched after initialize() has been called, but before the first time
 	 that draw() has been called.
 	 
@@ -408,7 +408,7 @@
 		 The <code>FeathersEventType.INITIALIZE</code> event type is meant to
 		 be used when an <code>IFeathersControl</code> has finished running
 		 its <code>initialize()</code> function.
-		 </div><a name="event:resize"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">resize</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.events.FeathersEventType.RESIZE</code><br/><p></p><p></p><p>
+		 </div><a name="event:resize"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">resize</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.gameplataform.gameplataform.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.gameplataform.gameplataform.events.FeathersEventType.RESIZE</code><br/><p></p><p></p><p>
 	 Dispatched when the width or height of the control changes.
 	 
 	 </p>

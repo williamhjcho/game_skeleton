@@ -21,7 +21,7 @@ package feathers.controls.text
 	import starling.utils.MatrixUtil;
 
 	/**
-	 * A text editor view port for the <code>TextArea</code> component that uses
+	 * A text editor gameplataform.view port for the <code>TextArea</code> component that uses
 	 * <code>flash.text.TextField</code>.
 	 *
 	 * @see feathers.controls.TextArea

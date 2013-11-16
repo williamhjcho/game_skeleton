@@ -14,16 +14,16 @@ package feathers.dragDrop
 	 * <code>acceptDrag()</code> on the drag and drop manager to allow
 	 * the drag to the be dropped on the target.
 	 *
-	 * @eventType = feathers.events.DragDropEvent.DRAG_ENTER
+	 * @eventType = feathers.gameplataform.events.DragDropEvent.DRAG_ENTER
 	 */
-	[Event(name="dragEnter",type="feathers.events.DragDropEvent")]
+	[Event(name="dragEnter",type="feathers.gameplataform.events.DragDropEvent")]
 
 	/**
 	 * Dispatched when the touch moves within the drop target's bounds.
 	 *
-	 * @eventType = feathers.events.DragDropEvent.DRAG_MOVE
+	 * @eventType = feathers.gameplataform.events.DragDropEvent.DRAG_MOVE
 	 */
-	[Event(name="dragMove",type="feathers.events.DragDropEvent")]
+	[Event(name="dragMove",type="feathers.gameplataform.events.DragDropEvent")]
 
 	/**
 	 * Dispatched when the touch exits the drop target's bounds or when
@@ -31,18 +31,18 @@ package feathers.dragDrop
 	 * bounds. Will <em>not</em> be dispatched if the drop target hasn't
 	 * accepted the drag.
 	 *
-	 * @eventType = feathers.events.DragDropEvent.DRAG_EXIT
+	 * @eventType = feathers.gameplataform.events.DragDropEvent.DRAG_EXIT
 	 */
-	[Event(name="dragExit",type="feathers.events.DragDropEvent")]
+	[Event(name="dragExit",type="feathers.gameplataform.events.DragDropEvent")]
 
 	/**
 	 * Dispatched when an accepted drag is dropped on the target. Will
 	 * <em>not</em> be dispatched if the drop target hasn't accepted the
 	 * drag.
 	 *
-	 * @eventType = feathers.events.DragDropEvent.DRAG_DROP
+	 * @eventType = feathers.gameplataform.events.DragDropEvent.DRAG_DROP
 	 */
-	[Event(name="dragDrop",type="feathers.events.DragDropEvent")]
+	[Event(name="dragDrop",type="feathers.gameplataform.events.DragDropEvent")]
 
 	/**
 	 * A display object that can accept data dropped by the drag and drop

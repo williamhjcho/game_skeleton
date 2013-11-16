@@ -15,7 +15,7 @@ package feathers.examples.layoutExplorer.screens
 	import starling.display.DisplayObject;
 	import starling.events.Event;
 
-	[Event(name="complete",type="starling.events.Event")]
+	[Event(name="complete",type="starling.gameplataform.events.Event")]
 
 	public class TiledColumnsLayoutSettingsScreen extends PanelScreen
 	{

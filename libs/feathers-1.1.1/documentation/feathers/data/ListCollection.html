@@ -10,7 +10,7 @@
 				
 					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("ListCollection"); titleBar_setSubNav(false,true,false,false,false,false,true,false,true,false,false	,false,false,false,false,false);}	
 				-->
-			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">feathers.data</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  ListCollection</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ListCollection  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> starling.events.EventDispatcher</td></tr></table><p></p><p></p><p></p>
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">feathers.data</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  ListCollection</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ListCollection  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> starling.gameplataform.events.EventDispatcher</td></tr></table><p></p><p></p><p></p>
 	 Wraps a data source with a common API for use with UI controls, like
 	 lists, that support one dimensional collections of data. Supports custom
 	 "data descriptors" so that unexpected data sources may be used. Supports
@@ -98,7 +98,7 @@
 		 has changed, you can manually tell the collection about the change,
 		 and the collection will dispatch the <code>CollectionEventType.UPDATE_ITEM</code>
 		 event to manually notify the component that renders the data.
-		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:int</code></td></tr></table></p></div><div class="detailSectionHeader"> Event Detail </div><a name="event:addItem"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addItem</td><td class="detailHeaderType"> Event </td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.events.CollectionEventType.ADD_ITEM</code><br/><p></p><p></p><p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:int</code></td></tr></table></p></div><div class="detailSectionHeader"> Event Detail </div><a name="event:addItem"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addItem</td><td class="detailHeaderType"> Event </td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.gameplataform.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.gameplataform.events.CollectionEventType.ADD_ITEM</code><br/><p></p><p></p><p>
 	 Dispatched when an item is added to the collection.
 	 
 	 <p>The <code>data</code> property of the event is the index of the
@@ -106,11 +106,11 @@
 	 
 	 </p>
 		 Dispatched when an item is added to the collection.
-		 </div><a name="event:change"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">change</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.events.Event</code><br/><span class="label">Event.type property = </span><code>starling.events.Event.CHANGE</code><br/><p></p><p></p><p>
+		 </div><a name="event:change"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">change</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.gameplataform.events.Event</code><br/><span class="label">Event.type property = </span><code>starling.gameplataform.events.Event.CHANGE</code><br/><p></p><p></p><p>
 	 Dispatched when the underlying data source changes and the ui will
 	 need to redraw the data.
 	 
-	 </p></div><a name="event:removeItem"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeItem</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.events.CollectionEventType.REMOVE_ITEM</code><br/><p></p><p></p><p>
+	 </p></div><a name="event:removeItem"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeItem</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.gameplataform.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.gameplataform.events.CollectionEventType.REMOVE_ITEM</code><br/><p></p><p></p><p>
 	 Dispatched when an item is removed from the collection.
 	 
 	 <p>The <code>data</code> property of the event is the index of the
@@ -118,7 +118,7 @@
 	 
 	 </p>
 		 Dispatched when an item is removed from the collection.
-		 </div><a name="event:replaceItem"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">replaceItem</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.events.CollectionEventType.REPLACE_ITEM</code><br/><p></p><p></p><p>
+		 </div><a name="event:replaceItem"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">replaceItem</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.gameplataform.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.gameplataform.events.CollectionEventType.REPLACE_ITEM</code><br/><p></p><p></p><p>
 	 Dispatched when an item is replaced in the collection.
 	 
 	 <p>The <code>data</code> property of the event is the index of the
@@ -127,19 +127,19 @@
 	 </p>
 		 Dispatched when an item is replaced in the collection with a
 		 different item.
-		 </div><a name="event:reset"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">reset</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.events.CollectionEventType.RESET</code><br/><p></p><p></p><p>
+		 </div><a name="event:reset"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">reset</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.gameplataform.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.gameplataform.events.CollectionEventType.RESET</code><br/><p></p><p></p><p>
 	 Dispatched when the collection has changed drastically, such as when
 	 the underlying data source is replaced completely.
 	 
 	 </p>
 		 Dispatched when the data provider's source is completely replaced.
-		 </div><a name="event:updateItem"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">updateItem</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.events.CollectionEventType.UPDATE_ITEM</code><br/><p></p><p></p><p>
+		 </div><a name="event:updateItem"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">updateItem</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>starling.gameplataform.events.Event</code><br/><span class="label">Event.type property = </span><code>feathers.gameplataform.events.CollectionEventType.UPDATE_ITEM</code><br/><p></p><p></p><p>
 	 Dispatched when a property of an item in the collection has changed
 	 and the item doesn't have its own change event or signal. This event
 	 is only dispatched when the <code>updateItemAt()</code> function is
 	 called on the <code>ListCollection</code>.
 	 
-	 <p>In general, it's better for the items themselves to dispatch events
+	 <p>In general, it's better for the items themselves to dispatch gameplataform.events
 	 or signals when their properties change.</p>
 	 
 	 <p>The <code>data</code> property of the event is the index of the

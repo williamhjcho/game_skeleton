@@ -1,5 +1,5 @@
 ﻿{
-    "___className": "model.Config",
+    "___className": "gameplataform.model.Config",
 
     "allowedDomain" : "*",
     "serverTest"    : "localhost",

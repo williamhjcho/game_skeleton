@@ -22,35 +22,35 @@ package feathers.controls
 	/**
 	 * Dispatched when the active screen changes.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the current screen is removed and there is no active
 	 * screen.
 	 *
-	 * @eventType feathers.events.FeathersEventType.CLEAR
+	 * @eventType feathers.gameplataform.events.FeathersEventType.CLEAR
 	 */
-	[Event(name="clear",type="starling.events.Event")]
+	[Event(name="clear",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the transition between screens begins.
 	 *
-	 * @eventType feathers.events.FeathersEventType.TRANSITION_START
+	 * @eventType feathers.gameplataform.events.FeathersEventType.TRANSITION_START
 	 */
-	[Event(name="transitionStart",type="starling.events.Event")]
+	[Event(name="transitionStart",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the transition between screens has completed.
 	 *
-	 * @eventType feathers.events.FeathersEventType.TRANSITION_COMPLETE
+	 * @eventType feathers.gameplataform.events.FeathersEventType.TRANSITION_COMPLETE
 	 */
-	[Event(name="transitionComplete",type="starling.events.Event")]
+	[Event(name="transitionComplete",type="starling.gameplataform.events.Event")]
 
 	/**
-	 * A "view stack"-like container that supports navigation between screens
-	 * (any display object) through events.
+	 * A "gameplataform.view stack"-like container that supports navigation between screens
+	 * (any display object) through gameplataform.events.
 	 *
 	 * <p>The following example creates a screen navigator, adds a screen and
 	 * displays it:</p>

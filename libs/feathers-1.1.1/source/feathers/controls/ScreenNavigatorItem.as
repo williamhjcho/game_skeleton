@@ -51,7 +51,7 @@ package feathers.controls
 		public var screen:Object;
 		
 		/**
-		 * A hash of events to which the ScreenNavigator will listen. Keys in
+		 * A hash of gameplataform.events to which the ScreenNavigator will listen. Keys in
 		 * the hash are event types (or the property name of an <code>ISignal</code>),
 		 * and values are one of two possible types. If the value is a
 		 * <code>String</code>, it must refer to a screen ID for the

@@ -19,9 +19,9 @@ package feathers.controls
 	/**
 	 * Dispatched when the container is scrolled.
 	 *
-	 * @eventType starling.events.Event.SCROLL
+	 * @eventType starling.gameplataform.events.Event.SCROLL
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	[DefaultProperty("mxmlContent")]
 	/**
@@ -153,7 +153,7 @@ package feathers.controls
 
 		/**
 		 * A flag that indicates if the display list functions like <code>addChild()</code>
-		 * and <code>removeChild()</code> will be passed to the internal view
+		 * and <code>removeChild()</code> will be passed to the internal gameplataform.view
 		 * port.
 		 */
 		protected var displayListBypassEnabled:Boolean = true;

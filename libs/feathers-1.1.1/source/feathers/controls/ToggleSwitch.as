@@ -31,7 +31,7 @@ package feathers.controls
 	/**
 	 * @copy feathers.core.IToggle#event:change
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Similar to a light switch with on and off states. Generally considered an

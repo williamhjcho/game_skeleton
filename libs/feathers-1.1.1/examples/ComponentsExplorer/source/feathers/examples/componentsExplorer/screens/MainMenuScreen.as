@@ -18,22 +18,22 @@ package feathers.examples.componentsExplorer.screens
 	import starling.events.Event;
 	import starling.textures.Texture;
 
-	[Event(name="complete",type="starling.events.Event")]
-	[Event(name="showButton",type="starling.events.Event")]
-	[Event(name="showButtonGroup",type="starling.events.Event")]
-	[Event(name="showCallout",type="starling.events.Event")]
-	[Event(name="showGroupedList",type="starling.events.Event")]
-	[Event(name="showItemRenderer",type="starling.events.Event")]
-	[Event(name="showList",type="starling.events.Event")]
-	[Event(name="showNumericStepper",type="starling.events.Event")]
-	[Event(name="showPageIndicator",type="starling.events.Event")]
-	[Event(name="showPickerList",type="starling.events.Event")]
-	[Event(name="showProgressBar",type="starling.events.Event")]
-	[Event(name="showScrollText",type="starling.events.Event")]
-	[Event(name="showSlider",type="starling.events.Event")]
-	[Event(name="showTabBar",type="starling.events.Event")]
-	[Event(name="showTextInput",type="starling.events.Event")]
-	[Event(name="showToggles",type="starling.events.Event")]
+	[Event(name="complete",type="starling.gameplataform.events.Event")]
+	[Event(name="showButton",type="starling.gameplataform.events.Event")]
+	[Event(name="showButtonGroup",type="starling.gameplataform.events.Event")]
+	[Event(name="showCallout",type="starling.gameplataform.events.Event")]
+	[Event(name="showGroupedList",type="starling.gameplataform.events.Event")]
+	[Event(name="showItemRenderer",type="starling.gameplataform.events.Event")]
+	[Event(name="showList",type="starling.gameplataform.events.Event")]
+	[Event(name="showNumericStepper",type="starling.gameplataform.events.Event")]
+	[Event(name="showPageIndicator",type="starling.gameplataform.events.Event")]
+	[Event(name="showPickerList",type="starling.gameplataform.events.Event")]
+	[Event(name="showProgressBar",type="starling.gameplataform.events.Event")]
+	[Event(name="showScrollText",type="starling.gameplataform.events.Event")]
+	[Event(name="showSlider",type="starling.gameplataform.events.Event")]
+	[Event(name="showTabBar",type="starling.gameplataform.events.Event")]
+	[Event(name="showTextInput",type="starling.gameplataform.events.Event")]
+	[Event(name="showToggles",type="starling.gameplataform.events.Event")]
 
 	public class MainMenuScreen extends PanelScreen
 	{
