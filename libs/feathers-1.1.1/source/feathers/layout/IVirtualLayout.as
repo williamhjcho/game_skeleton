@@ -65,12 +65,12 @@ package feathers.layout
 
 		/**
 		 * Using the typical item bounds and suggested bounds, returns a set of
-		 * calculated dimensions for the view port.
+		 * calculated dimensions for the gameplataform.view port.
 		 */
 		function measureViewPort(itemCount:int, viewPortBounds:ViewPortBounds = null, result:Point = null):Point;
 
 		/**
-		 * Determines which indices are visible with the specified view port
+		 * Determines which indices are visible with the specified gameplataform.view port
 		 * bounds and scroll position. Indices that aren't returned are
 		 * typically not displayed and can be replaced virtually.
 		 */

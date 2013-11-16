@@ -26,23 +26,23 @@ package feathers.controls
 	/**
 	 * Dispatched when the text area's <code>text</code> property changes.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the text area receives focus.
 	 *
-	 * @eventType feathers.events.FeathersEventType.FOCUS_IN
+	 * @eventType feathers.gameplataform.events.FeathersEventType.FOCUS_IN
 	 */
-	[Event(name="focusIn",type="starling.events.Event")]
+	[Event(name="focusIn",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the text area loses focus.
 	 *
-	 * @eventType feathers.events.FeathersEventType.FOCUS_OUT
+	 * @eventType feathers.gameplataform.events.FeathersEventType.FOCUS_OUT
 	 */
-	[Event(name="focusOut",type="starling.events.Event")]
+	[Event(name="focusOut",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * A text entry control that allows users to enter and edit multiple lines
@@ -402,13 +402,13 @@ package feathers.controls
 		protected var _textEditorFactory:Function;
 
 		/**
-		 * A function used to instantiate the text editor view port. If
+		 * A function used to instantiate the text editor gameplataform.view port. If
 		 * <code>null</code>, a <code>TextFieldTextEditorViewPort</code> will
 		 * be instantiated. The text editor must be an instance of
 		 * <code>ITextEditorViewPort</code>. This factory can be used to change
-		 * properties on the text editor view port when it is first created. For
+		 * properties on the text editor gameplataform.view port when it is first created. For
 		 * instance, if you are skinning Feathers components without a theme,
-		 * you might use this factory to set styles on the text editor view
+		 * you might use this factory to set styles on the text editor gameplataform.view
 		 * port.
 		 *
 		 * <p>The factory should have the following function signature:</p>
@@ -451,7 +451,7 @@ package feathers.controls
 
 		/**
 		 * A set of key/value pairs to be passed down to the text area's text
-		 * editor view port. The text editor view port is an <code>ITextEditorViewPort</code>
+		 * editor gameplataform.view port. The text editor gameplataform.view port is an <code>ITextEditorViewPort</code>
 		 * instance that is created by <code>textEditorFactory</code>.
 		 *
 		 * <p>If the subcomponent has its own subcomponents, their properties
@@ -701,7 +701,7 @@ package feathers.controls
 			this.viewPort = this.textEditorViewPort;
 			if(oldViewPort)
 			{
-				//the view port setter won't do this
+				//the gameplataform.view port setter won't do this
 				oldViewPort.dispose();
 			}
 		}

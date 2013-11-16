@@ -27,9 +27,9 @@ package feathers.controls
 	/**
 	 * Dispatched when the selected item changes.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * A combo-box like list control. Displayed as a button. The list appears

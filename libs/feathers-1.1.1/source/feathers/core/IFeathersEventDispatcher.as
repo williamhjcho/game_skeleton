@@ -10,13 +10,13 @@ package feathers.core
 	import starling.events.Event;
 
 	/**
-	 * Public properties and functions from <code>starling.events.EventDispatcher</code>
+	 * Public properties and functions from <code>starling.gameplataform.events.EventDispatcher</code>
 	 * in helpful interface form.
 	 *
 	 * <p>Never cast an object to this type. Cast to <code>EventDispatcher</code>
 	 * instead. This interface exists only to support easier code hinting.</p>
 	 *
-	 * @see starling.events.EventDispatcher
+	 * @see starling.gameplataform.events.EventDispatcher
 	 */
 	public interface IFeathersEventDispatcher
 	{

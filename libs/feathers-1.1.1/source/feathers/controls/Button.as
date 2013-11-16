@@ -30,9 +30,9 @@ package feathers.controls
 	 * within the button's bounds (a tap or click that should trigger the
 	 * button).
 	 *
-	 * @eventType starling.events.Event.TRIGGERED
+	 * @eventType starling.gameplataform.events.Event.TRIGGERED
 	 */
-	[Event(name="triggered",type="starling.events.Event")]
+	[Event(name="triggered",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the button is selected or unselected. A button's
@@ -40,9 +40,9 @@ package feathers.controls
 	 * <code>true</code>. The selection may be changed programmatically at any
 	 * time, regardless of the value of <code>isToggle</code>.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * A push (or optionally, toggle) button control.

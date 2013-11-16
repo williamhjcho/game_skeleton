@@ -12,7 +12,7 @@ package feathers.layout
 	/**
 	 * Dispatched when a property of the layout data changes.
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Extra data used by layout algorithms.

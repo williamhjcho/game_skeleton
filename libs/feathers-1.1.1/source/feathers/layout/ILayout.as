@@ -17,9 +17,9 @@ package feathers.layout
 	 * Dispatched when a property of the layout changes, indicating that a
 	 * redraw is probably needed.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Interface providing layout capabilities for containers.

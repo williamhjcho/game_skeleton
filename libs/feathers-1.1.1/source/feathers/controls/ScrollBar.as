@@ -26,25 +26,25 @@ package feathers.controls
 	/**
 	 * Dispatched when the scroll bar's value changes.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the user starts interacting with the scroll bar's thumb,
 	 * track, or buttons.
 	 *
-	 * @eventType feathers.events.FeathersEventType.BEGIN_INTERACTION
+	 * @eventType feathers.gameplataform.events.FeathersEventType.BEGIN_INTERACTION
 	 */
-	[Event(name="beginInteraction",type="starling.events.Event")]
+	[Event(name="beginInteraction",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the user stops interacting with the scroll bar's thumb,
 	 * track, or buttons.
 	 *
-	 * @eventType feathers.events.FeathersEventType.END_INTERACTION
+	 * @eventType feathers.gameplataform.events.FeathersEventType.END_INTERACTION
 	 */
-	[Event(name="endInteraction",type="starling.events.Event")]
+	[Event(name="endInteraction",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Select a value between a minimum and a maximum by dragging a thumb over

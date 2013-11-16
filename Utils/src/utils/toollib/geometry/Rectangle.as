@@ -13,7 +13,7 @@ public class Rectangle {
     public var yMin:Number;
     public var yMax:Number;
 
-    public function Rectangle(xMin:Number=0,xMax:Number=0,yMin:Number=0,yMax:Number=0) {
+    public function Rectangle(xMin:Number = 0,xMax:Number = 0,yMin:Number = 0,yMax:Number = 0) {
         this.xMin = Math.min(xMin, xMax);
         this.xMax = Math.max(xMin, xMax);
         this.yMin = Math.min(yMin, yMax);
@@ -42,11 +42,11 @@ public class Rectangle {
     public function get height()            :Number { return yMax - yMin; }
     public function set height(val:Number)  :void   { yMax = val - yMin;  }
 
-    public function setTo(xMin:Number,xMax:Number,yMin:Number,yMax:Number):Rectangle {
-        this.xMin = xMin;
-        this.xMax = xMax;
-        this.yMin = yMin;
-        this.yMax = yMax;
+    public function setTo(xMin:Number, xMax:Number, yMin:Number, yMax:Number):Rectangle {
+        this.xMin = Math.min(xMin, xMax);
+        this.xMax = Math.max(xMin, xMax);
+        this.yMin = Math.min(yMin, yMax);
+        this.yMax = Math.max(yMin, yMax);
         return this;
     }
 

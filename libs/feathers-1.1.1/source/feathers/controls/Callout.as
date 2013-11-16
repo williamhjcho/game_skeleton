@@ -27,9 +27,9 @@ package feathers.controls
 	/**
 	 * Dispatched when the callout is closed.
 	 *
-	 * @eventType starling.events.Event.CLOSE
+	 * @eventType starling.gameplataform.events.Event.CLOSE
 	 */
-	[Event(name="close",type="starling.events.Event")]
+	[Event(name="close",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * A pop-up container that points at (or calls out) a specific region of
@@ -1783,7 +1783,7 @@ package feathers.controls
 		 */
 		protected function callout_addedToStageHandler(event:Event):void
 		{
-			//to avoid touch events bubbling up to the callout and causing it to
+			//to avoid touch gameplataform.events bubbling up to the callout and causing it to
 			//close immediately, we wait one frame before allowing it to close
 			//based on touches.
 			this._isReadyToClose = false;

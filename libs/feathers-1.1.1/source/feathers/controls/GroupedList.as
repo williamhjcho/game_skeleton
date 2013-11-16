@@ -26,9 +26,9 @@ package feathers.controls
 	/**
 	 * Dispatched when the selected item changes.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when an item renderer is added to the list. When the layout is
@@ -36,9 +36,9 @@ package feathers.controls
 	 * provider. This event can be used to track which items currently have
 	 * renderers.
 	 *
-	 * @eventType feathers.events.FeathersEventType.RENDERER_ADD
+	 * @eventType feathers.gameplataform.events.FeathersEventType.RENDERER_ADD
 	 */
-	[Event(name="rendererAdd",type="starling.events.Event")]
+	[Event(name="rendererAdd",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when an item renderer is removed from the list. When the layout is
@@ -46,9 +46,9 @@ package feathers.controls
 	 * provider. This event can be used to track which items currently have
 	 * renderers.
 	 *
-	 * @eventType feathers.events.FeathersEventType.RENDERER_REMOVE
+	 * @eventType feathers.gameplataform.events.FeathersEventType.RENDERER_REMOVE
 	 */
-	[Event(name="rendererRemove",type="starling.events.Event")]
+	[Event(name="rendererRemove",type="starling.gameplataform.events.Event")]
 
 	[DefaultProperty("dataProvider")]
 	/**

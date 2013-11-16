@@ -29,7 +29,7 @@ package feathers.controls.popups
 	/**
 	 * @inheritDoc
 	 */
-	[Event(name="close",type="starling.events.Event")]
+	[Event(name="close",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Displays pop-up content as a desktop-style drop-down.

@@ -27,7 +27,7 @@ package feathers.controls.popups
 	/**
 	 * @inheritDoc
 	 */
-	[Event(name="close",type="starling.events.Event")]
+	[Event(name="close",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Displays a pop-up at the center of the stage, filling the vertical space.

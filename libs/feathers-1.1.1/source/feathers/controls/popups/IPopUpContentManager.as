@@ -12,9 +12,9 @@ package feathers.controls.popups
 	/**
 	 * Dispatched when the pop-up content closes.
 	 *
-	 * @eventType starling.events.Event.CLOSE
+	 * @eventType starling.gameplataform.events.Event.CLOSE
 	 */
-	[Event(name="close",type="starling.events.Event")]
+	[Event(name="close",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Automatically manages pop-up content layout and positioning.

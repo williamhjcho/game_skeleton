@@ -35,16 +35,16 @@ package feathers.controls
 	/**
 	 * Dispatched when the source content finishes loading.
 	 *
-	 * @eventType starling.events.Event.COMPLETE
+	 * @eventType starling.gameplataform.events.Event.COMPLETE
 	 */
-	[Event(name="complete",type="starling.events.Event")]
+	[Event(name="complete",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched if an error occurs while loading the source content.
 	 *
-	 * @eventType feathers.events.FeathersEventType.ERROR
+	 * @eventType feathers.gameplataform.events.FeathersEventType.ERROR
 	 */
-	[Event(name="error",type="starling.events.Event")]
+	[Event(name="error",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Displays an image, either from a <code>Texture</code> or loaded from a
@@ -433,7 +433,7 @@ package feathers.controls
 		 * <code>FeathersEventType.SCROLL_COMPLETE</code>. You may also need
 		 * to set to false if the <code>isScrolling</code> property of the
 		 * <code>List</code> is <code>true</code> before you listen to those
-		 * events.</p>
+		 * gameplataform.events.</p>
 		 *
 		 * <p>In the following example, the image loader's texture creation is
 		 * delayed:</p>

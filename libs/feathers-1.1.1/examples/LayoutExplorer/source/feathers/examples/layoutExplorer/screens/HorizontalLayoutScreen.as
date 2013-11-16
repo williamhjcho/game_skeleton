@@ -13,9 +13,9 @@ package feathers.examples.layoutExplorer.screens
 	import starling.display.Quad;
 	import starling.events.Event;
 
-	[Event(name="complete",type="starling.events.Event")]
+	[Event(name="complete",type="starling.gameplataform.events.Event")]
 
-	[Event(name="showSettings",type="starling.events.Event")]
+	[Event(name="showSettings",type="starling.gameplataform.events.Event")]
 
 	public class HorizontalLayoutScreen extends PanelScreen
 	{

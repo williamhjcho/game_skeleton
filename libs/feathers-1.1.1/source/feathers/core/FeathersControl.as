@@ -27,16 +27,16 @@ package feathers.core
 	 * Dispatched after initialize() has been called, but before the first time
 	 * that draw() has been called.
 	 *
-	 * @eventType feathers.events.FeathersEventType.INITIALIZE
+	 * @eventType feathers.gameplataform.events.FeathersEventType.INITIALIZE
 	 */
-	[Event(name="initialize",type="starling.events.Event")]
+	[Event(name="initialize",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the width or height of the control changes.
 	 *
-	 * @eventType feathers.events.FeathersEventType.RESIZE
+	 * @eventType feathers.gameplataform.events.FeathersEventType.RESIZE
 	 */
-	[Event(name="resize",type="starling.events.Event")]
+	[Event(name="resize",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Base class for all UI controls. Implements invalidation and sets up some
@@ -232,7 +232,7 @@ package feathers.core
 
 		/**
 		 * Similar to mouseChildren on the classic display list. If true,
-		 * children cannot dispatch touch events, but hit tests will be much
+		 * children cannot dispatch touch gameplataform.events, but hit tests will be much
 		 * faster.
 		 */
 		public function get isQuickHitAreaEnabled():Boolean

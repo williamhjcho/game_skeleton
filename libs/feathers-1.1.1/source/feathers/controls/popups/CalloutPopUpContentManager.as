@@ -18,7 +18,7 @@ package feathers.controls.popups
 	/**
 	 * @inheritDoc
 	 */
-	[Event(name="close",type="starling.events.Event")]
+	[Event(name="close",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Displays pop-up content (such as the List in a PickerList) in a Callout.

@@ -8,11 +8,11 @@ accordance with the terms of the accompanying license agreement.
 package feathers.events
 {
 	/**
-	 * Event <code>type</code> constants for collections. This class is
-	 * not a subclass of <code>starling.events.Event</code> because these
-	 * constants are meant to be used with <code>dispatchEventWith()</code> and
+	 * Event <code>type</code> gameplataform.constants for collections. This class is
+	 * not a subclass of <code>starling.gameplataform.events.Event</code> because these
+	 * gameplataform.constants are meant to be used with <code>dispatchEventWith()</code> and
 	 * take advantage of the Starling's event object pooling. The object passed
-	 * to an event listener will be of type <code>starling.events.Event</code>.
+	 * to an event listener will be of type <code>starling.gameplataform.events.Event</code>.
 	 */
 	public class CollectionEventType
 	{

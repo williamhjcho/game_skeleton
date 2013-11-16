@@ -39,7 +39,7 @@ package feathers.controls.text
 	/**
 	 * Dispatched when the text property changes.
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the user presses the Enter key while the editor has
@@ -47,25 +47,25 @@ package feathers.controls.text
 	 * the value of <code>returnKeyLabel</code>. This issue may even occur when
 	 * using the <em>default value</em> of <code>returnKeyLabel</code>!
 	 *
-	 * @eventType feathers.events.FeathersEventType.ENTER
+	 * @eventType feathers.gameplataform.events.FeathersEventType.ENTER
 	 * @see #returnKeyLabel
 	 * @see flash.text.ReturnKeyLabel
 	 */
-	[Event(name="enter",type="starling.events.Event")]
+	[Event(name="enter",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the text editor receives focus.
 	 *
-	 * @eventType feathers.events.FeathersEventType.FOCUS_IN
+	 * @eventType feathers.gameplataform.events.FeathersEventType.FOCUS_IN
 	 */
-	[Event(name="focusIn",type="starling.events.Event")]
+	[Event(name="focusIn",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Dispatched when the text editor loses focus.
 	 *
-	 * @eventType feathers.events.FeathersEventType.FOCUS_OUT
+	 * @eventType feathers.gameplataform.events.FeathersEventType.FOCUS_OUT
 	 */
-	[Event(name="focusOut",type="starling.events.Event")]
+	[Event(name="focusOut",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * A Feathers text editor that uses the native <code>StageText</code> class
@@ -1059,7 +1059,7 @@ package feathers.controls.text
 			}
 
 			//StageText sucks because it requires that the BitmapData's width
-			//and height exactly match its view port width and height.
+			//and height exactly match its gameplataform.view port width and height.
 			var bitmapData:BitmapData = new BitmapData(viewPort.width, viewPort.height, true, 0x00ff00ff);
 			this.stageText.drawViewPortToBitmapData(bitmapData);
 

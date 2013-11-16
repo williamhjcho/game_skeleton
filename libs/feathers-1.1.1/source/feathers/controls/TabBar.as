@@ -18,9 +18,9 @@ package feathers.controls
 	/**
 	 * Dispatched when the selected tab changes.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	[DefaultProperty("dataProvider")]
 	/**

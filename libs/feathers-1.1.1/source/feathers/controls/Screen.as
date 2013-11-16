@@ -269,7 +269,7 @@ package feathers.controls
 		
 		/**
 		 * Optional callback for the back hardware key. Automatically handles
-		 * keyboard events to cancel the default behavior.
+		 * keyboard gameplataform.events to cancel the default behavior.
 		 *
 		 * <p>This function has the following signature:</p>
 		 *
@@ -292,7 +292,7 @@ package feathers.controls
 		
 		/**
 		 * Optional callback for the menu hardware key. Automatically handles
-		 * keyboard events to cancel the default behavior.
+		 * keyboard gameplataform.events to cancel the default behavior.
 		 *
 		 * <p>This function has the following signature:</p>
 		 *
@@ -315,7 +315,7 @@ package feathers.controls
 		
 		/**
 		 * Optional callback for the search hardware key. Automatically handles
-		 * keyboard events to cancel the default behavior.
+		 * keyboard gameplataform.events to cancel the default behavior.
 		 *
 		 * <p>This function has the following signature:</p>
 		 *

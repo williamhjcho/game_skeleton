@@ -12,8 +12,7 @@ import utils.toollib.vector.v2d;
 public class Triangle extends Polygon {
 
     public function Triangle(v0:v2d, v1:v2d, v2:v2d) {
-        var vertices:Vector.<v2d> = new Vector.<v2d>();
-        vertices.push(v0, v1, v2);
+        var vertices:Vector.<v2d> = new <v2d>[v0, v1, v2];
         super(3);
     }
 

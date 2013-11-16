@@ -21,25 +21,25 @@ package feathers.layout
 		}
 
 		/**
-		 * The visible width of the view port. The view port's content may be
+		 * The visible width of the gameplataform.view port. The gameplataform.view port's content may be
 		 * clipped.
 		 */
 		public var viewPortWidth:Number;
 
 		/**
-		 * The visible height of the view port. The view port's content may be
+		 * The visible height of the gameplataform.view port. The gameplataform.view port's content may be
 		 * clipped.
 		 */
 		public var viewPortHeight:Number;
 
 		/**
-		 * The width of the content. May be larger or smaller than the view
+		 * The width of the content. May be larger or smaller than the gameplataform.view
 		 * port.
 		 */
 		public var contentWidth:Number;
 
 		/**
-		 * The height of the content. May be larger or smaller than the view
+		 * The height of the content. May be larger or smaller than the gameplataform.view
 		 * port.
 		 */
 		public var contentHeight:Number;

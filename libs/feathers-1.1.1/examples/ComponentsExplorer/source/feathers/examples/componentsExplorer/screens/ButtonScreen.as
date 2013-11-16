@@ -13,7 +13,7 @@ package feathers.examples.componentsExplorer.screens
 	import starling.events.Event;
 	import starling.textures.Texture;
 
-	[Event(name="complete",type="starling.events.Event")]
+	[Event(name="complete",type="starling.gameplataform.events.Event")]
 
 	public class ButtonScreen extends PanelScreen
 	{

@@ -12,9 +12,9 @@ package feathers.controls
 	/**
 	 * Dispatched when the scroll bar's value changes.
 	 *
-	 * @eventType starling.events.Event.CHANGE
+	 * @eventType starling.gameplataform.events.Event.CHANGE
 	 */
-	[Event(name="change",type="starling.events.Event")]
+	[Event(name="change",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * Minimum requirements for a scroll bar to be usable with a <code>Scroller</code>

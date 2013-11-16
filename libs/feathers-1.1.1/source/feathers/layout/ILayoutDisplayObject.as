@@ -12,9 +12,9 @@ package feathers.layout
 	/**
 	 * Dispatched when a property of the display object's layout data changes.
 	 *
-	 * @eventType feathers.events.FeathersEventType.LAYOUT_DATA_CHANGE
+	 * @eventType feathers.gameplataform.events.FeathersEventType.LAYOUT_DATA_CHANGE
 	 */
-	[Event(name="layoutDataChange",type="starling.events.Event")]
+	[Event(name="layoutDataChange",type="starling.gameplataform.events.Event")]
 
 	/**
 	 * A display object that may be associated with extra data for use with
