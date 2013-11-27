@@ -12,12 +12,12 @@ import flash.filesystem.File;
 
 internal  class CopyFile {
 
-    private static var onCopyComplete:Function = null;
-    private static var onCopyCompleteParams:Array;
+    internal static var onCopyComplete:Function = null;
+    internal static var onCopyCompleteParams:Array;
 
-    private static var onCopyCompleteCopyFiles:Function = null;
+    internal static var onCopyCompleteCopyFiles:Function = null;
 
-    public static function copyFile(src:String, target:String, onComplete:Function,...onCompleteParams):void {
+    internal static function copyFile(src:String, target:String, onComplete:Function,...onCompleteParams):void {
         onCopyComplete = onComplete;
         onCopyCompleteParams = onCompleteParams;
         //File.applicationStorageDirectory.resolvePath(item.destinationPath);
@@ -32,12 +32,12 @@ internal  class CopyFile {
             onCopyError();
         }
     }
-    public static function copyFiles(fileList:Array,onComplete:Function):void{
+    internal static function copyFiles(fileList:Array,onComplete:Function):void{
         onCopyCompleteCopyFiles = onComplete;
         doCopyFiles(fileList);
     }
 
-    private static function doCopyFiles(itemsLeft:Array):void {
+    internal static function doCopyFiles(itemsLeft:Array):void {
         if (itemsLeft.length > 0) {
             var item:Object = itemsLeft.shift();
             copyFile(item.path, item.target, doCopyFiles, itemsLeft);
@@ -46,12 +46,12 @@ internal  class CopyFile {
         }
     }
 
-    private static function onCopy(event:Event = null):void {
+    internal static function onCopy(event:Event = null):void {
         EventDispatcher(event.target).removeEventListener(Event.COMPLETE, onCopy);
         onCopyComplete.apply(null,onCopyCompleteParams);
     }
 
-    private static function onCopyError(event:Event = null):void {
+    internal static function onCopyError(event:Event = null):void {
         onCopyComplete.apply(null,onCopyCompleteParams);
     }
 

@@ -13,14 +13,14 @@ import flash.utils.ByteArray;
 
 internal class FileSave {
 
-    public static function saveByteArray(target:String, data:ByteArray):void{
+    internal static function saveByteArray(target:String, data:ByteArray):void{
         var file:File= FileUtilsManager.getFile(target);
         var fileStream:FileStream = new FileStream();
         fileStream.open(file, FileMode.WRITE);
         fileStream.writeBytes(data);
         fileStream.close();
     }
-    public static function saveText(target:String, data:String):void{
+    internal static function saveText(target:String, data:String):void{
         var file:File= FileUtilsManager.getFile(target);
         var fileStream:FileStream = new FileStream();
         fileStream.open(file, FileMode.WRITE);

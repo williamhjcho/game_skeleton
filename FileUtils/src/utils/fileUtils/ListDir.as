@@ -13,14 +13,14 @@ internal class ListDir {
 
     private static var onCompleteFn:Function;
 
-    public static function listDir(path:String, onCompleteList:Function):void {
+    internal static function listDir(path:String, onCompleteList:Function):void {
         onCompleteFn = onCompleteList;
         var srcDir:File = File.applicationStorageDirectory.resolvePath("data/assets");
         srcDir.addEventListener(FileListEvent.DIRECTORY_LISTING, listDirHandler);
         srcDir.getDirectoryListingAsync();
     }
 
-    private static function listDirHandler(event:FileListEvent):void {
+    internal static function listDirHandler(event:FileListEvent):void {
         event.target.removeEventListener(FileListEvent.DIRECTORY_LISTING, listDirHandler);
         var contents:Array = event.files;
         var res:Array = [];

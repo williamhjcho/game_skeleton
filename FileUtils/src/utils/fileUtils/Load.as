@@ -25,10 +25,10 @@ internal class Load {
     }
 
 
-    private static var onCompleteLoad:Function;
-    private static var onProgressLoad:Function;
+    internal static var onCompleteLoad:Function;
+    internal static var onProgressLoad:Function;
 
-    public  static function loadBytesFromFileStream(url:String, onComplete:Function/*Byte Array*/, onProgress:Function):void {
+    internal  static function loadBytesFromFileStream(url:String, onComplete:Function/*Byte Array*/, onProgress:Function):void {
         onCompleteLoad = onComplete;
         onProgressLoad = onProgress;
         var inputFile:File = new File(url);
@@ -38,7 +38,7 @@ internal class Load {
         fs.openAsync(inputFile, FileMode.READ);
     }
 
-    private static function onLoadFromFileStream(event:Event):void {
+    internal static function onLoadFromFileStream(event:Event):void {
         var fs:FileStream = FileStream(event.target);
         fs.removeEventListener(Event.COMPLETE, onLoadFromFileStream);
         fs.removeEventListener(ProgressEvent.PROGRESS, onProgressHandler);
@@ -47,7 +47,7 @@ internal class Load {
         onCompleteLoad(byteArray);
     }
 
-    public static function loadBytesFromURLLoader(url:String, onComplete:Function/*Byte Array*/, onProgress:Function):void {
+    internal static function loadBytesFromURLLoader(url:String, onComplete:Function/*Byte Array*/, onProgress:Function):void {
         onCompleteLoad = onComplete;
         onProgressLoad = onProgress;
         var urlLoader:URLLoader = new URLLoader();
@@ -57,14 +57,14 @@ internal class Load {
         urlLoader.addEventListener(Event.COMPLETE, onLoadFromURLLoader);
     }
 
-    private static function onLoadFromURLLoader(e:Event):void {
+    internal static function onLoadFromURLLoader(e:Event):void {
         var urlLoader:URLLoader = URLLoader(e.target);
         urlLoader.removeEventListener(ProgressEvent.PROGRESS, onProgressHandler);
         urlLoader.removeEventListener(Event.COMPLETE, onLoadFromURLLoader);
         onCompleteLoad(urlLoader.data);
     }
 
-    public static function  loadSWFromByteArray(bytes:ByteArray,onComplete:Function/*Display Object*/):void {
+    internal static function  loadSWFromByteArray(bytes:ByteArray,onComplete:Function/*Display Object*/):void {
         onCompleteLoad=onComplete;
         // Prepare the loader context to avoid security error
         var loaderContext:LoaderContext = new LoaderContext();
@@ -79,13 +79,13 @@ internal class Load {
         loader.loadBytes(bytes, loaderContext);
     }
 
-    private static function onChildComplete(e:Event):void {
+    internal static function onChildComplete(e:Event):void {
         var li:LoaderInfo = LoaderInfo(e.target);
         li.removeEventListener(Event.COMPLETE, onChildComplete);
         onCompleteLoad(li.content);
     }
 
-    private static function onProgressHandler(e:ProgressEvent):void {
+    internal static function onProgressHandler(e:ProgressEvent):void {
         if (onProgressLoad != null) {
             var p:Number = e.bytesLoaded / e.bytesTotal;
             onProgressLoad(p);
