@@ -17,27 +17,27 @@ internal  class DownloadFile {
     private static var onCompleteLoad:Function;
     private static var onProgressLoad:Function;
 
-    public static function downloadFromFileStream(url:String, target:String, onComplete:Function, onProgress:Function):void {
+    internal static function downloadFromFileStream(url:String, target:String, onComplete:Function, onProgress:Function):void {
         onCompleteLoad =  onComplete
         targetURL = target;
         Load.loadBytesFromFileStream(url, completedFromFileStream, onProgress);
     }
 
-    private static function completedFromFileStream(bytes:ByteArray):void {
+    internal static function completedFromFileStream(bytes:ByteArray):void {
         writeFile(bytes);
     }
 
-    public static function downloadFromURLLoader(url:String, target:String, onComplete:Function, onProgress:Function):void {
+    internal static function downloadFromURLLoader(url:String, target:String, onComplete:Function, onProgress:Function):void {
         onCompleteLoad =  onComplete
         targetURL = target;
         Load.loadBytesFromURLLoader(url, urlLoaderCompleteHandler, onProgress)
     }
 
-    private static function urlLoaderCompleteHandler(bytes:ByteArray):void {
+    internal static function urlLoaderCompleteHandler(bytes:ByteArray):void {
         writeFile(bytes);
     }
 
-    private static function writeFile(data:ByteArray):void {
+    internal static function writeFile(data:ByteArray):void {
         var bytes:ByteArray = data;
         var fileStream:FileStream = new FileStream();
         fileStream.open(FileUtilsManager.getFile(targetURL), FileMode.WRITE);
@@ -46,7 +46,7 @@ internal  class DownloadFile {
         onCompleteLoad(true)
     }
 
-    private static function onProgressHandler(e:ProgressEvent):void {
+    internal static function onProgressHandler(e:ProgressEvent):void {
         if (onProgressLoad != null) {
             var p:Number = e.bytesLoaded / e.bytesTotal;
             onProgressLoad(p);
