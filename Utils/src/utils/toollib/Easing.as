@@ -14,13 +14,13 @@ public class Easing {
         d = total duration of movement
     */
     public static function linear(t:Number, b:Number, c:Number, d:Number):Number {
-        return c*t/d + b;
+        return c * t / d + b;
     }
 
     //Quadratic
     public static function quadIn(t:Number, b:Number, c:Number, d:Number):Number {
         t /= d;
-        return c*t*t + b;
+        return c * t * t + b;
     }
 
     public static function quadOut(t:Number, b:Number, c:Number, d:Number):Number {

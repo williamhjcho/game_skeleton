@@ -60,7 +60,7 @@ public class CellularAutomata {
 
     public function iterate():void {
         var lastCells:uint = currentHolder;
-        currentHolder = (currentHolder + 1) & 1;
+        currentHolder = (currentHolder + 0x1) & 0x1;
         _generation++;
         for (var c:int = 1; c < _length-1; c++) {
             cellHolder[currentHolder][c] = _rule[(cellHolder[lastCells][c-1] << 2) | (cellHolder[lastCells][c] << 1) | (cellHolder[lastCells][c+1])];
