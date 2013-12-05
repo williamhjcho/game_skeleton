@@ -74,7 +74,7 @@ public class Conway {
         //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
         var lastCells:uint = currentHolder;
-        currentHolder = (currentHolder + 1) & 1;
+        currentHolder = (currentHolder + 0x1) & 0x1;
         _generation++;
 
         for (var i:int = 1; i < _width - 1; i++) {

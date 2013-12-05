@@ -25,6 +25,7 @@ import menu.MenuContainer;
 import utils.commands.Benchmark;
 import utils.systems.CellularAutomata;
 import utils.systems.Conway;
+import utils.toollib.Matrix;
 import utils.toollib.ToolColor;
 
 import utilsDisplay.view.menu.Menu;
@@ -112,6 +113,7 @@ public class Main extends Sprite {
     private function testCellularAutomata():void {
         automataCanvas = new BitmapData(250, stage.stageHeight, true, 0xffffff);
         automata = new CellularAutomata(automataCanvas.width);
+        automata.randomizeCells();
 
         var canvas:Bitmap = new Bitmap(automataCanvas);
         canvas.x = stage.stageWidth - canvas.width >> 1;
@@ -165,8 +167,7 @@ public class Main extends Sprite {
         addChild(cc);
 
         conwayRender();
-        //setInterval(conwayEF, 50);
-        stage.addEventListener(MouseEvent.MOUSE_WHEEL, conwayEF);
+        setInterval(conwayEF, 50);
     }
 
     private function conwayEF(e:Event = null):void {
@@ -191,28 +192,44 @@ public class Main extends Sprite {
     }
 
     //==================================
-    //  Class Arch
-    //==================================
-    private function testClassArch():void {
-
-    }
-
-
-    //==================================
     //      Benchmark
     //==================================
-    private var vec:Vector.<Vector.<uint>> = new <Vector.<uint>>[new <uint>[0], new <uint>[0]];
+    private var bit:uint = 0;
+    private var bool:Boolean = false;
+
     private function benchmarkStuff():void {
-        trace(Benchmark(90000,f1,vec));
-        trace(Benchmark(90000,f2,vec[1]));
+
+        // for (var i:int = 0; i < 10; i++) {
+        //     trace(bit);
+        //     f2();
+        // }
+        //
+        //trace(Benchmark(9000000,f1));
+        //trace(Benchmark(9000000,f2));
+        //trace(Benchmark(9000000,f3));
+        //trace(Benchmark(9000000,f4));
+        //trace(Benchmark(9000000,f5));
     }
 
-    private function f1(v:Vector.<Vector.<uint>>):void {
-        v[0][0] += 1;
+    private function f1():void {
+        bit = (~bit) & 0x1;
+      // bit = Math.abs(bit--)//~-bit ;//bit--
     }
 
-    private function f2(v:Vector.<uint>):void {
-        v[0] += 1;
+    private function f2():void {
+        bit = (bit + 0x1) & 0x1;
+    }
+
+    private function f3():void {
+        bit ^= 0x1;
+    }
+
+    private function f4():void {
+        bit = !bit as int;
+    }
+
+    private function f5():void {
+        bit = bit ? 0 : 1;
     }
 }
 }
