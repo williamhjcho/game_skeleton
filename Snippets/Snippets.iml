@@ -17,6 +17,15 @@
             <entry library-name="starling" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry module-name="SCORMUtils" build-configuration-name="SCORMUtils">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="Utils" build-configuration-name="Utils">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="UtilsDisplay" build-configuration-name="UtilsDisplay">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="flex_sdk_4.6" />
         </dependencies>
@@ -38,6 +47,9 @@
     <orderEntry type="library" exported="" name="greensock" level="project" />
     <orderEntry type="library" exported="" name="MonsterDebugger" level="project" />
     <orderEntry type="library" exported="" name="starling" level="project" />
+    <orderEntry type="module" module-name="UtilsDisplay" exported="" />
+    <orderEntry type="module" module-name="SCORMUtils" exported="" />
+    <orderEntry type="module" module-name="Utils" exported="" />
   </component>
 </module>
 
