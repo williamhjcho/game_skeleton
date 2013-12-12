@@ -28,9 +28,13 @@ public class MD5 {
         var len:uint = s.length * 8; // in bits
         for (var i:int = 0; i < len; i+=8) {
             /*
-            Every block will be :
+                Every block will be as :
+                0000 0000 | 00000 00000 | 0000 0000 | 0000 0000
+
+                (& 0xff) is to limit the value to max 255
+                [i >> 5] (look at the binary table, it grows 1 for every byte = 4 iterations)
+                (i % 32) is to bit shift to the right position
             */
-            //[i >> 5] (look at the binary table, it grows 1 for every byte = 4 iterations)
             blocks[i >> 5] |= (s[i / 8] & 0xff) << (i % 32);
         }
 
