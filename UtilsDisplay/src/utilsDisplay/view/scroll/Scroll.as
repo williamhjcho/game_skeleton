@@ -20,7 +20,7 @@ import flash.geom.Rectangle;
 import utils.base.interfaces.IDestructible;
 import utils.toollib.Easing;
 
-public class Scroll implements IDestructible {
+public class Scroll {
 
     private var container       :DisplayObjectContainer;
     private var content         :DisplayObject;
@@ -204,7 +204,7 @@ import utilsDisplay.view.scroll.Scroll;
 import utilsDisplay.view.scroll.ScrollComponentParameters;
 import utilsDisplay.view.scroll.ScrollOrientation;
 
-class Components implements IDestructible {
+class Components {
 
     public var track:Sprite, tracker:Sprite;
     public var buttonUp:Sprite, buttonDown:Sprite;

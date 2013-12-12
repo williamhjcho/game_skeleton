@@ -6,32 +6,19 @@
  * To change this template use File | Settings | File Templates.
  */
 package {
+import com.adobe.serialization.json.JSON;
 import com.demonsters.debugger.MonsterDebugger;
 
-import flash.display.Bitmap;
-import flash.display.BitmapData;
-import flash.display.Graphics;
+import drawing.Drawer;
+
 import flash.display.Shape;
 import flash.display.Sprite;
-import flash.events.Event;
-import flash.events.KeyboardEvent;
-import flash.events.MouseEvent;
-import flash.geom.Rectangle;
-import flash.utils.setInterval;
+import flash.utils.ByteArray;
 
-import menu.ItemCustom;
-import menu.MenuContainer;
+import utils.commands.getClassName;
 
-import utils.commands.Benchmark;
-import utils.systems.CellularAutomata;
-import utils.systems.Conway;
-import utils.toollib.Matrix;
 import utils.toollib.ToolColor;
-
-import utilsDisplay.view.menu.Menu;
-import utilsDisplay.view.menu.MenuItem;
-import utilsDisplay.view.scroll.Scroll;
-import utilsDisplay.view.scroll.ScrollParameters;
+import utils.toollib.Units;
 
 [SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=60)]
 public class Main extends Sprite {
@@ -44,187 +31,48 @@ public class Main extends Sprite {
         color0 = ToolColor.random();
         color1 = ToolColor.opposite(color0);
 
-        testMatrix();
+
+        jsonTest();
     }
 
-    //==================================
-    //
-    //==================================
-    private var scroll:Scroll, sParams:ScrollParameters = new ScrollParameters();
-    private var container:SimpleChild = new SimpleChild(300,200,"rect", 0x00ff0000);
-    private var content:SimpleChild = new SimpleChild(200,100,"circle", 0xff00ff00);
-    private var tV:SimpleChild = new SimpleChild(30,100), kV:SimpleChild = new SimpleChild(30, 30), bVU:SimpleChild = new SimpleChild(30,30), bVD:SimpleChild = new SimpleChild(30,30);
-    private var tH:SimpleChild = new SimpleChild(100,30), kH:SimpleChild = new SimpleChild(30, 30), bHU:SimpleChild = new SimpleChild(30,30), bHD:SimpleChild = new SimpleChild(30,30);
-    private function scrollTest():void {
-        container.x = 10;
-        container.y = 10;
-        addChild(container);
-        addChild(tV);
-        addChild(kV);
-        addChild(bVU);
-        addChild(bVD);
-        addChild(tH);
-        addChild(kH);
-        addChild(bHU);
-        addChild(bHD);
-        scroll = new Scroll(container, content, sParams);
-        scroll.setVerticalComponents(tV,kV, bVU, bVD);
-        scroll.setHorizontalComponents(tH,kH, bHU, bHD);
-
-        stage.addEventListener(KeyboardEvent.KEY_UP, press);
+    public function testDrawer():void {
+        var s:Shape = new Shape();
+        s.graphics.lineStyle(3, 0xff0000);
+        Drawer.rectangleRounded(s.graphics, 100, 100, 300, 300, 50);
+        addChild(s);
     }
 
-    private function press(e:KeyboardEvent):void {
-        //trace(e.keyCode);
-        switch(e.keyCode) {
-            case 87: content.height += 50; scroll.update(); break;
-            case 65: content.width  -= 50; scroll.update(); break;
-            case 83: content.height -= 50; scroll.update(); break;
-            case 68: content.width  += 50; scroll.update(); break;
+    public function jsonTest():void {
+        var dec:int = 55;
+        trace(Units.decToHex(dec), Units.decToBin(dec), "\n\n-=-==-=-");
+
+        var b:ByteArray = new ByteArray();
+        b.writeInt(dec);
+        b.writeInt(dec);
+        b.writeInt(dec);
+        b.writeInt(dec);
+        b.position = 0;
+        var blocks:Array = createBlocks(b);
+        for (var i:int = 0; i < blocks.length; i++) {
+            var bytee:int = blocks[i];
+            //trace(i, bytee, Units.decToBin(bytee));
         }
     }
 
-
-    //==================================
-    //
-    //==================================
-    private function testMatrix():void {
-        var A:Matrix = new Matrix(4,4);
-        A.setRow(0, [5,7,1,2]);
-        A.setRow(1, [0,4,4,5]);
-        A.setRow(2, [3,1,3,4]);
-        A.setRow(3, [8,7,8,0]);
-        trace(A);
-        A.reduce();
-        trace(A);
-    }
-
-
-    //==================================
-    //  Cellular Automata
-    //==================================
-    private var automata:CellularAutomata;
-    private var automataCanvas:BitmapData;
-    private function testCellularAutomata():void {
-        automataCanvas = new BitmapData(250, stage.stageHeight, true, 0xffffff);
-        automata = new CellularAutomata(automataCanvas.width);
-        automata.randomizeCells();
-
-        var canvas:Bitmap = new Bitmap(automataCanvas);
-        canvas.x = stage.stageWidth - canvas.width >> 1;
-        addChild(canvas);
-
-        var g:Graphics = this.graphics;
-        g.beginFill(color0);
-        g.drawRect(canvas.x - 100, 30, 30, 30);
-        g.beginFill(color1);
-        g.drawRect(canvas.x - 50, 30, 30, 30);
-        g.endFill();
-
-        trace(automata);
-
-        setInterval(automataEF, 15);
-    }
-
-    private function automataEF():void {
-        var cells:Vector.<uint> = automata.cells;
-        var gen:int = automata.generation;
-        for (var i:int = 0; i < automata.length; i++) {
-            automataCanvas.setPixel32(i, gen, cells[i] == 0? color0 : color1);
+    private static function createBlocks( s:ByteArray ):Array {
+        var blocks:Array = new Array();
+        var len:int = s.length * 8;
+        var mask:int = 0xFF; // ignore hi byte of characters > 0xFF
+        for( var i:int = 0; i < len; i += 8 ) {
+            trace("pos ",i, i>>5, s[i/8])
+            blocks[ int(i >> 5) ] |= ( s[ i / 8 ] & mask ) << ( i % 32 );
         }
 
-        if(gen >= stage.stageHeight) {
-            color0 = ToolColor.random();
-            color1 = ToolColor.opposite(color0);
-            automata.reset();
-            automata.randomizeCells();
-            automata.randomizeRules();
-            trace(automata);
-        } else {
-            automata.iterate();
-        }
+        // append padding and length
+        blocks[ int(len >> 5) ] |= 0x80 << ( len % 32 );
+        blocks[ int(( ( ( len + 64 ) >>> 9 ) << 4 ) + 14) ] = len;
+        return blocks;
     }
 
-    //==================================
-    //  Conway
-    //==================================
-    private var conway:Conway;
-    private var cc:Shape;
-    private var cSize:Rectangle = new Rectangle(0,0,5,5);
-
-    private function testConway():void {
-        conway = new Conway(30,30);
-        conway.randomize();
-
-        cc = new Shape();
-        cc.x = stage.stageWidth - conway.width * cSize.width * 2 >> 1;
-        cc.y = stage.stageHeight - conway.height * cSize.height * 2 >> 1;
-        addChild(cc);
-
-        conwayRender();
-        setInterval(conwayEF, 50);
-    }
-
-    private function conwayEF(e:Event = null):void {
-        conway.iterate();
-        conwayRender();
-    }
-
-    private function conwayRender():void {
-        var cells:Vector.<Vector.<uint>> = conway.cells;
-        var g:Graphics = cc.graphics;
-        g.clear();
-        g.lineStyle(0);
-
-        for (var i:int = 0; i < conway.width; i++) {
-            for (var j:int = 0; j < conway.height; j++) {
-                var c:uint = cells[i][j] == 0? color0 : color1;
-                g.beginFill(c);
-                g.drawCircle(i * cSize.width*2, j * cSize.width*2, cSize.width);
-            }
-        }
-        g.endFill();
-    }
-
-    //==================================
-    //      Benchmark
-    //==================================
-    private var bit:uint = 0;
-    private var bool:Boolean = false;
-
-    private function benchmarkStuff():void {
-
-        // for (var i:int = 0; i < 10; i++) {
-        //     trace(bit);
-        //     f2();
-        // }
-        //
-        //trace(Benchmark(9000000,f1));
-        //trace(Benchmark(9000000,f2));
-        //trace(Benchmark(9000000,f3));
-        //trace(Benchmark(9000000,f4));
-        //trace(Benchmark(9000000,f5));
-    }
-
-    private function f1():void {
-        bit = (~bit) & 0x1;
-      // bit = Math.abs(bit--)//~-bit ;//bit--
-    }
-
-    private function f2():void {
-        bit = (bit + 0x1) & 0x1;
-    }
-
-    private function f3():void {
-        bit ^= 0x1;
-    }
-
-    private function f4():void {
-        bit = !bit as int;
-    }
-
-    private function f5():void {
-        bit = bit ? 0 : 1;
-    }
 }
 }
