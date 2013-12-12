@@ -44,7 +44,7 @@ public class Main extends Sprite {
         color0 = ToolColor.random();
         color1 = ToolColor.opposite(color0);
 
-        testConway();
+        testMatrix();
     }
 
     //==================================
@@ -88,20 +88,15 @@ public class Main extends Sprite {
     //==================================
     //
     //==================================
-    private var _menu:Menu, menuContainer:MenuContainer;
-
-    private function menuTest():void {
-        menuContainer = new MenuContainer(400,600,0x000ff0);
-        menuContainer.x = 20;
-        menuContainer.y = 20;
-        addChild(menuContainer);
-        _menu = new Menu(menuContainer, null);
-        var item:MenuItem;
-        item = _menu.add(new ItemCustom(200, 50, 0x0f00f0));
-        item = _menu.add(new ItemCustom(200, 50, 0x0f00f0));
-        item = _menu.add(new ItemCustom(200, 50, 0x0f00f0));
-        item = _menu.add(new ItemCustom(200, 50, 0x0f00f0));
-        item = _menu.add(new ItemCustom(200, 50, 0x0f00f0));
+    private function testMatrix():void {
+        var A:Matrix = new Matrix(4,4);
+        A.setRow(0, [5,7,1,2]);
+        A.setRow(1, [0,4,4,5]);
+        A.setRow(2, [3,1,3,4]);
+        A.setRow(3, [8,7,8,0]);
+        trace(A);
+        A.reduce();
+        trace(A);
     }
 
 

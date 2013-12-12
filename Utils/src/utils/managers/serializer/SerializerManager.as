@@ -63,23 +63,23 @@ public class SerializerManager {
         return decoded;
     }
 
-    public static function encodeAndStringfy(obj:Object, ignoreSameReference:Boolean = false, onError:Function = null):String {
-        var encoded:Object = encode(obj, ignoreSameReference, onError);
-        return JSON.stringify(encoded);
-    }
-
-    public static function decodeFromString(src:String):* {
-        var obj:Object = JSON.parse(src);
-        return decode(obj);
-    }
-
-    public static function JSONstringfy(obj:Object):String {
-        return JSON.stringify(obj);
-    }
-
-    public static function JSONparse(str:String):Object {
-        return JSON.parse(str);
-    }
+    //public static function encodeAndStringfy(obj:Object, ignoreSameReference:Boolean = false, onError:Function = null):String {
+    //    var encoded:Object = encode(obj, ignoreSameReference, onError);
+    //    return JSON.stringify(encoded);
+    //}
+    //
+    //public static function decodeFromString(src:String):* {
+    //    var obj:Object = JSON.parse(src);
+    //    return decode(obj);
+    //}
+    //
+    //public static function JSONstringfy(obj:Object):String {
+    //    return JSON.stringify(obj);
+    //}
+    //
+    //public static function JSONparse(str:String):Object {
+    //    return JSON.parse(str);
+    //}
 
 
     //==================================
