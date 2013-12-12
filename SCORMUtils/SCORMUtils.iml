@@ -5,7 +5,7 @@
   </component>
   <component name="FlexBuildConfigurationManager" active="SCORMUtils">
     <configurations>
-      <configuration name="SCORMUtils" pure-as="true" output-type="Library" output-file="libs\SCORMUtils.swc" output-folder="$MODULE_DIR$/..">
+      <configuration name="SCORMUtils" pure-as="true" output-type="Library" output-file="libs/SCORMUtils.swc" output-folder="$MODULE_DIR$/..">
         <dependencies target-player="11.1">
           <entries>
             <entry module-name="Utils" build-configuration-name="Utils">
