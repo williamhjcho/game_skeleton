@@ -7,8 +7,6 @@
  */
 package utils {
 public class Utils {
-    public function Utils() {
-    }
 
     public static function UtilsStatic():void {
         trace('Utils');
