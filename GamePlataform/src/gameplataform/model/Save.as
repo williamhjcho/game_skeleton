@@ -8,7 +8,7 @@
 package gameplataform.model {
 public class Save {
 
-
+    public var version:String;
 
 }
 }

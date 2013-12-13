@@ -250,6 +250,16 @@ public class ToolMath {
         return integral;
     }
 
+    //Bitwise
+    public static function rol(x:int, n:int):int {
+        //shift and rotate left
+        return (x << n) | (x >>> (32 - n));
+    }
+
+    public static function ror(x:int, n:int):int {
+        //shift and rotate right
+        return (x << (32 - n)) | (x >>> n);
+    }
 
     
     //Statistic
@@ -433,7 +443,7 @@ public class ToolMath {
     public static function DFT_Complex(X:Vector.<Complex>):Vector.<Complex> {
         var N:int = X.length;
         var c:Number = -2 * Math.PI / N;
-        var y:Vector.<Complex> = new Vector.<Complex>(N);
+        var y:Vector.<Complex> = new Vector.<Complex>();
 
         for (var k:int = 0; k < N; k++) {
             var sumC:Complex = new Complex(0,0);
@@ -467,7 +477,7 @@ public class ToolMath {
     public static function IDFT_Complex(X:Vector.<Complex>):Vector.<Complex> {
         var N:int = X.length;
         var c:Number = 2 * Math.PI / N;
-        var y:Vector.<Complex> = new Vector.<Complex>(N);
+        var y:Vector.<Complex> = new Vector.<Complex>();
 
         for (var t:int = 0; t < N; t++) {
             var sumC:Complex = new Complex(0,0);
@@ -489,7 +499,7 @@ public class ToolMath {
         if(N == 1) { return new <Complex>[X[0]]; }
         if(N % 2 != 0) { throw new Error("[FFT] X.length is not a power of 2."); }
 
-        var even:Vector.<Complex> = new Vector.<Complex>(m);
+        var even:Vector.<Complex> = new Vector.<Complex>();
 
         for (k = 0; k < m; k++) { even[k] = X[2*k]; }
         var y_top:Vector.<Complex> = FFT_Complex(even);
@@ -498,7 +508,7 @@ public class ToolMath {
         for (k = 0; k < m; k++) { odd[k] = X[2*k + 1]; }
         var y_bottom:Vector.<Complex> = FFT_Complex(odd);
 
-        var y:Vector.<Complex> = new Vector.<Complex>(N);
+        var y:Vector.<Complex> = new Vector.<Complex>();
         var c:Number = -2 * Math.PI / N;
         var wk:Complex = new Complex(0,0);
         for (k = 0; k < m; k++) {

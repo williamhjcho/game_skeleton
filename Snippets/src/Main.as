@@ -6,19 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 package {
-import com.adobe.serialization.json.JSON;
 import com.demonsters.debugger.MonsterDebugger;
 
 import drawing.Drawer;
 
 import flash.display.Shape;
 import flash.display.Sprite;
-import flash.utils.ByteArray;
-
-import utils.commands.getClassName;
 
 import utils.toollib.ToolColor;
-import utils.toollib.Units;
 
 [SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=60)]
 public class Main extends Sprite {
@@ -43,12 +38,14 @@ public class Main extends Sprite {
     }
 
     public function jsonTest():void {
-        var n:int = Units.binToDec("10000000000000000000000000000000");
-        trace(Units.decToBin(rol(n, 1)));
+        trace(ch);
+        trace(func());
+        trace(ch);
     }
 
-    public static function rol ( x:int, n:int ):int {
-        return ( x << n ) | ( x >>> ( 32 - n ) );
+    private var ch:String = "a";
+    private function func():String {
+        return ch = "b";
     }
 
 }

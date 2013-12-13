@@ -76,16 +76,16 @@ package com.adobe.crypto {
 		 */	 
 		public static function hashBinary( s:ByteArray ):String {
 			// initialize the md buffers
-			var a:int = 1732584193;
-			var b:int = -271733879;
-			var c:int = -1732584194;
-			var d:int = 271733878;
+			var a:uint = 1732584193;
+			var b:uint = -271733879;
+			var c:uint = -1732584194;
+			var d:uint = 271733878;
 			
 			// variables to store previous values
-			var aa:int;
-			var bb:int;
-			var cc:int;
-			var dd:int;
+			var aa:uint;
+			var bb:uint;
+			var cc:uint;
+			var dd:uint;
 			
 			// create the blocks from the string and
 			// save the length as a local var to reduce

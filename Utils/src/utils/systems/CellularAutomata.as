@@ -22,13 +22,13 @@ public class CellularAutomata {
         currentHolder = 0;
         _generation = 0;
         _rule = new <uint>[0,1,0,1,1,0,1,0];
-        cellHolder = new <Vector.<uint>> [new Vector.<uint>(_length), new Vector.<uint>(_length)];
+        cellHolder = new <Vector.<uint>> [new Vector.<uint>(), new Vector.<uint>()];
         cellHolder[currentHolder][_length>>1] = 1;
 
         this.rule = rules;
 
         if(initialCells == null) {
-            original = new Vector.<uint>(_length);
+            original = new Vector.<uint>();
             cells = original;
         } else {
             cells = initialCells;
