@@ -456,7 +456,7 @@ class Components {
 
     private function onOutside(e:MouseEvent):void {
         tracker.stopDrag();
-        tracker.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
+        //tracker.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
         tracker.removeEventListener(MouseEvent.ROLL_OVER, onOver);
         tracker.removeEventListener(Event.ENTER_FRAME, onMove);
         scroll.update();
@@ -464,7 +464,7 @@ class Components {
 
     private function onOver(e:MouseEvent):void {
         tracker.removeEventListener(MouseEvent.ROLL_OVER, onOver);
-        tracker.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
+        //tracker.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
         tracker.removeEventListener(Event.ENTER_FRAME, onMove);
         tracker.addEventListener(MouseEvent.ROLL_OUT, onOut);
         tracker.addEventListener(MouseEvent.MOUSE_MOVE, onMove);
@@ -474,7 +474,7 @@ class Components {
         tracker.removeEventListener(MouseEvent.ROLL_OUT, onOut);
         tracker.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
         tracker.addEventListener(MouseEvent.ROLL_OVER, onOver);
-        tracker.addEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
+        //tracker.addEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
         tracker.addEventListener(Event.ENTER_FRAME, onMove);
     }
 
