@@ -43,35 +43,12 @@ public class Main extends Sprite {
     }
 
     public function jsonTest():void {
-        var dec:int = 55;
-        trace(Units.decToHex(dec), Units.decToBin(dec), "\n\n-=-==-=-");
-
-        var b:ByteArray = new ByteArray();
-        b.writeInt(dec);
-        b.writeInt(dec);
-        b.writeInt(dec);
-        b.writeInt(dec);
-        b.position = 0;
-        var blocks:Array = createBlocks(b);
-        for (var i:int = 0; i < blocks.length; i++) {
-            var bytee:int = blocks[i];
-            //trace(i, bytee, Units.decToBin(bytee));
-        }
+        var n:int = Units.binToDec("10000000000000000000000000000000");
+        trace(Units.decToBin(rol(n, 1)));
     }
 
-    private static function createBlocks( s:ByteArray ):Array {
-        var blocks:Array = new Array();
-        var len:int = s.length * 8;
-        var mask:int = 0xFF; // ignore hi byte of characters > 0xFF
-        for( var i:int = 0; i < len; i += 8 ) {
-            trace("pos ",i, i>>5, s[i/8])
-            blocks[ int(i >> 5) ] |= ( s[ i / 8 ] & mask ) << ( i % 32 );
-        }
-
-        // append padding and length
-        blocks[ int(len >> 5) ] |= 0x80 << ( len % 32 );
-        blocks[ int(( ( ( len + 64 ) >>> 9 ) << 4 ) + 14) ] = len;
-        return blocks;
+    public static function rol ( x:int, n:int ):int {
+        return ( x << n ) | ( x >>> ( 32 - n ) );
     }
 
 }
