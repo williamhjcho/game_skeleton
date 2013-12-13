@@ -1,3 +1,5 @@
 {
-    "___className": "gameplataform.model.Save"
+    "___className": "gameplataform.model.Save",
+
+    "version" : "1.0"
 }
