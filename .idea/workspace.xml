@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dade721-fad0-44ce-a3f3-36160afd0f6d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Utils/src/utils/managers/io/InputShortcut.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GamePlataform/GamePlataform.iml" afterPath="$PROJECT_DIR$/GamePlataform/GamePlataform.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCORMUtils/SCORMUtils.iml" afterPath="$PROJECT_DIR$/SCORMUtils/SCORMUtils.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Snippets/Snippets.iml" afterPath="$PROJECT_DIR$/Snippets/Snippets.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Utils/src/utils/Utils.as" afterPath="$PROJECT_DIR$/Utils/src/utils/Utils.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Utils/Utils.iml" afterPath="$PROJECT_DIR$/Utils/Utils.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/UtilsDisplay.as" afterPath="$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/UtilsDisplay.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UtilsDisplay/UtilsDisplay.iml" afterPath="$PROJECT_DIR$/UtilsDisplay/UtilsDisplay.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Snippets/output/main.swf" afterPath="$PROJECT_DIR$/Snippets/output/main.swf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="game_skeleton.iws" />
@@ -82,10 +73,8 @@
       <file leaf-file-name="InputManager.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Utils/src/utils/managers/InputManager.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1515">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1545">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,9 +83,7 @@
         <entry file="file://$PROJECT_DIR$/Utils/src/utils/managers/io/InputShortcut.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -104,7 +91,7 @@
       <file leaf-file-name="Obfuscator.as" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Utils/src/utils/crypto/Obfuscator.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="371" selection-end="371" vertical-scroll-proportion="-1.31454" vertical-offset="1141" max-vertical-offset="1815">
+            <state line="115" column="18" selection-start="3382" selection-end="3382" vertical-scroll-proportion="2.292285" vertical-offset="180" max-vertical-offset="1815">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#183#219#0" expanded="true" />
@@ -116,10 +103,8 @@
       <file leaf-file-name="PreloaderManager.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/managers/PreloaderManager.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1590">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -127,11 +112,8 @@
       <file leaf-file-name="ClientManager.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/managers/ClientManager.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="37" selection-start="1770" selection-end="1770" vertical-scroll-proportion="-0.7090909" vertical-offset="741" max-vertical-offset="1740">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#185#216#0" expanded="true" />
-              </folding>
+            <state line="52" column="37" selection-start="1770" selection-end="1770" vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="1740">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -139,10 +121,8 @@
       <file leaf-file-name="Client.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GamePlataform/src/gameplataform/Client.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="64" selection-start="1823" selection-end="1823" vertical-scroll-proportion="0.0" vertical-offset="451" max-vertical-offset="1650">
-              <folding>
-                <element signature="e#180#220#0" expanded="true" />
-              </folding>
+            <state line="57" column="64" selection-start="1823" selection-end="1823" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1740">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -150,7 +130,7 @@
       <file leaf-file-name="SimpleChild.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Snippets/src/SimpleChild.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="53" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+            <state line="13" column="53" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="600">
               <folding />
             </state>
           </provider>
@@ -160,9 +140,7 @@
         <entry file="file://$PROJECT_DIR$/Utils/src/utils/crypto/MonoAlphabeticCipher.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -170,7 +148,7 @@
       <file leaf-file-name="IPreLoader.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/bases/interfaces/IPreLoader.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="17" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+            <state line="8" column="17" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="285">
               <folding />
             </state>
           </provider>
@@ -179,7 +157,7 @@
       <file leaf-file-name="DefaultPreLoader.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/view/preloader/DefaultPreLoader.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="13" selection-start="513" selection-end="513" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
+            <state line="20" column="13" selection-start="513" selection-end="513" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1710">
               <folding />
             </state>
           </provider>
@@ -468,8 +446,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -753,39 +731,47 @@
       <changelist id="9dade721-fad0-44ce-a3f3-36160afd0f6d" name="Default" comment="" />
       <created>1385518653909</created>
       <updated>1385518653909</updated>
-      <workItem from="1386591009216" duration="2949000" />
+      <workItem from="1386591009216" duration="3610000" />
+      <workItem from="1386682018303" duration="116000" />
+      <workItem from="1386688889578" duration="112000" />
+      <workItem from="1386689582684" duration="26000" />
+      <workItem from="1386695931388" duration="99000" />
     </task>
+    <task id="LOCAL-00001" summary="FileUtils - change to internal methods.&#10;">
+      <created>1386594960070</created>
+      <updated>1386594960070</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2949000" />
+    <option name="totallyTimeSpent" value="3963000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1174" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32994455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32994455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32994455" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="SvgViewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="SvgViewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2859425" sideWeight="0.66982925" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2859425" sideWeight="0.66982925" order="0" side_tool="false" content_ui="combo" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994455" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -796,6 +782,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Colour Chooser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Regex" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -813,6 +800,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="FileUtils - change to internal methods.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="FileUtils - change to internal methods.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -822,6 +811,138 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Utils/src/utils/crypto/Obfuscator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="115" column="18" selection-start="3382" selection-end="3382" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1815">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#183#219#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/managers/PreloaderManager.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/managers/ClientManager.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="37" selection-start="1770" selection-end="1770" vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="1740">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GamePlataform/src/gameplataform/Client.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="64" selection-start="1823" selection-end="1823" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1740">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Snippets/src/SimpleChild.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="53" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="600">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/src/utils/crypto/MonoAlphabeticCipher.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/bases/interfaces/IPreLoader.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="17" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="285">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/view/preloader/DefaultPreLoader.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="13" selection-start="513" selection-end="513" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1710">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/src/utils/managers/InputManager.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1545">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/src/utils/managers/io/InputShortcut.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/src/utils/crypto/Obfuscator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="115" column="18" selection-start="3382" selection-end="3382" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1815">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#183#219#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/managers/PreloaderManager.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/managers/ClientManager.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="37" selection-start="1770" selection-end="1770" vertical-scroll-proportion="0.0" vertical-offset="741" max-vertical-offset="1740">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GamePlataform/src/gameplataform/Client.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="64" selection-start="1823" selection-end="1823" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1740">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Snippets/src/SimpleChild.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="53" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="600">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/src/utils/crypto/MonoAlphabeticCipher.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/bases/interfaces/IPreLoader.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="17" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="285">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/view/preloader/DefaultPreLoader.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="13" selection-start="513" selection-end="513" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1710">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/managers/AssetsManager.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="143" column="55" selection-start="6007" selection-end="6007" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
@@ -899,106 +1020,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/toollib/list/LinkedList2.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.3693182" vertical-offset="390" max-vertical-offset="1800">
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.3693182" vertical-offset="390" max-vertical-offset="1800" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/toollib/list/LinkedList.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1056">
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1056" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/base/FunctionObject.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="19" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
-          <folding />
-        </state>
+        <state line="8" column="19" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/systems/LSystem.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="20" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="1755">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="20" column="20" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="1755" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/systems/TurtleGraphics.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="773" max-vertical-offset="2625">
-          <folding />
-        </state>
+        <state line="17" column="13" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="773" max-vertical-offset="2625" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/Utils.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="9" column="0" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/UtilsDisplay.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="861" selection-end="861" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="26" column="0" selection-start="861" selection-end="861" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/managers/io/InputListenerManager.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="31" selection-start="1560" selection-end="1560" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
-          <folding>
-            <element signature="e#182#218#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="48" column="31" selection-start="1560" selection-end="1560" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/managers/InputManager.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1515">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/managers/io/InputShortcut.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/managers/PreloaderManager.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1590">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UtilsDisplay/src/utilsDisplay/managers/ClientManager.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="37" selection-start="1770" selection-end="1770" vertical-scroll-proportion="-0.7090909" vertical-offset="741" max-vertical-offset="1740">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#185#216#0" expanded="true" />
-          </folding>
+        <state line="52" column="37" selection-start="1770" selection-end="1770" vertical-scroll-proportion="0.0" vertical-offset="741" max-vertical-offset="1740">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1019,9 +1103,7 @@
     <entry file="file://$PROJECT_DIR$/GamePlataform/src/gameplataform/Client.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="57" column="64" selection-start="1823" selection-end="1823" vertical-scroll-proportion="0.0" vertical-offset="451" max-vertical-offset="1650">
-          <folding>
-            <element signature="e#180#220#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1035,15 +1117,13 @@
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/crypto/MonoAlphabeticCipher.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="674">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/src/utils/crypto/Obfuscator.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="371" selection-end="371" vertical-scroll-proportion="-1.31454" vertical-offset="1141" max-vertical-offset="1815">
+        <state line="115" column="18" selection-start="3382" selection-end="3382" vertical-scroll-proportion="2.292285" vertical-offset="180" max-vertical-offset="1815">
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#183#219#0" expanded="true" />
