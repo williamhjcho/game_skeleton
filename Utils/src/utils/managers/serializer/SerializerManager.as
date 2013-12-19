@@ -14,6 +14,7 @@ import utils.commands.getClass;
 import utils.commands.getClassByPath;
 import utils.commands.getClassName;
 import utils.errors.SerializerError;
+import utils.managers.serializer.json.JSON;
 
 public class SerializerManager {
 
@@ -65,20 +66,20 @@ public class SerializerManager {
 
     public static function encodeAndStringfy(obj:Object, ignoreSameReference:Boolean = false, onError:Function = null):String {
         var encoded:Object = encode(obj, ignoreSameReference, onError);
-        return JSON.stringify(encoded);
+        return utils.managers.serializer.json.JSON.encode(encoded);
     }
 
     public static function decodeFromString(src:String):* {
-        var obj:Object = JSON.parse(src);
+        var obj:Object = utils.managers.serializer.json.JSON.decode(src);
         return decode(obj);
     }
 
     public static function JSONstringfy(obj:Object):String {
-        return JSON.stringify(obj);
+        return utils.managers.serializer.json.JSON.encode(obj);
     }
 
     public static function JSONparse(str:String):Object {
-        return JSON.parse(str);
+        return utils.managers.serializer.json.JSON.decode(str);
     }
 
 

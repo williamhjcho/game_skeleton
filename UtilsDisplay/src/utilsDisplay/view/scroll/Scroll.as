@@ -20,7 +20,7 @@ import flash.geom.Rectangle;
 import utils.base.interfaces.IDestructible;
 import utils.toollib.Easing;
 
-public class Scroll implements IDestructible {
+public class Scroll {
 
     private var container       :DisplayObjectContainer;
     private var content         :DisplayObject;
@@ -204,7 +204,7 @@ import utilsDisplay.view.scroll.Scroll;
 import utilsDisplay.view.scroll.ScrollComponentParameters;
 import utilsDisplay.view.scroll.ScrollOrientation;
 
-class Components implements IDestructible {
+class Components {
 
     public var track:Sprite, tracker:Sprite;
     public var buttonUp:Sprite, buttonDown:Sprite;
@@ -456,7 +456,7 @@ class Components implements IDestructible {
 
     private function onOutside(e:MouseEvent):void {
         tracker.stopDrag();
-        tracker.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
+        //tracker.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
         tracker.removeEventListener(MouseEvent.ROLL_OVER, onOver);
         tracker.removeEventListener(Event.ENTER_FRAME, onMove);
         scroll.update();
@@ -464,7 +464,7 @@ class Components implements IDestructible {
 
     private function onOver(e:MouseEvent):void {
         tracker.removeEventListener(MouseEvent.ROLL_OVER, onOver);
-        tracker.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
+        //tracker.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
         tracker.removeEventListener(Event.ENTER_FRAME, onMove);
         tracker.addEventListener(MouseEvent.ROLL_OUT, onOut);
         tracker.addEventListener(MouseEvent.MOUSE_MOVE, onMove);
@@ -474,7 +474,7 @@ class Components implements IDestructible {
         tracker.removeEventListener(MouseEvent.ROLL_OUT, onOut);
         tracker.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
         tracker.addEventListener(MouseEvent.ROLL_OVER, onOver);
-        tracker.addEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
+        //tracker.addEventListener(MouseEvent.RELEASE_OUTSIDE, onOutside);
         tracker.addEventListener(Event.ENTER_FRAME, onMove);
     }
 

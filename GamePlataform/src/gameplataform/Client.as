@@ -73,9 +73,9 @@ public class Client extends Sprite {
     }
 
     //==================================
-    //
+    //  Public
     //==================================
-    public function showPreLoader(startingPercentage:Number = 0, alpha:Number = 1):void {
+    public static function showPreLoader(startingPercentage:Number = 0, alpha:Number = 1):void {
         _preLoader.alpha = alpha;
         IPreLoader(_preLoader).percentage = startingPercentage;
         instance.addChild(_preLoader);
@@ -90,12 +90,15 @@ public class Client extends Sprite {
         IPreLoader(_preLoader).percentage = p;
     }
 
+    //==================================
+    //  Get/Set
+    //==================================
     public static function get config():Config {
         return _config;
     }
 
     //==================================
-    //
+    //  Private
     //==================================
     private function setCustomMenu(name:String, version:String, date:String):void {
         var gameMenu:ContextMenu = new ContextMenu();
