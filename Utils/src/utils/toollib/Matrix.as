@@ -7,7 +7,6 @@
  */
 package utils.toollib {
 import flash.errors.IllegalOperationError;
-import flash.geom.Point;
 import flash.geom.Rectangle;
 
 public class Matrix {
@@ -244,6 +243,36 @@ public class Matrix {
                 data[i][j] *= c;
             }
         }
+        return this;
+    }
+
+    public function reduce():Matrix {
+        var i:int, j:int, k:int;
+        for (i = 0; i < _rows; i++) {
+            //finding first non-zero row (in column col)
+            for (k = i; k < _rows; k++) {
+                if(data[k][i] != 0)
+                    break;
+            }
+            if(k != i)
+                swapRows(i, k);
+
+            //divide whole row for the first element so the first column will be 1
+            if(data[i][i] != 1) {
+                for (j = i + 1; j < _columns; j++) {
+                    data[i][j] /= data[i][i];
+                }
+                data[i][i] = 1; //make it 1 AFTER the operation
+            }
+
+            for (k = i + 1; k < _rows; k++) {
+                for (j = i + 1; j < _columns; j++) {
+                    data[k][j] -= data[i][j] * data[k][i];
+                }
+                data[k][i] = 0;
+            }
+        }
+
         return this;
     }
 
