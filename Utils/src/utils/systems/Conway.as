@@ -21,14 +21,14 @@ public class Conway {
         _generation = 0;
         currentHolder = 0;
         cellHolder = new <Vector.<Vector.<uint>>>[
-            new Vector.<Vector.<uint>>(_width),
-            new Vector.<Vector.<uint>>(_width)
+            new Vector.<Vector.<uint>>(),
+            new Vector.<Vector.<uint>>()
         ];
 
         if(initialCells == null) {
-            original = new Vector.<Vector.<uint>>(_width);
+            original = new Vector.<Vector.<uint>>();
             for (var i:int = 0; i < _width; i++) {
-                original[i] = new Vector.<uint>(_height);
+                original[i] = new Vector.<uint>();
             }
             cells = original;
         } else {
@@ -41,9 +41,9 @@ public class Conway {
     //==================================
     private function checkCells():void {
         for (var i:int = 0; i < _width; i++) {
-            if(cellHolder[0][i] == null)    cellHolder[0][i] = new Vector.<uint>(_height);
+            if(cellHolder[0][i] == null)    cellHolder[0][i] = new Vector.<uint>();
             else                            cellHolder[0][i].length = _height;
-            if(cellHolder[1][i] == null)    cellHolder[1][i] = new Vector.<uint>(_height);
+            if(cellHolder[1][i] == null)    cellHolder[1][i] = new Vector.<uint>();
             else                            cellHolder[1][i].length = _height;
         }
     }
@@ -74,7 +74,7 @@ public class Conway {
         //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
         var lastCells:uint = currentHolder;
-        currentHolder = (currentHolder + 1) & 1;
+        currentHolder = (currentHolder + 0x1) & 0x1;
         _generation++;
 
         for (var i:int = 1; i < _width - 1; i++) {

@@ -204,19 +204,18 @@ public class Units {
         var remainders:Vector.<uint> = new Vector.<uint>();
         do {
             remainders.push(n & 1); //modulo 2
-            n >>= 1;
+            n >>>= 1;
         } while(n > 0);
         return remainders.reverse().join("");
     }
 
     public static function decToHex(dec:uint):String {
-        var hex:Vector.<String> = new Vector.<String>(), r:uint;
-        do {
-            r = dec % 16;
-            hex.push(HEX_CHARS[r]);
-            dec = (dec - r) / 16;
-        } while(dec != 0);
-        return hex.reverse().join("");
+        var hx:String = "", pos:int;
+        for (var i:int = 0; i < 4; i++) {
+            pos = i * 8;
+            hx += HEX_CHARS[(dec >> (pos + 4)) & 0xf] + HEX_CHARS[(dec >> (pos)) & 0xf];
+        }
+        return hx;
     }
 
     public static function decToOct(dec:uint):uint {
@@ -285,7 +284,7 @@ public class Units {
     }
 
     public static function hexToBin(hex:String):String {
-        var bin:Vector.<uint> = new Vector.<uint>(hex.length * 4);
+        var bin:Vector.<uint> = new Vector.<uint>(); //length = hex.length * 4
         var idx:int = 0, j:int;
         for (var i:int = 0; i < hex.length; i++) {
             idx = HEX_CHARS[hex.charAt(i)];

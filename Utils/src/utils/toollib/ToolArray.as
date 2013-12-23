@@ -22,26 +22,44 @@ public class ToolArray {
         return arr;
     }
 
-    /**ARRAY CREATION**/
-    public static function createRandom(n:int, min:int = 0, max:int = 100, clss:Class = null):* {
-        var output:* = (clss == null) ? [] : new clss();
+    //==================================
+    //  Creation
+    //==================================
+    public static function createRandom(n:int, min:Number = 0, max:Number = 100, output:Object = null):* {
+        output ||= [];
         for (var i:int = 0; i < n; i++) {
             output[i] = min + (max - min) * Math.random();
         }
         return output;
     }
 
-    public static function createOrdered(n:int, n1:Number, n2:Number, clss:Class = null):* {
-        var output:* = (clss == null) ? [] : new clss();
-        var step:Number = (n2 - n1);
+    public static function createOrdered(n:int, firstElement:Number, secondElement:Number, output:Object = null):* {
+        output ||= [];
+        var step:Number = (secondElement - firstElement);
         for (var i:int = 0; i < n; i++) {
-            output[i] = n1;
-            n1 += step;
+            output[i] = firstElement;
+            firstElement += step;
         }
         return output;
     }
 
-    /**MISC**/
+    //==================================
+    //  Operations
+    //==================================
+    public static function sumAll(target:Object):Number {
+        var sum:Number = 0;
+        for each (var number:Number in target)
+            sum += number;
+        return sum;
+    }
+
+    public static function multiplyAll(target:Object):Number {
+        var mult:Number = 1;
+        for each (var number:Number in target)
+            mult *= number;
+        return mult;
+    }
+
     public static function concat(output:Array = null, ...targets):Array {
         //will concat targets from index 0 of output
         if(output == null) output = [];

@@ -19,6 +19,29 @@ public class AStar {
         this.heuristic = heuristic;
     }
 
+    public function find(start:INode, goal:INode):void {
+        var closed:Vector.<INode> = new Vector.<INode>();
+        var open:Vector.<INode> = new <INode>[start];
+        var path:Vector.<INode> = new Vector.<INode>();
+
+        var g_cost:Number = 0;
+        var f_cost:Number = g_cost;
+
+        while(open.length > 0) {
+            var current:INode = open[0];
+            if(current == goal) {
+                return;
+            }
+
+            open.shift();
+            closed.push(current);
+
+            for each (var neighbor:INode in map.getNeighborsOf(current)) {
+
+            }
+        }
+    }
+
     public function findPath(start:INode, end:INode):Vector.<INode> {
         var openList:Vector.<INode> = new Vector.<INode>(), closedList:Vector.<INode> = new Vector.<INode>();
         var path:Vector.<INode> = new Vector.<INode>();
