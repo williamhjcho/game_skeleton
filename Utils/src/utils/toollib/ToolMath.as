@@ -2,8 +2,6 @@
  * william.cho
  */
 package utils.toollib {
-import utils.errors.InstantiaitonError;
-
 public class ToolMath {
 
     public static const GOLDEN_RATIO:Number = (1 + Math.sqrt(5))/2;
@@ -14,11 +12,8 @@ public class ToolMath {
     private static var _fibonacci:Vector.<uint> = new <uint>[0,1,1,2];
     private static var _primes:Vector.<uint> = new <uint>[2,3,5,7,9,11,13,17,19,23,27];
 
-    public function ToolMath() {
-        throw new InstantiaitonError();
-    }
-
     public static function random():Number { return (Math.random() + (1/GOLDEN_RATIO)) % 1; }
+
 
     //Common
     public static function abs(n:Number):Number { return (n >> 31)? -n : n; }
@@ -89,7 +84,7 @@ public class ToolMath {
 
     public static function isPrime(n:int):Boolean {
         n = Math.abs(n);
-        if(n == 0 || n == 1) return false;
+        if(n < 2) return false;
         for(var i:int = 2; i*i <= n; i++) {
             if(n%i == 0) return false;
         }
@@ -98,7 +93,7 @@ public class ToolMath {
 
     public static function fibonacci(n:int):uint {
         //keeps the old values for possible later use
-        if(n <= 0)                  return 0;
+        if(n <= 0)                  return _fibonacci[0];
         if(_fibonacci.length > n)   return _fibonacci[n];
         for (var i:int = _fibonacci.length-1; i <= n; i++) {
             _fibonacci[i] = _fibonacci[i-1] + _fibonacci[i-2];
@@ -109,7 +104,7 @@ public class ToolMath {
     public static function prime(n:int):uint {
         if(n <= 0) return _primes[0];
         for (var i:int = _primes[_primes.length-1] + 1; _primes.length <= n; i++) {
-            if(ToolMath.isPrime(i)) _primes.push(i);
+            if(isPrime(i)) _primes.push(i);
         }
         return _primes[n];
     }
@@ -214,16 +209,13 @@ public class ToolMath {
 
     public static function asin(x:Number):Number {
         var sum:Number = 0, term:Number = x, nextTerm:Number = x,
-                factN:Number = 1, fact2N:Number = 1, p4:Number = 1, f2N:Number = 1;
+                factN:Number = 1, fact2N:Number = 1, p4:Number = 1;
         for (var i:int = 0; nextTerm > precision; i++) {
             sum += nextTerm;
             term *= x*x;
             p4 *= 4;
             factN *= (i+1);
             fact2N *= (2*i+1)*(2*i+2);
-            //f2N = i+2;
-            //for (var j:int = f2N+1; j <= 2*(i+1); j++) {f2N *= j;}
-            //nextTerm = (f2N * term) / (p4 * factN * (2*(i+1)+1));
             nextTerm = (fact2N * term) / (p4 * factN*factN * (2*(i+1)+1));
         }
         return sum;
@@ -258,6 +250,16 @@ public class ToolMath {
         return integral;
     }
 
+    //Bitwise
+    public static function rol(x:int, n:int):int {
+        //shift and rotate left
+        return (x << n) | (x >>> (32 - n));
+    }
+
+    public static function ror(x:int, n:int):int {
+        //shift and rotate right
+        return (x << (32 - n)) | (x >>> n);
+    }
 
     
     //Statistic
@@ -441,7 +443,7 @@ public class ToolMath {
     public static function DFT_Complex(X:Vector.<Complex>):Vector.<Complex> {
         var N:int = X.length;
         var c:Number = -2 * Math.PI / N;
-        var y:Vector.<Complex> = new Vector.<Complex>(N);
+        var y:Vector.<Complex> = new Vector.<Complex>();
 
         for (var k:int = 0; k < N; k++) {
             var sumC:Complex = new Complex(0,0);
@@ -475,7 +477,7 @@ public class ToolMath {
     public static function IDFT_Complex(X:Vector.<Complex>):Vector.<Complex> {
         var N:int = X.length;
         var c:Number = 2 * Math.PI / N;
-        var y:Vector.<Complex> = new Vector.<Complex>(N);
+        var y:Vector.<Complex> = new Vector.<Complex>();
 
         for (var t:int = 0; t < N; t++) {
             var sumC:Complex = new Complex(0,0);
@@ -492,12 +494,12 @@ public class ToolMath {
 
     public static function FFT_Complex(X:Vector.<Complex>):Vector.<Complex> {
         //invert bit order of indexes, then apply DFT calc on each
-        var N:int = X.length, m:int = N/ 2, k:int;
+        var N:int = X.length, m:int = N / 2, k:int;
 
         if(N == 1) { return new <Complex>[X[0]]; }
         if(N % 2 != 0) { throw new Error("[FFT] X.length is not a power of 2."); }
 
-        var even:Vector.<Complex> = new Vector.<Complex>(m);
+        var even:Vector.<Complex> = new Vector.<Complex>();
 
         for (k = 0; k < m; k++) { even[k] = X[2*k]; }
         var y_top:Vector.<Complex> = FFT_Complex(even);
@@ -506,7 +508,7 @@ public class ToolMath {
         for (k = 0; k < m; k++) { odd[k] = X[2*k + 1]; }
         var y_bottom:Vector.<Complex> = FFT_Complex(odd);
 
-        var y:Vector.<Complex> = new Vector.<Complex>(N);
+        var y:Vector.<Complex> = new Vector.<Complex>();
         var c:Number = -2 * Math.PI / N;
         var wk:Complex = new Complex(0,0);
         for (k = 0; k < m; k++) {

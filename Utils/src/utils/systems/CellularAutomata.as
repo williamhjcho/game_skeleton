@@ -22,13 +22,13 @@ public class CellularAutomata {
         currentHolder = 0;
         _generation = 0;
         _rule = new <uint>[0,1,0,1,1,0,1,0];
-        cellHolder = new <Vector.<uint>> [new Vector.<uint>(_length), new Vector.<uint>(_length)];
+        cellHolder = new <Vector.<uint>> [new Vector.<uint>(), new Vector.<uint>()];
         cellHolder[currentHolder][_length>>1] = 1;
 
         this.rule = rules;
 
         if(initialCells == null) {
-            original = new Vector.<uint>(_length);
+            original = new Vector.<uint>();
             cells = original;
         } else {
             cells = initialCells;
@@ -60,7 +60,7 @@ public class CellularAutomata {
 
     public function iterate():void {
         var lastCells:uint = currentHolder;
-        currentHolder = (currentHolder + 1) & 1;
+        currentHolder = (currentHolder + 0x1) & 0x1;
         _generation++;
         for (var c:int = 1; c < _length-1; c++) {
             cellHolder[currentHolder][c] = _rule[(cellHolder[lastCells][c-1] << 2) | (cellHolder[lastCells][c] << 1) | (cellHolder[lastCells][c+1])];

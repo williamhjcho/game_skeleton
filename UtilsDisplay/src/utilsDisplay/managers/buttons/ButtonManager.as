@@ -11,8 +11,6 @@ import com.greensock.TweenMax;
 import com.greensock.easing.Linear;
 
 import flash.display.DisplayObject;
-import flash.display.MovieClip;
-import flash.display.Sprite;
 import flash.events.MouseEvent;
 import flash.utils.Dictionary;
 import flash.utils.setTimeout;
@@ -37,8 +35,10 @@ public class ButtonManager {
     public static function add(button:DisplayObject, parameters:Object):void {
         var p:ButtonProperty = _buttons[button];
 
-        if(p != null) throw new Error("Already registered instance : \"" + button.name + "\".");
-        if(parameters == null) parameters = {};
+        if(p != null)
+            throw new Error("Already registered instance : \"" + button.name + "\".");
+
+        parameters ||= {};
 
         p                   = new ButtonProperty();
         p.reference         = button;
@@ -71,7 +71,7 @@ public class ButtonManager {
     public static function remove(button:DisplayObject):void {
         var p:ButtonProperty = _buttons[button];
 
-        if(p == null) return;
+        if(p == null || button == null) return;
         button.removeEventListener(MouseEvent.MOUSE_DOWN, onDown);
         button.removeEventListener(MouseEvent.MOUSE_UP, onUp);
         button.removeEventListener(MouseEvent.ROLL_OVER, onOver);
@@ -82,8 +82,8 @@ public class ButtonManager {
 
     public static function change(button:DisplayObject, parameters:Object):void {
         var p:ButtonProperty = _buttons[button];
-        if(p == null) return;
-        if(parameters == null) return;
+        if(p == null || parameters == null)
+            return;
 
         p.priority          = parameters.priority || 0;
         p.useCapture        = (parameters.useCapture == null)? false : parameters.useCapture;
@@ -111,7 +111,7 @@ public class ButtonManager {
 
         p.status = ENABLED;
 
-        if(p.buttonMode && button is Sprite)
+        if(p.buttonMode && button.hasOwnProperty("buttonMode"))
             button["buttonMode"] = true;
         button.addEventListener(MouseEvent.ROLL_OVER, onOver, p.useCapture, p.priority, p.useWeakReference);
         button.addEventListener(MouseEvent.ROLL_OUT , onOut, p.useCapture, p.priority, p.useWeakReference);
@@ -124,7 +124,7 @@ public class ButtonManager {
         if(p == null || p.status == DISABLED) return;
 
         p.status = DISABLED;
-        if(p.buttonMode && (button is MovieClip || button is Sprite))
+        if(p.buttonMode && button.hasOwnProperty("buttonMode"))
             button["buttonMode"] = false;
         button.removeEventListener(MouseEvent.MOUSE_DOWN, onDown);
         button.removeEventListener(MouseEvent.MOUSE_UP  , onUp);
@@ -139,7 +139,7 @@ public class ButtonManager {
     }
 
     public static function isRegistered(button:DisplayObject):Boolean {
-        return (_buttons[button] != null && _buttons[button] != undefined);
+        return (button in _buttons);
     }
 
     public static function isEnabled(button:DisplayObject):Boolean {
@@ -250,4 +250,46 @@ public class ButtonManager {
             TweenMax.to(p.reference, 0.3, {colorMatrixFilter: {colorize: 0x000000, amount: 0.5, saturation: 0}});
     }
 }
+}
+
+class ButtonProperty {
+
+    public var reference:Object = null;
+
+    public var status           :int    = NaN;
+    public var mode             :int    = NaN;
+    public var delay            :Number = NaN;
+    public var buttonMode       :Boolean = true;
+    public var useDefault       :Boolean = true;
+    public var overColor        :uint   = 0x000000;
+    public var downColor        :uint   = 0x000000;
+    public var priority         :uint = 0;
+    public var useCapture       :Boolean = false;
+    public var useWeakReference :Boolean = false;
+
+    public var onClick    :Function = null;
+    public var onDown     :Function = null;
+    public var onUp       :Function = null;
+    public var onOver     :Function = null;
+    public var onOut      :Function = null;
+    public var onEnable   :Function = null;
+    public var onDisable  :Function = null;
+
+    public function callClick  ():void { onClick  .call(this, reference); }
+    public function callDown   ():void { onDown   .call(this, reference); }
+    public function callUp     ():void { onUp     .call(this, reference); }
+    public function callOver   ():void { onOver   .call(this, reference); }
+    public function callOut    ():void { onOut    .call(this, reference); }
+    public function callEnable ():void { onEnable .call(this, reference); }
+    public function callDisable():void { onDisable.call(this, reference); }
+
+    public function destroy():void {
+        this.onClick   = null;
+        this.onDown    = null;
+        this.onUp      = null;
+        this.onOver    = null;
+        this.onOut     = null;
+        this.onEnable  = null;
+        this.onDisable = null;
+    }
 }
