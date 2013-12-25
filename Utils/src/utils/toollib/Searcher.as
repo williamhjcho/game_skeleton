@@ -26,8 +26,8 @@ public class Searcher {
         return linearReversedCore(arr, target, compareFunction == null? compareASC : compareFunction);
     }
 
-    public static function binary(arr:*, target:*, compareFunction:Function = null, start:int = 0, end:int = NaN):int {
-        return binaryCore(arr,target,start,isNaN(end) ? arr.length : end, compareFunction);
+    public static function binary(arr:*, target:*, compareFunction:Function = null, start:int = 0, end:int = int.MIN_VALUE):int {
+        return binaryCore(arr,target,start,end==int.MIN_VALUE ? arr.length : end, compareFunction);
     }
 
     /** **/

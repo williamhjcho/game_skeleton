@@ -13,6 +13,7 @@ import com.greensock.plugins.TweenPlugin;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;
+import flash.display.Stage;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.geom.Rectangle;
@@ -29,20 +30,21 @@ public class Scroll {
     private var _enabled        :Boolean = false;
     private var hTrack:Components, vTrack:Components;
     private var tween:TweenMax;
+    private var stage : Stage;
 
     public var parameters:ScrollParameters;
 
-    public function Scroll(container:DisplayObjectContainer, content:DisplayObject, parameters:ScrollParameters = null) {
+    public function Scroll(stage:Stage, container:DisplayObjectContainer, content:DisplayObject, parameters:ScrollParameters = null) {
         TweenPlugin.activate([ScrollRectPlugin]);
-
+        this.stage = stage;
         if(container == null) throw new ArgumentError("Container cannot be null.");
         if(content == null) throw new ArgumentError("Content cannot be null.");
 
         this.container      = container;
         this.content        = content;
         this.parameters     = parameters || new ScrollParameters();
-        this.hTrack         = new Components(this, ScrollOrientation.HORIZONTAL);
-        this.vTrack         = new Components(this, ScrollOrientation.VERTICAL);
+        this.hTrack         = new Components(stage,this, ScrollOrientation.HORIZONTAL);
+        this.vTrack         = new Components(stage,this, ScrollOrientation.VERTICAL);
         this.visibleArea    = new Rectangle(0,0,container.width, container.height);
         this.lastDimensions = new Rectangle(0,0,0,0);
 
@@ -54,6 +56,15 @@ public class Scroll {
         enable();
         update();
     }
+
+   /* public function setTrackerXY_percentage(percentageX:Number, percentageY:Number):void {
+        if(hasVertical)
+            trV.y = tV.y + (tV.height - trV.height) * ToolMath.clamp(percentageY ,0 ,1);
+        if(hasHorizontal)
+            trH.x = tH.x + (tH.width - trH.width) * ToolMath.clamp(percentageX ,0 ,1);
+        moveContent();
+    }*/
+
 
     public function setHorizontalComponents(track:Sprite, tracker:Sprite, buttonUp:Sprite = null, buttonDown:Sprite = null):void {
         hTrack.setComponents(track, tracker, buttonUp, buttonDown);
@@ -183,8 +194,12 @@ public class Scroll {
 
     public function set percentageX(p:Number):void { hTrack.percentageX = p; }
     public function set percentageY(p:Number):void { vTrack.percentageY = p; }
+
+    public function set positionX(p:Number):void {hTrack.positionX = p; update();}
+    public function set positionY(p:Number):void {vTrack.positionY = p; update();}
 }
 }
+
 
 /****************************************************************************************************************/
 
@@ -192,6 +207,7 @@ import com.greensock.TweenMax;
 
 import flash.display.DisplayObject;
 import flash.display.Sprite;
+import flash.display.Stage;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.geom.Rectangle;
@@ -215,10 +231,11 @@ class Components {
     private var _enabled:Boolean = false;
     private var lastPos:v2d = new v2d(0,0);
     private var scroll:Scroll;
+    private var stage:Stage;
 
-    public function Components(scroll:Scroll, orientation:String, track:Sprite = null, tracker:Sprite = null, buttonUp:Sprite = null, buttonDown:Sprite = null) {
+    public function Components(stage:Stage,scroll:Scroll, orientation:String, track:Sprite = null, tracker:Sprite = null, buttonUp:Sprite = null, buttonDown:Sprite = null) {
         super();
-
+        this.stage= stage;
         this.scroll = scroll;
         this._orientation = orientation;
 
@@ -305,6 +322,7 @@ class Components {
             tracker.addEventListener(MouseEvent.MOUSE_WHEEL, onWheel);
             tracker.addEventListener(MouseEvent.MOUSE_DOWN, onDown);
             tracker.addEventListener(MouseEvent.MOUSE_UP, onUp);
+            stage.addEventListener(MouseEvent.MOUSE_UP, onUp);
         }
         if(_hasButtonComponents) {
             buttonUp.addEventListener(MouseEvent.CLICK, onClickButton);
@@ -319,6 +337,7 @@ class Components {
             tracker.removeEventListener(MouseEvent.MOUSE_WHEEL, onWheel);
             tracker.removeEventListener(MouseEvent.MOUSE_DOWN, onDown);
             tracker.removeEventListener(MouseEvent.MOUSE_UP, onUp);
+            stage.removeEventListener(MouseEvent.MOUSE_UP, onUp);
             tracker.removeEventListener(MouseEvent.ROLL_OUT, onOut);
             tracker.removeEventListener(MouseEvent.ROLL_OVER, onOver);
             tracker.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
@@ -451,6 +470,7 @@ class Components {
         tracker.stopDrag();
         tracker.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
         tracker.removeEventListener(MouseEvent.ROLL_OUT, onOut);
+
         scroll.update();
     }
 

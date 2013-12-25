@@ -33,10 +33,11 @@ public class Client extends Sprite {
     [Embed(source="../../../output/app/data/files/_gameConfig.txt", mimeType="application/octet-stream")]
     private static const CONFIG:Class;
     //[Embed(source="../../../output/app/data/assets/preloader.swf")]
-    private static const PRE_LOADER:Class;
+    private static var PRE_LOADER:Class;
 
     private static var _config:Config;
     private static var _preLoader:DisplayObject;
+
 
 
     public function Client() {

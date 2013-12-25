@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lom xmlns="http://www.imsglobal.org/xsd/imsmd_rootv1p2p1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd">
+  <general>
+    <title>
+      <langstring>Fraktalo</langstring>
+    </title>
+    <description>
+      <langstring>Description</langstring>
+    </description>
+  </general>
+  <lifecycle>
+    <version>
+      <langstring>1.0 beta</langstring>
+    </version>
+    <status>
+      <source>
+        <langstring xml:lang="x-none">Projectv1.0</langstring>
+      </source>
+      <value>
+        <langstring xml:lang="x-none">final</langstring>
+      </value>
+    </status>
+    <contribute>
+      <role>
+        <source>
+          <langstring xml:lang="x-none">Projectv1.0</langstring>
+        </source>
+        <value>
+          <langstring xml:lang="x-none">Fraktalo</langstring>
+        </value>
+      </role>
+      <centity>
+        <vcard>
+BEGIN:VCARD
+FN:Fraktalo
+
+END:VCARD</vcard>
+      </centity>
+      <date>
+        <datetime>13-09-2010</datetime>
+      </date>
+    </contribute>
+  </lifecycle>
+  <metametadata>
+    <metadatascheme>ADL SCORM 1.2</metadatascheme>
+    <language>pt</language>
+  </metametadata>
+  <technical>
+    <format>text/html</format>
+    <location type="URI">.</location>
+  </technical>
+  <rights>
+    <cost>
+      <source>
+        <langstring xml:lang="x-none">Projectv1.0</langstring>
+      </source>
+      <value>
+        <langstring xml:lang="x-none">Yes</langstring>
+      </value>
+    </cost>
+    <copyrightandotherrestrictions>
+      <source>
+        <langstring xml:lang="x-none">Projectv1.0</langstring>
+      </source>
+      <value>
+        <langstring xml:lang="x-none">Yes</langstring>
+      </value>
+    </copyrightandotherrestrictions>
+    <description>
+      <langstring>Direitos autorais reservados.</langstring>
+    </description>
+  </rights>
+</lom>

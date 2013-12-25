@@ -1,0 +1,3441 @@
+{
+    "_className":"com.aennova.sic01.model.Jogo",
+    "gameName":"Sicred",
+    "gameMode":"offlineElearning",
+    "gameModes":["elearning","offlineElearning","offline"],
+    "idAnimacaoIntroInicial":"",
+    "primeiroEvento":true,
+    "exibirUltimoEvento":true,
+    "recuperarTempoMT1":30,
+    "penalidadeTempoMT1":15,
+    "recuperarTempoMT2":30,
+    "penalidadeTempoMT2":10,
+    "animacoesInicio":[],
+    "indicadores": [
+        {
+            "_className":"com.aennova.sic01.model.Posicao",
+            "eventoAtual":"",
+            "quadrinhos":[0,0,0,0],
+            "faseAtual":"FASE_1",
+            "personagemAtual":"",
+            "missaoAtual":"",
+            "indicador1":500,
+            "indicador2":150,
+            "indicador3":5,
+            "videoTutorial":[0,0,0,0,0,0,0,0,0,0,0,0,0],
+            "aparicoesInicio":false,
+            "mapa":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1],
+            "missoes":["","","","","","","","","","","","","","","","","","","","","","","","",""],
+            "procedimentos":[],
+            "sequencias":[],
+            "segundos":0,
+            "sequenciaAtual":0,
+            "chances":0,
+            "erros":0,
+            "resultado":"",
+            "congratulations":false,
+            "feedback":false,
+            "quiz":false,
+            "aparicao":false,
+            "acoesEspeciaisDica":3,
+            "acoesEspeciaisTempo":4,
+            "acoesEspeciaisReiniciar":1,
+            "acoesEspeciaisOportunidades":1,
+            "acoesEspeciaisDicaTotal":3,
+            "acoesEspeciaisTempoTotal":4,
+            "acoesEspeciaisReiniciarTotal":1,
+            "acoesEspeciaisOportunidadesTotal":1,
+            "puzzle1":[3,1,6,4,8,10,2,0,7,5,9,11],
+            "puzzle2":[2,9,4,7,11,0,3,10,5,8,1,6],
+            "puzzle3":[8,10,0,2,5,7,9,11,1,3,4,6],
+            "puzzle4":[3,10,11,0,5,8,1,6,2,9,4,7],
+            "id":"POSICAO"
+        }
+    ],
+    "fases": [
+        {
+            "_className": "com.aennova.sic01.model.Fase",
+            "id": "FASE_1",
+            "missoes": 5,
+            "aparicoesInicio":[
+                {
+                    "_className": "com.aennova.sic01.model.Aparicoes",
+                    "idTitulo1":"AT_F1",
+                    "idTexto1":"AC_F1",
+                    "idTitulo2":"ABT_F1",
+                    "idTexto2":"ABC_F1",
+                    "beneficios":[70,10,20],
+                    "imagem":"",
+                    "exibida":false
+                }
+            ],
+            "personagens": [
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F1_P1",
+                    "nome":"Oscar",
+                    "posX": 340,
+                    "posY": 270,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F1_P1_S1",
+                            "tipo":"procedimentos",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":0,
+                            "parciais":[2,1,1],
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+
+                            "idCartaMissaoTarjaTexto":"M_F1_P1_S1",
+                            "idCartaMissaoTitulo1":"T1_F1_P1_S1",
+                            "idCartaMissaoTexto1":"C1_F1_P1_S1",
+                            "idCartaMissaoTitulo2":"T2_F1_P1_S1",
+                            "idCartaMissaoTexto2":"ST2_F1_P1_S1",
+                            "idCartaMissaoTitulo3":"T3_F1_P1_S1",
+                            "idCartaMissaoTexto3":"ST3_F1_P1_S1",
+
+                            "procedimentos":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"BANCOSICREDI",
+                                    "idTexto":"I1_F1_P1_S1_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"BANCOSICREDI",
+                                    "idTexto":"I2_F1_P1_S1_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"BANCOSICREDI",
+                                    "idTexto":"I3_F1_P1_S1_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CENTRAISSULPRMTPAROEBRASILCENTRAL",
+                                    "idTexto":"I4_F1_P1_S1_TXT",
+                                    "grupo":"centrais",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"COOPERATIVA",
+                                    "idTexto":"I5_F1_P1_S1_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"BANCOSICREDI",
+                                    "idTexto":"I6_F1_P1_S1_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO",
+                                    "idTexto":"I7_F1_P1_S1_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO",
+                                    "idTexto":"I8_F1_P1_S1_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"COOPERATIVA",
+                                    "idTexto":"I9_F1_P1_S1_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"UA",
+                                    "idTexto":"I10_F1_P1_S1_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                }
+                            ],
+
+                            "icones":[2,3,5,6,10,13,15,17,19,22],
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F1_P1_S1",
+                            "idFeedbackTarjaTexto":"PC_F1_P1_S1",
+
+                            "idFeedbackTexto1":"FBT_F1_P1_S1",
+                            "idFeedbackTexto2":"FBC_F1_P1_S1",
+
+                            "idQuizTexto":"QC_F1_P1_S1",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F1_P1_S2",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,4,1,2],
+
+                            "idRecompensaTitulo":"RT_F1_P1_S1",
+                            "recompensas":[1,2,3],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"silo",
+                                    "frame":1
+                                }
+                            ],
+                            "aparicoes":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Aparicoes",
+                                    "imagem": 0,
+                                    "idTitulo1":"AT_F1_P1_S2",
+                                    "idTexto1":"AC_F1_P1_S2",
+                                    "idTitulo2":"ABT_F1_P1_S2",
+                                    "idTexto2":"ABC_F1_P1_S2",
+                                    "beneficios":[70,10,20],
+                                    "imagem":"bndes",
+                                    "exibida":false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERONAGEM_F1_P2",
+                    "nome":"Fabiana",
+                    "posX": 630,
+                    "posY": 240,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F1_P2_S1",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":1,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F1_P2_S1",
+                            "idCartaIniciativaTexto1":"C1_F1_P2_S1",
+                            "idCartaIniciativaTitulo2":"T2_F1_P2_S1",
+                            "idCartaIniciativaTexto2":"ST2_F1_P2_S1",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F1_P2_S1",
+                                 "sequencia":[1,3,4,2],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F1_P2_S1",
+                                 "sequencia":[4,5,3,6],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F1_P2_S1",
+                                 "sequencia":[2,5,4,3,1],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ4_F1_P2_S1",
+                                 "sequencia":[3,4,6,5,2],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F1_P2_S1",
+                            "idFeedbackTarjaTexto":"PC_F1_P2_S1",
+                            "idFeedbackTexto1":"FBT_F1_P2_S1",
+                            "idFeedbackTexto2":"FBC_F1_P2_S1",
+
+                            "idQuizTexto":"QC_F1_P2_S1",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F1_P2_S1",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,2,1,1],
+
+                            "idRecompensaTitulo":"RT_F1_P2_S1",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"fachadaChocolateria",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F1_P3",
+                    "nome":"Camila",
+                    "posX": 800,
+                    "posY": 210,
+                    "missoes":[
+                       {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F1_P3_S1",
+                            "tipo":"procedimentos",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":2,
+                            "parciais":[2,1,1],
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+
+                            "idCartaMissaoTarjaTexto":"M_F1_P3_S1",
+                            "idCartaMissaoTitulo1":"T1_F1_P3_S1",
+                            "idCartaMissaoTexto1":"C1_F1_P3_S1",
+                            "idCartaMissaoTitulo2":"T2_F1_P3_S1",
+                            "idCartaMissaoTexto2":"ST2_F1_P3_S1",
+                            "idCartaMissaoTitulo3":"T3_F1_P3_S1",
+                            "idCartaMissaoTexto3":"ST3_F1_P3_S1",
+
+                            "procedimentos":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"BANCOSICREDI",
+                                    "idTexto":"I1_F1_P3_S1_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"BANCOSICREDI",
+                                    "idTexto":"I2_F1_P3_S1_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"BANCOSICREDI",
+                                    "idTexto":"I3_F1_P3_S1_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO",
+                                    "idTexto":"I4_F1_P3_S1_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CENTRAISSULPRMTPAROEBRASILCENTRAL",
+                                    "idTexto":"I5_F1_P3_S1_TXT",
+                                    "grupo":"centrais",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"COOPERATIVA",
+                                    "idTexto":"I6_F1_P3_S1_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"UA",
+                                    "idTexto":"I7_F1_P3_S1_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                }
+                            ],
+
+                            "icones":[2,3,5,9,10,12,13,15,17,20],
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F1_P3_S1",
+                            "idFeedbackTarjaTexto":"PC_F1_P3_S1",
+
+                            "idFeedbackTexto1":"FBT_F1_P3_S1",
+                            "idFeedbackTexto2":"FBC_F1_P3_S1",
+
+                            "idQuizTexto":"QC_F1_P3_S1",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F1_P3_S1",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,4,1,2],
+
+                            "idRecompensaTitulo":"RT_F1_P3_S1",
+                            "recompensas":[1,2,3],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"motocicleta",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F1_P4",
+                    "nome":"Elias",
+                    "posX": 170,
+                    "posY": 255,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F1_P4_S1",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":3,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F1_P4_S1",
+                            "idCartaIniciativaTexto1":"C1_F1_P4_S1",
+                            "idCartaIniciativaTitulo2":"T2_F1_P4_S1",
+                            "idCartaIniciativaTexto2":"ST2_F1_P4_S1",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F1_P4_S1",
+                                 "sequencia":[3,2,5,1],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F1_P4_S1",
+                                 "sequencia":[6,5,2,3],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F1_P4_S1",
+                                 "sequencia":[4,3,5,2,6],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ4_F1_P4_S1",
+                                 "sequencia":[1,4,6,2,5],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F1_P4_S1",
+                            "idFeedbackTarjaTexto":"PC_F1_P4_S1",
+                            "idFeedbackTexto1":"FBT_F1_P4_S1",
+                            "idFeedbackTexto2":"FBC_F1_P4_S1",
+
+                            "idQuizTexto":"QC_F1_P4_S1",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F1_P4_S1",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,2,1,1],
+
+                            "idRecompensaTitulo":"RT_F1_P4_S1",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"srEliasUA",
+                                    "frame":1
+                                }
+                            ]
+                        },
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F1_P4_S1",
+                            "tipo":"procedimentos",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":4,
+                            "parciais":[2,1,1],
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+
+                            "idCartaMissaoTarjaTexto":"M_F1_P4_S2",
+                            "idCartaMissaoTitulo1":"T1_F1_P4_S2",
+                            "idCartaMissaoTexto1":"C1_F1_P4_S2",
+                            "idCartaMissaoTitulo2":"T2_F1_P4_S2",
+                            "idCartaMissaoTexto2":"ST2_F1_P4_S2",
+                            "idCartaMissaoTitulo3":"T3_F1_P4_S2",
+                            "idCartaMissaoTexto3":"ST3_F1_P4_S2",
+
+                            "procedimentos":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"BANCOSICREDI2",
+                                    "idTexto":"BANCOSICREDI2_OP3",
+                                    "grupo":"cas",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO2",
+                                    "idTexto":"CONFEDERACAO2_OP2",
+                                    "grupo":"cas",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CENTRAISSULPRMTPAROEBRASILCENTRAL2",
+                                    "idTexto":"CENTRAISSULPRMTPAROEBRASILCENTRAL2_OP3",
+                                    "grupo":"centrais",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"COOPERATIVA2",
+                                    "idTexto":"COOPERATIVA2_OP1",
+                                    "grupo":"comunidade",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"AGENTECREDENCIADO2",
+                                    "idTexto":"AGENTECREDENCIADO2_OP1",
+                                    "grupo":"comunidade",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                }
+                            ],
+
+                            "icones":[26,27,28,29,30],
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F1_P4_S2",
+                            "idFeedbackTarjaTexto":"PC_F1_P4_S2",
+
+                            "idFeedbackTexto1":"FBT_F1_P4_S2",
+                            "idFeedbackTexto2":"FBC_F1_P4_S2",
+
+                            "idQuizTexto":"QC_F1_P4_S2",
+                            "quizEscolhaCorreta":"falso",
+                            "quizFeedback":"QFB_F1_P4_S2",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,4,1,2],
+
+                            "idRecompensaTitulo":"RT_F1_P4_S2",
+                            "recompensas":[1,2,3],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"grandeComercio",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "_className": "com.aennova.sic01.model.Fase",
+            "id": "FASE_2",
+            "missoes": 5,
+            "personagens": [
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F2_P1",
+                    "nome":"Oscar",
+                    "posX": 340,
+                    "posY": 270,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F2_P1_S3",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":5,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F2_P1_S3",
+                            "idCartaIniciativaTexto1":"C1_F2_P1_S3",
+                            "idCartaIniciativaTitulo2":"T2_F2_P1_S3",
+                            "idCartaIniciativaTexto2":"ST2_F2_P1_S3",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F2_P4_S4",
+                                 "sequencia":[1,4,3,5],
+                                 "completa":false
+                                },
+								{
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F2_P1_S3",
+                                 "sequencia":[2,1,6,5],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F2_P1_S3",
+                                 "sequencia":[5,3,1,4,6],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F2_P1_S3",
+                                 "sequencia":[6,2,4,1,3],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F2_P1_S3",
+                            "idFeedbackTarjaTexto":"PC_F2_P1_S3",
+                            "idFeedbackTexto1":"FBT_F2_P1_S3",
+                            "idFeedbackTexto2":"FBC_F2_P1_S3",
+
+                            "idQuizTexto":"QC_F2_P1_S3",
+                            "quizEscolhaCorreta":"falso",
+                            "quizFeedback":"QFB_F2_P1_S3",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,1,1,0],
+
+                            "idRecompensaTitulo":"RT_F2_P1_S3",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"feiraAgricultores",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERONAGEM_F2_P2",
+                    "nome":"Fabiana",
+                    "posX": 630,
+                    "posY": 240,
+                    "missoes":[
+                       {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F2_P2_S2",
+                            "tipo":"procedimentos",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":6,
+                            "parciais":[2,1,1],
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+
+                            "idCartaMissaoTarjaTexto":"M_F2_P2_S2",
+                            "idCartaMissaoTitulo1":"T1_F2_P2_S2",
+                            "idCartaMissaoTexto1":"C1_F2_P2_S2",
+                            "idCartaMissaoTitulo2":"T2_F2_P2_S2",
+                            "idCartaMissaoTexto2":"ST2_F2_P2_S2",
+                            "idCartaMissaoTitulo3":"T3_F2_P2_S2",
+                            "idCartaMissaoTexto3":"ST3_F2_P2_S2",
+
+                            "procedimentos":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"BANCOCENTRALEMINISTERIODAFAZENDA",
+                                    "idTexto":"I1_F2_P2_S2_TXT",
+                                    "grupo":"outros",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"ADMINISTRADORADECONSORCIO",
+                                    "idTexto":"I2_F2_P2_S2_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"COOPERATIVA",
+                                    "idTexto":"I3_F2_P2_S2_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":true,
+                                    "idEncontrarPessoasTitulo":"EPT_F2_P2_S2",
+                                    "idEncontrarPessoasTexto":"EPC_F2_P2_S2",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"UA",
+                                    "idTexto":"I4_F2_P2_S2_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CENTRAISSULPRMTPAROEBRASILCENTRAL",
+                                    "idTexto":"I5_F2_P2_S2_TXT",
+                                    "grupo":"centrais",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO",
+                                    "idTexto":"I6_F2_P2_S2_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                }
+                            ],
+
+                            "icones":[2,3,5,7,10,13,15,17,18,19],
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F2_P2_S2",
+                            "idFeedbackTarjaTexto":"PC_F2_P2_S2",
+
+                            "idFeedbackTexto1":"FBT_F2_P2_S2",
+                            "idFeedbackTexto2":"FBC_F2_P2_S2",
+
+                            "idQuizTexto":"QC_F2_P2_S2",
+                            "quizEscolhaCorreta":"falso",
+                            "quizFeedback":"QFB_F2_P2_S2",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[5,5,2,2],
+
+                            "idRecompensaTitulo":"RT_F2_P2_S2",
+                            "recompensas":[1,2,3],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"suv",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F2_P3",
+                    "nome":"Camila",
+                    "posX": 800,
+                    "posY": 210,
+                    "missoes":[
+                       {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F2_P3_S2",
+                            "tipo":"procedimentos",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":7,
+                            "parciais":[2,1,1],
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+
+                            "idCartaMissaoTarjaTexto":"M_F2_P3_S2",
+                            "idCartaMissaoTitulo1":"T1_F2_P3_S2",
+                            "idCartaMissaoTexto1":"C1_F2_P3_S2",
+                            "idCartaMissaoTitulo2":"T2_F2_P3_S2",
+                            "idCartaMissaoTexto2":"ST2_F2_P3_S2",
+                            "idCartaMissaoTitulo3":"T3_F2_P3_S2",
+                            "idCartaMissaoTexto3":"ST3_F2_P3_S2",
+
+                            "procedimentos":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CORRETORADECARTOES",
+                                    "idTexto":"I1_F2_P3_S2_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO",
+                                    "idTexto":"I2_F2_P3_S2_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"VISACIELOEREDECARD",
+                                    "idTexto":"I3_F2_P3_S2_TXT",
+                                    "grupo":"parceiros",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CENTRAISSULPRMTPAROEBRASILCENTRAL",
+                                    "idTexto":"I4_F2_P3_S2_TXT",
+                                    "grupo":"centrais",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"UA",
+                                    "idTexto":"I5_F2_P3_S2_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO",
+                                    "idTexto":"I6_F2_P3_S2_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                }
+                            ],
+
+                            "icones":[5,7,10,11,13,15,17,18,20,25],
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F2_P3_S2",
+                            "idFeedbackTarjaTexto":"PC_F2_P3_S2",
+
+                            "idFeedbackTexto1":"FBT_F2_P3_S2",
+                            "idFeedbackTexto2":"FBC_F2_P3_S2",
+
+                            "idQuizTexto":"QC_F2_P3_S2",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F2_P3_S2",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[5,5,2,2],
+
+                            "idRecompensaTitulo":"RT_F2_P3_S2",
+                            "recompensas":[1,2,3],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"feiraArtesanato",
+                                    "frame":1
+                                }
+                            ],
+                            "aparicoes":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Aparicoes",
+                                    "imagem": 0,
+                                    "idTitulo1":"AT_F2_P3_S3",
+                                    "idTexto1":"AC_F2_P3_S3",
+                                    "idTitulo2":"ABT_F2_P3_S3",
+                                    "idTexto2":"ABC_F2_P3_S3",
+                                    "beneficios":[70,10,20],
+                                    "imagem":"redecard_cielo_visa",
+                                    "exibida":false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F2_P4",
+                    "nome":"Elias",
+                    "posX": 170,
+                    "posY": 255,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F2_P4_S3",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":8,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F2_P4_S3",
+                            "idCartaIniciativaTexto1":"C1_F2_P4_S3",
+                            "idCartaIniciativaTitulo2":"T2_F2_P4_S3",
+                            "idCartaIniciativaTexto2":"ST2_F2_P4_S3",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F2_P4_S3",
+                                 "sequencia":[5,4,1,3],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F2_P4_S3",
+                                 "sequencia":[3,1,4,6],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F2_P4_S3",
+                                 "sequencia":[6,2,1,5,3],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ4_F2_P4_S3",
+                                 "sequencia":[2,5,6,4,1],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F2_P4_S3",
+                            "idFeedbackTarjaTexto":"",
+                            "idFeedbackTexto1":"FBT_F2_P4_S3",
+                            "idFeedbackTexto2":"",
+
+                            "idQuizTexto":"",
+                            "quizEscolhaCorreta":"",
+                            "quizFeedback":"",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[],
+
+                            "idRecompensaTitulo":"RT_F2_P4_S3",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"biblioteca",
+                                    "frame":1
+                                }
+                            ]
+                        },
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F2_P4_S4",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":9,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F2_P4_S4",
+                            "idCartaIniciativaTexto1":"C1_F2_P4_S4",
+                            "idCartaIniciativaTitulo2":"T2_F2_P4_S4",
+                            "idCartaIniciativaTexto2":"ST2_F2_P4_S4",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F2_P4_S4",
+                                 "sequencia":[2,3,1,6],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F2_P4_S4",
+                                 "sequencia":[3,1,2,5],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ4_F2_P4_S4",
+                                 "sequencia":[4,3,1,2,5],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ5_F2_P4_S4",
+                                 "sequencia":[2,6,5,4,1],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F2_P4_S4",
+                            "idFeedbackTarjaTexto":"",
+                            "idFeedbackTexto1":"FBT_F2_P4_S4",
+                            "idFeedbackTexto2":"",
+
+                            "idQuizTexto":"",
+                            "quizEscolhaCorreta":"",
+                            "quizFeedback":"",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[],
+
+                            "idRecompensaTitulo":"RT_F2_P4_S4",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"destaque1",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "sobras":[
+                {
+                    "_className": "com.aennova.sic01.model.Sobras",
+                    "id":"SOBRAS_F2",
+                    "idTitulo":"SBT_F2",
+                    "idTexto":"SBC_F2",
+                    "beneficios":[120,15,-15]
+                }
+             ]
+        },
+        {
+            "_className": "com.aennova.sic01.model.Fase",
+            "id": "FASE_3",
+            "missoes": 5,
+            "personagens": [
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F3_P1",
+                    "nome":"Oscar",
+                    "posX": 340,
+                    "posY": 270,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F3_P1_S4",
+                            "tipo":"procedimentos",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":10,
+                            "parciais":[2,1,1],
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+
+                            "idCartaMissaoTarjaTexto":"M_F3_P1_S4",
+                            "idCartaMissaoTitulo1":"T1_F3_P1_S4",
+                            "idCartaMissaoTexto1":"C1_F3_P1_S4",
+                            "idCartaMissaoTitulo2":"T2_F3_P1_S4",
+                            "idCartaMissaoTexto2":"ST2_F3_P1_S4",
+                            "idCartaMissaoTitulo3":"T3_F3_P1_S4",
+                            "idCartaMissaoTexto3":"ST3_F3_P1_S4",
+
+                            "procedimentos":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"MAPFRE2",
+                                    "idTexto":"MAPFRE2_OP2",
+                                    "grupo":"parceiros",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CORRETORADESEGUROS2",
+                                    "idTexto":"CORRETORADESEGUROS2_OP1",
+                                    "grupo":"cas",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO3",
+                                    "idTexto":"CONFEDERACAO3_OP2",
+                                    "grupo":"cas",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CENTRAISSULPRMTPAROEBRASILCENTRAL3",
+                                    "idTexto":"CENTRAISSULPRMTPAROEBRASILCENTRAL3_OP3",
+                                    "grupo":"centrais",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"UA2",
+                                    "idTexto":"UA2_OP2",
+                                    "grupo":"comunidade",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                }
+                            ],
+
+                            "icones":[31,32,33,34,35],
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F3_P1_S4",
+                            "idFeedbackTarjaTexto":"",
+
+                            "idFeedbackTexto1":"FBT_F3_P1_S4",
+                            "idFeedbackTexto2":"",
+
+                            "idQuizTexto":"",
+                            "quizEscolhaCorreta":"",
+                            "quizFeedback":"",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[],
+
+                            "idRecompensaTitulo":"RT_F3_P1_S4",
+                            "recompensas":[1,2,3],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"lavoura",
+                                    "frame":1
+                                }
+                            ],
+                            "aparicoes":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Aparicoes",
+                                    "imagem": 0,
+                                    "idTitulo1":"AT_F3_P1_S5",
+                                    "idTexto1":"AC_F3_P1_S5",
+                                    "idTitulo2":"ABT_F3_P1_S5",
+                                    "idTexto2":"ABC_F3_P1_S5",
+                                    "beneficios":[70,10,20],
+                                    "imagem":"seguradoras",
+                                    "exibida":false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERONAGEM_F3_P2",
+                    "nome":"Fabiana",
+                    "posX": 630,
+                    "posY": 240,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F3_P2_S3",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":11,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F3_P2_S3",
+                            "idCartaIniciativaTexto1":"C1_F3_P2_S3",
+                            "idCartaIniciativaTitulo2":"T2_F3_P2_S3",
+                            "idCartaIniciativaTexto2":"ST2_F3_P2_S3",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F3_P2_S5",
+                                 "sequencia":[1,5,2,3],
+                                 "completa":false
+                                },
+								{
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F3_P2_S3",
+                                 "sequencia":[4,2,6,1],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F3_P2_S3",
+                                 "sequencia":[1,6,5,2,3],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F3_P2_S3",
+                                 "sequencia":[5,3,1,6,2],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F3_P2_S3",
+                            "idFeedbackTarjaTexto":"",
+                            "idFeedbackTexto1":"FBT_F3_P2_S3",
+                            "idFeedbackTexto2":"",
+
+                            "idQuizTexto":"",
+                            "quizEscolhaCorreta":"",
+                            "quizFeedback":"",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[],
+
+                            "idRecompensaTitulo":"RT_F3_P2_S3",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"caixa24Horas",
+                                    "frame":1
+                                }
+                            ],
+                            "aparicoes":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Aparicoes",
+                                    "imagem": 0,
+                                    "idTitulo1":"AT_F3_P2_S4",
+                                    "idTexto1":"AC_F3_P2_S4",
+                                    "idTitulo2":"ABT_F3_P2_S4",
+                                    "idTexto2":"ABC_F3_P2_S4",
+                                    "beneficios":[70,10,20],
+                                    "imagem":"banco24horas",
+                                    "exibida":false
+                                }
+                            ]
+                        },
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F3_P2_S5",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":12,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F3_P2_S5",
+                            "idCartaIniciativaTexto1":"C1_F3_P2_S5",
+                            "idCartaIniciativaTitulo2":"T2_F3_P2_S5",
+                            "idCartaIniciativaTexto2":"ST2_F3_P2_S5",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F3_P2_S5",
+                                 "sequencia":[2,4,5,1],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F3_P2_S5",
+                                 "sequencia":[5,6,1,4],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ4_F3_P2_S5",
+                                 "sequencia":[6,4,3,5,1],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ5_F3_P2_S5",
+                                 "sequencia":[1,3,2,4,6],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F3_P2_S5",
+                            "idFeedbackTarjaTexto":"PC_F3_P2_S5",
+                            "idFeedbackTexto1":"FBT_F3_P2_S5",
+                            "idFeedbackTexto2":"FBC_F3_P2_S5",
+
+                            "idQuizTexto":"QC_F3_P2_S5",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F3_P2_S5",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,2,1,1],
+
+                            "idRecompensaTitulo":"RT_F3_P2_S5",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"chocolateria2",
+                                    "frame":1
+                                }
+                            ],
+                            "aparicoes":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Aparicoes",
+                                    "imagem": 0,
+                                    "idTitulo1":"AT_F3_P2_S6",
+                                    "idTexto1":"AC_F3_P2_S6",
+                                    "idTitulo2":"ABT_F3_P2_S6",
+                                    "idTexto2":"ABC_F3_P2_S6",
+                                    "beneficios":[70,10,20],
+                                    "imagem":"",
+                                    "exibida":false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F3_P3",
+                    "nome":"Camila",
+                    "posX": 800,
+                    "posY": 210,
+                    "missoes":[]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F3_P4",
+                    "nome":"Elias",
+                    "posX": 170,
+                    "posY": 255,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F3_P4_S5",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":13,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F3_P4_S5",
+                            "idCartaIniciativaTexto1":"C1_F3_P4_S5",
+                            "idCartaIniciativaTitulo2":"T2_F3_P4_S5",
+                            "idCartaIniciativaTexto2":"ST2_F3_P4_S5",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F3_P4_S5",
+                                 "sequencia":[5,6,3,4],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F3_P4_S5",
+                                 "sequencia":[6,1,4,5],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F3_P4_S5",
+                                 "sequencia":[3,5,1,2,6],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ4_F3_P4_S5",
+                                 "sequencia":[4,6,2,1,5],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F3_P4_S5",
+                            "idFeedbackTarjaTexto":"PC_F3_P4_S5",
+                            "idFeedbackTexto1":"FBT_F3_P4_S5",
+                            "idFeedbackTexto2":"FBC_F3_P4_S5",
+
+                            "idQuizTexto":"QC_F3_P4_S5",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F3_P4_S5",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,2,1,1],
+
+                            "idRecompensaTitulo":"RT_F3_P4_S5",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"srEliasCooperativa",
+                                    "frame":1
+                                }
+                            ]
+                        },
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F3_P4_S6",
+                            "tipo":"procedimentos",
+                            "animacaoCAS":true,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":14,
+                            "parciais":[2,1,1],
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+
+                            "idCartaMissaoTarjaTexto":"M_F3_P4_S6",
+                            "idCartaMissaoTitulo1":"T1_F3_P4_S6",
+                            "idCartaMissaoTexto1":"C1_F3_P4_S6",
+                            "idCartaMissaoTitulo2":"T2_F3_P4_S6",
+                            "idCartaMissaoTexto2":"ST2_F3_P4_S6",
+                            "idCartaMissaoTitulo3":"T3_F3_P4_S6",
+                            "idCartaMissaoTexto3":"ST3_F3_P4_S6",
+
+                            "procedimentos":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"ASSOCIADO",
+                                    "idTexto":"I1_F3_P4_S6_TXT",
+                                    "grupo":"associado",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"COOPERATIVA",
+                                    "idTexto":"I2_F3_P4_S6_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CENTRAISSULPRMTPAROEBRASILCENTRAL",
+                                    "idTexto":"I3_F3_P4_S6_TXT",
+                                    "grupo":"centrais",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"SICREDIPAR",
+                                    "idTexto":"I4_F3_P4_S6_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CAS",
+                                    "idTexto":"I5_F3_P4_S6_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"COOPERATIVA",
+                                    "idTexto":"I6_F3_P4_S6_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                }
+                            ],
+
+                            "icones":[0,4,10,13,15,17,18,19,20],
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F3_P4_S6",
+                            "idFeedbackTarjaTexto":"PC_F3_P4_S6",
+
+                            "idFeedbackTexto1":"FBT_F3_P4_S6",
+                            "idFeedbackTexto2":"FBC_F3_P4_S6",
+
+                            "idQuizTexto":"QC_F3_P4_S6",
+                            "quizEscolhaCorreta":"falso",
+                            "quizFeedback":"QFB_F3_P4_S6",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[5,5,2,2],
+
+                            "idRecompensaTitulo":"RT_F3_P4_S6",
+                            "recompensas":[1,2,3],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"reuniaoNucleo",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "_className": "com.aennova.sic01.model.Fase",
+            "id": "FASE_4",
+            "missoes": 5,
+            "personagens": [
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F4_P1",
+                    "nome":"Oscar",
+                    "posX": 340,
+                    "posY": 270,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F4_P1_S6",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":15,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F4_P1_S6",
+                            "idCartaIniciativaTexto1":"C1_F4_P1_S6",
+                            "idCartaIniciativaTitulo2":"T2_F4_P1_S6",
+                            "idCartaIniciativaTexto2":"ST2_F4_P1_S6",
+
+                            "sequencias":[
+                               {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F4_P1_S6",
+                                 "sequencia":[4,6,1,2],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F4_P1_S6",
+                                 "sequencia":[5,2,6,1],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F4_P1_S6",
+                                 "sequencia":[1,3,4,2,6],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ4_F4_P1_S6",
+                                 "sequencia":[5,2,3,6,4],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F4_P1_S6",
+                            "idFeedbackTarjaTexto":"PC_F4_P1_S6",
+                            "idFeedbackTexto1":"FBT_F4_P1_S6",
+                            "idFeedbackTexto2":"FBC_F4_P1_S6",
+
+                            "idQuizTexto":"QC_F4_P1_S6",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F4_P1_S6",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,1,1,0],
+
+                            "idRecompensaTitulo":"RT_F4_P1_S6",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"plantacao",
+                                    "frame":1
+                                }
+                            ],
+                            "aparicoes":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Aparicoes",
+                                    "imagem": 0,
+                                    "idTitulo1":"AT_F4_P1_S7",
+                                    "idTexto1":"AC_F4_P1_S7",
+                                    "idTitulo2":"",
+                                    "idTexto2":"",
+                                    "beneficios":[],
+                                    "imagem":"",
+                                    "exibida":false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERONAGEM_F4_P2",
+                    "nome":"Fabiana",
+                    "posX": 630,
+                    "posY": 240,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F4_P2_S7",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":16,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F4_P2_S7",
+                            "idCartaIniciativaTexto1":"C1_F4_P2_S7",
+                            "idCartaIniciativaTitulo2":"T2_F4_P2_S7",
+                            "idCartaIniciativaTexto2":"ST2_F4_P2_S7",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F4_P2_S7",
+                                 "sequencia":[6,3,1,4],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F4_P2_S7",
+                                 "sequencia":[1,6,5,2],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F4_P2_S7",
+                                 "sequencia":[2,3,1,6,4],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ4_F4_P2_S7",
+                                 "sequencia":[3,1,4,2,6],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F4_P2_S7",
+                            "idFeedbackTarjaTexto":"",
+                            "idFeedbackTexto1":"FBT_F4_P2_S7",
+                            "idFeedbackTexto2":"",
+
+                            "idQuizTexto":"",
+                            "quizEscolhaCorreta":"",
+                            "quizFeedback":"",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[],
+
+                            "idRecompensaTitulo":"RT_F4_P2_S7",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"familiaCamila",
+                                    "frame":1
+                                }
+                            ]
+                        },
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F4_P2_S8",
+                            "tipo":"procedimentos",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":17,
+                            "parciais":[2,1,1],
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+
+                            "idCartaMissaoTarjaTexto":"M_F4_P2_S8",
+                            "idCartaMissaoTitulo1":"T1_F4_P2_S8",
+                            "idCartaMissaoTexto1":"C1_F4_P2_S8",
+                            "idCartaMissaoTitulo2":"T2_F4_P2_S8",
+                            "idCartaMissaoTexto2":"ST2_F4_P2_S8",
+                            "idCartaMissaoTitulo3":"T3_F4_P2_S8",
+                            "idCartaMissaoTexto3":"ST3_F4_P2_S8",
+
+                            "procedimentos":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"COOPERATIVA",
+                                    "idTexto":"I1_F4_P2_S8_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":true,
+                                    "idEncontrarPessoasTitulo":"EPT_F4_P2_S8",
+                                    "idEncontrarPessoasTexto":"EPC_F4_P2_S8",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"COOPERATIVA",
+                                    "idTexto":"I2_F4_P2_S8_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CENTRAISSULPRMTPAROEBRASILCENTRAL",
+                                    "idTexto":"I3_F4_P2_S8_TXT",
+                                    "grupo":"centrais",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"BANCOSICREDI",
+                                    "idTexto":"I4_F4_P2_S8_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO",
+                                    "idTexto":"I5_F4_P2_S8_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO",
+                                    "idTexto":"I6_F4_P2_S8_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                }
+                            ],
+
+                            "icones":[3,5,9,10,12,13,15,18,19,20],
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F4_P2_S8",
+                            "idFeedbackTarjaTexto":"PC_F4_P2_S8",
+
+                            "idFeedbackTexto1":"FBT_F4_P2_S8",
+                            "idFeedbackTexto2":"FBC_F4_P2_S8",
+
+                            "idQuizTexto":"QC_F4_P2_S8",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F4_P2_S8",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[5,5,2,2],
+
+                            "idRecompensaTitulo":"RT_F4_P2_S8",
+                            "recompensas":[1,2,3],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"ua2",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F4_P3",
+                    "nome":"Camila",
+                    "posX": 800,
+                    "posY": 210,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F4_P3_S4",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":18,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F4_P3_S4",
+                            "idCartaIniciativaTexto1":"C1_F4_P3_S4",
+                            "idCartaIniciativaTitulo2":"T2_F4_P3_S4",
+                            "idCartaIniciativaTexto2":"ST2_F4_P3_S4",
+
+                            "sequencias":[
+                                  {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F4_P3_S4",
+                                 "sequencia":[3,6,2,5],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F4_P3_S4",
+                                 "sequencia":[2,1,5,6],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F4_P3_S4",
+                                 "sequencia":[4,2,6,1,5],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ5_F4_P2_S7",
+                                 "sequencia":[5,4,3,1,6],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F4_P3_S4",
+                            "idFeedbackTarjaTexto":"PC_F4_P3_S4",
+                            "idFeedbackTexto1":"FBT_F4_P3_S4",
+                            "idFeedbackTexto2":"FBC_F4_P3_S4",
+
+                            "idQuizTexto":"QC_F4_P3_S4",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F4_P3_S4",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,1,1,0],
+
+                            "idRecompensaTitulo":"RT_F4_P3_S4",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"casaCamila",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                   ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F4_P4",
+                    "nome":"Elias",
+                    "posX": 170,
+                    "posY": 255,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F4_P4_S7",
+                            "tipo":"procedimentos",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":19,
+                            "parciais":[2,1,1],
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+
+                            "idCartaMissaoTarjaTexto":"M_F4_P4_S7",
+                            "idCartaMissaoTitulo1":"T1_F4_P4_S7",
+                            "idCartaMissaoTexto1":"C1_F4_P4_S7",
+                            "idCartaMissaoTitulo2":"T2_F4_P4_S7",
+                            "idCartaMissaoTexto2":"ST2_F4_P4_S7",
+                            "idCartaMissaoTitulo3":"T3_F4_P4_S7",
+                            "idCartaMissaoTexto3":"ST3_F4_P4_S7",
+
+                            "procedimentos":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"FUNDACAO2",
+                                    "idTexto":"FUNDACAO2_OP3",
+                                    "grupo":"cas",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"COOPERATIVA3",
+                                    "idTexto":"COOPERATIVA3_OP2",
+                                    "grupo":"comunidade",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CENTRAISSULPRMTPAROEBRASILCENTRAL4",
+                                    "idTexto":"CENTRAISSULPRMTPAROEBRASILCENTRAL4_OP3",
+                                    "grupo":"centrais",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"ASSOCIADO2",
+                                    "idTexto":"ASSOCIADO2_OP1",
+                                    "grupo":"associado",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                }
+                            ],
+
+                            "icones":[36,37,38,39],
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F4_P4_S7",
+                            "idFeedbackTarjaTexto":"PC_F4_P4_S7",
+
+                            "idFeedbackTexto1":"FBT_F4_P4_S7",
+                            "idFeedbackTexto2":"FBC_F4_P4_S7",
+
+                            "idQuizTexto":"QC_F4_P4_S7",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F4_P4_S7",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[5,5,2,2],
+
+                            "idRecompensaTitulo":"RT_F4_P4_S7",
+                            "recompensas":[1,2,3],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"cooperativa",
+                                    "frame":1
+                                }
+                            ],
+                            "aparicoes":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Aparicoes",
+                                    "imagem": 0,
+                                    "idTitulo1":"AT_F4_P4_S8",
+                                    "idTexto1":"AC_F4_P4_S8",
+                                    "idTitulo2":"ABT_F4_P4_S8",
+                                    "idTexto2":"ABC_F4_P4_S8",
+                                    "beneficios":[70,10,20],
+                                    "imagem":"",
+                                    "exibida":false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "sobras":[
+                {
+                    "_className": "com.aennova.sic01.model.Sobras",
+                    "id":"SOBRAS_F4",
+                    "idTitulo":"SBT_F4",
+                    "idTexto":"SBC_F4",
+                    "beneficios":[120,15,-15]
+                }
+             ]
+        },
+        {
+            "_className": "com.aennova.sic01.model.Fase",
+            "id": "FASE_5",
+            "missoes": 5,
+            "personagens": [
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F5_P1",
+                    "nome":"Oscar",
+                    "posX": 340,
+                    "posY": 270,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F5_P1_S8",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":20,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F5_P1_S8",
+                            "idCartaIniciativaTexto1":"C1_F5_P1_S8",
+                            "idCartaIniciativaTitulo2":"T2_F5_P1_S8",
+                            "idCartaIniciativaTexto2":"ST2_F5_P1_S8",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F5_P1_S8",
+                                 "sequencia":[2,5,3,4],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F5_P1_S8",
+                                 "sequencia":[6,5,4,1],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F5_P1_S8",
+                                 "sequencia":[4,6,3,2,5],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ5_F5_P4_S10",
+                                 "sequencia":[3,2,5,4,1],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F5_P1_S8",
+                            "idFeedbackTarjaTexto":"PC_F5_P1_S8",
+                            "idFeedbackTexto1":"FBT_F5_P1_S8",
+                            "idFeedbackTexto2":"FBC_F5_P1_S8",
+
+                            "idQuizTexto":"QC_F5_P1_S8",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F5_P1_S8",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,1,1,0],
+
+                            "idRecompensaTitulo":"RT_F5_P1_S8",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"comunidadeIluminada",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                   ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERONAGEM_F5_P2",
+                    "nome":"Fabiana",
+                    "posX": 630,
+                    "posY": 240,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F5_P2_S9",
+                            "tipo":"procedimentos",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":21,
+                            "parciais":[2,1,1],
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+
+                            "idCartaMissaoTarjaTexto":"M_F5_P2_S9",
+                            "idCartaMissaoTitulo1":"T1_F5_P2_S9",
+                            "idCartaMissaoTexto1":"C1_F5_P2_S9",
+                            "idCartaMissaoTitulo2":"T2_F5_P2_S9",
+                            "idCartaMissaoTexto2":"ST2_F5_P2_S9",
+                            "idCartaMissaoTitulo3":"T3_F5_P2_S9",
+                            "idCartaMissaoTexto3":"ST3_F5_P2_S9",
+
+                            "procedimentos":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"BANCOSICREDI3",
+                                    "idTexto":"BANCOSICREDI3_OP3",
+                                    "grupo":"cas",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO4",
+                                    "idTexto":"CONFEDERACAO4_OP1",
+                                    "grupo":"cas",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CONFEDERACAO4",
+                                    "idTexto":"CONFEDERACAO4_OP2",
+                                    "grupo":"cas",
+                                    "tipo":1,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                }
+                            ],
+
+                            "icones":[40,41],
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F5_P2_S9",
+                            "idFeedbackTarjaTexto":"",
+
+                            "idFeedbackTexto1":"FBT_F5_P2_S9",
+                            "idFeedbackTexto2":"",
+
+                            "idQuizTexto":"",
+                            "quizEscolhaCorreta":"",
+                            "quizFeedback":"",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[],
+
+                            "idRecompensaTitulo":"RT_F5_P2_S9",
+                            "recompensas":[1,2,3],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"torreTransmissao",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F5_P3",
+                    "nome":"Camila",
+                    "posX": 800,
+                    "posY": 210,
+                    "missoes":[
+                       {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F5_P3_S5",
+                            "tipo":"procedimentos",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":22,
+                            "parciais":[2,1,1],
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+
+                            "idCartaMissaoTarjaTexto":"M_F5_P3_S5",
+                            "idCartaMissaoTitulo1":"T1_F5_P3_S5",
+                            "idCartaMissaoTexto1":"C1_F5_P3_S5",
+                            "idCartaMissaoTitulo2":"T2_F5_P3_S5",
+                            "idCartaMissaoTexto2":"ST2_F5_P3_S5",
+                            "idCartaMissaoTitulo3":"T3_F5_P3_S5",
+                            "idCartaMissaoTexto3":"ST3_F5_P3_S5",
+
+                            "procedimentos":[
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"FUNDACAO",
+                                    "idTexto":"I1_F5_P3_S5_TXT",
+                                    "grupo":"cas",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"CENTRAISSULPRMTPAROEBRASILCENTRAL",
+                                    "idTexto":"I2_F5_P3_S5_TXT",
+                                    "grupo":"centrais",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"COOPERATIVA",
+                                    "idTexto":"I3_F5_P3_S5_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"UNIVERSIDADE",
+                                    "idTexto":"I4_F5_P3_S5_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"SECRETARIADAEDUCACAO",
+                                    "idTexto":"I5_F5_P3_S5_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.Procedimentos",
+                                    "idTitulo":"APOIADORESLOCAIS",
+                                    "idTexto":"I6_F5_P3_S5_TXT",
+                                    "grupo":"comunidade",
+                                    "tipo":2,
+                                    "encontrarPessoas":false,
+                                    "idEncontrarPessoasTitulo":"",
+                                    "idEncontrarPessoasTexto":"",
+                                    "escolhaUsuario:":"",
+                                    "escolhaCorreta":false,
+                                    "bonus":[10,2,2]
+                                }
+                            ],
+
+                            "icones":[3,5,9,10,11,12,13,14,16,17],
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F5_P3_S5",
+                            "idFeedbackTarjaTexto":"",
+
+                            "idFeedbackTexto1":"FBT_F5_P3_S5",
+                            "idFeedbackTexto2":"",
+
+                            "idQuizTexto":"",
+                            "quizEscolhaCorreta":"",
+                            "quizFeedback":"",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[],
+
+                            "idRecompensaTitulo":"RT_F5_P3_S5",
+                            "recompensas":[1,2,3],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"horta",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "_className": "com.aennova.sic01.model.Personagem",
+                    "id":"PERSONAGEM_F5_P4",
+                    "nome":"Elias",
+                    "posX": 170,
+                    "posY": 255,
+                    "missoes":[
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F5_P4_S9",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":23,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F5_P4_S9",
+                            "idCartaIniciativaTexto1":"C1_F5_P4_S9",
+                            "idCartaIniciativaTitulo2":"T2_F5_P4_S9",
+                            "idCartaIniciativaTexto2":"ST2_F5_P4_S9",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F5_P4_S9",
+                                 "sequencia":[3,5,1,6],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F5_P4_S9",
+                                 "sequencia":[4,1,2,5],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F5_P4_S9",
+                                 "sequencia":[1,2,5,3,6],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ4_F5_P4_S9",
+                                 "sequencia":[6,2,5,4,1],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F5_P4_S9",
+                            "idFeedbackTarjaTexto":"PC_F5_P4_S9",
+                            "idFeedbackTexto1":"FBT_F5_P4_S9",
+                            "idFeedbackTexto2":"FBC_F5_P4_S9",
+
+                            "idQuizTexto":"QC_F5_P4_S9",
+                            "quizEscolhaCorreta":"verdadeiro",
+                            "quizFeedback":"QFB_F5_P4_S9",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[3,1,1,0],
+
+                            "idRecompensaTitulo":"RT_F5_P4_S9",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"hortaTratorPlay",
+                                    "frame":1
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"chocolateria1",
+                                    "frame":1
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"chocolateria2",
+                                    "frame":1
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"trator",
+                                    "frame":1
+                                },
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"escola",
+                                    "frame":1
+                                }
+                            ]
+                        },
+                        {
+                            "_className": "com.aennova.sic01.model.Missao",
+                            "id":"SITUACAO_F5_P4_S10",
+                            "tipo":"iniciativas",
+                            "animacaoCAS":false,
+                            "disponivel":true,
+                            "completa":false,
+                            "posicao":24,
+                            "parciais":[3,2,1,1],
+
+                            "beneficios":[300,20,25,200,10,15,100,-10,5],
+                            "bonus":[10,2,2],
+
+                            "idCartaIniciativaTitulo1":"T1_F5_P4_S10",
+                            "idCartaIniciativaTexto1":"C1_F5_P4_S10",
+                            "idCartaIniciativaTitulo2":"T2_F5_P4_S10",
+                            "idCartaIniciativaTexto2":"ST2_F5_P4_S10",
+
+                            "sequencias":[
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ1_F5_P4_S10",
+                                 "sequencia":[6,4,5,3],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ2_F5_P4_S10",
+                                 "sequencia":[5,1,3,6],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ3_F5_P4_S10",
+                                 "sequencia":[4,3,6,1,5],
+                                 "completa":false
+                                },
+                                {
+                                 "_className": "com.aennova.sic01.model.Sequencia",
+                                 "id":"SQ4_F5_P4_S10",
+                                 "sequencia":[5,4,1,2,3],
+                                 "completa":false
+                                }
+                            ],
+
+                            "resultado":"",
+                            "idFeedbackTarjaTitulo":"PT_F5_P4_S10",
+                            "idFeedbackTarjaTexto":"",
+                            "idFeedbackTexto1":"FBT_F5_P4_S10",
+                            "idFeedbackTexto2":"",
+
+                            "idQuizTexto":"",
+                            "quizEscolhaCorreta":"",
+                            "quizFeedback":"",
+                            "quizEscolhaUsuario":"",
+                            "quizValores":[],
+
+                            "idRecompensaTitulo":"RT_F5_P4_S10",
+                            "recompensas":[1],
+                            "impactosVisuais":[
+                                {
+                                    "_className": "com.aennova.sic01.model.ImpactoVisual",
+                                    "elemento":"ua1",
+                                    "frame":1
+                                }
+                            ]
+                        }
+                   ]
+                }
+            ],
+               "aparicoesFim":[
+                {
+                    "_className": "com.aennova.sic01.model.Aparicoes",
+                    "idTitulo1":"AT_F2",
+                    "idTexto1":"AC_F2",
+                    "idTitulo2":"ABT_F2",
+                    "idTexto2":"ABC_F2",
+                    "beneficios":[70,10,20],
+                    "imagem":"rabobank",
+                    "exibida":false
+                }
+            ]
+        }
+    ],
+    "mapaComunidade":[
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"hortaTratorPlay",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"horta",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"feiraArtesanato",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"motocicleta",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"trator",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"pessoas",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"reuniaoNucleo",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"srEliasUA",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"destaque1",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"biblioteca",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"grandeComercio",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"srEliasCooperativa",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"torreTransmissao",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"ua2",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"familiaCamila",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"pessoasVerdes",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"chocolateria2",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"caixa24Horas",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"suv",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"fachadaChocolateria",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"comunidadeIluminada",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"plantacao",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"lavoura",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"feiraAgricultores",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"silo",
+            "frame":0
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"casaCamila",
+            "frame":1
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"escola",
+            "frame":1
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"chocolateria1",
+            "frame":1
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"cooperativa",
+            "frame":1
+        },
+        {
+            "_className": "com.aennova.sic01.model.ElementoMapaComunidade",
+            "id":"ua1",
+            "frame":1
+        }
+    ],
+    "icones": [
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeAssociado",
+            "icone": "IconeAssociado",
+            "posX": 475,
+            "posY": 140,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "ASSOCIADO",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeBancoConcorrente",
+            "icone": "IconeBancoConcorrente",
+            "posX": 870,
+            "posY": 320,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "BANCOCONCORRENTE",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasAdministradoraConsorcio",
+            "icone": "IconeCasAdministradoraConsorcio",
+            "posX": 506,
+            "posY": 229,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "ADMINISTRADORADECONSORCIO",
+            "idTexto": "ADMINISTRADORADECONSORCIO_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasBancoSicredi",
+            "icone": "IconeCasBancoSicredi",
+            "posX": 361,
+            "posY": 165,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "BANCOSICREDI",
+            "idTexto": "BANCOSICREDI_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasCas",
+            "icone": "IconeCasCas",
+            "posX": 415,
+            "posY": 247,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "CAS",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasConfederacao",
+            "icone": "IconeCasConfederacao",
+            "posX": 329,
+            "posY": 236,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "CONFEDERACAO",
+            "idTexto": "CONFEDERACAO_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasCorretoraBens",
+            "icone": "IconeCasCorretoraBens",
+            "posX": 527,
+            "posY": 310,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "CORRETORADEBENS",
+            "idTexto": "CORRETORADEBENS_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasCorretoraCartoes",
+            "icone": "IconeCasCorretoraCartoes",
+            "posX": 425,
+            "posY": 328,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "CORRETORADECARTOES",
+            "idTexto": "CORRETORADECARTOES_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasCorretoraSeguros",
+            "icone": "IconeCasCorretoraSeguros",
+            "posX": 318,
+            "posY": 318,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "CORRETORADESEGUROS",
+            "idTexto": "CORRETORADESEGUROS_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasFundacao",
+            "icone": "IconeCasFundacao",
+            "posX": 624,
+            "posY": 288,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "FUNDACAO",
+            "idTexto": "FUNDACAO_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCentrais",
+            "icone": "IconeCentrais",
+            "posX": 238,
+            "posY": 61,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "CENTRAISSULPRMTPAROEBRASILCENTRAL",
+            "idTexto": "CENTRAISSULPRMTPAROEBRASILCENTRAL_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeComunidadeAgenteCredenciado",
+            "icone": "IconeComunidadeAgenteCredenciado",
+            "posX": 60,
+            "posY": 285,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "AGENTECREDENCIADO",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeComunidadeApoiadoresLocais",
+            "icone": "IconeComunidadeApoiadoresLocais",
+            "posX": 165,
+            "posY": 375,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "APOIADORESLOCAIS",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeComunidadeCooperativa",
+            "icone": "IconeComunidadeCooperativa",
+            "posX": 155,
+            "posY": 215,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "COOPERATIVA",
+            "idTexto": "COOPERATIVA_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeComunidadeSecretariaEducacao",
+            "icone": "IconeComunidadeSecretariaEducacao",
+            "posX": 120,
+            "posY": 135,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "SECRETARIADAEDUCACAO",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeComunidadeUA",
+            "icone": "IconeComunidadeUA",
+            "posX": 145,
+            "posY": 292,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "UA",
+            "idTexto": "UA_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeComunidadeUniversidade",
+            "icone": "IconeComunidadeUniversidade",
+            "posX": 45,
+            "posY": 200,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "UNIVERSIDADE",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeDemaisElementosBancoCentralMinisterioFazenda",
+            "icone": "IconeDemaisElementosBancoCentralMinisterioFazenda",
+            "posX": 842,
+            "posY": 133,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "BANCOCENTRALEMINISTERIODAFAZENDA",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeDemaisElementosBNDES",
+            "icone": "IconeDemaisElementosBNDES",
+            "posX": 872,
+            "posY": 240,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "BNDES",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeDemaisElementosFundosGarantidores",
+            "icone": "IconeDemaisElementosFundosGarantidores",
+            "posX": 570,
+            "posY": 60,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "FUNDOSGARANTIDORES",
+            "idTexto": "FUNDOSGARANTIDORES_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeDemaisElementosSicredipar",
+            "icone": "IconeDemaisElementosSicredipar",
+            "posX": 370,
+            "posY": 75,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "SICREDIPAR",
+            "idTexto": "SICREDIPAR_I",
+            "visivel": true
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeParceirosBanco24Horas",
+            "icone": "IconeParceirosBanco24Horas",
+            "posX": 590,
+            "posY": 410,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "BANCO24HORAS",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeParceirosIcatuSulamericaHdiMapfre",
+            "icone": "IconeParceirosIcatuSulamericaHdiMapfre",
+            "posX": 675,
+            "posY": 145,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "ICATUSULAMERICAHDIEMAPFRE",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeParceirosMapfre",
+            "icone": "IconeParceirosMapfre",
+            "posX": 765,
+            "posY": 185,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "MAPFRE",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeParceirosRabobank",
+            "icone": "IconeParceirosRabobank",
+            "posX": 490,
+            "posY": 420,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "RABOBANK",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeParceirosVisaCieloRedecard",
+            "icone": "IconeParceirosVisaCieloRedecard",
+            "posX": 763,
+            "posY": 270,
+            "tipo": 2,
+            "opcao1": "",
+            "opcao2": "",
+            "opcao3": "",
+            "idTitulo": "VISACIELOEREDECARD",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasBancoSicredi2",
+            "icone": "IconeCasBancoSicredi",
+            "posX": 361,
+            "posY": 165,
+            "tipo": 1,
+            "opcao1": "BANCOSICREDI2_OP1",
+            "opcao2": "BANCOSICREDI2_OP2",
+            "opcao3": "BANCOSICREDI2_OP3",
+            "idTitulo": "BANCOSICREDI2",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasConfederacao2",
+            "icone": "IconeCasConfederacao",
+            "posX": 329,
+            "posY": 236,
+            "tipo": 1,
+            "opcao1": "CONFEDERACAO2_OP1",
+            "opcao2": "CONFEDERACAO2_OP2",
+            "opcao3": "CONFEDERACAO2_OP3",
+            "idTitulo": "CONFEDERACAO2",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCentrais2",
+            "icone": "IconeCentrais",
+            "posX": 238,
+            "posY": 61,
+            "tipo": 1,
+            "opcao1": "CENTRAISSULPRMTPAROEBRASILCENTRAL2_OP1",
+            "opcao2": "CENTRAISSULPRMTPAROEBRASILCENTRAL2_OP2",
+            "opcao3": "CENTRAISSULPRMTPAROEBRASILCENTRAL2_OP3",
+            "idTitulo": "CENTRAISSULPRMTPAROEBRASILCENTRAL2",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeComunidadeCooperativa2",
+            "icone": "IconeComunidadeCooperativa",
+            "posX": 155,
+            "posY": 215,
+            "tipo": 1,
+            "opcao1": "COOPERATIVA2_OP1",
+            "opcao2": "COOPERATIVA2_OP2",
+            "opcao3": "COOPERATIVA2_OP3",
+            "idTitulo": "COOPERATIVA2",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeComunidadeAgenteCredenciado2",
+            "icone": "IconeComunidadeAgenteCredenciado",
+            "posX": 60,
+            "posY": 285,
+            "tipo": 1,
+            "opcao1": "AGENTECREDENCIADO2_OP1",
+            "opcao2": "AGENTECREDENCIADO2_OP2",
+            "opcao3": "AGENTECREDENCIADO2_OP3",
+            "idTitulo": "AGENTECREDENCIADO2",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeComunidadeUA2",
+            "icone": "IconeComunidadeUA",
+            "posX": 145,
+            "posY": 292,
+            "tipo": 1,
+            "opcao1": "UA2_OP1",
+            "opcao2": "UA2_OP2",
+            "opcao3": "UA2_OP3",
+            "idTitulo": "UA2",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasCorretoraSeguros2",
+            "icone": "IconeCasCorretoraSeguros",
+            "posX": 318,
+            "posY": 318,
+            "tipo": 1,
+            "opcao1": "CORRETORADESEGUROS2_OP1",
+            "opcao2": "CORRETORADESEGUROS2_OP2",
+            "opcao3": "CORRETORADESEGUROS2_OP3",
+            "idTitulo": "CORRETORADESEGUROS2",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeParceirosMapfre2",
+            "icone": "IconeParceirosMapfre",
+            "posX": 765,
+            "posY": 185,
+            "tipo": 1,
+            "opcao1": "MAPFRE2_OP1",
+            "opcao2": "MAPFRE2_OP2",
+            "opcao3": "MAPFRE2_OP3",
+            "idTitulo": "MAPFRE2",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCentrais3",
+            "icone": "IconeCentrais",
+            "posX": 238,
+            "posY": 61,
+            "tipo": 1,
+            "opcao1": "CENTRAISSULPRMTPAROEBRASILCENTRAL3_OP1",
+            "opcao2": "CENTRAISSULPRMTPAROEBRASILCENTRAL3_OP2",
+            "opcao3": "CENTRAISSULPRMTPAROEBRASILCENTRAL3_OP3",
+            "idTitulo": "CENTRAISSULPRMTPAROEBRASILCENTRAL3",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasConfederacao3",
+            "icone": "IconeCasConfederacao",
+            "posX": 329,
+            "posY": 236,
+            "tipo": 1,
+            "opcao1": "CONFEDERACAO3_OP1",
+            "opcao2": "CONFEDERACAO3_OP2",
+            "opcao3": "CONFEDERACAO3_OP3",
+            "idTitulo": "CONFEDERACAO3",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeAssociado2",
+            "icone": "IconeAssociado",
+            "posX": 475,
+            "posY": 140,
+            "tipo": 1,
+            "opcao1": "ASSOCIADO2_OP1",
+            "opcao2": "ASSOCIADO2_OP2",
+            "opcao3": "ASSOCIADO2_OP3",
+            "idTitulo": "ASSOCIADO2",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCentrais4",
+            "icone": "IconeCentrais",
+            "posX": 238,
+            "posY": 61,
+            "tipo": 1,
+            "opcao1": "CENTRAISSULPRMTPAROEBRASILCENTRAL4_OP1",
+            "opcao2": "CENTRAISSULPRMTPAROEBRASILCENTRAL4_OP2",
+            "opcao3": "CENTRAISSULPRMTPAROEBRASILCENTRAL4_OP3",
+            "idTitulo": "CENTRAISSULPRMTPAROEBRASILCENTRAL4",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeComunidadeCooperativa3",
+            "icone": "IconeComunidadeCooperativa",
+            "posX": 155,
+            "posY": 215,
+            "tipo": 1,
+            "opcao1": "COOPERATIVA3_OP1",
+            "opcao2": "COOPERATIVA3_OP2",
+            "opcao3": "COOPERATIVA3_OP3",
+            "idTitulo": "COOPERATIVA3",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasFundacao2",
+            "icone": "IconeCasFundacao",
+            "posX": 624,
+            "posY": 288,
+            "tipo": 1,
+            "opcao1": "FUNDACAO2_OP1",
+            "opcao2": "FUNDACAO2_OP2",
+            "opcao3": "FUNDACAO2_OP3",
+            "idTitulo": "FUNDACAO2",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasBancoSicredi3",
+            "icone": "IconeCasBancoSicredi",
+            "posX": 361,
+            "posY": 165,
+            "tipo": 1,
+            "opcao1": "BANCOSICREDI3_OP1",
+            "opcao2": "BANCOSICREDI3_OP2",
+            "opcao3": "BANCOSICREDI3_OP3",
+            "idTitulo": "BANCOSICREDI3",
+            "idTexto": "",
+            "visivel": false
+        },
+        {
+            "_className": "com.aennova.sic01.model.Icone",
+            "id": "IconeCasConfederacao4",
+            "icone": "IconeCasConfederacao",
+            "posX": 329,
+            "posY": 236,
+            "tipo": 1,
+            "opcao1": "CONFEDERACAO4_OP1",
+            "opcao2": "CONFEDERACAO4_OP2",
+            "opcao3": "CONFEDERACAO4_OP3",
+            "idTitulo": "CONFEDERACAO4",
+            "idTexto": "",
+            "visivel": false
+        }
+    ]
+}

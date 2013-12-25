@@ -28,9 +28,9 @@ public class LayerControllerBase {
     public function get name():String { return this._name; }
 
     /** Public Instance Access **/
-    public function addChild(child:DisplayObject, childName:String, posX:int = NaN, posY:int = NaN):void {
-        if(!isNaN(posX)) child.x = posX;
-        if(!isNaN(posY)) child.y = posY;
+    public function addChild(child:DisplayObject, childName:String, posX:int = int.MIN_VALUE, posY:int = int.MIN_VALUE):void {
+        if(posX!=int.MIN_VALUE) child.x = posX;
+        if(posY) child.y = posY;
         placeHolder.addChild(child);
         instances[childName] = child;
         counterInstances[child] = childName;
