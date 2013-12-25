@@ -50,7 +50,7 @@ public class ButtonManager {
         p.useWeakReference  = (parameters.useWeakReference == null)? false : parameters.useWeakReference;
 
         p.useDefault    = parameters.useDefault == null ? true : parameters.useDefault;
-        p.delay         = parameters.delay      || DEFAULT_DELAY_TIME   ;
+        p.delay         = parameters.delay!=int.MIN_VALUE? parameters.delay:DEFAULT_DELAY_TIME   ;
         p.overColor     = parameters.overColor  || DEFAULT_OVER_COLOR   ;
         p.downColor     = parameters.downColor  || DEFAULT_DOWN_COLOR   ;
         p.buttonMode    = parameters.buttonMode || DEFAULT_BUTTON_MODE  ;
@@ -256,9 +256,9 @@ class ButtonProperty {
 
     public var reference:Object = null;
 
-    public var status           :int    = NaN;
-    public var mode             :int    = NaN;
-    public var delay            :Number = NaN;
+    public var status           :int    = int.MIN_VALUE;
+    public var mode             :int    = int.MIN_VALUE;
+    public var delay            :Number = int.MIN_VALUE;
     public var buttonMode       :Boolean = true;
     public var useDefault       :Boolean = true;
     public var overColor        :uint   = 0x000000;

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<status>DEVELOPMENT</status><!--  [DEVELOPMENT|RELEASE] -->
+	<debug>DEBUG_OFF</debug><!--  [DEBUG_ON|DEBUG_OFF]  ATENÇÃO alterarar a variável "var isDebugging = false;"  no main.xml-->
+	
+	<CMIData>
+
+		<core>
+			<student_id>sdfds</student_id>
+			<student_name>jose pedro</student_name>
+			<lesson_location>pos1</lesson_location>
+			<lesson_status>passed</lesson_status>
+			<total_time>0001:05:35</total_time>
+			<session_time>0004:02:02</session_time>
+			<score>
+				<raw>55</raw>
+				<max>100</max>
+				<min>10</min>
+			</score>
+		</core>
+		<suspend_data></suspend_data>
+		<comments></comments>
+		<objectives>
+			<objective>
+				<id>id1</id>
+				<score>
+					<max>100</max>
+					<min>0</min>
+					<raw>50</raw>
+				</score>
+				<status>passed</status> <!-- [passed|completed|failed|incomplete|browsed|not attempted] -->
+			</objective>
+			<objective>
+				<id>id2</id>
+				<score>
+					<max>101</max>
+					<min>01</min>
+					<raw>51</raw>
+				</score>
+				<status>completed</status> <!-- [passed|completed|failed|incomplete|browsed|not attempted] -->
+			</objective>
+			
+		</objectives>
+	</CMIData>
+</config>

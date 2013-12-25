@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+    <LoaderMax name="assets" load="true">
+        <DataLoader url="data/_gameData.txt"                name="_gameData"/>
+        <DataLoader url="data/_gameText.txt"                name="_gameText"/>
+        <DataLoader url="data/_gameConfig.txt"              name="_gameConfig"/>
+        <DataLoader url="data/_scormObject.txt"             name="_scormObject"/>
+
+        <SWFLoader  url="data/assets/IsometricAssets.swf"   name="IsometricAssets" autoPlay="false"/>
+        <SWFLoader  url="data/assets/test.swf"              name="test"            autoPlay="false"/>
+        <SWFLoader  url="data/assets/assets.swf"            name="assets"          autoPlay="false"/>
+
+          <!-- <ImageLoader url="data/sounds/lea.jpg" name="lea" width="400" height="316"/> -->
+
+        <MP3Loader url="data/sounds/trilha.mp3" name="trilha" autoPlay="false" />
+    </LoaderMax>
+</data>

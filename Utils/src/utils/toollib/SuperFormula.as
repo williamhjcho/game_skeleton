@@ -33,10 +33,10 @@ public class SuperFormula {
     }
 
     public function getCoordinates(rad:Number, output:Object):void {
-        var rad:Number = rad * m / 4;
-        var r:Number = Math.pow(Math.pow(Math.abs(Math.cos(rad) / a), n2) + Math.pow(Math.abs(Math.sin(rad) / b), n3), -1/n1);
-        output.x = this.x + r * Math.cos(rad) * radius;
-        output.y = this.y + r * Math.sin(rad) * radius;
+        var rad2:Number = rad * m / 4;
+        var r:Number = Math.pow(Math.pow(Math.abs(Math.cos(rad2) / a), n2) + Math.pow(Math.abs(Math.sin(rad2) / b), n3), -1/n1);
+        output.x = this.x + r * Math.cos(rad2) * radius;
+        output.y = this.y + r * Math.sin(rad2) * radius;
     }
 
 }

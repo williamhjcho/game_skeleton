@@ -27,11 +27,11 @@ public class SHA1 {
         M[N-1][14] = Math.floor(M[N-1][14]);
         M[N-1][15] = ((msg.length-1)*8) & 0xffffffff;
 
-        var H0:int = 0x67452301;
-        var H1:int = 0xefcdab89;
-        var H2:int = 0x98badcfe;
-        var H3:int = 0x10325476;
-        var H4:int = 0xc3d2e1f0;
+        var H0:uint = 0x67452301;
+        var H1:uint = 0xefcdab89;
+        var H2:uint = 0x98badcfe;
+        var H3:uint = 0x10325476;
+        var H4:uint = 0xc3d2e1f0;
 
         var W:Array = new Array(80), a:int, b:int, c:int, d:int, e:int;
         for (i = 0; i < N; i++) {

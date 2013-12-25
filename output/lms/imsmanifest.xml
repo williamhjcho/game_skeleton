@@ -1,0 +1,23 @@
+<?xml version="1.0" standalone="no"?>
+<manifest identifier="ProddingSCO" version="0.99" xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+          xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd   http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+<metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+    <adlcp:location>packagemetadata.xml</adlcp:location>
+  </metadata>
+  <organizations default="Fraktalo">
+    <organization identifier="Fraktalo">
+      <title>Game</title>
+      <item identifier="GAME1" identifierref="FraktaloGame">
+        <title>Curso </title>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="FraktaloGame" adlcp:scormtype="sco" href="scoGame/main.html" type="webcontent">
+      <file href="scoGame/main.html"/>
+    </resource>
+  </resources>
+</manifest>

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Fraktalo</title>
+	<script type="text/javascript" src="../shared/swfobject.js"></script>
+	<script>
+		/* <![CDATA[ */
+			_isSCORM = true;
+			_flash_width = 980;
+			_flash_height = 600;
+		/* ]]> */
+	</script>
+	<script type="text/javascript" src="../shared/classyJSON.js"></script>
+	<script type="text/javascript" src="../shared/scofunctions.js"></script>
+	<script type="text/javascript" src="../shared/auxfn.js"></script>
+	<script type="text/javascript" src="../shared/queryobject.js"></script>
+	<script type="text/javascript" src="../shared/apiwrapper.js"></script>
+	<script type="text/javascript" src="../shared/jquery.js"></script>
+	<style>
+		#flashcontent {
+			width: 1000px;
+			height: 640px;
+			display: block;
+
+		}
+		a:link, a:visited, a:hover, a:active {
+			color: #ffffff;
+		}
+		#playermessage {
+			font: 26px Arial, Sans-serif;
+			width: 1000px;
+			display: block;
+			color: #ffffff;
+			margin: 0 auto;
+			padding: 300px 0;
+		}
+		h1 {
+			font: 26px Arial, Sans-serif;
+			width: 1000px;
+			display: block;
+			color: #000000;
+			margin: 0 auto;
+			padding: 100px 100px;
+		}
+		.font12 {
+			font-size: 12px;
+		}
+
+		body {
+			background: #0066a0 url('img/repeater.png') ;
+
+		}
+		body, html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+		}
+	</style>
+</head>
+<body onUnload="exit()">
+	<table id="tabelaMain" width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="100%" height="100%" align="center" valign="middle" border="0">
+			<div id="flashcontent">
+				<div id="playermessage">
+					<b>Por favor atualize o seu Flash Player</b><br/>
+					<span class="font12"><a href="http://www.adobe.com/go/gntray_dl_getflashplayer">Clique aqui</a> para atualizar o seu player, ou entre em contato com o suporte técnico.<br/></font>
+				</div>
+			</div>
+			</td>
+		</tr>
+	</table>
+
+	<script type="text/javascript">
+		var flashvars = {};
+
+        var params = {};
+        params.quality = "high";
+        params.bgcolor = "#111111";
+        params.play = "true";
+        params.loop = "true";
+        params.wmode = "window";
+        params.scale = "showall";
+        params.menu = "true";
+        params.devicefont = "false";
+        params.salign = "";
+        params.allowscriptaccess = "sameDomain";
+        params.allowFullScreen = "true";
+        var attributes = {};
+        attributes.id = "main";
+        attributes.name = "main";
+        attributes.align = "middle";
+
+		swfobject.embedSWF("main.swf", "flashcontent", _flash_width, _flash_height, "10", "expressInstall.swf", flashvars, params, attributes);
+	</script>
+	<textarea id="debugText" name="debugText" rows="12" cols="80" style="display: none"></textarea>
+	<script language="JavaScript">
+	/* <![CDATA[ */
+		var jsReady = false;
+		function isReady() {
+			console.log("checking js: " + jsReady);
+			return jsReady;
+		}
+		function pageInit() {
+			console.log("pageInit");
+			jsReady = true;
+		}
+
+		$(document).ready(function() {
+			console.log("doc ready");
+			pageInit();
+
+		});
+		function closeFlashWindow(){
+		  
+		  exit();
+
+		  $("#tabelaMain").html("<h1>Reinicie o curso</h1>");
+		}
+
+	/* ]]> */
+	</script>
+</body>
+</html>

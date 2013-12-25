@@ -7,6 +7,7 @@
  */
 package utils.commands {
 public function Approximate(goal:Number, current:Number, dt:Number):Number {
+
     var difference:Number = goal - current;
     if(difference > dt) return current + dt;
     if(difference < -dt) return current - dt;

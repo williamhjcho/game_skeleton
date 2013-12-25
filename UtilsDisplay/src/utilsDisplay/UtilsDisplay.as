@@ -20,6 +20,7 @@ public class UtilsDisplay {
         _gameWidth = gameWidth;
     }
 
+
     public static function get scale():Number { return _scale; }
     public static function set scale(value:Number):void{ _scale = value; }
     public static function get gameWidth():int { return _gameWidth * _scale; }
