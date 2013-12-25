@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="libsSnippet" type="flex">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/Snippets/libsSnippet" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/Snippets/libsSnippet" recursive="false" />
+  </library>
+</component>
