@@ -9,7 +9,6 @@ public class ToolMath {
     public static const e:Number = 2.7182818284590455;
     public static const precision:Number = 0.0000000000000000001;
 
-    private static var _fibonacci:Vector.<uint> = new <uint>[0,1,1,2];
     private static var _primes:Vector.<uint> = new <uint>[2,3,5,7,9,11,13,17,19,23,27];
 
     public static function random():Number { return (Math.random() + (1/GOLDEN_RATIO)) % 1; }
@@ -89,16 +88,6 @@ public class ToolMath {
             if(n%i == 0) return false;
         }
         return true;
-    }
-
-    public static function fibonacci(n:int):uint {
-        //keeps the old values for possible later use
-        if(n <= 0)                  return _fibonacci[0];
-        if(_fibonacci.length > n)   return _fibonacci[n];
-        for (var i:int = _fibonacci.length-1; i <= n; i++) {
-            _fibonacci[i] = _fibonacci[i-1] + _fibonacci[i-2];
-        }
-        return _fibonacci[n];
     }
 
     public static function prime(n:int):uint {
