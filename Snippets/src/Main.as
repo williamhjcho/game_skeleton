@@ -12,8 +12,15 @@ import drawing.Drawer;
 
 import flash.display.Shape;
 import flash.display.Sprite;
+import flash.utils.getTimer;
+
+import utils.commands.Benchmark;
+import utils.toollib.Fibonacci;
 
 import utils.toollib.ToolColor;
+import utils.toollib.ToolMath;
+import utils.toollib.color.RGBA;
+import utils.toollib.vector.Vec;
 
 [SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=60)]
 public class Main extends Sprite {
@@ -26,27 +33,42 @@ public class Main extends Sprite {
         color0 = ToolColor.random();
         color1 = ToolColor.opposite(color0);
 
-
-        jsonTest();
+        //trace(fib(2));
+        trace(Fibonacci.get(15));
     }
 
-    public function testDrawer():void {
-        var s:Shape = new Shape();
-        s.graphics.lineStyle(3, 0xff0000);
-        Drawer.rectangleRounded(s.graphics, 100, 100, 300, 300, 50);
-        addChild(s);
+    private function fib2(n:uint):Array {
+        if(n == 0)
+            return [0,1];
+
+        var temp:Array = fib2(n / 2);
+        var f_n:uint = temp[0], f_n_1:uint = temp[1];
+
+        var f_n_sqr:uint = f_n * f_n;
+        var f_n_1_sqr:uint = f_n_1 * f_n_1;
+
+        var f_2n:uint = 2 * f_n * f_n_1 - f_n_sqr;
+        var f_2n_1:uint = f_n_sqr + f_n_1_sqr;
+
+        if(n % 2 == 1)
+            return [f_2n_1, f_2n + f_2n_1];
+        return [f_2n, f_2n_1];
     }
 
-    public function jsonTest():void {
-        trace(ch);
-        trace(func());
-        trace(ch);
+    private function fib(n:uint):uint {
+        return fib2(n)[0];
     }
 
-    private var ch:String = "a";
-    private function func():String {
-        return ch = "b";
+    private function fibb_linear(n:uint):uint {
+        var f_n:uint = 0, f_n_1:uint = 1;
+        var t:uint;
+        while(n > 0) {
+            t = f_n_1;
+            f_n_1 += f_n;
+            f_n = t;
+            n--;
+        }
+        return f_n;
     }
-
 }
 }

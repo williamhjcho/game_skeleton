@@ -8,64 +8,40 @@
 package utils.toollib.color {
 public class RGBA {
 
-    private var r:uint;
-    private var g:uint;
-    private var b:uint;
-    private var a:uint;
+    private var _color:uint;
 
-    public function RGBA(r:uint = 0xff, g:uint = 0xff, b:uint = 0xff, a:uint = 0xff) {
-        this.R = r;
-        this.G = g;
-        this.B = b;
-        this.A = a;
+    public function RGBA(color:uint) {
+        this._color = color;
     }
 
-    public function setTo(r:uint, g:uint, b:uint, a:uint = 0xff):RGBA {
-        this.R = r;
-        this.G = g;
-        this.B = b;
-        this.A = a;
+    public function setRGBA(r:uint, g:uint, b:uint, a:uint = 0xff):RGBA {
+        _color = ((a & 0xff) << 24) | ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
         return this;
     }
 
-    public function getCopy(output:RGBA = null):RGBA {
-        if(output == null) return new RGBA(r,g,b,a);
-        return output.setTo(r,g,b,a);
-    }
-
-    public function copy(model:RGBA):RGBA {
-        return setTo(model.r,model.g,model.b,model.a);
-    }
-
-
-    public function get R():uint { return this.r; }
-    public function get G():uint { return this.g; }
-    public function get B():uint { return this.b; }
-    public function get A():uint { return this.a; }
-
-    public function set R(v:uint):void { this.r = v & 0xff; }
-    public function set G(v:uint):void { this.g = v & 0xff; }
-    public function set B(v:uint):void { this.b = v & 0xff; }
-    public function set A(v:uint):void { this.a = v & 0xff; }
-
-    public function fromInt(color:uint):RGBA {
-        this.r = color >> 24 & 0xff;
-        this.g = color >> 16 & 0xff;
-        this.b = color >> 8  & 0xff;
-        this.a = color & 0xff;
+    public function setInt(color:uint):RGBA {
+        _color = color;
         return this;
     }
 
-    public function toInt():uint        { return a << 24 | r << 16 | g << 8 | b; }
-    public function toString():String   { return "(a:" + a + ", r:" + r + ", g:" + g + ", b:" + b + ")";  }
+    public function copy():RGBA { return new RGBA(_color); }
+
+    public function get R():uint { return (_color >> 16) & 0xff; }
+    public function get G():uint { return (_color >>  8) & 0xff; }
+    public function get B():uint { return (_color      ) & 0xff; }
+    public function get A():uint { return (_color >> 24) & 0xff; }
+
+    public function set R(v:uint):void { _color = (_color & 0xff000000) | ((v & 0xff) << 16) | (_color & 0x0000ffff); }
+    public function set G(v:uint):void { _color = (_color & 0xffff0000) | ((v & 0xff) <<  8) | (_color & 0x000000ff); }
+    public function set B(v:uint):void { _color = (_color & 0xffffff00) | ((v & 0xff)      )                        ; }
+    public function set A(v:uint):void { _color =                         ((v & 0xff) << 24) | (_color & 0x00ffffff); }
+
+    public function get color():uint { return _color; }
+    public function toString():String { return "(a:" + A + ", r:" + R + ", g:" + G + ", b:" + B + ", value:" + _color + ")"; }
+
 
     public static function fromInt(color:int):RGBA {
-        var rgba:RGBA = new RGBA();
-        rgba.r = color >> 24 & 0xff;
-        rgba.g = color >> 16 & 0xff;
-        rgba.b = color >> 8  & 0xff;
-        rgba.a = color & 0xff;
-        return rgba;
+        return new RGBA(color);
     }
 
     public static function toInt(r:int, g:int, b:int, a:int = 0xff):uint {
