@@ -5,7 +5,7 @@ package utils.toollib {
 public class ToolMath {
 
     public static const GOLDEN_RATIO:Number = (1 + Math.sqrt(5))/2;
-    public static const TAU:Number = 2*Math.PI;
+    public static const TAU:Number = 2 * Math.PI;
     public static const e:Number = 2.7182818284590455;
     public static const precision:Number = 0.0000000000000000001;
 
