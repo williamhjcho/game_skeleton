@@ -11,10 +11,10 @@ public final class Fibonacci {
     //==================================
     //     Instance
     //==================================
-    private var memorized:Array;
+    private var memorized:Vector.<uint>;
 
     public function Fibonacci(number1:uint, number2:uint) {
-        memorized = [number1, number2, number1 + number2];
+        memorized = new <uint>[number1, number2, number1 + number2];
     }
 
     public function get(n:uint):uint {
@@ -22,31 +22,32 @@ public final class Fibonacci {
     }
 
     public function clear():void {
-        memorized = [memorized[0], memorized[1], memorized[0] + memorized[1]];
+        memorized = new <uint>[memorized[0], memorized[1], memorized[0] + memorized[1]];
     }
 
     //==================================
     //     Static
     //==================================
-    private static var memorized:Array = [0,1];
+    private static var memorized:Vector.<uint> = new <uint>[0,1,1];
 
     public static function get(n:uint):uint {
         return get1(n, memorized);
     }
 
     public static function clear():void {
-        memorized = [0,1,1];
+        memorized = new <uint>[0,1,1];
     }
 
     //==================================
     //     Internal
     //==================================
-    private static function get1(n:uint, memory:Array):uint {
+    private static function get1(n:uint, memory:Vector.<uint>):uint {
         return getFromMemory(n, memory)[0];
     }
 
-    private static function getFromMemory(n:uint, memory:Array):Array {
-        if(n < memory.length - 1 && memory[n] != null)
+    private static function getFromMemory(n:uint, memory:Vector.<uint>):Array {
+        if(n == 0) return [memory[0], memory[1]];
+        if(n < memory.length - 1 && memory[n] != 0)
             return [memory[n], memory[n+1]];
 
         var f:Array = getFromMemory(n/2, memory);
@@ -55,11 +56,13 @@ public final class Fibonacci {
         var f_2n:uint = 2 * f_n * f_n_1 - f_n * f_n;
         var f_2n_1:uint = f_n * f_n + f_n_1 * f_n_1;
 
-        if(n % 2 == 1) { //adjusting a little error on odd N
+        if(n % 2 == 1) { //adjusting when odd N
             var t:uint = f_2n;
             f_2n = f_2n_1;
             f_2n_1 += t;
         }
+        if(n < memory.length - 1)
+            memory.length = n + 1;
         memory[n] = f_2n;
         memory[n + 1] = f_2n_1;
         return [f_2n, f_2n_1];
