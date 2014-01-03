@@ -12,8 +12,15 @@ import drawing.Drawer;
 
 import flash.display.Shape;
 import flash.display.Sprite;
+import flash.utils.getTimer;
+
+import utils.commands.Benchmark;
+import utils.toollib.Fibonacci;
 
 import utils.toollib.ToolColor;
+import utils.toollib.ToolMath;
+import utils.toollib.color.RGBA;
+import utils.toollib.vector.Vec;
 
 [SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=60)]
 public class Main extends Sprite {
@@ -26,26 +33,8 @@ public class Main extends Sprite {
         color0 = ToolColor.random();
         color1 = ToolColor.opposite(color0);
 
+        trace(Fibonacci.get(15));
 
-        jsonTest();
-    }
-
-    public function testDrawer():void {
-        var s:Shape = new Shape();
-        s.graphics.lineStyle(3, 0xff0000);
-        Drawer.rectangleRounded(s.graphics, 100, 100, 300, 300, 50);
-        addChild(s);
-    }
-
-    public function jsonTest():void {
-        trace(ch);
-        trace(func());
-        trace(ch);
-    }
-
-    private var ch:String = "a";
-    private function func():String {
-        return ch = "b";
     }
 
 }
