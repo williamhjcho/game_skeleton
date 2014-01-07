@@ -18,7 +18,7 @@ public final class Fibonacci {
     }
 
     public function get(n:uint):uint {
-        return get1(n, memorized);
+        return _get_recursive(n, memorized)[0];
     }
 
     public function clear():void {
@@ -31,7 +31,7 @@ public final class Fibonacci {
     private static var memorized:Vector.<uint> = new <uint>[0,1,1];
 
     public static function get(n:uint):uint {
-        return get1(n, memorized);
+        return _get_recursive(n, memorized)[0];
     }
 
     public static function clear():void {
@@ -41,27 +41,23 @@ public final class Fibonacci {
     //==================================
     //     Internal
     //==================================
-    private static function get1(n:uint, memory:Vector.<uint>):uint {
-        return getFromMemory(n, memory)[0];
-    }
-
-    private static function getFromMemory(n:uint, memory:Vector.<uint>):Array {
+    private static function _get_recursive(n:uint, memory:Vector.<uint>):Array {
         if(n == 0) return [memory[0], memory[1]];
         if(n < memory.length - 1 && memory[n] != 0)
             return [memory[n], memory[n+1]];
 
-        var f:Array = getFromMemory(n/2, memory);
-        var f_n:uint = f[0];
-        var f_n_1:uint = f[1];
-        var f_2n:uint = 2 * f_n * f_n_1 - f_n * f_n;
-        var f_2n_1:uint = f_n * f_n + f_n_1 * f_n_1;
+        var f       :Array = _get_recursive(n/2, memory);
+        var f_n     :uint = f[0];
+        var f_n_1   :uint = f[1];
+        var f_2n    :uint = 2 * f_n * f_n_1 - f_n * f_n;
+        var f_2n_1  :uint = f_n * f_n + f_n_1 * f_n_1;
 
         if(n % 2 == 1) { //adjusting when odd N
             var t:uint = f_2n;
             f_2n = f_2n_1;
             f_2n_1 += t;
         }
-        if(n < memory.length - 1)
+        if(n > memory.length - 1)
             memory.length = n + 1;
         memory[n] = f_2n;
         memory[n + 1] = f_2n_1;

@@ -8,8 +8,8 @@
 package utils.toollib {
 public class Complex {
 
-    private var x:Number;
-    private var y:Number;
+    public var x:Number;
+    public var y:Number;
 
     public function Complex(real:Number = 0, imaginary:Number = 0) {
         this.x = real;
@@ -71,8 +71,8 @@ public class Complex {
         var signal:int = 1;
         var k:int;
         for (k = 1; k <= n; k+=2) {
-            sumReal += signal * ToolMath.binomialCoefficient(n, k-1) * Math.pow(x, n - k-1) * Math.pow(y, k-1);
-            sumImg += signal * ToolMath.binomialCoefficient(n, k) * Math.pow(x, n - k) * Math.pow(y, k);
+            sumReal += signal * Binomial.get(n, k-1) * Math.pow(x, n - k-1) * Math.pow(y, k-1);
+            sumImg  += signal * Binomial.get(n, k  ) * Math.pow(x, n - k  ) * Math.pow(y, k  );
             signal *= -1;
         }
         if(n%2 == 0) {
@@ -80,14 +80,6 @@ public class Complex {
         }
         return setTo(sumReal, sumImg);
     }
-
-
-    public function get real()                  :Number { return this.x; }
-    public function set real(val:Number)        :void   { this.x = val;  }
-
-    public function get imaginary()             :Number { return this.y; }
-    public function set imaginary(val:Number)   :void   { this.y = val;  }
-
 
     public function toString():String {
         if(this.y < 0)  return "("+this.x + " - " + -this.y + "i)";

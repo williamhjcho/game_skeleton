@@ -10,12 +10,12 @@ import flash.errors.IllegalOperationError;
 
 import utils.toollib.ToolMath;
 
-public class Vec {
+public class vNd {
 
     private var _data:Vector.<Number>;
     private var _size:uint;
 
-    public function Vec(size:uint) {
+    public function vNd(size:uint) {
         _size = size;
         _data = new Vector.<Number>();
     }
@@ -48,7 +48,7 @@ public class Vec {
     //==================================
     //     Operations
     //==================================
-    public function equals(v:Vec):Boolean {
+    public function equals(v:vNd):Boolean {
         if(_size != v._size) return false;
         for (var i:int = 0; i < _size; i++) {
             if(_data[i] != v._data[i])
@@ -57,14 +57,14 @@ public class Vec {
         return true;
     }
 
-    public function set(...values):Vec {
+    public function set(...values):vNd {
         var min:uint = Math.min(values.length, _size);
         for (var i:int = 0; i < min; i++)
             _data[i] = values[i];
         return this;
     }
 
-    public function normalize():Vec {
+    public function normalize():vNd {
         var l:Number = length;
         if(l != 0) {
             for (var i:int = 0; i < _size; i++)
@@ -73,82 +73,82 @@ public class Vec {
         return this;
     }
 
-    public function negative():Vec {
+    public function negative():vNd {
         for (var i:int = 0; i < _size; i++)
             _data[i] = -_data[i];
         return this;
     }
 
-    public function abs():Vec {
+    public function abs():vNd {
         for (var i:int = 0; i < _size; i++)
             _data[i] = Math.abs(_data[i]);
         return this;
     }
 
-    public function round(precision:uint = 0):Vec {
+    public function round(precision:uint = 0):vNd {
         for (var i:int = 0; i < _size; i++)
             _data[i] = ToolMath.round(_data[i], precision);
         return this;
     }
 
-    public function floor():Vec {
+    public function floor():vNd {
         for (var i:int = 0; i < _size; i++)
             _data[i] = Math.floor(_data[i]);
         return this;
     }
 
-    public function ceil():Vec {
+    public function ceil():vNd {
         for (var i:int = 0; i < _size; i++)
             _data[i] = Math.ceil(_data[i]);
         return this;
     }
 
-    public function copy():Vec {
-        var c:Vec = new Vec(_size);
+    public function copy():vNd {
+        var c:vNd = new vNd(_size);
         for (var i:int = 0; i < _size; i++)
             c._data[i] = _data[i];
         return c;
     }
 
-    public function add(u:Vec):Vec {
+    public function add(u:vNd):vNd {
         if(_size != u._size)
             throw new IllegalOperationError("Adding invalid vector sizes: "+_size + " and "+ u._size);
 
-        var q:Vec = new Vec(_size);
+        var q:vNd = new vNd(_size);
         for (var i:int = 0; i < _size; i++)
             q._data[i] = _data[i] + u._data[i];
         return q;
     }
 
-    public function addN(n:Number):Vec {
+    public function addN(n:Number):vNd {
         for (var i:int = 0; i < _size; i++)
             _data[i] += n;
         return this;
     }
 
-    public function subtract(u:Vec):Vec {
+    public function subtract(u:vNd):vNd {
         if(_size != u._size)
             throw new IllegalOperationError("Adding invalid vector sizes: "+_size + " and "+ u._size);
 
-        var q:Vec = new Vec(_size);
+        var q:vNd = new vNd(_size);
         for (var i:int = 0; i < _size; i++)
             q._data[i] = _data[i] - u._data[i];
         return q;
     }
 
-    public function subtractN(n:Number):Vec {
+    public function subtractN(n:Number):vNd {
         for (var i:int = 0; i < _size; i++)
             _data[i] -= n;
         return this;
     }
 
-    public function multiplyN(n:Number):Vec {
+    public function multiplyN(n:Number):vNd {
         for (var i:int = 0; i < _size; i++)
             _data[i] *= n;
         return this;
     }
 
-    public function dot(u:Vec):Number {
+    public function dot(u:vNd):Number {
         if(!validateSizes(this, u))
             throw new IllegalOperationError("Invalid sizes: "+_size + ", "+ u._size);
 
@@ -161,7 +161,7 @@ public class Vec {
     //==================================
     //     Internal/Static Operations
     //==================================
-    private static function validateSizes(u:Vec, v:Vec):Boolean {
+    private static function validateSizes(u:vNd, v:vNd):Boolean {
         return (u._size == v._size);
     }
 }

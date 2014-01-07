@@ -24,7 +24,16 @@ public class DoubleDictionary {
             _references[b] = a;
             return;
         }
-        throw new IllegalOperationError("");
+
+        var errorMessage:String;
+        if(ka != null && kb != null) {
+            errorMessage = "Both keys are already registered.";
+        } else if(ka != null) {
+            errorMessage = "Key A is already registered: " + a;
+        } else {
+            errorMessage = "Key B is already registered: " + b;
+        }
+        throw new IllegalOperationError(errorMessage);
     }
 
     public function remove(k:*):* {
@@ -34,7 +43,7 @@ public class DoubleDictionary {
         return counter;
     }
 
-    public function getCounterpart(k:*):* {
+    public function get(k:*):* {
         return _references[k];
     }
 }

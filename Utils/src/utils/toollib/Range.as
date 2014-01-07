@@ -10,60 +10,60 @@ import utils.base.interfaces.ICloneable;
 
 public class Range implements ICloneable {
 
-    private var _start:Number, _end:Number;
+    public var start:Number, end:Number;
 
     public function Range(start:Number, end:Number) {
-        this._start = start;
-        this._end = end;
+        this.start = start;
+        this.end = end;
     }
 
     public function set(start:Number, end:Number):Range {
-        this._start = start;
-        this._end = end;
+        this.start = start;
+        this.end = end;
         return this;
     }
 
     public function equals(range:Range):Boolean {
-        return range._start == _start && range._end == _end;
+        return range.start == start && range.end == end;
     }
 
     public function clone():ICloneable {
-        return new Range(_start, _end);
+        return new Range(start, end);
     }
 
-    public function get start():Number { return _start; }
-    public function set start(value:Number):void { _start = value; }
 
-    public function get end():Number { return _end; }
-    public function set end(value:Number):void { _end = value; }
+    public function get length():Number { return end - start; }
 
-    public function get length():Number { return _end - _start; }
+    public function get min():Number { return Math.min(start, end); }
+    public function get max():Number { return Math.max(start, end); }
 
-    public function get min():Number { return Math.min(_start, _end); }
-    public function get max():Number { return Math.max(_start, _end); }
+    public function get direction():int {
+        var n:Number = end - start;
+        return (n > 0)? 1 : (n < 0)? -1 : 0;
+    }
 
     public function random():Number {
-        return _start + Math.random() * (_end - _start);
+        return start + Math.random() * (end - start);
     }
 
     public function isInRange(n:Number):Boolean {
-        return (_start <= n && n <= _end);
+        return (start <= n && n <= end);
     }
 
     public function toPercent(n:Number):Number {
-        return (n - _start) / (_end - _start);
+        return (n - start) / (end - start);
     }
 
     public function toValue(p:Number):Number {
-        return _start + p * (_end - _start);
+        return start + p * (end - start);
     }
 
     public function contains(range:Range):Boolean {
-        return _start <= range._start && _end >= range._end;
+        return start <= range.start && end >= range.end;
     }
 
     public function overlaps(range:Range):Boolean {
-        return (isInRange(range._start) || isInRange(range._end) || range.isInRange(_start) || range.isInRange(_end));
+        return (isInRange(range.start) || isInRange(range.end) || range.isInRange(start) || range.isInRange(end));
     }
 }
 }

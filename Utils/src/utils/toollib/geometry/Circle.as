@@ -28,6 +28,11 @@ public class Circle {
     public function get area            ():Number { return Math.PI * radius * radius;   }
     public function get circumference   ():Number { return ToolMath.TAU * radius;       }
 
+    public function isInscribbed(x:Number, y:Number):Boolean {
+        var a:Number = x - this.x, b:Number = y - this.y;
+        return a*b + b*b <= radius * radius;
+    }
+
     public function sagitta(x0:Number, y0:Number, x1:Number, y1:Number):Number {
         var d:Number = ToolGeometry.pythagoras(x1-x0, y1-y0) / 2;
         return radius - Math.sqrt(radius * radius - d * d);

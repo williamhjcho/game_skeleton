@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib.color {
+import utils.toollib.Units;
+
 public class RGBA {
 
     private var _color:uint;
@@ -38,6 +40,7 @@ public class RGBA {
 
     public function get color():uint { return _color; }
     public function toString():String { return "(a:" + A + ", r:" + R + ", g:" + G + ", b:" + B + ", value:" + _color + ")"; }
+    public function toHex():String { return "(value: " + _color + ", hex:" + Units.decToHex(_color) + " )"; }
 
 
     public static function fromInt(color:int):RGBA {

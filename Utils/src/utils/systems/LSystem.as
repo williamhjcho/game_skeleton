@@ -76,7 +76,7 @@ public class LSystem {
         _axiom = _originalAxiom = a;
         _generation = 0;
     }
-    public function get axiom():String { return this._axiom; }
+    public function get axiom()         :String { return this._axiom; }
     public function get generation()    :int    { return _generation; }
     public function get tree()          :String { return _axiom; }
     public function get originalAxiom() :String { return _originalAxiom; }

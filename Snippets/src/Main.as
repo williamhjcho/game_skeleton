@@ -15,12 +15,15 @@ import flash.display.Sprite;
 import flash.utils.getTimer;
 
 import utils.commands.Benchmark;
+import utils.events.UEvent;
+import utils.toollib.Binomial;
+import utils.toollib.Factorial;
 import utils.toollib.Fibonacci;
 
 import utils.toollib.ToolColor;
 import utils.toollib.ToolMath;
 import utils.toollib.color.RGBA;
-import utils.toollib.vector.Vec;
+import utils.toollib.vector.vNd;
 
 [SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=60)]
 public class Main extends Sprite {
@@ -32,8 +35,6 @@ public class Main extends Sprite {
 
         color0 = ToolColor.random();
         color1 = ToolColor.opposite(color0);
-
-        trace(Fibonacci.get(15));
 
     }
 

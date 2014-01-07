@@ -6,12 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib {
-
 public final class Bezier {
 
     //==================================
     //     Generating Methods
     //==================================
+
+
     public static function generate(points:*, segments:int = 100):Vector.<Object> {
         var curve:Vector.<Object> = new Vector.<Object>();
         var t:Number = 0, step:Number = 1 / segments;
@@ -167,7 +168,7 @@ public final class Bezier {
 
         for (var i:int = 0; i <= n; i++) {
             //var cte:Number = ToolMath.binomialCoefficient(n, i) * Math.pow(t1, n - i) * Math.pow(t, i);
-            var cte:Number = ToolMath.binomialCoefficient(n, i) * tt1 * tt;
+            var cte:Number = Binomial.get(n, i) * tt1 * tt;
             tt1 /= t1;
             tt *= t;
 
