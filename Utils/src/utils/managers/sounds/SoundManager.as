@@ -16,6 +16,7 @@ import flash.utils.Dictionary;
 import utils.commands.clamp;
 
 public class SoundManager {
+
     private static var soundItemLibrary :Dictionary = new Dictionary();
     private static var loadingSounds    :Dictionary = new Dictionary();
     private static var _muted           :Boolean = false;
@@ -23,7 +24,9 @@ public class SoundManager {
 
     public function SoundManager() {}
 
-    /** SOUND MANAGEMENT **/
+    //==================================
+    //  Sound Management
+    //==================================
     private static function add(name:String, customSoundClass:Class, preloadedSound:Sound, path:String, buffer:Number = 1000, checkPolicyFile:Boolean = false, params:Object=null):void {
         if(isRegistered(name))
             throw new ArgumentError("Already registered name: \""+name+"\".");
@@ -88,7 +91,9 @@ public class SoundManager {
     }
 
 
-    /** Public Sound Control **/
+    //==================================
+    //  Public
+    //==================================
     public static function play(name:String, ID:String = null, volume:Number = 1, pan:Number = 0, startTime:Number = 0, loops:int = 0):String {
         var soundItem:SoundItem = soundItemLibrary[name] as SoundItem;
         ID = soundItem.play(ID, startTime, volume * _volume, pan, loops);
@@ -155,7 +160,9 @@ public class SoundManager {
     public static function get isMuted():Boolean { return _muted; }
 
 
-    /** Get/Set **/
+    //==================================
+    //  Get / Set
+    //==================================
     public static function isRegistered(name:String):Boolean { return (soundItemLibrary[name] != null && soundItemLibrary[name] != undefined); }
 
     public static function getDuration(name:String):Number                              { return SoundItem(soundItemLibrary[name]).sound.length;       }
@@ -171,7 +178,9 @@ public class SoundManager {
     public static function getSoundItem(name:String):SoundItem                          { return SoundItem(soundItemLibrary[name]);                    }
 
 
-    /** INTERNAL TOOLS **/
+    //==================================
+    //  Internal Tools
+    //==================================
     private static function onSoundLoadError(e:IOErrorEvent):void {
         throw new Error("[SoundManager] " + e.text);
     }
