@@ -6,26 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib.list {
-public class LinkedList2 {
+public class DoubleLinkedList {
 
-    private var _prev:LinkedList2, _next:LinkedList2;
+    private var _prev:DoubleLinkedList, _next:DoubleLinkedList;
 
-    public function LinkedList2(previous:LinkedList2 = null, next:LinkedList2 = null) {
+    public function DoubleLinkedList(previous:DoubleLinkedList = null, next:DoubleLinkedList = null) {
         this._prev = previous;
         this._next = next;
     }
 
-    public function get next():LinkedList2 { return _next; }
-    public function set next(n:LinkedList2):void { this._next = n; }
+    public function get next():DoubleLinkedList { return _next; }
+    public function set next(n:DoubleLinkedList):void { this._next = n; }
 
-    public function get previous():LinkedList2 { return _prev; }
-    public function set previous(n:LinkedList2):void { this._prev = n; }
+    public function get previous():DoubleLinkedList { return _prev; }
+    public function set previous(n:DoubleLinkedList):void { this._prev = n; }
 
     public function get isFirst():Boolean { return _prev == null; }
     public function get isLast():Boolean { return _next == null; }
 
-
-    public function append(next:LinkedList2):LinkedList2 {
+    public function append(next:DoubleLinkedList):DoubleLinkedList {
         if(next != null) {
             if(!isLast)
                 this._next._prev = next;
@@ -36,7 +35,7 @@ public class LinkedList2 {
         return this;
     }
 
-    public function prepend(prev:LinkedList2):LinkedList2 {
+    public function prepend(prev:DoubleLinkedList):DoubleLinkedList {
         if(prev != null) {
             if(!isFirst)
                 this._prev._next = prev;
@@ -47,8 +46,8 @@ public class LinkedList2 {
         return this;
     }
 
-    public function appendToLast(link:LinkedList2):LinkedList2 {
-        var ln:LinkedList2 = this;
+    public function appendToLast(link:DoubleLinkedList):DoubleLinkedList {
+        var ln:DoubleLinkedList = this;
         while(!ln.isLast) {
             ln = ln._next;
         }
@@ -58,8 +57,8 @@ public class LinkedList2 {
         return this;
     }
 
-    public function prependToFirst(link:LinkedList2):LinkedList2 {
-        var lp:LinkedList2 = this;
+    public function prependToFirst(link:DoubleLinkedList):DoubleLinkedList {
+        var lp:DoubleLinkedList = this;
         while(!lp.isFirst) {
             lp = lp._prev;
         }
@@ -69,7 +68,7 @@ public class LinkedList2 {
         return this;
     }
 
-    public function remove():LinkedList2 {
+    public function remove():DoubleLinkedList {
         if(!isFirst)
             this._prev._next = this._next;
         if(!isLast)
@@ -79,10 +78,10 @@ public class LinkedList2 {
         return this;
     }
 
-    public function removeNext():LinkedList2 {
+    public function removeNext():DoubleLinkedList {
         if(isLast) return null;
 
-        var ln:LinkedList2 = this._next;
+        var ln:DoubleLinkedList = this._next;
         if(ln.isLast) {
             this._next = null;
         } else {
@@ -95,10 +94,10 @@ public class LinkedList2 {
         return ln;
     }
 
-    public function removePrev():LinkedList2 {
+    public function removePrev():DoubleLinkedList {
         if(isFirst) return null;
 
-        var lp:LinkedList2 = this._prev;
+        var lp:DoubleLinkedList = this._prev;
         if(lp.isFirst) {
             this._prev = null;
         } else {

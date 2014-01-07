@@ -34,7 +34,7 @@ public class Rectangle {
         return setTo(cx - factor*(cx - xMin), cx + factor*(xMax - cx), cy - factor*(cy - yMin), cy + factor*(yMax - cy));
     }
 
-    public function get size()              :Number { return width * height; }
+    public function get area()              :Number { return width * height; }
 
     public function get width()             :Number { return xMax - xMin; }
     public function set width(val:Number)   :void   { xMax = val - xMin;  }
@@ -49,7 +49,6 @@ public class Rectangle {
         this.yMax = Math.max(yMin, yMax);
         return this;
     }
-
 
     public function addBy(scalar:Number)        :Rectangle {   return setTo(xMin+scalar,xMax+scalar,yMin+scalar,yMax+scalar);    }
     public function subtractBy(scalar:Number)   :Rectangle {   return setTo(xMin-scalar,xMax-scalar,yMin-scalar,yMax-scalar);    }

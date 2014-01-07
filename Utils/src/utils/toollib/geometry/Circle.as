@@ -28,9 +28,14 @@ public class Circle {
     public function get area            ():Number { return Math.PI * radius * radius;   }
     public function get circumference   ():Number { return ToolMath.TAU * radius;       }
 
-    public function isInscribbed(x:Number, y:Number):Boolean {
+    public function isInscribed(x:Number, y:Number):Boolean {
         var a:Number = x - this.x, b:Number = y - this.y;
         return a*b + b*b <= radius * radius;
+    }
+
+    public function overlaps(c:Circle):Boolean {
+        var totalRadius:Number = radius + c.radius;
+        return ToolMath.squareSum(c.x - x, c.y - y) < totalRadius * totalRadius;
     }
 
     public function sagitta(x0:Number, y0:Number, x1:Number, y1:Number):Number {

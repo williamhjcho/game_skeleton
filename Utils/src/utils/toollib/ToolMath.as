@@ -9,10 +9,7 @@ public class ToolMath {
     public static const e:Number = 2.7182818284590455;
     public static const precision:Number = 0.0000000000000000001;
 
-    private static var _primes:Vector.<uint> = new <uint>[2,3,5,7,9,11,13,17,19,23,27];
-
     public static function random():Number { return (Math.random() + (1/PHI)) % 1; }
-
 
     //Common
     public static function abs(n:Number):Number { return (n >> 31)? -n : n; }
@@ -49,6 +46,10 @@ public class ToolMath {
         return x*pow(x*x, (n-1)/2);
     }
 
+    public static function squareSum(a:Number, b:Number):Number { return a * a + b * b; }
+
+    public static function squareSub(a:Number, b:Number):Number { return a * a - b * b; }
+
     public static function hypothenuse(a:Number, b:Number):Number { return Math.sqrt(a*a + b*b); }
 
     public static function hypot(x:Number, y:Number):Number {
@@ -61,34 +62,6 @@ public class ToolMath {
             return Math.abs(x) * Math.sqrt(1 + r*r);
         }
         return 0.0;
-    }
-
-    public static function isPrime(n:int):Boolean {
-        n = Math.abs(n);
-        if(n < 2) return false;
-        for(var i:int = 2; i*i <= n; i++) {
-            if(n%i == 0) return false;
-        }
-        return true;
-    }
-
-    public static function prime(n:int):uint {
-        if(n <= 0) return _primes[0];
-        for (var i:int = _primes[_primes.length-1] + 1; _primes.length <= n; i++) {
-            if(isPrime(i)) _primes.push(i);
-        }
-        return _primes[n];
-    }
-
-    public static function primeFactors(n:int):Vector.<uint> {
-        var factors:Vector.<uint> = new Vector.<uint>();
-        for (var i:int = 2; i <= n; i++) {
-            while(n % i == 0) {
-                factors.push(i);
-                n /= i;
-            }
-        }
-        return factors;
     }
 
     public static function delta(a:Number, b:Number, c:Number):Number { return (b*b) - (4*a*c); }

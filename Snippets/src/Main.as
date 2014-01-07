@@ -19,6 +19,7 @@ import utils.events.UEvent;
 import utils.toollib.Binomial;
 import utils.toollib.Factorial;
 import utils.toollib.Fibonacci;
+import utils.toollib.Prime;
 
 import utils.toollib.ToolColor;
 import utils.toollib.ToolMath;
@@ -36,6 +37,7 @@ public class Main extends Sprite {
         color0 = ToolColor.random();
         color1 = ToolColor.opposite(color0);
 
+        trace(Prime.isPrime(0));
     }
 
 }

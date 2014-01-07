@@ -18,12 +18,6 @@ public final class Binomial {
     //==================================
     //  Static
     //==================================
-    private static var memory:Vector.<Vector.<uint>> = new <Vector.<uint>>[
-            new <uint>[1],
-            new <uint>[1,1],
-            new <uint>[1,2,1]
-    ];
-
     public static function get(n:uint, k:uint):uint {
         if(n == 0 || k > n) return 0;
         if(k == 0 || k == n) return 1;
