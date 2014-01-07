@@ -8,6 +8,11 @@
 package utils.managers.event {
 import flash.utils.Dictionary;
 
+import utils.events.UEvent;
+import utils.utils_namespace;
+
+use namespace utils_namespace;
+
 public class UDispatcher {
 
     private var listeners:Dictionary = new Dictionary();

@@ -5,7 +5,8 @@
  * Time: 9:12 AM
  * To change this template use File | Settings | File Templates.
  */
-package utils.managers.event {
+package utils.events {
+import utils.utils_namespace;
 
 public class UEvent {
 
@@ -35,13 +36,13 @@ public class UEvent {
         return this;
     }
 
-    internal function returnToPool():void {
+    utils_namespace function returnToPool():void {
         _type = null;
         _data = null;
         pool.push(this);
     }
 
-    internal static function getFromPool(type:String, data:* = null):UEvent  {
+    utils_namespace static function getFromPool(type:String, data:* = null):UEvent  {
         return (pool.length > 0)? pool.pop().reset(type, data) : new UEvent(type, data);
     }
 }

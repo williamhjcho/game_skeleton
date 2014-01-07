@@ -4,14 +4,14 @@
 package utils.toollib {
 public class ToolMath {
 
-    public static const GOLDEN_RATIO:Number = (1 + Math.sqrt(5))/2;
-    public static const TAU:Number = 2 * Math.PI;
+    public static const PHI:Number = 1.61803398875; //(1 + Math.sqrt(5))/2;
+    public static const TAU:Number = 6.28318530718; // 2 * Math.PI
     public static const e:Number = 2.7182818284590455;
     public static const precision:Number = 0.0000000000000000001;
 
     private static var _primes:Vector.<uint> = new <uint>[2,3,5,7,9,11,13,17,19,23,27];
 
-    public static function random():Number { return (Math.random() + (1/GOLDEN_RATIO)) % 1; }
+    public static function random():Number { return (Math.random() + (1/PHI)) % 1; }
 
 
     //Common
@@ -49,13 +49,6 @@ public class ToolMath {
         return x*pow(x*x, (n-1)/2);
     }
 
-    public static function factorial(n:int):uint {
-        var fat:uint = 1;
-        for (var i:int = 2; i <= n; i++)
-            fat *= i;
-        return fat;
-    }
-
     public static function hypothenuse(a:Number, b:Number):Number { return Math.sqrt(a*a + b*b); }
 
     public static function hypot(x:Number, y:Number):Number {
@@ -68,17 +61,6 @@ public class ToolMath {
             return Math.abs(x) * Math.sqrt(1 + r*r);
         }
         return 0.0;
-    }
-
-    public static function binomialCoefficient(n:int, k:int):int {
-        if(n == 0 || k > n ) return 0;
-        if(k == 0 || n == k) return 1;
-
-        var top:Number = 1, bottom:Number = 1, i:int = n - k + 1, j:int = k;
-        while(i <= n) { top *= i++; }
-        while(j > 0) { bottom *= j--; }
-
-        return top / bottom;
     }
 
     public static function isPrime(n:int):Boolean {
@@ -239,17 +221,6 @@ public class ToolMath {
         return integral;
     }
 
-    //Bitwise
-    public static function rol(x:int, n:int):int {
-        //shift and rotate left
-        return (x << n) | (x >>> (32 - n));
-    }
-
-    public static function ror(x:int, n:int):int {
-        //shift and rotate right
-        return (x << (32 - n)) | (x >>> n);
-    }
-
     
     //Statistic
     public static function meanArithmetic(numbers:*):Number {
@@ -310,11 +281,11 @@ public class ToolMath {
     }
 
     public static function distributionPoisson(k:int, lambda:Number):Number {
-        return Math.pow(lambda, k) / ( Math.pow(Math.E, lambda) * factorial(k) );
+        return Math.pow(lambda, k) / ( Math.pow(Math.E, lambda) * Factorial.get(k) );
     }
 
     public static function distributionBinomial(n:int,k:int,p:Number):Number {
-        return binomialCoefficient(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
+        return Binomial.get(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
     }
 
     //Range
@@ -386,7 +357,8 @@ public class ToolMath {
         if(s.length <= 1) return true;
 
         var i:int = 0, j:int = s.length - 1;
-        while(i < s.length/2) {
+        var half:int = s.length / 2;
+        while(i < half) {
             if(s.charAt(i++) != s.charAt(j--)) return false;
         }
         return true;
@@ -409,107 +381,7 @@ public class ToolMath {
         return (initial * round(Math.pow(1 + tax,time), precision)) - initial;
     }
 
-    //Fourier Transform
-    //*
-    public static function DFT(XReal:Array, XImg:Array, outReal:Array, outImg:Array):void {
-        //Discrete Fourier Transform
-        var N:int = XReal.length; //assume XReal.length = XImg.length
-        var c:Number = -2 * Math.PI / N;
-        for (var k:int = 0; k < N; k++) {
-            var sumReal:Number = 0 , sumImg:Number = 0;
-            for (var t:int = 0; t < N; t++) {
-                //Euler complex number: e^(xi) = cos(x) + sin(x)i  -> cos = real part, sin = imaginary
-                //Trigonometric property (not using here): cos(angle) + sin(angle) == cos(-angle) - sin(-angle)
-                var sin:Number = Math.sin(c*t*k), cos:Number = Math.cos(c*t*k);
-                sumReal += XReal[t] * cos - XImg[t] * sin;
-                sumImg  += XReal[t] * sin + XImg[t] * cos;
-            }
-            outReal[k] = sumReal;
-            outImg[k]  = sumImg;
-        }
-    }
 
-    public static function DFT_Complex(X:Vector.<Complex>):Vector.<Complex> {
-        var N:int = X.length;
-        var c:Number = -2 * Math.PI / N;
-        var y:Vector.<Complex> = new Vector.<Complex>();
-
-        for (var k:int = 0; k < N; k++) {
-            var sumC:Complex = new Complex(0,0);
-            for (var t:int = 0; t < N; t++) {
-                var vc:Complex = X[t];
-                var sin:Number = Math.sin(c * t * k), cos:Number = Math.cos(c * t * k);
-                sumC.real      += vc.real * cos - vc.imaginary * sin;
-                sumC.imaginary += vc.real * sin + vc.imaginary * cos;
-            }
-            y[k] = sumC;
-        }
-        return y;
-    }
-
-    public static function IDFT(XReal:Array, XImg:Array, outReal:Array, outImg:Array):void {
-        //Inverse Discrete Fourier Transform
-        var N:int = XReal.length; //assume XReal.length = XImg.length
-        var c:Number = 2 * Math.PI / N;
-        for (var t:int = 0; t < N; t++) {
-            var sumReal:Number = 0, sumImg:Number = 0;
-            for (var k:int = 0; k < N; k++) {
-                var sin:Number = Math.sin(c*t*k), cos:Number = Math.cos(c*t*k);
-                sumReal += XReal[k] * cos - XImg[t] * sin;
-                sumImg  += XReal[k] * sin + XImg[t] * cos;
-            }
-            outReal[t] = sumReal/N;
-            outImg[t]  = sumImg/N;
-        }
-    }
-
-    public static function IDFT_Complex(X:Vector.<Complex>):Vector.<Complex> {
-        var N:int = X.length;
-        var c:Number = 2 * Math.PI / N;
-        var y:Vector.<Complex> = new Vector.<Complex>();
-
-        for (var t:int = 0; t < N; t++) {
-            var sumC:Complex = new Complex(0,0);
-            for (var k:int = 0; k < N; k++) {
-                var vc:Complex = X[k];
-                var sin:Number = Math.sin(c * t * k), cos:Number = Math.cos(c * t * k);
-                sumC.real      += vc.real * cos - vc.imaginary * sin;
-                sumC.imaginary += vc.real * sin + vc.imaginary * cos;
-            }
-            y[t] = sumC.multiplyScalar(1/N);
-        }
-        return y;
-    }
-
-    public static function FFT_Complex(X:Vector.<Complex>):Vector.<Complex> {
-        //invert bit order of indexes, then apply DFT calc on each
-        var N:int = X.length, m:int = N / 2, k:int;
-
-        if(N == 1) { return new <Complex>[X[0]]; }
-        if(N % 2 != 0) { throw new Error("[FFT] X.length is not a power of 2."); }
-
-        var even:Vector.<Complex> = new Vector.<Complex>();
-
-        for (k = 0; k < m; k++) { even[k] = X[2*k]; }
-        var y_top:Vector.<Complex> = FFT_Complex(even);
-
-        var odd:Vector.<Complex> = even; //reusing vector
-        for (k = 0; k < m; k++) { odd[k] = X[2*k + 1]; }
-        var y_bottom:Vector.<Complex> = FFT_Complex(odd);
-
-        var y:Vector.<Complex> = new Vector.<Complex>();
-        var c:Number = -2 * Math.PI / N;
-        var wk:Complex = new Complex(0,0);
-        for (k = 0; k < m; k++) {
-            var top:Complex = y_top[k], bot:Complex = y_bottom[k];
-            wk.setTo(Math.cos(c*k), Math.sin(c*k));
-            wk.multiply(bot);
-            y[k]        = Complex.add(top, wk);
-            y[k + N/2]  = Complex.subtract(top, wk);
-        }
-        return y;
-    }
-    //*/
 
 }
 }

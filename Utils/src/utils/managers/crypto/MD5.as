@@ -4,6 +4,8 @@
 package utils.managers.crypto {
 import flash.utils.ByteArray;
 
+import utils.toollib.Bit;
+
 import utils.toollib.ToolMath;
 
 import utils.toollib.Units;
@@ -185,7 +187,7 @@ public class MD5 {
 
 
     private static function common(f:Function, a:int, b:int, c:int, d:int, k:int, s:int, i:int):int {
-        return b + ToolMath.rol((a + f(b,c,d) + k + i), s);
+        return b + Bit.rol((a + f(b,c,d) + k + i), s);
     }
 
     private static function round1(a:uint, b:uint, c:uint, d:uint, k:uint, s:int, i:uint):uint {

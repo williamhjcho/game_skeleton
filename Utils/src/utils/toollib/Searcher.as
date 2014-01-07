@@ -48,7 +48,7 @@ public class Searcher {
     private static function binaryCore(arr:*, target:*, startI:int, endI:int, compareFunction:Function):int {
         if(startI > endI) return -1;
 
-        var midI:int = (endI + startI) >> 1; trace(startI, endI, midI)
+        var midI:int = (endI + startI) >> 1; trace(startI, endI, midI);
         var c:int = compareFunction(arr[midI], target);
 
         if(c < 0)       return binaryCore(arr, target, startI, midI - 1, compareFunction); //lower

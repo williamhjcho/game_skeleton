@@ -18,17 +18,21 @@ public final class Binomial {
     //==================================
     //  Static
     //==================================
-    private static var memory:Vector.<uint>;
+    private static var memory:Vector.<Vector.<uint>> = new <Vector.<uint>>[
+            new <uint>[1],
+            new <uint>[1,1],
+            new <uint>[1,2,1]
+    ];
 
     public static function get(n:uint, k:uint):uint {
-        if(n == 0 || k > n ) return 0;
-        if(k == 0 || n == k) return 1;
+        if(n == 0 || k > n) return 0;
+        if(k == 0 || k == n) return 1;
 
-        var top:Number = 1, bottom:Number = 1, i:int = n - k + 1, j:int = k;
-        while(i <= n) { top *= i++; }
-        while(j > 0) { bottom *= j--; }
-
-        return top / bottom;
+        var f:Number = 1, diff:uint = n - k;
+        for (var i:int = 1; i <= k; i++) {
+            f *= (diff / i) + 1;
+        }
+        return f;
     }
 }
 }
