@@ -10,19 +10,13 @@ import com.greensock.loading.LoaderMax;
 import com.greensock.loading.LoaderStatus;
 import com.greensock.loading.XMLLoader;
 
-import gameplataform.constants.AssetType;
-
-import flash.events.Event;
-import flash.events.EventDispatcher;
 import flash.text.StyleSheet;
 import flash.utils.Dictionary;
 
+import gameplataform.constants.AssetType;
 import gameplataform.controller.GameData;
 
 import utils.managers.event.UDispatcher;
-
-import utils.managers.event.UEvent;
-
 import utils.managers.serializer.SerializerManager;
 import utils.managers.sounds.SoundManager;
 

@@ -24,7 +24,7 @@ public final class Factorial {
     //==================================
     //  Internal
     //==================================
-    public static function _get(n:uint, memory:Vector.<uint>):uint {
+    private static function _get(n:uint, memory:Vector.<uint>):uint {
         if(n < memory.length)
             return memory[n];
 
