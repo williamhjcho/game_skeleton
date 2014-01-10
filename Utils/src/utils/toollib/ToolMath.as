@@ -6,14 +6,14 @@ public class ToolMath {
 
     public static const PHI:Number = 1.61803398875; //(1 + Math.sqrt(5))/2;
     public static const TAU:Number = 6.28318530718; // 2 * Math.PI
-    public static const e:Number = 2.7182818284590455;
+    public static const E:Number = 2.7182818284590455;
     public static const precision:Number = 0.0000000000000000001;
 
     public static function random():Number { return (Math.random() + (1/PHI)) % 1; }
 
     //Common
     public static function abs(n:Number):Number { return (n >> 31)? -n : n; }
-    public static function isEven(n:Number):Boolean { return ((n & 1) == 0); }
+    public static function isOdd(n:Number):Boolean { return (n & 1); }
     public static function sign(n:Number):int { return (n < 0) ? -1 : 1; }
 
     public static function middle(a:Number, b:Number):Number { return (a + b) / 2; }
@@ -42,8 +42,8 @@ public class ToolMath {
 
     public static function pow(x:Number, n:int):Number {
         if(n <= 1) return x;
-        if(n % 2 == 0) return pow(x*x, n/2);
-        return x*pow(x*x, (n-1)/2);
+        if(n % 2) return x * pow(x * x, (n - 1) / 2);
+        return pow(x * x, n / 2);
     }
 
     public static function squareSum(a:Number, b:Number):Number { return a * a + b * b; }
@@ -196,30 +196,6 @@ public class ToolMath {
 
     
     //Statistic
-    public static function meanArithmetic(numbers:*):Number {
-        var sum:Number = 0;
-        for each (var n:Number in numbers) { sum += n; }
-        return sum / numbers.length;
-    }
-
-    public static function meanHarmonic(numbers:*):Number {
-        var H:Number = 0;
-        for each (var n:Number in numbers) { H += 1/n; }
-        return numbers.length / H;
-    }
-
-    public static function meanGeometric(numbers:*):Number {
-        var G:Number = 0;
-        for each (var n:Number in numbers) { G *= n; }
-        return Math.pow(G, 1/numbers.length);
-    }
-
-    public static function meanRootSquare(numbers:*):Number {
-        var RMS:Number = 0;
-        for each (var n:Number in numbers) { RMS += n*n; }
-        return Math.sqrt(RMS/numbers.length);
-    }
-
     public static function expected(numbers:*, probabilityFunction:Function):Number {
         var sum:Number = 0;
         for each (var x:Number in numbers) {
@@ -246,15 +222,15 @@ public class ToolMath {
     }
 
     public static function distributionNormal(x:Number):Number {
-        return Math.pow(Math.E, -x*x/2) / Math.sqrt(TAU);
+        return Math.pow(E, -x*x/2) / Math.sqrt(TAU);
     }
 
     public static function distributionExponential(x:Number, lambda:Number):Number {
-        return lambda / Math.pow(Math.E, lambda * x);
+        return lambda / Math.pow(E, lambda * x);
     }
 
     public static function distributionPoisson(k:int, lambda:Number):Number {
-        return Math.pow(lambda, k) / ( Math.pow(Math.E, lambda) * Factorial.get(k) );
+        return Math.pow(lambda, k) / ( Math.pow(E, lambda) * Factorial.get(k) );
     }
 
     public static function distributionBinomial(n:int,k:int,p:Number):Number {

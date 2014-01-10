@@ -11,9 +11,16 @@ public class Prime {
 
     public static function isPrime(n:uint):Boolean {
         if(n < 2) return false;
-        for(var i:int = 2; i*i <= n; i++) {
-            if(n%i == 0) return false;
+
+        for each (var p:uint in primes) {
+            if(p == n || p * p > n) return true;
+            if(n % p == 0) return false;
         }
+
+        for (var i:uint = primes[primes.length-1] + 2; i * i <= n; i+=2) {  //primes can only be odd(except 2)
+            if(n % i == 0) return false;
+        }
+
         return true;
     }
 

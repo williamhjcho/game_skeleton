@@ -20,6 +20,7 @@ import utils.toollib.Binomial;
 import utils.toollib.Factorial;
 import utils.toollib.Fibonacci;
 import utils.toollib.Prime;
+import utils.toollib.Sorter;
 
 import utils.toollib.ToolColor;
 import utils.toollib.ToolMath;
@@ -36,9 +37,14 @@ public class Main extends Sprite {
 
         color0 = ToolColor.random();
         color1 = ToolColor.opposite(color0);
-
-        trace(Prime.isPrime(0));
     }
 
+    private function f1(n:uint):Boolean {
+        return (n & 1);
+    }
+
+    private function f2(n:uint):Boolean {
+        return (n & 1) == 1;
+    }
 }
 }
