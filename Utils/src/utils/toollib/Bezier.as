@@ -6,13 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib {
+import utils.toollib.vector.v2d;
+
 public final class Bezier {
 
     //==================================
     //     Generating Methods
     //==================================
-
-
     public static function generate(points:*, segments:int = 100):Vector.<Object> {
         var curve:Vector.<Object> = new Vector.<Object>();
         var t:Number = 0, step:Number = 1 / segments;
@@ -20,9 +20,9 @@ public final class Bezier {
         switch (points.length) {
             case 0:     return curve;
             case 1:     curve.push(points[0]); return curve;
-            case 2:     for (t = 0; t <= 1; t+=step) { curve.push(equationLinear(points[0],points[1], t)); } break;
-            case 3:     for (t = 0; t <= 1; t+=step) { curve.push(equationQuadratic(points[0],points[1], points[2], t)); } break;
-            case 4:     for (t = 0; t <= 1; t+=step) { curve.push(equationCubic(points[0],points[1],points[2],points[3], t)); } break;
+            case 2:     for (t = 0; t <= 1; t+=step) { curve.push(equationLinear(points[0], points[1], t)); } break;
+            case 3:     for (t = 0; t <= 1; t+=step) { curve.push(equationQuadratic(points[0], points[1], points[2], t)); } break;
+            case 4:     for (t = 0; t <= 1; t+=step) { curve.push(equationCubic(points[0], points[1], points[2], points[3], t)); } break;
             default:    for (t = 0; t <= 1; t+=step) { curve.push(equationN(points, t)); } break;
         }
         return curve;
@@ -43,6 +43,37 @@ public final class Bezier {
             }
         }
         return curve;
+    }
+
+    public static function catmullRom(points:*, segments:int = 100, K:Number = 1):Vector.<Object> {
+        var r:Vector.<Object> = new Vector.<Object>();
+        var ta:v2d = new v2d(0,0), tb:v2d = new v2d(0,0);
+        var a:Object, b:Object, c:Object;
+        var step:Number = 1 / segments;
+
+        for (var i:int = 1; i < points.length; i++) {
+            a = points[i - 1];
+            b = points[i];
+
+            if(i == points.length - 1) {
+                tb.x = 0;
+                tb.y = 0;
+            } else {
+                c = points[i + 1];
+
+                tb.x = (c.x - a.x) * K ;
+                tb.y = (c.y - a.y) * K ;
+            }
+
+            for(var t:Number = 0; t <= 1.0; t+=step) {
+                r.push(equationHermite(t, a, b, ta, tb));
+            }
+
+            ta.x = tb.x;
+            ta.y = tb.y;
+        }
+
+        return r;
     }
 
     public static function generate_deCasteljau(points:*, thresholdDistance:Number):Vector.<Object> {
@@ -176,6 +207,17 @@ public final class Bezier {
             p.y += cte * points[i].y;
         }
         return p;
+    }
+
+    public static function equationHermite(t:Number, A:Object, B:Object, U:Object, V:Object):v2d {
+        var s:Number = 1 - t;
+        var tt:Number = t * t;
+        var ss:Number = s * s;
+
+        return new v2d(
+                ss * (1 + 2 * t) * A.x + tt * (1 + 2 * s) * B.x + ss * t * U.x - s * tt * V.x,
+                ss * (1 + 2 * t) * A.y + tt * (1 + 2 * s) * B.y + ss * t * U.y - s * tt * V.y
+        );
     }
 
 
