@@ -4,7 +4,7 @@
 package utils.toollib {
 import utils.commands.getClass;
 
-public class ToolArray {
+public final class ToolArray {
 
     public static function copy(target:*, output:* = null):* {
         if(output == null) {

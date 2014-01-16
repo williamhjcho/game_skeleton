@@ -2,7 +2,7 @@
  * william.cho
  */
 package utils.toollib {
-public class ToolMath {
+public final class ToolMath {
 
     public static const PHI:Number = 1.61803398875; //(1 + Math.sqrt(5))/2;
     public static const TAU:Number = 6.28318530718; // 2 * Math.PI
@@ -13,10 +13,12 @@ public class ToolMath {
 
     //Common
     public static function abs(n:Number):Number { return (n >> 31)? -n : n; }
-    public static function isOdd(n:Number):Boolean { return (n & 1); }
+    public static function isOdd(n:Number):Boolean { return (n & 1) == 1; }
     public static function sign(n:Number):int { return (n < 0) ? -1 : 1; }
 
     public static function middle(a:Number, b:Number):Number { return (a + b) / 2; }
+
+    public static function digitalRoot(n:uint):uint { return 1 + ((n - 1) % 9); }
 
     public static function euler():Number {
         var sum:Number = 0, fact:Number = 1, nextTerm:Number = 1;
@@ -91,6 +93,8 @@ public class ToolMath {
         //ex: LCM(4,6) = 12
         return a*b / GCD(a,b);
     }
+
+
 
 
     //Trigonometry
@@ -277,12 +281,12 @@ public class ToolMath {
         return num;
     }
 
-    public static function floorMult(num:Number, mult:int):Number {
-        return num - (num % mult);
+    public static function floorMult(n:Number, mult:int):Number {
+        return n - (n % mult);
     }
 
-    public static function ceilMult(num:Number, mult:int):Number {
-        return num + mult - (num % mult);
+    public static function ceilMult(n:Number, mult:int):Number {
+        return n + mult - (n % mult);
     }
 
     public static function clamp(a:Number, min:Number, max:Number):Number {

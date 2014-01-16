@@ -38,8 +38,6 @@ public class Client extends Sprite {
     private static var _config:Config;
     private static var _preLoader:DisplayObject;
 
-
-
     public function Client() {
         if(instance != null) throw new IllegalOperationError("Singleton Class, cannot be instantiated twice.");
         instance = this;
@@ -87,7 +85,7 @@ public class Client extends Sprite {
             instance.removeChild(_preLoader);
     }
 
-    public function updatePreLoader(p:Number):void {
+    public static function updatePreLoader(p:Number):void {
         IPreLoader(_preLoader).percentage = p;
     }
 

@@ -8,10 +8,7 @@ import utils.errors.InstantiaitonError;
 
 import utils.toollib.vector.v2d;
 
-public class ToolTrigo {
-    public function ToolTrigo() {
-        throw new InstantiaitonError();
-    }
+public final class ToolTrigo {
 
     /**     CONVERSION     **/
     public static function toRad(angle:Number)  :Number { return (angle / 180) * Math.PI;  }

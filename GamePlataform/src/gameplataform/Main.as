@@ -8,17 +8,16 @@
 package gameplataform {
 import com.demonsters.debugger.MonsterDebugger;
 
-import gameplataform.controller.Game;
-import gameplataform.controller.data.DataController;
-
 import flash.display.Sprite;
 import flash.display.Stage;
 import flash.events.Event;
 import flash.system.Security;
 import flash.text.TextField;
 
-import gameplataform.model.Config;
+import gameplataform.controller.Game;
 import gameplataform.controller.GameData;
+import gameplataform.controller.data.DataController;
+import gameplataform.model.Config;
 
 import utils.managers.DebuggerManager;
 import utils.managers.EnvironmentManager;

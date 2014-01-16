@@ -2,7 +2,7 @@
  * Created by William on 1/7/14.
  */
 package utils.toollib {
-public class Prime {
+public final class Prime {
 
     //==================================
     //  Static

@@ -5,7 +5,7 @@
  * Time: 12:48 PM
  * To change this template use File | Settings | File Templates.
  */
-package utils.crypto {
+package utils.managers.crypto {
 public class SHA1 {
 
     private static const K:Array = [0x5a827999, 0x6ed9eba1, 0x8f1bbcdc, 0xca62c1d6];

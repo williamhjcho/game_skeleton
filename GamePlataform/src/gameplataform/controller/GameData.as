@@ -6,12 +6,12 @@
  * To change this template use File | Settings | File Templates.
  */
 package gameplataform.controller {
-import gameplataform.model.*;
-
 import flash.display.Stage;
 import flash.geom.Rectangle;
 import flash.text.StyleSheet;
 import flash.utils.Dictionary;
+
+import gameplataform.model.*;
 
 import utils.managers.DataManager;
 
@@ -37,7 +37,6 @@ public class GameData {
     public static function get stageWidth   ():Number { return _stage.stageWidth; }
     public static function get stageHeight  ():Number { return _stage.stageHeight; }
     public static function get stageRect    ():Rectangle { return new Rectangle(0,0,_stage.stageWidth, _stage.stageHeight); }
-
 
     public static function addText(model:Object, acronym:String, overwrite:Boolean):void {
         var library:DataManager = textLibrary[acronym];

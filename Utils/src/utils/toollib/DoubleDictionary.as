@@ -9,7 +9,7 @@ package utils.toollib {
 import flash.errors.IllegalOperationError;
 import flash.utils.Dictionary;
 
-public class DoubleDictionary {
+public final class DoubleDictionary {
 
     private var _references:Dictionary;
 

@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package gameplataform.events {
-import utils.managers.event.UEvent;
+import utils.events.UEvent;
 
 public final class DataEvent extends UEvent {
 

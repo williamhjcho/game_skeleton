@@ -15,7 +15,7 @@ import flash.utils.Dictionary;
 
 import utils.commands.clamp;
 
-public class SoundManager {
+public final class SoundManager {
 
     private static var soundItemLibrary :Dictionary = new Dictionary();
     private static var loadingSounds    :Dictionary = new Dictionary();

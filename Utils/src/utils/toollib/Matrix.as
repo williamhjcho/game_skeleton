@@ -18,9 +18,13 @@ public class Matrix {
         this._rows = rows;
         this._columns = columns;
 
-        data = new Vector.<Vector.<Number>>(rows);
+        data = new Vector.<Vector.<Number>>();
+        data.length = rows;
+        data.fixed = true;
         for (var i:int = 0; i < rows; i++) {
-            data[i] = new Vector.<Number>(columns);
+            data[i] = new Vector.<Number>();
+            data[i].length = columns;
+            data[i].fixed = true;
         }
     }
 

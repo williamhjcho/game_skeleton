@@ -2,7 +2,7 @@
  * Created by aennova on 06/01/14.
  */
 package utils.toollib {
-public class Bit {
+public final class Bit {
 
     //shift and rotate left
     public static function rol(x:int, n:int):int {

@@ -5,7 +5,7 @@
  * Time: 11:19 PM
  * To change this template use File | Settings | File Templates.
  */
-package utils.crypto {
+package utils.managers.crypto {
 
 import flash.net.registerClassAlias;
 import flash.utils.Dictionary;

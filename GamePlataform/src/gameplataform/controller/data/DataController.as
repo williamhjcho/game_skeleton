@@ -16,13 +16,13 @@ import flash.utils.Dictionary;
 import gameplataform.constants.AssetType;
 import gameplataform.controller.GameData;
 
-import utils.managers.event.UDispatcher;
+import utils.managers.event.EDispatcher;
 import utils.managers.serializer.SerializerManager;
 import utils.managers.sounds.SoundManager;
 
 public class DataController {
 
-    private static var dispatchingUnit:UDispatcher = new UDispatcher(null);
+    private static var dispatchingUnit:EDispatcher = new EDispatcher(null);
     private static var analyzedLoaders:Dictionary = new Dictionary();
 
     public function DataController() {}

@@ -30,18 +30,10 @@ public class BaseView extends Sprite {
         this.visible = false;
     }
 
-    public function animate(t:Number, parameters:Object):void {
-
-    }
-
     public function onCompletion(...parameters):void {
         if(_onComplete != null)
             _onComplete.apply(this, parameters);
     }
-
-    //==================================
-    //
-    //==================================
 
     public function set onComplete(f:Function):void {
         _onComplete = f;
