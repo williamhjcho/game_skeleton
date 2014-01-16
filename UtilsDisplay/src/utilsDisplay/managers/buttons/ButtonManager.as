@@ -16,33 +16,35 @@ import flash.utils.Dictionary;
 import flash.utils.setTimeout;
 
 public class ButtonManager {
-    private static const DISABLED   :int = 0;
-    private static const ENABLED    :int = 1;
 
-    private static var _buttons:Dictionary = new Dictionary();
+    private static const STATUS_DISABLED:uint = 0;
+    private static const STATUS_ENABLED :uint = 1;
 
     public static var DEFAULT_OVER_COLOR:uint = 0xffbb00;
     public static var DEFAULT_DOWN_COLOR:uint = 0x000000;
-    public static var DEFAULT_DELAY_TIME:int = 0;
+    public static var DEFAULT_DELAY_TIME:uint = 0;
     public static var DEFAULT_BUTTON_MODE:Boolean = true;
 
-    private static const MODE_NONE :int = 0;
-    private static const MODE_OVER :int = 1;
-    private static const MODE_DOWN :int = 2;
+    private static const MODE_NONE :uint = 0;
+    private static const MODE_OVER :uint = 1;
+    private static const MODE_DOWN :uint = 2;
 
-    private static var focus:DisplayObject = null;
+    private static const BUTTON_MODE:String = "buttonMode";
+
+    private static var _buttons:Dictionary = new Dictionary();
+    private static var _focus:DisplayObject = null;
 
     public static function add(button:DisplayObject, parameters:Object):void {
         var p:ButtonProperty = _buttons[button];
 
         if(p != null)
-            throw new Error("Already registered instance : \"" + button.name + "\".");
+            throw new ArgumentError("Already registered instance : \"" + button.name + "\".");
 
         parameters ||= {};
 
         p                   = new ButtonProperty();
         p.reference         = button;
-        p.status            = DISABLED;
+        p.status            = STATUS_DISABLED;
         p.mode              = MODE_NONE;
 
         p.priority          = parameters.priority || 0;
@@ -50,18 +52,18 @@ public class ButtonManager {
         p.useWeakReference  = (parameters.useWeakReference == null)? false : parameters.useWeakReference;
 
         p.useDefault    = parameters.useDefault == null ? true : parameters.useDefault;
-        p.delay         = parameters.delay!=int.MIN_VALUE? parameters.delay:DEFAULT_DELAY_TIME   ;
+        p.delay         = parameters.delay != int.MIN_VALUE? parameters.delay : DEFAULT_DELAY_TIME;
         p.overColor     = parameters.overColor  || DEFAULT_OVER_COLOR   ;
         p.downColor     = parameters.downColor  || DEFAULT_DOWN_COLOR   ;
         p.buttonMode    = parameters.buttonMode || DEFAULT_BUTTON_MODE  ;
 
-        p.onClick       = parameters.onClick    || defaultClick     ;
-        p.onDown        = parameters.onDown     || defaultDown      ;
-        p.onUp          = parameters.onUp       || defaultUp        ;
-        p.onOver        = parameters.onOver     || defaultOver      ;
-        p.onOut         = parameters.onOut      || defaultOut       ;
-        p.onEnable      = parameters.onEnable   || defaultEnable    ;
-        p.onDisable     = parameters.onDisable  || defaultDisable   ;
+        p.onClick       = parameters.onClick;
+        p.onDown        = parameters.onDown     || (p.useDefault? defaultDown     : null);
+        p.onUp          = parameters.onUp       || (p.useDefault? defaultUp       : null);
+        p.onOver        = parameters.onOver     || (p.useDefault? defaultOver     : null);
+        p.onOut         = parameters.onOut      || (p.useDefault? defaultOut      : null);
+        p.onEnable      = parameters.onEnable   || (p.useDefault? defaultEnable   : null);
+        p.onDisable     = parameters.onDisable  || (p.useDefault? defaultDisable  : null);
 
         _buttons[button] = p;
 
@@ -95,24 +97,24 @@ public class ButtonManager {
         p.downColor     = parameters.downColor  || p.downColor ;
         p.buttonMode    = parameters.buttonMode || p.buttonMode;
 
-        p.onClick       = parameters.onClick   || p.onClick  ;
-        p.onDown        = parameters.onDown    || p.onDown   ;
-        p.onUp          = parameters.onUp      || p.onUp     ;
-        p.onOver        = parameters.onOver    || p.onOver   ;
-        p.onOut         = parameters.onOut     || p.onOut    ;
-        p.onEnable      = parameters.onEnable  || p.onEnable ;
-        p.onDisable     = parameters.onDisable || p.onDisable;
+        p.onClick       = parameters.onClick   || p.onClick;
+        p.onDown        = parameters.onDown    || p.onDown    || (p.useDefault? defaultDown     : null);
+        p.onUp          = parameters.onUp      || p.onUp      || (p.useDefault? defaultUp       : null);
+        p.onOver        = parameters.onOver    || p.onOver    || (p.useDefault? defaultOver     : null);
+        p.onOut         = parameters.onOut     || p.onOut     || (p.useDefault? defaultOut      : null);
+        p.onEnable      = parameters.onEnable  || p.onEnable  || (p.useDefault? defaultEnable   : null);
+        p.onDisable     = parameters.onDisable || p.onDisable || (p.useDefault? defaultDisable  : null);
     }
 
     public static function enable(button:DisplayObject):void {
         var p:ButtonProperty = _buttons[button];
 
-        if(p == null || p.status == ENABLED) return;
+        if(p == null || p.status == STATUS_ENABLED) return;
 
-        p.status = ENABLED;
+        p.status = STATUS_ENABLED;
 
-        if(p.buttonMode && button.hasOwnProperty("buttonMode"))
-            button["buttonMode"] = true;
+        if(p.buttonMode && button.hasOwnProperty(BUTTON_MODE))
+            button[BUTTON_MODE] = true;
         button.addEventListener(MouseEvent.ROLL_OVER, onOver, p.useCapture, p.priority, p.useWeakReference);
         button.addEventListener(MouseEvent.ROLL_OUT , onOut, p.useCapture, p.priority, p.useWeakReference);
         p.callEnable();
@@ -121,11 +123,11 @@ public class ButtonManager {
     public static function disable(button:DisplayObject):void {
         var p:ButtonProperty = _buttons[button];
 
-        if(p == null || p.status == DISABLED) return;
+        if(p == null || p.status == STATUS_DISABLED) return;
 
-        p.status = DISABLED;
-        if(p.buttonMode && button.hasOwnProperty("buttonMode"))
-            button["buttonMode"] = false;
+        p.status = STATUS_DISABLED;
+        if(p.buttonMode && button.hasOwnProperty(BUTTON_MODE))
+            button[BUTTON_MODE] = false;
         button.removeEventListener(MouseEvent.MOUSE_DOWN, onDown);
         button.removeEventListener(MouseEvent.MOUSE_UP  , onUp);
         button.removeEventListener(MouseEvent.ROLL_OVER , onOver);
@@ -143,17 +145,17 @@ public class ButtonManager {
     }
 
     public static function isEnabled(button:DisplayObject):Boolean {
-        return (isRegistered(button)) ? ButtonProperty(_buttons[button]).status == ENABLED : false;
+        return isRegistered(button) ? ButtonProperty(_buttons[button]).status == STATUS_ENABLED : false;
     }
 
-    public static function get currentFocus():DisplayObject { return focus; }
+    public static function get currentFocus():DisplayObject { return _focus; }
 
     /** Mouse Events **/
     private static function onDown(e:MouseEvent):void {
         var button:DisplayObject = e.currentTarget as DisplayObject;
         button.removeEventListener(MouseEvent.MOUSE_DOWN, onDown);
         var p:ButtonProperty = _buttons[button];
-        if(p == null) return;
+        if(p == null) throw new Error("Un-disposed button: \"" + button.name + "\".");
         button.addEventListener(MouseEvent.MOUSE_UP, onUp, p.useCapture, p.priority, p.useWeakReference);
         p.mode = MODE_DOWN;
         p.callDown();
@@ -161,14 +163,12 @@ public class ButtonManager {
 
     private static function onUp(e:MouseEvent):void {
         var button:DisplayObject = e.currentTarget as DisplayObject;
-        button.removeEventListener(MouseEvent.MOUSE_UP, onUp);
         var p:ButtonProperty = _buttons[button];
-        if(p == null)       return;
+        if(p == null) throw new Error("Un-disposed button: \"" + button.name + "\".");
         if(p.delay > 0) {
+            button.removeEventListener(MouseEvent.MOUSE_UP, onUp);
             disableOnClick(button);
             setTimeout(enableOnClick, p.delay, button);
-        } else {
-            button.addEventListener(MouseEvent.MOUSE_DOWN, onDown, p.useCapture, p.priority, p.useWeakReference);
         }
         p.callUp();
         p.callClick();
@@ -177,9 +177,9 @@ public class ButtonManager {
     private static function onOver(e:MouseEvent):void {
         var button:DisplayObject = e.currentTarget as DisplayObject;
         var p:ButtonProperty = _buttons[button];
-        if(p == null) return;
+        if(p == null) throw new Error("Un-disposed button: \"" + button.name + "\".");
         button.addEventListener(MouseEvent.MOUSE_DOWN, onDown, p.useCapture, p.priority, p.useWeakReference);
-        focus = button;
+        _focus = button;
         p.mode = MODE_OVER;
         p.callOver();
     }
@@ -188,9 +188,9 @@ public class ButtonManager {
         var button:DisplayObject = e.currentTarget as DisplayObject;
         button.removeEventListener(MouseEvent.MOUSE_DOWN, onDown);
         button.removeEventListener(MouseEvent.MOUSE_UP  , onUp);
-        focus = null;
+        _focus = null;
         var p:ButtonProperty = _buttons[button];
-        if(p == null) return;
+        if(p == null) throw new Error("Un-disposed button: \"" + button.name + "\".");
         if(p.mode == MODE_DOWN)  //still holding mouse down
             p.callUp();
         p.mode = MODE_NONE;
@@ -199,7 +199,7 @@ public class ButtonManager {
 
     private static function enableOnClick(button:DisplayObject):void {
         var p:ButtonProperty = _buttons[button];
-        if(p == null || p.status != ENABLED) return;
+        if(p == null || p.status != STATUS_ENABLED) return;
         button.addEventListener(MouseEvent.ROLL_OVER, onOver, p.useCapture, p.priority, p.useWeakReference);
         button.addEventListener(MouseEvent.MOUSE_UP, onUp, p.useCapture, p.priority, p.useWeakReference);
         p.callEnable();
@@ -216,9 +216,6 @@ public class ButtonManager {
 
 
     /** Default Effects **/
-    private static function defaultClick(button:DisplayObject):void {
-        //do nothing
-    }
     private static function defaultDown(button:DisplayObject):void {
         var p:ButtonProperty = _buttons[button];
         if(p.useDefault)
@@ -275,13 +272,13 @@ class ButtonProperty {
     public var onEnable   :Function = null;
     public var onDisable  :Function = null;
 
-    public function callClick  ():void { onClick  .call(this, reference); }
-    public function callDown   ():void { onDown   .call(this, reference); }
-    public function callUp     ():void { onUp     .call(this, reference); }
-    public function callOver   ():void { onOver   .call(this, reference); }
-    public function callOut    ():void { onOut    .call(this, reference); }
-    public function callEnable ():void { onEnable .call(this, reference); }
-    public function callDisable():void { onDisable.call(this, reference); }
+    public function callClick  ():void { if(onClick   != null) onClick  .call(this, reference); }
+    public function callDown   ():void { if(onDown    != null) onDown   .call(this, reference); }
+    public function callUp     ():void { if(onUp      != null) onUp     .call(this, reference); }
+    public function callOver   ():void { if(onOver    != null) onOver   .call(this, reference); }
+    public function callOut    ():void { if(onOut     != null) onOut    .call(this, reference); }
+    public function callEnable ():void { if(onEnable  != null) onEnable .call(this, reference); }
+    public function callDisable():void { if(onDisable != null) onDisable.call(this, reference); }
 
     public function destroy():void {
         this.onClick   = null;

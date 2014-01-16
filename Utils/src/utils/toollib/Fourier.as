@@ -2,8 +2,7 @@
  * Created by aennova on 06/01/14.
  */
 package utils.toollib {
-public class Fourier {
-
+public final class Fourier {
 
     public static function DFT(XReal:Array, XImg:Array, outReal:Array, outImg:Array):void {
         //Discrete Fourier Transform
@@ -33,7 +32,7 @@ public class Fourier {
             for (var t:int = 0; t < N; t++) {
                 var vc:Complex = X[t];
                 var sin:Number = Math.sin(c * t * k), cos:Number = Math.cos(c * t * k);
-                sumC.x      += vc.x * cos - vc.y * sin;
+                sumC.x += vc.x * cos - vc.y * sin;
                 sumC.y += vc.x * sin + vc.y * cos;
             }
             y[k] = sumC;

@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.managers {
+import flash.errors.IllegalOperationError;
+
 public class DataManager {
 
     private var _data:Object;
@@ -21,11 +23,9 @@ public class DataManager {
     }
 
     public function add(data:Object, overwrite:Boolean):void {
-        if(_locked) {
-            trace("[DataManager is locked. Cannot add more properties. Use unlock() first.");
+        if(_locked)
+            throw new IllegalOperationError("[DataManager is locked. Cannot add more properties. Use unlock() first.");
 
-            return;
-        }
         for (var property:String in data) {
             if(_data[property] == null || (_data[property] != null && overwrite)) {
                 _data[property] = data[property];
@@ -55,6 +55,7 @@ public class DataManager {
 
     public function lock():void { _locked = true; }
     public function unlock():void { _locked = false; }
-    public function get isLocked():Boolean { return _locked; }
+    public function set locked(v:Boolean):void { _locked = v; }
+    public function get locked():Boolean { return _locked; }
 }
 }

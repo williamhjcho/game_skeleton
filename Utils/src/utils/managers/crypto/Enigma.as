@@ -5,7 +5,7 @@
  * Time: 12:10 AM
  * To change this template use File | Settings | File Templates.
  */
-package utils.crypto {
+package utils.managers.crypto {
 public class Enigma {
 
     private static const staticWheel:Array =

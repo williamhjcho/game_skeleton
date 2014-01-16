@@ -6,7 +6,7 @@ import flash.utils.Dictionary;
 
 import utils.commands.getClass;
 
-public class Pool {
+public final class Pool {
 
     private static var poolList:Dictionary = new Dictionary();
     private static var types:Vector.<Class> = new Vector.<Class>();
@@ -29,6 +29,12 @@ public class Pool {
         if(!isRegistered(type)) return;
         delete poolList[type];
         types.splice(types.indexOf(type),1);
+    }
+
+    public static function destroyAll():void {
+        for each (var type:Class in poolList)
+            delete poolList[type];
+        types = new Vector.<Class>();
     }
 
     public static function getItem(type:Class):* {

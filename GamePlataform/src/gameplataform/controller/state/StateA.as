@@ -7,7 +7,6 @@
  */
 package gameplataform.controller.state {
 import gameplataform.constants.States;
-
 import gameplataform.controller.Game;
 
 public class StateA extends BaseState {

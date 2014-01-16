@@ -8,9 +8,7 @@
 package utils.toollib {
 import utils.toollib.vector.v2d;
 
-public class ToolGeometry {
-    public function ToolGeometry() {
-    }
+public final class ToolGeometry {
 
     public static function pythagoras(a:Number, b:Number):Number { return Math.sqrt(a*a + b*b);    }
 

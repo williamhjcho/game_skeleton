@@ -7,24 +7,7 @@ import utils.toollib.color.HSL;
 import utils.toollib.color.HSV;
 import utils.toollib.color.RGBA;
 
-public class ToolColor {
-
-    public static const WHITE   :uint = 0xffffffff;
-    public static const SILVER  :uint = 0xffc0c0c0;
-    public static const GRAY    :uint = 0xff808080;
-    public static const BLACK   :uint = 0xff000000;
-    public static const RED     :uint = 0xffff0000;
-    public static const MAROON  :uint = 0xff800000;
-    public static const YELLOW  :uint = 0xffffff00;
-    public static const OLIVE   :uint = 0xff808000;
-    public static const LIME    :uint = 0xff00ff00;
-    public static const GREEN   :uint = 0xff008000;
-    public static const AQUA    :uint = 0xff00ffff;
-    public static const TEAL    :uint = 0xff008080;
-    public static const BLUE    :uint = 0xff0000ff;
-    public static const NAVY    :uint = 0xff000080;
-    public static const FUCHSIA :uint = 0xffff00ff;
-    public static const PURPLE  :uint = 0xff800080;
+public final class ToolColor {
 
     /** Color Definition/Property **/
     public static function getAlpha(color:uint):uint { return color >> 24 & 0xff; }
@@ -46,7 +29,7 @@ public class ToolColor {
     }
 
     public static function random(alpha:uint = 0xff):uint {
-        return alpha << 24 | (Math.random() * 0xff) << 16 | (Math.random() * 0xff) << 8 | (Math.random() * 0xff);
+        return (alpha << 24) | (Math.random() * 0xffffff);
     }
 
     public static function decompose(color:uint):RGBA { return RGBA.fromInt(color); }

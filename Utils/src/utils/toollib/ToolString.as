@@ -3,7 +3,7 @@
  */
 package utils.toollib {
 
-public class ToolString {
+public final class ToolString {
 
     public static function wordCount(s:String):int {
         if(s == null) return 0;
@@ -69,6 +69,23 @@ public class ToolString {
         var result:String = "";
         while(repetition-- > 0) { result = result.concat(pattern); }
         return result;
+    }
+
+    public static function verticalize(words:Vector.<String>):String {
+        var output:String = "";
+        var n:uint = words.length;
+        var max:uint = 0;
+        words.forEach(function(word:String, index:int, vect:Vector.<String>):void {
+            max = Math.max(max, word.length);
+        });
+
+        for (var i:int = 0; i < max; i++) {
+            for (var j:int = 0; j < n; j++) {
+                output += (i < words[j].length)? words[j].charAt(i) : " ";
+            }
+            output += "\n";
+        }
+        return output;
     }
 
     public static function replace(text:String, pattern:String, replacePattern:String):String {

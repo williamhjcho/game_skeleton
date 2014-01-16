@@ -13,22 +13,39 @@ public final class Bezier {
     //==================================
     //     Generating Methods
     //==================================
-    public static function generate(points:*, segments:int = 100):Vector.<Object> {
-        var curve:Vector.<Object> = new Vector.<Object>();
-        var t:Number = 0, step:Number = 1 / segments;
-
-        switch (points.length) {
-            case 0:     return curve;
-            case 1:     curve.push(points[0]); return curve;
-            case 2:     for (t = 0; t <= 1; t+=step) { curve.push(equationLinear(points[0], points[1], t)); } break;
-            case 3:     for (t = 0; t <= 1; t+=step) { curve.push(equationQuadratic(points[0], points[1], points[2], t)); } break;
-            case 4:     for (t = 0; t <= 1; t+=step) { curve.push(equationCubic(points[0], points[1], points[2], points[3], t)); } break;
-            default:    for (t = 0; t <= 1; t+=step) { curve.push(equationN(points, t)); } break;
-        }
-        return curve;
+    public static function generateLinear(A:Object, B:Object, segments:uint = 100, output:Vector.<Object> = null):Vector.<Object> {
+        output ||= new Vector.<Object>();
+        var step:Number = 1 / segments;
+        for (var t:Number = 0; t <= 1.0; t += step)
+            output.push(equationLinear(A, B, t));
+        return output;
     }
 
-    public static function generate_interpolated(points:*, segments:int = 100, K:Number = 1):Vector.<Object> {
+    public static function generateQuadratic(A:Object, B:Object, C:Object, segments:uint = 100, output:Vector.<Object> = null):Vector.<Object> {
+        output ||= new Vector.<Object>();
+        var step:Number = 1 / segments;
+        for (var t:Number = 0; t <= 1.0; t += step)
+            output.push(equationQuadratic(A, B, C, t));
+        return output;
+    }
+
+    public static function generateCubic(A:Object, B:Object, C:Object, D:Object, segments:uint = 100, output:Vector.<Object> = null):Vector.<Object> {
+        output ||= new Vector.<Object>();
+        var step:Number = 1 / segments;
+        for (var t:Number = 0; t <= 1.0; t += step)
+            output.push(equationCubic(A, B, C, D, t));
+        return output;
+    }
+
+    public static function generateN(points:*, segments:uint = 100, output:Vector.<Object> = null):Vector.<Object> {
+        output ||= new Vector.<Object>();
+        var step:Number = 1 / segments;
+        for (var t:Number = 0; t <= 1.0; t += step)
+            output.push(equationN(points, t));
+        return output;
+    }
+
+    public static function generateInterpolated(points:*, segments:int = 100, K:Number = 1):Vector.<Object> {
         var iPoints:Vector.<Object> = interpolatePoints(points, K);
         var curve:Vector.<Object> = new Vector.<Object>();
         var nArcs:int = points.length - 1;
@@ -45,7 +62,7 @@ public final class Bezier {
         return curve;
     }
 
-    public static function catmullRom(points:*, segments:int = 100, K:Number = 1):Vector.<Object> {
+    public static function generate_CatmullRom(points:*, segments:int = 100, K:Number = 1):Vector.<Object> {
         var r:Vector.<Object> = new Vector.<Object>();
         var ta:v2d = new v2d(0,0), tb:v2d = new v2d(0,0);
         var a:Object, b:Object, c:Object;
@@ -167,26 +184,26 @@ public final class Bezier {
     //==================================
     //     Equations
     //==================================
-    public static function equationLinear(p0:Object, p1:Object, t:Number):Object {
+    public static function equationLinear(A:Object, B:Object, t:Number):Object {
         return {
-            x:(1-t)*p0.x + t*p1.x,
-            y:(1-t)*p0.y + t*p1.y
+            x:(1-t)*A.x + t*B.x,
+            y:(1-t)*A.y + t*B.y
         };
     }
 
-    public static function equationQuadratic(p0:Object, p1:Object, p2:Object, t:Number):Object {
+    public static function equationQuadratic(A:Object, B:Object, C:Object, t:Number):Object {
         var t1:Number = 1 - t;
         return {
-            x:(t1*t1)*p0.x + 2*(t1*t)*p1.x + (t*t)*p2.x,
-            y:(t1*t1)*p0.y + 2*(t1*t)*p1.y + (t*t)*p2.y
+            x:(t1*t1)*A.x + 2*(t1*t)*B.x + (t*t)*C.x,
+            y:(t1*t1)*A.y + 2*(t1*t)*B.y + (t*t)*C.y
         };
     }
 
-    public static function equationCubic(p0:Object, p1:Object, p2:Object, p3:Object, t:Number):Object {
+    public static function equationCubic(A:Object, B:Object, C:Object, D:Object, t:Number):Object {
         var t1:Number = 1 - t;
         return {
-            x:(t1*t1*t1)*p0.x + 3*(t1*t1*t)*p1.x + 3*(t1*t*t)*p2.x + (t*t*t)*p3.x,
-            y:(t1*t1*t1)*p0.y + 3*(t1*t1*t)*p1.y + 3*(t1*t*t)*p2.y + (t*t*t)*p3.y
+            x:(t1*t1*t1)*A.x + 3*(t1*t1*t)*B.x + 3*(t1*t*t)*C.x + (t*t*t)*D.x,
+            y:(t1*t1*t1)*A.y + 3*(t1*t1*t)*B.y + 3*(t1*t*t)*C.y + (t*t*t)*D.y
         };
     }
 

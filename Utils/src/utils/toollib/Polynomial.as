@@ -14,7 +14,8 @@ public class Polynomial {
 
     public function Polynomial(degree:int, a:Number = 1) {
         this.deg = degree;
-        this.cff = new Vector.<Number>(degree+1);
+        this.cff = new Vector.<Number>();
+        this.cff.length = degree + 1;
         this.cff[deg] = a;
     }
 

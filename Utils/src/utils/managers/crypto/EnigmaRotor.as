@@ -5,7 +5,7 @@
  * Time: 12:11 AM
  * To change this template use File | Settings | File Templates.
  */
-package utils.crypto {
+package utils.managers.crypto {
 public class EnigmaRotor {
     private var labelRing:Array;
     private var indexRing:Array;

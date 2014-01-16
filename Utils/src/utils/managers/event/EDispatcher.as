@@ -13,12 +13,12 @@ import utils.utils_namespace;
 
 use namespace utils_namespace;
 
-public class UDispatcher {
+public class EDispatcher {
 
     private var listeners:Dictionary = new Dictionary();
     private var target:Object;
 
-    public function UDispatcher(target:Object = null) {
+    public function EDispatcher(target:Object = null) {
         this.target = target || this;
     }
 

@@ -6,11 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 package gameplataform.controller.data {
-import utils.managers.event.UDispatcher;
+import utils.managers.event.EDispatcher;
 
 public class ServerDataController {
 
-    private static var dispatchingUnit:UDispatcher = new UDispatcher();
+    private static var dispatchingUnit:EDispatcher = new EDispatcher();
 
     //==================================
     //     Event Management
