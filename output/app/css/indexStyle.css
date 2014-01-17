@@ -1,0 +1,18 @@
+#theMainGame_holder {
+    width: 100%;
+}
+
+#theMainGame_menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#theMainGame_textArea {
+    font: 12px courier new;
+    width: 10%;
+    height: 400px;
+    right: 0;
+    position: fixed;
+    top: 0;
+}

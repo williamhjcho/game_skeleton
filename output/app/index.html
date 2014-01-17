@@ -1,83 +1,129 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-	<head>
-		<title>PreviewGame</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script type="text/javascript" src="js/swfobject.js"></script>
-		<script type="text/javascript" src="js/jquery-1.7.js"></script>
-		<script type="text/javascript">
-		    var SWF_WIDTH=849;
-		    var SWF_HEIGHT=600;
-			<!-- //Set to minimum required Flash Player version or 0 for no version detection -->
-			var swfVersionStr = "9.1.52";
-			<!-- //xiSwfUrlStr can be used to define an express installer SWF. -->
-			var xiSwfUrlStr = "";
-			var flashvars = {};
-			<!-- //idJogador: "10002"-->
-			flashvars.idJogador =   "previewGamer";
-			<!-- ///saldoTotal: "230000"-->
-			var params = {};
-			params.quality = "high";
-			params.bgcolor = "#111111";
-			params.play = "true";
-			params.loop = "true";
-			params.wmode = "window";
-			params.scale = "showall";
-			params.menu = "true";
-			params.devicefont = "false";
-			params.salign = "";
-			params.allowscriptaccess = "sameDomain";
-			params.allowFullScreen = "true";
-			var attributes = {};
-			attributes.id = "main";
-			attributes.name = "main";
-			attributes.align = "middle";
-			swfobject.embedSWF("main.swf?rnd=" + Math.floor(Math.random() * 999), "flashContent",SWF_WIDTH, SWF_HEIGHT,swfVersionStr, xiSwfUrlStr,flashvars, params,attributes);
-		</script>
-	</head>
-	<body background="img/bg.png">
-		<div id="main2"  style="width:100%;">
-			<div id="container" >	
-				<div id="flashContent">
-					<a href="http://www.adobe.com/go/getflash">
-						<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-					</a>
-					<p>This page requires Flash Player version 9.1.52 or higher.</p>
-				</div>
-			</div>
+<head>
+    <title>Game Plataform</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="js/swfobject.js"></script>
+    <script type="text/javascript" src="js/jquery-1.7.js"></script>
+    <link rel="stylesheet" href="css/indexStyle.css">
 
-		</div>
+    <script type="text/javascript">
 
-		<script>
-		$(document).ready(function(){		  
-		 centerSWF();		  
-		});
-		$(window).resize(function(){
-		 centerSWF();
-		})
-		
-		function centerSWF(){
-			var t = $(window).height();
-			 var d = 0;
-			 if(t > SWF_HEIGHT){
-			  d = (t - SWF_HEIGHT)/2
-			 }
-			 $("#container").css("margin", d+"px auto");
+        var SWF_WIDTH = 800;
+        var SWF_HEIGHT = 600;
 
-			 $("#container").width(SWF_WIDTH);
+        //Set to minimum required Flash Player version or 0 for no version detection -->
+        var swfVersionStr = "10.1.52";
+        //xiSwfUrlStr can be used to define an express installer SWF. -->
+        var xiSwfUrlStr = "";
 
-		}
+        var flashvars = {};
 
-		function traceWeb(msg) {
-				var tracearea = $("#traceWebTextArea");
-				var output = tracearea.val();
-				output += msg;
-				output += " \n--------------------------------------------------------------------\n";
-				tracearea.val(output);
-		}
-		</script>
-		<textarea id="traceWebTextArea" rows="20" cols="110" style="font: 12px courier new;"></textarea>
-		
-	</body>
+        var params = {};
+        params.quality = "high";
+        params.bgcolor = "#eeeeee";
+        params.play = "true";
+        params.loop = "true";
+        params.wmode = "transparent";//transparent  || window
+        params.scale = "showall";
+        params.menu = "true";
+        params.devicefont = "false";
+        params.salign = "";
+        params.allowscriptaccess = "sameDomain";
+        params.allowFullScreen = "true";
+        var attributes = {};
+        attributes.id = "theMainGame_object";
+        attributes.name = "theMainGame_object";
+        attributes.align = "middle";
+        //flashvars.idJogador =
+    </script>
+</head>
+
+
+<body background="img/bg.png">
+<div id="theMainGame_holder">
+    <div id="theMainGame_menu">
+        <small><a href="telaLogin.php"> Sair </a></small>
+        &nbsp;
+        <small><a href="#" id="theMainGame_textAreaBtn"> TextArea</a></small>
+        &nbsp;
+        <small><a href="#" id="theMainGame_reloadBtn"> ReloadSWF </a></small>
+        &nbsp;
+    </div>
+
+    <div id="theMainGame_container" style="">
+        <div id="theMainGame_flashContent">
+            <a href="http://www.adobe.com/go/getflash">
+                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif"
+                     alt="Adobe Flash player"/>
+            </a>
+            <p>This page requires Flash Player version 9.1.52 or higher.</p>
+        </div>
+    </div>
+    <textarea id="theMainGame_textArea"></textarea>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $("#theMainGame_textAreaBtn").click(function () {
+            $("#theMainGame_textArea").toggle();
+            centerSWF();
+        })
+
+        $("#theMainGame_reloadBtn").click(function () {
+            loadSWFObject();
+        })
+        $("#theMainGame_textArea").hide();
+        loadSWFObject();
+
+    });
+    $(window).resize(function () {
+        centerSWF();
+    })
+    function centerSWF() {
+        if (!$("#theMainGame_textArea").is(":visible")) {
+            var t = $(window).height();
+            var d = 0;
+            if (t > SWF_HEIGHT) {
+                d = (t - SWF_HEIGHT) >> 1;
+            }
+            $("#theMainGame_container").css("margin", d + "px auto");
+            $("#theMainGame_container").width(SWF_WIDTH);
+        } else {
+            $("#theMainGame_textArea").height($(window).height())
+            $("#theMainGame_textArea").width($(window).width() - SWF_WIDTH - 50)
+            $("#theMainGame_container").css("margin", "25px");
+            $("#theMainGame_container").width(0);
+        }
+    }
+
+    function loadSWFObject() {
+
+        $("#theMainGame_container").html($('<div>', {id: "theMainGame_flashContent"}));
+        swfobject.embedSWF(
+                "main.swf?rnd=" + Math.floor(Math.random() * 999),
+                "theMainGame_flashContent",
+                SWF_WIDTH,
+                SWF_HEIGHT,
+                swfVersionStr,
+                xiSwfUrlStr,
+                flashvars,
+                params,
+                attributes);
+        centerSWF();
+    }
+
+    function traceWeb(msg) {
+        var tracearea = $("#theMainGame_textArea");
+        var output = tracearea.val();
+        output += msg;
+        output += " \n--------------------------------------------------------------------\n";
+        tracearea.val(output);
+    }
+</script>
+
+
+</body>
 </html>
 
