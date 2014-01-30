@@ -164,10 +164,10 @@ public class SerializerManager {
         var result:Object = { ___className:className ,value:[] };
         var i:int = 0;
         for (var item:Object in obj) {
-            result.value[i] = [
-                serialize(item     , path + "." + i.toString() + ".0"),
-                serialize(obj[item], path + "." + i.toString() + ".1")
-            ];
+            result.value[i] = {
+                key     : serialize(item     , path + "." + i.toString() + ".0"),
+                value   : serialize(obj[item], path + "." + i.toString() + ".1")
+            };
             i++;
         }
         return result;
@@ -221,9 +221,9 @@ public class SerializerManager {
     private static function dsrlz_Dictionary    (obj:Object, path:String):Dictionary {
         var result:Dictionary = new Dictionary();
         var i:int = 0;
-        for each(var item:Array in obj.value) {
-            result[deSerialize(item[0], null, path + '.' + i.toString() + ".0")]
-                    = deSerialize(item[1], null, path + '.' + i.toString() + ".1");
+        for each(var item:Object in obj.value) {
+            result[deSerialize(item.key, null, path + '.' + i.toString() + ".0")]
+                    = deSerialize(item.value, null, path + '.' + i.toString() + ".1");
             i++;
         }
         return result;

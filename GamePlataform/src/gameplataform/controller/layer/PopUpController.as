@@ -2,7 +2,7 @@ package gameplataform.controller.layer {
 
 import flash.display.DisplayObjectContainer;
 
-import utilsDisplay.bases.LayerControllerBase;
+import gameplataform.controller.layer.LayerControllerBase;
 
 /**
  * @author bona

@@ -2,7 +2,7 @@
 
 import flash.display.DisplayObjectContainer;
 
-import utilsDisplay.bases.LayerControllerBase;
+import gameplataform.controller.layer.LayerControllerBase;
 
 public class MapController extends LayerControllerBase {
 
