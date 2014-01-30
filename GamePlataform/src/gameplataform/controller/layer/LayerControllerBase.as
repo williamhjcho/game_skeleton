@@ -5,7 +5,7 @@
  * Time: 17:49
  * To change this template use File | Settings | File Templates.
  */
-package utilsDisplay.bases {
+package gameplataform.controller.layer {
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.utils.Dictionary;
