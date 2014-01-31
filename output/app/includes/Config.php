@@ -7,13 +7,19 @@
  * To change this template use File | Settings | File Templates.
  */
 
-class Parameters
+class Config
 {
     static $db_server = 'localhost';
     static $db_user = 'root';
-    static $db_pass = '';
-    static $db = 'mon01';
-    static $domain="/mon/mon01/game";
+    static $db_pass = 'mysql';
+    static $db = 'glc01';
+    static $baseDeployFolderName="gameskeleton";
+
+    static function basePath (){
+        $absolute_path = __FILE__;
+        $path_to_file = explode(Config::$baseDeployFolderName, $absolute_path );
+        return $path_to_file[0]. Config::$baseDeployFolderName. "/";
+    }
 
     //mail
     static $mailHost = '200.219.212.5';
@@ -24,18 +30,6 @@ class Parameters
     static $mailSMTPAuth = true;
 
 
-    const SAVE_STATUS_OPEN ='aberto';
-    const SAVE_STATUS_GAME_OVER ='gameover';
-    const SAVE_STATUS_FINISHED = 'finalizado';
 
-
-    const MODULE_STATUS_OPEN ='aberto';
-    const MODULE_STATUS_EXPIRED ='expirado';
-    const MODULE_STATUS_CLOSED ='fechado';
-
-
-    const DEFAULT_USER= 'user1';
-    const DEFAULT_PASS = 'senha1';
-    const DEFAULT_HASH = 'hash';
 
 }
