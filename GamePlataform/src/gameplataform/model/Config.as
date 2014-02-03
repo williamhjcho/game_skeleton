@@ -8,11 +8,14 @@
 package gameplataform.model {
 public class Config {
 
-    public var assets           :Vector.<String>;
+    public var assets       :Vector.<String>;
 
     public var allowedDomain:String;
     public var serverTest   :String;
     public var saveLink     :String;
     public var loadLink     :String;
+
+    public var preLoaderPath    :String;
+    public var showStats    :Boolean;
 }
 }

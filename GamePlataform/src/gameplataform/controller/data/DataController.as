@@ -9,47 +9,41 @@ package gameplataform.controller.data {
 import com.greensock.loading.LoaderMax;
 import com.greensock.loading.LoaderStatus;
 import com.greensock.loading.XMLLoader;
+import com.greensock.loading.core.LoaderCore;
 
 import flash.text.StyleSheet;
-import flash.utils.Dictionary;
 
 import gameplataform.constants.AssetType;
 import gameplataform.controller.GameData;
 
-import utils.managers.event.EDispatcher;
+import utils.managers.event.MultipleSignal;
 import utils.managers.serializer.SerializerManager;
 import utils.managers.sounds.SoundManager;
 
 public class DataController {
 
-    private static var dispatchingUnit:EDispatcher = new EDispatcher(null);
-    private static var analyzedLoaders:Dictionary = new Dictionary();
+    /**
+     * dispatcher functions as an EventDispatcher, but has an direct communication pipeline (without Event Objects)
+     */
+    public static var dispatcher:MultipleSignal = new MultipleSignal();
 
-    public function DataController() {}
-
-    //==================================
-    //     Event Management
-    //==================================
-    public static function addEventListener(type:String, listener:Function):void {
-        dispatchingUnit.addEventListener(type, listener);
-    }
-
-    public static function removeEventListener(type:String, listener:Function):void {
-        dispatchingUnit.removeEventListener(type, listener);
-    }
-
-    public static function dispatchEvent(type:String, data:* = null):void {
-        dispatchingUnit.dispatchEvent(type, data);
-    }
+    private static var analyzedLoaders:Vector.<LoaderCore> = new Vector.<LoaderCore>();
 
     //==================================
-    //     Core
+    //     Public
     //==================================
-    public static function analyzeLoader(loader:*):void {
+    /**
+     * Analyzes the loader's contents depending on their type/Class
+     * @param loader LoaderCore subclass [from greensock]
+     */
+    public static function analyzeLoader(loader:LoaderCore):void {
+        if(loader == null)
+            throw new ArgumentError("Parameter loader cannot be null.");
+
         if(loader in analyzedLoaders)
             return; //already analyzed
 
-        analyzedLoaders[loader] = true;
+        analyzedLoaders.push(loader);
         if(loader is XMLLoader) {
             var xml:XML = XMLLoader(loader).content;
             for (var c:int = 0; c < xml.children().length(); c++) {
@@ -60,9 +54,19 @@ public class DataController {
         }
     }
 
+
+    //==================================
+    //  Private
+    //==================================
+    /**
+     * Analyzes the XML Loader [ex: assets.xml]
+     * @param xml
+     * @param loader
+     */
     private static function analyzeXML(xml:XML, loader:LoaderMax):void {
         var xmlList:XMLList;
         for (var c:int = 0; c < xml.children().length(); c++) {
+            //finding the XML block where this loader's name is contained
             if(xml.child(c).@name == loader.name) {
                 xmlList = xml.child(c).children();
                 break;

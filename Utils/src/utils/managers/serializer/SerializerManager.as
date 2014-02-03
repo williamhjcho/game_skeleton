@@ -14,6 +14,8 @@ import utils.commands.getClass;
 import utils.commands.getClassByPath;
 import utils.commands.getClassName;
 import utils.errors.SerializerError;
+import utils.managers.serializer.architecture.ClassArchitecture;
+import utils.managers.serializer.architecture.ArchitectureVariable;
 import utils.managers.serializer.json.JSON;
 
 public class SerializerManager {
@@ -186,7 +188,7 @@ public class SerializerManager {
         //constructor analysis
 
         //instance variable serialization
-        for each (var v:ClassArchitectureProperty in architecture.variables) {
+        for each (var v:ArchitectureVariable in architecture.variables) {
             result[v.name] = serialize(obj[v.name], path + "." + v.name);
         }
 
@@ -269,7 +271,7 @@ public class SerializerManager {
     }
     private static function dsrlz_Custom        (obj:Object, imageClass:Class, path:String, result:Object = null):Object {
         var architecture:ClassArchitecture = ClassArchitecture.getArchitecture(imageClass);
-        var cap:ClassArchitectureProperty;
+        var cap:ArchitectureVariable;
 
         if(result == null) result = new imageClass();
 
@@ -281,7 +283,7 @@ public class SerializerManager {
                 throwError("Variable :\"" + property + "\" not found in \"" + imageClass +"\".", SerializerError.VARIABLE_NOT_FOUND);
                 continue;
             }
-            result[property] = deSerialize(obj[property], cap.classType, path + "." + property);
+            result[property] = deSerialize(obj[property], cap.type, path + "." + property);
         }
 
         return result;

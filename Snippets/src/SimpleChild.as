@@ -6,29 +6,52 @@
  * To change this template use File | Settings | File Templates.
  */
 package {
-import flash.display.Graphics;
 import flash.display.Sprite;
 
-import utils.toollib.ToolColor;
+public class SimpleChild {
 
-public class SimpleChild extends Sprite {
+    public var a:Number = 0.001;
+    public var b:uint = 123;
+    public var c:String = "wat";
+    public var d:Array = [0,1,2,3];
+    public var e:Vector.<String> = new <String>["a","b","c"];
+    public var f:*;
 
-    public function SimpleChild(width:Number, height:Number, type:String = "rect", color:uint = NaN) {
-        draw(width, height, type, isNaN(color)? ToolColor.random() : color);
+    public static var s_a:Number = 0.001;
+    public static var s_b:uint = 123;
+    public static var s_c:String = "wat";
+    public static var s_d:Array = [0,1,2,3];
+    public static var s_e:Vector.<String> = new <String>["a","b","c"];
+    public static var s_f:*;
+
+    public function SimpleChild(s:String, v:uint):void {
+
     }
 
-    public function draw(width:Number, height:Number, type:String, color:uint):void {
-        var g:Graphics = this.graphics;
-        g.beginFill(color, 0.5);
-        switch(type) {
-            case "rect":    g.drawRect(0,0,width,height);     break;
-            case "circle":  g.drawCircle(width,width,width);  break;
-        }
-        g.endFill();
+    public function publicFunction0():void {
+
     }
 
-    override public function toString():String {
-        return "("+this.width + ", " + this.height+")";
+    public function publicFunction1():String {
+        return "";
     }
+
+    public function publicFunction2(arg1:uint, arg2:String):void {
+
+    }
+
+    public function publicFunction3(...args):void {
+
+    }
+
+
+    public function set publicSetFunction(s:int):void {}
+    public function get publicGetFunction():uint { return -1; }
+
+    private function privateFunction():void {
+
+    }
+
+
 }
 }

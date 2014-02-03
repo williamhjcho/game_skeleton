@@ -17,7 +17,8 @@ public final class Prime {
             if(n % p == 0) return false;
         }
 
-        for (var i:uint = primes[primes.length-1] + 2; i * i <= n; i+=2) {  //primes can only be odd(except 2)
+        //primes can only be odd(except 2)
+        for (var i:uint = primes[primes.length-1] + 2; i * i <= n; i+=2) {
             if(n % i == 0) return false;
         }
 
