@@ -20,7 +20,6 @@ public class GameData {
     private static var _stage           :Stage;
 
     public static var user              :String;
-    public static var password          :String;
 
     public static var defaultSaveData   :String;
     public static var saveData          :Save;

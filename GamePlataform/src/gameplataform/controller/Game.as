@@ -10,38 +10,49 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.utils.getTimer;
 
-import gameplataform.constants.States;
+import gameplataform.constants.GameStates;
 import gameplataform.controller.layer.HudController;
 import gameplataform.controller.layer.MapController;
-import gameplataform.controller.layer.PopUpController;
+import gameplataform.controller.layer.PopupController;
 import gameplataform.controller.state.StateA;
-import gameplataform.controller.state.StateB;
 
 import utils.events.StateMachineEvent;
 import utils.managers.sounds.SoundManager;
 import utils.managers.state.StateMachine;
 
+/**
+ * This class:
+ *  - controls the game pipeline (NOT the individual state mechanics)
+ *
+ */
 public final class Game {
 
+    /**
+     * Layer controllers
+     */
     public var mapController    :MapController;
     public var hudController    :HudController;
-    public var popUpController  :PopUpController;
+    public var popUpController  :PopupController;
 
+    /**
+     * Controls the game flow
+     */
     private var stateMachine:StateMachine;
 
     public function Game(mapLayer:Sprite, hudLayer:Sprite, popupLayer:Sprite) {
-        mapController   = new MapController     (mapLayer, "MapController");
-        hudController   = new HudController     (hudLayer, "HudController");
-        popUpController = new PopUpController   (popupLayer, "PopupController");
+        mapController   = new MapController     (mapLayer);
+        hudController   = new HudController     (hudLayer);
+        popUpController = new PopupController   (popupLayer);
         stateMachine    = new StateMachine();
     }
 
     public function initialize():void {
-        GameData.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
-
         SoundManager.volume = GameData.variables.volumeMain;
 
         initializeStates();
+
+        _lastTimeStamp = getTimer() / 1000.0;
+        GameData.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
     }
 
     private function initializeStates():void {
@@ -49,9 +60,8 @@ public final class Game {
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_DENIED, onTransitionDenied);
 
         stateMachine.add(new StateA(this));
-        stateMachine.add(new StateB(this));
 
-        stateMachine.changeTo(States.STATE_A);
+        stateMachine.changeTo(GameStates.STATE_A);
     }
 
     /** **/
@@ -67,6 +77,7 @@ public final class Game {
         var dt:Number = t - _lastTimeStamp;
         _lastTimeStamp = t;
         GameMechanics.checkJobList();
+        GameMechanics.checkClock(dt);
     }
 }
 }

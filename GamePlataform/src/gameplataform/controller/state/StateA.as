@@ -6,13 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 package gameplataform.controller.state {
-import gameplataform.constants.States;
+import gameplataform.constants.GameStates;
 import gameplataform.controller.Game;
 
 public class StateA extends BaseState {
 
     public function StateA(game:Game) {
-        super(game, States.STATE_A, null, onEnter, onExit);
+        super(game, GameStates.STATE_A, null, onEnter, onExit);
     }
 
     private function onEnter():void {

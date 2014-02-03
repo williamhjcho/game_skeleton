@@ -15,9 +15,8 @@ public class MultipleSignal {
 
     public function add(type:String, listener:Function):void {
         var v:Vector.<Function> = listeners[type];
-        if(v == null) {
+        if(v == null)
             v = listeners[type] = new Vector.<Function>();
-        }
         v.push(listener);
     }
 
@@ -28,17 +27,20 @@ public class MultipleSignal {
         if(i != -1) v.splice(i,1);
     }
 
+    public function removeType(type:String):void {
+        delete listeners[type];
+    }
+
+    public function removeAll():void {
+        for (var type:String in listeners)
+            removeType(type);
+    }
+
     public function dispatch(type:String, ...args):void {
         var v:Vector.<Function> = listeners[type];
         if(v != null) {
             for each (var f:Function in v)
                 f.apply(target, args);
-        }
-    }
-
-    public function removeAll():void {
-        for (var type:String in listeners) {
-            delete listeners[type];
         }
     }
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
     <LoaderMax name="assets" load="true">
-        <DataLoader url="data/files/_gameConfig.txt"        name="_gameConfig"/>
         <DataLoader url="data/files/_gameSave.txt"          name="_gameSave"        type="SAVE_DATA"/>
         <DataLoader url="data/files/_gameVariables.txt"     name="_gameVariables"   type="VARIABLES"/>
         <DataLoader url="data/files/_gameModels.txt"        name="_gameModels"      type="MODEL"   />
@@ -21,10 +20,10 @@
     </LoaderMax>
 
     <LoaderMax name="assets2" load="false">
-        <ImageLoader url="data/img/orange_tree.jpg" name="orange_tree" width="786" height="1017"/>
+
     </LoaderMax>
 
     <LoaderMax name="assets3" load="false">
-        <ImageLoader url="data/img/mona_lisa.jpg" name="mona_lisa"/>
+
     </LoaderMax>
 </data>

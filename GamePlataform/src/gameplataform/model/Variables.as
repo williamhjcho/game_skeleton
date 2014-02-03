@@ -8,9 +8,9 @@
 package gameplataform.model {
 public class Variables {
 
-    public var volumeMain       :Number = 1;
-    public var volumeSFX        :Number = 1;
-    public var volumeBackground :Number = 1;
+    public var volumeMain       :Number = 1.0;
+    public var volumeSFX        :Number = 1.0;
+    public var volumeBackground :Number = 1.0;
 
 }
 }

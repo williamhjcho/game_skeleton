@@ -10,6 +10,7 @@ import com.demonsters.debugger.MonsterDebugger;
 
 import flash.display.Sprite;
 import flash.display.Stage;
+import flash.errors.IllegalOperationError;
 import flash.events.Event;
 import flash.system.Security;
 import flash.text.TextField;
@@ -25,6 +26,13 @@ import utils.managers.LoaderManager;
 
 import utilsDisplay.view.Stats;
 
+/**
+ * This class :
+ *  - analyzes the assets already loaded by Client
+ *  - initializes controllers
+ *  - instantiates the layers
+ *  - initializes the game
+ */
 public class Main extends Sprite {
 
     private static var _instance:Main = null;
@@ -37,12 +45,12 @@ public class Main extends Sprite {
     private var _game       :Game;
     private var _stats      :Stats;
 
-    public static function get instance ():Main { return _instance; }
-    public static function get stage    ():Stage { return _stage; }
-
     public function Main(stage:Stage) {
-        if(stage == null) throw new Error();
-        if(_stage != null || _instance != null) throw new Error();
+        if(stage == null)
+            throw new ArgumentError("Parameter stage cannot be null.");
+        if(_instance != null)
+            throw new IllegalOperationError("Singleton class Main, cannot be instantiated more than once.");
+
         _instance = this;
         _stage = stage;
         addEventListener(Event.ADDED_TO_STAGE, onAdded);
@@ -98,9 +106,11 @@ public class Main extends Sprite {
         _popUpLayer = new Sprite();
         this.addChild(_popUpLayer);
 
-        _stats = new Stats();
-        _stats.alpha = 0.75;
-        addChild(_stats);
+        if(Client.config.showStats) {
+            _stats = new Stats();
+            _stats.alpha = 0.75;
+            addChild(_stats);
+        }
 
         _game = new Game(_mapLayer, _hudLayer, _popUpLayer);
     }
@@ -109,6 +119,12 @@ public class Main extends Sprite {
         _game.initialize();
     }
 
+
+    //==================================
+    //  Get / Set
+    //==================================
+    public static function get instance ():Main { return _instance; }
+    public static function get stage    ():Stage { return _stage; }
 
     //==================================
     //

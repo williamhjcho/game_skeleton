@@ -7,6 +7,8 @@
  */
 package {
 import com.demonsters.debugger.MonsterDebugger;
+import com.greensock.loading.XMLLoader;
+import com.greensock.loading.core.LoaderCore;
 
 import flash.display.Sprite;
 
@@ -20,12 +22,8 @@ public class Main extends Sprite {
     public function Main() {
         MonsterDebugger.initialize(this);
 
-        var a:Vector.<uint> = new <uint>[0,1,2,3];
-        var b:Vector.<uint> = a.concat();
-        trace(a)
-        trace(b)
-        trace(a == b);
-
+        var v:Vector.<uint> = new <uint>[0,1,2,3,4];
+        trace(3 in v, 5 in v)
     }
 }
 }
