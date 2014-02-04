@@ -65,6 +65,9 @@ public class Main extends Sprite {
         initializeGame();
     }
 
+    /**
+     * Runs through Config.assets for Loaders, and analyzes their content (see DataController)
+     */
     private function analyzeAssets():void {
         GameData.stage = _stage;
 

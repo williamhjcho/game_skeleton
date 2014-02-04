@@ -8,6 +8,9 @@
 package utils.managers {
 import flash.errors.IllegalOperationError;
 
+/**
+ * This class holds data as in:  data <-> ID (String)
+ */
 public class DataManager {
 
     private var _data:Object;
@@ -15,16 +18,30 @@ public class DataManager {
     private var _onError:Function;
     private var _locked:Boolean;
 
+    /**
+     *
+     * @param data
+     * @param name
+     * @param onError calls a function and with a string as parameter
+     */
     public function DataManager(data:Object, name:String, onError:Function = null):void {
         this._onError = onError;
         this._data = data;
-        this._name = name
+        this._name = name;
         this._locked = false;
     }
 
-    public function add(data:Object, overwrite:Boolean):void {
-        if(_locked)
-            throw new IllegalOperationError("[DataManager is locked. Cannot add more properties. Use unlock() first.");
+    /**
+     * Runs through data, and adds to this object's own data with the same property name.
+     * @param data Object
+     * @param overwrite Forces the old data to be overwritten by the new data, in case of property name conflict
+     */
+    public function add(data:*, overwrite:Boolean):void {
+        if(_locked) {
+            if(_onError != null)
+                _onError.call(this, "DataManager \"" + _name + "\" is locked. Cannot add more properties. Use unlock() first.");
+            return;
+        }
 
         for (var property:String in data) {
             if(_data[property] == null || (_data[property] != null && overwrite)) {
@@ -39,15 +56,15 @@ public class DataManager {
         return data;
     }
 
-    public function get(id:String):Object {
+    public function get(id:String):* {
         var data:* = _data[id];
-        if(data == null)
-            if(_onError != null) _onError.call(this, id);
+        if(data == null && _onError != null)
+            _onError.call(this, id);
         return data;
     }
 
-    public function set(data:Object, id:String, overwrite:Boolean = true):void {
-        if(_data[id] == null || (_data[id] != null && overwrite))
+    public function set(data:*, id:String, overwrite:Boolean = true):void {
+        if(!_locked && (!(id in _data) || (id in _data && overwrite)))
             _data[id] = data;
     }
 
