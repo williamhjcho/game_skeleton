@@ -1,0 +1,13 @@
+Client :
+    - Loads config file, preloader.swf, rest of assets (in this order)
+    - Starts Main
+Main :
+    - Analyzes assets loaded by Client
+    - Initializes any security / outside-game controllers 
+    - Starts Game
+Game :
+    - initializes any necessary controllers and states
+    - Controls MACRO game flow
+    - Handles 'Clock' and 'Job' mechanics
+States :
+    - Controls MICRO game flow

@@ -24,7 +24,9 @@ public class State {
         this.from = from;
     }
 
-    /** State Controls **/
+    //==================================
+    //  State Control
+    //==================================
     public function get name():String { return _name; }
 
     public function get isOpen():Boolean { return _isOpen; }
@@ -52,10 +54,14 @@ public class State {
         _from.splice(0, _from.length);
     }
 
-    /** Internal **/
+    //==================================
+    //  Internal
+    //==================================
     internal function setMachine(m:StateMachine):void { this.machine = m; }
 
-    /** Misc **/
+    //==================================
+    //  Misc
+    //==================================
     public function destroy():void {
         this._onEnter = null;
         this._onExit = null;

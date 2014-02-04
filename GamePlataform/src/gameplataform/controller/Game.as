@@ -22,8 +22,7 @@ import utils.managers.state.StateMachine;
 
 /**
  * This class:
- *  - controls the game pipeline (NOT the individual state mechanics)
- *
+ *  - controls the main game pipeline (NOT the individual state mechanics)
  */
 public final class Game {
 
@@ -32,7 +31,7 @@ public final class Game {
      */
     public var mapController    :MapController;
     public var hudController    :HudController;
-    public var popUpController  :PopupController;
+    public var popupController  :PopupController;
 
     /**
      * Controls the game flow
@@ -42,7 +41,7 @@ public final class Game {
     public function Game(mapLayer:Sprite, hudLayer:Sprite, popupLayer:Sprite) {
         mapController   = new MapController     (mapLayer);
         hudController   = new HudController     (hudLayer);
-        popUpController = new PopupController   (popupLayer);
+        popupController = new PopupController   (popupLayer);
         stateMachine    = new StateMachine();
     }
 
@@ -52,6 +51,7 @@ public final class Game {
         initializeStates();
 
         _lastTimeStamp = getTimer() / 1000.0;
+
         GameData.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
     }
 
@@ -64,12 +64,14 @@ public final class Game {
         stateMachine.changeTo(GameStates.STATE_A);
     }
 
-    /** **/
+    //==================================
+    //  State Management
+    //==================================
     private static function onTransitionDenied    (e:StateMachineEvent):void { trace(e); }
     private static function onTransitionComplete  (e:StateMachineEvent):void { trace(e); }
 
     //==================================
-    //
+    //  Mechanics Management
     //==================================
     private static var _lastTimeStamp:Number = 0;
     private static function onEnterFrame(e:Event):void {

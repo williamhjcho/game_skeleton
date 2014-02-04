@@ -8,7 +8,6 @@
 package utils.base {
 
 public dynamic class CustomObject {
-    /** Object to facilitate exchange of run-time variables to other classes **/
 
 
     public function CustomObject(initialValues:Object = null) {

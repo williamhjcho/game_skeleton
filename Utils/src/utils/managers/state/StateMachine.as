@@ -11,6 +11,12 @@ import flash.utils.Dictionary;
 
 import utils.events.StateMachineEvent;
 
+/**
+ * Simple State Machine
+ * This class:
+ *  - coordinates the states that enter and exit
+ *  - dispatches StateMachineEvent
+ */
 public class StateMachine extends EventDispatcher {
 
     private var states:Dictionary = new Dictionary();
@@ -25,14 +31,16 @@ public class StateMachine extends EventDispatcher {
     public function get currentState():State { return states[_currentName]; }
 
     public function add(state:State):void {
-        if(hasState(state.name)) throw new ArgumentError("Type already registered:\""+state.name+"\".");
+        if(hasState(state.name))
+            throw new ArgumentError("Type already registered:\""+state.name+"\".");
         state.setMachine(this);
         states[state.name] = state;
     }
 
     public function remove(name:String):State {
         var state:State = states[name];
-        if(state == null) return null;
+        if(state == null)
+            return null;
         delete states[name];
         return state;
     }
@@ -69,13 +77,13 @@ public class StateMachine extends EventDispatcher {
 
     public function canChangeTo(name:String):Boolean {
         var state:State = states[name];
-        if(!state) return false;
+        if(state == null) return false;
         if(_currentName == null) return true;
         return (name != _currentName) && (state.isOpen || state.from.indexOf(_currentName) != -1);
     }
 
     public function getState(name:String):State {
-        return (states[name]);
+        return states[name];
     }
 
 }

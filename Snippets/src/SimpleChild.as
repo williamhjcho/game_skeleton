@@ -25,7 +25,8 @@ public class SimpleChild {
     public static var s_f:*;
 
     public function SimpleChild(s:String, v:uint):void {
-
+        c = s;
+        a = v;
     }
 
     public function publicFunction0():void {
@@ -52,6 +53,8 @@ public class SimpleChild {
 
     }
 
-
+    public function toString():String {
+        return c + "." + a;
+    }
 }
 }

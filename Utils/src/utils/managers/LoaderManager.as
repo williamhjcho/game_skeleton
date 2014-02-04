@@ -9,6 +9,9 @@ import com.greensock.loading.*;
 
 import flash.errors.IllegalOperationError;
 
+/**
+ * Loads assets and manages it's loaders (greensock)
+ */
 public class LoaderManager {
 
     private static var _isInitialized:Boolean = initialize();
@@ -35,7 +38,9 @@ public class LoaderManager {
         return queue.getContent(nameOrURL);
     }
 
-    /** Single Load **/
+    //==================================
+    //  Single Loads
+    //==================================
     public static function loadSWF(urlOrRequest:*, params:Object, onComplete:Function = null, onProgress:Function = null, onError:Function = null):void {
         singleLoadCore(SWFLoader, urlOrRequest, params, onComplete, onProgress, onError);
     }
@@ -68,8 +73,10 @@ public class LoaderManager {
         queue.append(new loaderClass(urlOrRequest, params));
         queue.load();
     }
-    
-    /** Multiple Loads **/
+
+    //==================================
+    //  Multiple Loads
+    //==================================
     public static function openGroupLoad(onComplete:Function = null, onProgress:Function = null, onError:Function = null):void {
         if(!_isInitialized) initialize();
         _isGroupOpen = true;
@@ -128,7 +135,14 @@ public class LoaderManager {
         closeGroupLoad();
     }
 
-    /** Specific Load/Loader **/
+    //==================================
+    //  Specific Load/Loader
+    //==================================
+    /**
+     * Gets and loader by it's name and loads what else is inside it
+     * @param loaderName
+     * @param vars
+     */
     public static function loadByName(loaderName:String, vars:Object):void {
         var loader:LoaderMax = LoaderMax.getLoader(loaderName);
         if(loader == null)
@@ -144,9 +158,11 @@ public class LoaderManager {
         var f:Function = loader.vars.onComplete;
         if(f != null) f.call(null,e);
     }
-    
-    
-    /** Handlers **/
+
+
+    //==================================
+    //  Handlers
+    //==================================
     public static function progressHandler(e:LoaderEvent):void {
         if (_onProgress != null) _onProgress(e.target.progress);
     }

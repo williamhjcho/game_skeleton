@@ -7,23 +7,26 @@
  */
 package utils.toollib {
 
+/**
+ * Sorts the Array or Vector according to the parameters provided
+ */
 public final class Sorter {
 
-    /** Sorting Method      : Best          : Average       : Worst                 : Memory
-     * -------------------------------------------------------------------------------------------------
-     *  Bubble              : n             : n*n           : n*n                   : 1
-     *  Odd Even            : : : :
-     *  Quick               : n*log(n)      : n*log(n)      : n*n                   : log(n)
-     *  Merge               : n*log(n)      : n*log(n)      : n*log(n)              : worst(n)
-     *  Heap                : n*log(n)      : n*log(n)      : n*n                   : 1
-     *  Insertion           : n             : n*n           : n*n                   : 1
-     *  Selection           : n*n           : n*n           : n*n                   : 1
-     *  Shell               : n             : n(log(n))^2   : n(log(n))^2           : 1
-     *  Comb                : n             : n*log(n)      : n*n                   : 1
-     *  Gnome               : n             : n*n           : n*n                   : 1
-     *  Bogo                : n             : n*n!          : [n*n!, +infinity]     : 1
-     */
-
+    //==================================================================================================
+    //  Sorting Method      : Best          : Average       : Worst                 : Memory
+    //  ------------------------------------------------------------------------------------------------
+    //  Bubble              : n             : n*n           : n*n                   : 1
+    //  Odd Even            : : : :
+    //  Quick               : n*log(n)      : n*log(n)      : n*n                   : log(n)
+    //  Merge               : n*log(n)      : n*log(n)      : n*log(n)              : worst(n)
+    //  Heap                : n*log(n)      : n*log(n)      : n*n                   : 1
+    //  Insertion           : n             : n*n           : n*n                   : 1
+    //  Selection           : n*n           : n*n           : n*n                   : 1
+    //  Shell               : n             : n(log(n))^2   : n(log(n))^2           : 1
+    //  Comb                : n             : n*log(n)      : n*n                   : 1
+    //  Gnome               : n             : n*n           : n*n                   : 1
+    //  Bogo                : n             : n*n!          : [n*n!, +infinity]     : 1
+    //==================================================================================================
 
     public static function ascending(a:*,b:*):int {
         if(a<b) return -1;
@@ -37,7 +40,9 @@ public final class Sorter {
         return 0;
     }
 
-    /** PUBLIC ACCESS **/
+    //==================================
+    //
+    //==================================
     public static function shuffle(target:*):* {
         for (var i:int = target.length - 1; i > 0; i--) {
             swap(target, i, int(ToolMath.randomRadRange(0, i)));
@@ -109,7 +114,9 @@ public final class Sorter {
     }
 
 
-    /** CORE SORTING ALGORITHMS **/
+    //==================================
+    //  Core Sorting Algorithms
+    //==================================
     private static function bubbleCore(target:*, f:Function):* {
         //"bubbles" the element to the right until a bigger one is found (and bubbles that element) while i < length
         //ex :[5,8,0,9,4,2,3,6,1,7]
@@ -356,8 +363,9 @@ public final class Sorter {
         return target;
     }
 
-
-    /** PRIVATE TOOLS **/
+    //==================================
+    //  Private Tools
+    //==================================
     private static function swap(target:*, i:int, j:int):void {
         var t:* = target[i];
         target[i] = target[j];

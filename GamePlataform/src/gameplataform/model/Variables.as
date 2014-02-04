@@ -6,6 +6,10 @@
  * To change this template use File | Settings | File Templates.
  */
 package gameplataform.model {
+
+/**
+ * This class should contain IN-GAME variables only
+ */
 public class Variables {
 
     public var volumeMain       :Number = 1.0;

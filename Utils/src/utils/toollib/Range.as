@@ -6,9 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib {
-import utils.base.interfaces.ICloneable;
 
-public class Range implements ICloneable {
+public class Range {
 
     public var start:Number, end:Number;
 
@@ -27,10 +26,9 @@ public class Range implements ICloneable {
         return range.start == start && range.end == end;
     }
 
-    public function clone():ICloneable {
+    public function clone():Range {
         return new Range(start, end);
     }
-
 
     public function get length():Number { return end - start; }
 

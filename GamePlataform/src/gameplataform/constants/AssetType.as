@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package gameplataform.constants {
+
 public class AssetType {
 
     public static const CONFIG      :String = "CONFIG";

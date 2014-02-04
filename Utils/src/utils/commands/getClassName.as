@@ -8,6 +8,11 @@
 package utils.commands {
 import flash.utils.getQualifiedClassName;
 
+/**
+ * Gets class name "formatted" to a better extent
+ * @param o
+ * @return
+ */
 public function getClassName(o:Object):String {
     return getQualifiedClassName(o).replace(/::/g,".").replace(/__AS3__\.vec\./g, "");
 }

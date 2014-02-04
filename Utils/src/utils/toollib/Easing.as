@@ -6,13 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib {
+
+/**
+ *  t = current time [0;d] (note: it has to be inside this interval to work properly)
+ *  b = beginning of movement
+ *  c = total change of movement
+ *  d = total duration of movement
+ */
 public class Easing {
-    /*  HOW TO USE:
-        t = current time [0;d] (note: it has to be inside this interval to work properly)
-        b = beginning of movement
-        c = total change of movement
-        d = total duration of movement
-    */
+
     public static function linear(t:Number, b:Number, c:Number, d:Number):Number {
         return c * t / d + b;
     }
