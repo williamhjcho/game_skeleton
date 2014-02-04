@@ -6,14 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib {
+
+/**
+ * Computes the Binomial Coefficient of (n,k)
+ * B(n,k) = n! / ((n-k)! * k!)
+ * B(n,k) = n(n-1)...(n-k+1)(n-k)! / ((n-k)! * k!)
+ * B(n,k) = n(n-1)...(n-k+1) / (k!)
+ * B(n,k) = n(n-1)...(n-k+1) / k!
+ * [where n >= k >= 0]
+ */
 public final class Binomial {
-
-    //B(n,k) = n! / ((n-k)! * k!)
-    //B(n,k) = n(n-1)...(n-k+1)(n-k)! / ((n-k)! * k!)
-    //B(n,k) = n(n-1)...(n-k+1) / (k!)
-    //B(n,k) = n(n-1)...(n-k+1) / k!
-    //[where n >= k >= 0]
-
 
     //==================================
     //  Static

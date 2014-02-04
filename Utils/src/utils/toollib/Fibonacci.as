@@ -6,6 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib {
+
+/**
+ * Computes the fibonacci sequence with the two starting numbers provided
+ * fib(n) = fib(n-1) + fib(n-2)
+ */
 public final class Fibonacci {
 
     //==================================

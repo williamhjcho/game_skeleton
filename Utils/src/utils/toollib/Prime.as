@@ -2,6 +2,10 @@
  * Created by William on 1/7/14.
  */
 package utils.toollib {
+
+/**
+ * Computes the prime numbers starting from 2 (1 is NOT a prime), and saves it's value for later use
+ */
 public final class Prime {
 
     //==================================

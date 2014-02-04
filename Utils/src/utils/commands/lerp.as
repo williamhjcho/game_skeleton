@@ -11,7 +11,7 @@ package utils.commands {
  * @param a Start Value
  * @param b End Value
  * @param t range of [0,1]
- * @return
+ * @return a + (b - a) * t
  */
 public function lerp(a:Number, b:Number, t:Number):Number {
     return a + (b - a) * t;

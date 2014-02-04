@@ -6,16 +6,20 @@
  * To change this template use File | Settings | File Templates.
  */
 package gameplataform.model {
-public class Config {
 
-    public var assets       :Vector.<String>;
+/**
+ * This class should contain OUTER-GAME variables only
+ */
+public class Config {
 
     public var allowedDomain:String;
     public var serverTest   :String;
     public var saveLink     :String;
     public var loadLink     :String;
 
-    public var preLoaderPath    :String;
+    public var assets       :Vector.<String>;
+
+    public var preLoaderPath:String;
     public var showStats    :Boolean;
 }
 }

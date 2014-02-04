@@ -14,6 +14,8 @@ import flash.display.Sprite;
 
 import org.osflash.signals.Signal;
 
+import utils.managers.crypto.Obfuscator;
+
 [SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=60)]
 public class Main extends Sprite {
 
@@ -22,8 +24,7 @@ public class Main extends Sprite {
     public function Main() {
         MonsterDebugger.initialize(this);
 
-        var v:Vector.<uint> = new <uint>[0,1,2,3,4];
-        trace(3 in v, 5 in v)
+        var key:String = "key0", value:* = new SimpleChild("wat",0);
     }
 }
 }

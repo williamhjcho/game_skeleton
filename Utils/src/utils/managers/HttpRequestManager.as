@@ -18,19 +18,23 @@ import flash.net.URLVariables;
 import flash.utils.Dictionary;
 
 public class HttpRequestManager {
-    private var ldr:URLLoader = new URLLoader();
+
+    private var ldr:URLLoader;
 
     private var onCompleteRequestFunction:Function;
-
     private var onIOError:Function;
     private var onSecurityError:Function;
 
     public function HttpRequestManager() {
+        ldr = new URLLoader();
         ldr.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler, false, 0, true);
         ldr.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler, false, 0, true);
         ldr.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler, false, 0, true);
     }
 
+    //==================================
+    //  Public
+    //==================================
     public function request(url:String, onComplete:Function, inVariables:Dictionary = null, method:String = "POST", onIOError:Function= null, onSecurityError:Function=null):void {
         this.onIOError =   onIOError ;
         this.onSecurityError =   onSecurityError ;
@@ -72,6 +76,9 @@ public class HttpRequestManager {
         ldr.load(request);
     }
 
+    //==================================
+    //  Events
+    //==================================
     private function onRequestComplete(e:Event):void {
         DebuggerManager.debug("[HttpRequestManager]saveCompleteHandler", String(e.target.data), "", "", 0xff0000);
         ldr.removeEventListener(Event.COMPLETE, onRequestComplete);
@@ -86,12 +93,12 @@ public class HttpRequestManager {
     private function securityErrorHandler(e:SecurityErrorEvent):void {
         if(this.onSecurityError != null) onSecurityError(e.toString());
         DebuggerManager.debug("[HttpRequestManager]securityErrorHandler", e.toString(), "", "", 0xff0000);
-        throw new Error("ERROR securityErrorHandler" + e.toString());
+        throw new SecurityError("[HttpRequestManager] " + e.toString());
     }
 
     private function ioErrorHandler(e:IOErrorEvent):void {
         if(this.onIOError != null) onIOError(e.toString());
-        DebuggerManager.debug("[HttpRequestManager]ioErrorHandler", e.toString(), "", "", 0xff0000);
+        DebuggerManager.debug("[HttpRequestManager] ", e.toString(), "", "", 0xff0000);
     }
 
 }

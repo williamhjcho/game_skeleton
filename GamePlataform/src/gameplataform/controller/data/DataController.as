@@ -20,6 +20,9 @@ import utils.managers.event.MultipleSignal;
 import utils.managers.serializer.SerializerManager;
 import utils.managers.sounds.SoundManager;
 
+/**
+ * This class contains methods for data analysis and processing, LOCAL DATA ONLY
+ */
 public class DataController {
 
     /**

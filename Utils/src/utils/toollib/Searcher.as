@@ -16,8 +16,9 @@ public class Searcher {
         return (a > b)? -1 : (a < b)? 1 : 0;
     }
 
-
-    /** **/
+    //==================================
+    //
+    //==================================
     public static function linear(arr:*, target:*, compareFunction:Function = null):int {
         return linearCore(arr, target, compareFunction == null? compareASC : compareFunction);
     }
@@ -30,7 +31,9 @@ public class Searcher {
         return binaryCore(arr,target,start,end==int.MIN_VALUE ? arr.length : end, compareFunction);
     }
 
-    /** **/
+    //==================================
+    //
+    //==================================
     private static function linearCore(arr:*, target:*, compareFunction:Function):int {
         for (var i:int = 0; i < arr.length; i++) {
             if(compareFunction(arr[i], target) == 0) return i;

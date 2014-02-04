@@ -2,8 +2,11 @@
  * Created by aennova on 06/01/14.
  */
 package utils.toollib {
-public final class Factorial {
 
+/**
+ * Computes the n'th factorial and saves it's value in case of need later
+ */
+public final class Factorial {
 
     //==================================
     //  Static
