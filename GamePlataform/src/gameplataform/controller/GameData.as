@@ -15,6 +15,10 @@ import gameplataform.model.*;
 
 import utils.managers.DataManager;
 
+/**
+ * This class is NOT for game logic,
+ * ONLY for data manipulation
+ */
 public class GameData {
 
     private static var _stage           :Stage;
@@ -40,7 +44,7 @@ public class GameData {
     public static function addText(model:Object, acronym:String, overwrite:Boolean):void {
         var library:DataManager = textLibrary[acronym];
         if(library == null)
-            textLibrary[acronym] = library = new DataManager({}, "GameData.TextLibrary."+acronym, null);
+            library = textLibrary[acronym] = new DataManager({}, "GameData.TextLibrary." + acronym, null);
         library.add(model, overwrite);
     }
 

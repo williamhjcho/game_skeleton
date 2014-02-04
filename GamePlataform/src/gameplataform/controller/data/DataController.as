@@ -24,6 +24,9 @@ public class DataController {
 
     /**
      * dispatcher functions as an EventDispatcher, but has an direct communication pipeline (without Event Objects)
+     * ex: dispatcher.add("type1", function1);
+     * dispatcher.dispatch("parameter1", true, 23);
+     * (note it doesn't dispatch any single objects, only the direct parameters)
      */
     public static var dispatcher:MultipleSignal = new MultipleSignal();
 
@@ -33,7 +36,7 @@ public class DataController {
     //     Public
     //==================================
     /**
-     * Analyzes the loader's contents depending on their type/Class
+     * Analyzes the loader's contents according to their type/Class
      * @param loader LoaderCore subclass [from greensock]
      */
     public static function analyzeLoader(loader:LoaderCore):void {
@@ -59,7 +62,9 @@ public class DataController {
     //  Private
     //==================================
     /**
-     * Analyzes the XML Loader [ex: assets.xml]
+     * Analyzes the XMLLoader :
+     * - De-serialize the raw file data
+     * - Add sounds directly to SoundManager
      * @param xml
      * @param loader
      */
