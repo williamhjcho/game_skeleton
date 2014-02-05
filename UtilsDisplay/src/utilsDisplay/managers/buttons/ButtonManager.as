@@ -150,12 +150,15 @@ public class ButtonManager {
 
     public static function get currentFocus():DisplayObject { return _focus; }
 
-    /** Mouse Events **/
+    //==================================
+    //  Events
+    //==================================
     private static function onDown(e:MouseEvent):void {
         var button:DisplayObject = e.currentTarget as DisplayObject;
         button.removeEventListener(MouseEvent.MOUSE_DOWN, onDown);
         var p:ButtonProperty = _buttons[button];
-        if(p == null) throw new Error("Un-disposed button: \"" + button.name + "\".");
+        if(p == null)
+            throw new Error("Un-disposed button: \"" + button.name + "\".");
         button.addEventListener(MouseEvent.MOUSE_UP, onUp, p.useCapture, p.priority, p.useWeakReference);
         p.mode = MODE_DOWN;
         p.callDown();
@@ -163,12 +166,15 @@ public class ButtonManager {
 
     private static function onUp(e:MouseEvent):void {
         var button:DisplayObject = e.currentTarget as DisplayObject;
+        button.removeEventListener(MouseEvent.MOUSE_UP, onUp);
         var p:ButtonProperty = _buttons[button];
-        if(p == null) throw new Error("Un-disposed button: \"" + button.name + "\".");
+        if(p == null)
+            throw new Error("Un-disposed button: \"" + button.name + "\".");
         if(p.delay > 0) {
-            button.removeEventListener(MouseEvent.MOUSE_UP, onUp);
             disableOnClick(button);
             setTimeout(enableOnClick, p.delay, button);
+        } else {
+            button.addEventListener(MouseEvent.MOUSE_DOWN, onDown, p.useCapture, p.priority, p.useWeakReference);
         }
         p.callUp();
         p.callClick();
@@ -177,7 +183,8 @@ public class ButtonManager {
     private static function onOver(e:MouseEvent):void {
         var button:DisplayObject = e.currentTarget as DisplayObject;
         var p:ButtonProperty = _buttons[button];
-        if(p == null) throw new Error("Un-disposed button: \"" + button.name + "\".");
+        if(p == null)
+            throw new Error("Un-disposed button: \"" + button.name + "\".");
         button.addEventListener(MouseEvent.MOUSE_DOWN, onDown, p.useCapture, p.priority, p.useWeakReference);
         _focus = button;
         p.mode = MODE_OVER;
@@ -190,7 +197,8 @@ public class ButtonManager {
         button.removeEventListener(MouseEvent.MOUSE_UP  , onUp);
         _focus = null;
         var p:ButtonProperty = _buttons[button];
-        if(p == null) throw new Error("Un-disposed button: \"" + button.name + "\".");
+        if(p == null)
+            throw new Error("Un-disposed button: \"" + button.name + "\".");
         if(p.mode == MODE_DOWN)  //still holding mouse down
             p.callUp();
         p.mode = MODE_NONE;
@@ -214,8 +222,9 @@ public class ButtonManager {
     }
 
 
-
-    /** Default Effects **/
+    //==================================
+    //  Default Effects
+    //==================================
     private static function defaultDown(button:DisplayObject):void {
         var p:ButtonProperty = _buttons[button];
         if(p.useDefault)
