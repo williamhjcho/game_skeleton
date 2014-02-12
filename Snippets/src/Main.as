@@ -16,6 +16,8 @@ import org.osflash.signals.Signal;
 
 import utils.managers.crypto.Obfuscator;
 
+import utilsDisplay.managers.buttons.ButtonManager;
+
 [SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=60)]
 public class Main extends Sprite {
 
@@ -24,7 +26,6 @@ public class Main extends Sprite {
     public function Main() {
         MonsterDebugger.initialize(this);
 
-        var key:String = "key0", value:* = new SimpleChild("wat",0);
     }
 }
 }
