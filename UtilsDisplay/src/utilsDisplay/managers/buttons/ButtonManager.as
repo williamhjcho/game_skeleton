@@ -37,14 +37,14 @@ public class ButtonManager {
     /**
      * Adds a button to be managed via flash's MouseEvent.
      * @param button The target DisplayObject
-     * @param parameters  priority:int(0) ,
+     * @param parameters  priority:int(0),
      *     useCapture       :Boolean(false),
      *     useWeakReference :Boolean(false),
-     *     useDefault       :Boolean(true) ,
-     *     delay            :Number(0)     ,
-     *     overColor        :uint(0xffbb0) ,
-     *     downColor        :uint(0x00000) ,
-     *     buttonMode       :uint(0000000) ,
+     *     useDefault       :Boolean(true),
+     *     delay            :Number(0),
+     *     overColor        :uint(0xffbb0),
+     *     downColor        :uint(0x00000),
+     *     buttonMode       :uint(0000000),
      *     onClick          :Function(null),
      *     onDown           :Function(null),
      *     onUp             :Function(null),
