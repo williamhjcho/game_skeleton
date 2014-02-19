@@ -257,7 +257,7 @@ public final class Sorter {
                 //if right child exists, and is bigger then the left
                 child++;
             }
-            if( f(target[child], target[root]) == 1) {
+            if(f(target[child], target[root]) == 1) {
                 //if the largest child is bigger than it's parent(root)
                 swap(target,root,child);
                 root = child;

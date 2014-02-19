@@ -32,7 +32,7 @@ public class GameData {
 
     private static var textLibrary      :Dictionary = new Dictionary();
 
-    private static var _currentLanguageAcronym:String;
+    private static var _currentLanguageAcronym:String = null;
 
     public static function get stage():Stage            { return _stage; }
     public static function set stage(value:Stage):void  { _stage = value; }

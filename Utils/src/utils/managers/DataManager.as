@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.managers {
-import flash.errors.IllegalOperationError;
 
 /**
  * This class holds data as in:  data <-> ID (String)

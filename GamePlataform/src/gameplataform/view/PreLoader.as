@@ -10,7 +10,7 @@ import utilsDisplay.bases.interfaces.IPreLoader;
 public class PreLoader extends MovieClip implements IPreLoader {
 
     public var txtLabel:TextField;
-    public var bar:MovieClip;
+    public var animation:MovieClip;
 
     private var _percentage:Number = 0;
 
@@ -22,7 +22,7 @@ public class PreLoader extends MovieClip implements IPreLoader {
 
     public function set percentage(p:Number):void {
         _percentage = p;
-        bar.gotoAndStop(int(_percentage * bar.totalFrames));
+        //animation.gotoAndStop(int(_percentage * animation.totalFrames));
         txtLabel.text = int(_percentage * 100).toString() + "%" ;
     }
 
