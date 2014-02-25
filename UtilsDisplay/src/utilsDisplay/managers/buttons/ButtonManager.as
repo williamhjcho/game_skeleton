@@ -140,7 +140,6 @@ public class ButtonManager {
             button[BUTTON_MODE] = true;
         button.addEventListener(MouseEvent.ROLL_OVER, onOver, p.useCapture, p.priority, p.useWeakReference);
         button.addEventListener(MouseEvent.ROLL_OUT , onOut, p.useCapture, p.priority, p.useWeakReference);
-        button.addEventListener(MouseEvent.MOUSE_DOWN, onDown, p.useCapture, p.priority, p.useWeakReference);
         p.callEnable();
     }
 
@@ -209,7 +208,7 @@ public class ButtonManager {
         var p:ButtonProperty = _buttons[button];
         if(p == null)
             throw new Error("Un-disposed button: \"" + button.name + "\".");
-        //button.addEventListener(MouseEvent.MOUSE_DOWN, onDown, p.useCapture, p.priority, p.useWeakReference);
+        button.addEventListener(MouseEvent.MOUSE_DOWN, onDown, p.useCapture, p.priority, p.useWeakReference);
         _focus = button;
         p.mode = MODE_OVER;
         p.callOver();
