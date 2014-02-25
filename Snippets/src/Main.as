@@ -8,11 +8,13 @@
 package {
 import com.demonsters.debugger.MonsterDebugger;
 
+import flash.display.Graphics;
+
 import flash.display.Sprite;
+import flash.events.Event;
+import flash.geom.Point;
 
-import testing.BinaryHeap;
-
-import utils.toollib.Sorter;
+import utils.toollib.ToolMath;
 
 [SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=30)]
 public class Main extends Sprite {
@@ -20,14 +22,29 @@ public class Main extends Sprite {
     public function Main() {
         MonsterDebugger.initialize(this);
 
-        var values:Array = Sorter.shuffle([0,1,2,3,4,5,6,7,8,9,10,11]);
-        trace(values);
-        var bp:BinaryHeap = new BinaryHeap();
 
-        //HuffmanCoding.compress("MISSISSIPI RIVER");
     }
 
+    private var deck:Vector.<Card>;
+    private function calculateProbability():void {
+        deck = new Vector.<Card>();
+        var t:Array = [1,1,1,1,1, 2,2, 3,3, 4,4, 5, 6, 7, 8];
+        for (var i:int = 0; i < t.length; i++) {
+            deck.push(new Card(t[i]));
+        }
+    }
+
+
+
 }
+}
+
+class Card {
+    public var type:int = 0;
+
+    public function Card(type:int):void {
+        this.type = type;
+    }
 }
 
 import flash.utils.Dictionary;

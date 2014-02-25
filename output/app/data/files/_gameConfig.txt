@@ -15,7 +15,7 @@
             {
                 "key"   : "MAIN_ASSETS",
                 "value" : [
-                    { "type":"SAVE_DATA", "name":"_gameSave"        , "url":"data/files/_gameSave.txt"      },
+                    { "type":"SAVE"     , "name":"_gameSave"        , "url":"data/files/_gameSave.txt"      },
                     { "type":"VARIABLES", "name":"_gameVariables"   , "url":"data/files/_gameVariables.txt" },
                     { "type":"TEXT"     , "name":"_gameText_PT"     , "url":"data/files/_gameText_PT.txt"   ,"acronym":"PT"},
                     { "type":"CSS"      , "name":"_styles"          , "url":"data/files/_styles.css"        },
