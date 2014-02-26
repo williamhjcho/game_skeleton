@@ -14,6 +14,7 @@ import gameplataform.constants.GameStates;
 import gameplataform.controller.layer.HudController;
 import gameplataform.controller.layer.MapController;
 import gameplataform.controller.layer.PopupController;
+import gameplataform.controller.state.Splash;
 import gameplataform.controller.state.StateA;
 
 import utils.events.StateMachineEvent;
@@ -23,6 +24,7 @@ import utils.managers.state.StateMachine;
 /**
  * This class:
  *  - controls the main game pipeline (NOT the individual state mechanics)
+ *  - Does NOT have access to layers directly, use layer controllers instead of this class
  */
 public final class Game {
 
@@ -59,9 +61,10 @@ public final class Game {
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_COMPLETE, onTransitionComplete);
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_DENIED, onTransitionDenied);
 
+        stateMachine.add(new Splash(this));
         stateMachine.add(new StateA(this));
 
-        stateMachine.changeTo(GameStates.STATE_A);
+        stateMachine.changeTo(GameStates.SPLASH);
     }
 
     //==================================

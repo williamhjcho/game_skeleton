@@ -17,6 +17,7 @@ import flash.events.Event;
 import flash.ui.ContextMenu;
 import flash.ui.ContextMenuItem;
 
+import gameplataform.constants.AssetKey;
 import gameplataform.model.Config;
 import gameplataform.view.PreLoader;
 
@@ -32,13 +33,12 @@ import utilsDisplay.view.preloader.DefaultPreLoader;
  *  - manages the PreLoader
  *  - makes any SWF/security configuration
  */
-[SWF(width=800, height=600, backgroundColor=0x808080, frameRate=60, pageTitle="BLAHBLASDF")]
+[SWF(width=800, height=600, backgroundColor=0x808080, frameRate=30, pageTitle="BLAHBLASDF")]
 public class Client extends Sprite {
 
     //Pre-loaded external assets, embed onto main.swf
     [Embed(source="../../../output/app/data/files/_gameConfig.txt", mimeType="application/octet-stream")]
     private static const CONFIG:Class;
-
 
     private static var _instance:Client;
     private static var _config:Config;
@@ -69,12 +69,13 @@ public class Client extends Sprite {
         }
     }
 
+
     /**
      * Loads an external SWF with the PreLoader class
      * @param path path indicating the location relative to main.swf to a file preloader.swf, see model.Config class
      */
     private function loadPreLoader(path:String):void {
-        LoaderManager.loadSWF(path, {}, onLoadPreLoader);
+        LoaderManager.loadSWF(path, {onComplete:onLoadPreLoader});
     }
 
     private function onLoadPreLoader(e:LoaderEvent = null):void {
@@ -82,11 +83,14 @@ public class Client extends Sprite {
         _preLoader.x = (stage.stageWidth  - _preLoader.width ) >> 1;
         _preLoader.y = (stage.stageHeight - _preLoader.height) >> 1;
         showPreLoader(0,1);
-        loadAssets();
+        loadMainAssets();
     }
 
-    private function loadAssets():void {
-        LoaderManager.loadList(_config.assets, "", onLoadAssets, updatePreLoader, null);
+    /**
+     * Loads any necessary assets inside Config
+     */
+    private function loadMainAssets():void {
+        LoaderManager.loadList(AssetKey.MAIN_ASSETS, _config.assets[AssetKey.MAIN_ASSETS], {onComplete:onLoadAssets, onProgress:updatePreLoader});
     }
 
     private function onLoadAssets(e:LoaderEvent):void {

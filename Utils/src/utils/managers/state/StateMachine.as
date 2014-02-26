@@ -19,34 +19,48 @@ import utils.events.StateMachineEvent;
  */
 public class StateMachine extends EventDispatcher {
 
-    private var states:Dictionary = new Dictionary();
-    private var _currentName:String;
+    private var _states:Dictionary = new Dictionary();
+    private var _currentStateName:String;
 
     public function StateMachine() {
-        states[null] = new State(null,null,null,null);
-        _currentName = null;
+        _states[null] = new State(null,null,null,null);
+        _currentStateName = null;
     }
 
-    public function get currentName():String { return _currentName; }
-    public function get currentState():State { return states[_currentName]; }
-
+    /**
+     * Adds a State to this machine
+     * @param state The State instance to be added
+     * @throws ArgumentError Type is already registered
+     */
     public function add(state:State):void {
         if(hasState(state.name))
             throw new ArgumentError("Type already registered:\""+state.name+"\".");
         state.setMachine(this);
-        states[state.name] = state;
+        _states[state.name] = state;
     }
 
+    /**
+     * Removes the state from this machine
+     * @param name the name of the state
+     * @return The state (if found)
+     */
     public function remove(name:String):State {
-        var state:State = states[name];
+        var state:State = _states[name];
         if(state == null)
             return null;
-        delete states[name];
+        delete _states[name];
         return state;
     }
 
+    /**
+     * Changes the state to the name specified (executes in this order : from.exit(), to.enter())
+     * @param name Name of the next state
+     * @param parametersExit Parameters for the from.exit() function
+     * @param parametersEnter Parameters for the to.enter() function
+     * @return The next state if successful else the last state
+     */
     public function changeTo(name:String, parametersExit:Array = null, parametersEnter:Array = null):State {
-        var from:State = states[_currentName], to:State = states[name];
+        var from:State = _states[_currentStateName], to:State = _states[name];
         var e:StateMachineEvent;
 
         if(!hasState(name) || !canChangeTo(name)) {
@@ -61,7 +75,7 @@ public class StateMachine extends EventDispatcher {
         from.callExit(parametersExit);
         to.callEnter(parametersEnter);
 
-        _currentName = name;
+        _currentStateName = name;
         if(hasEventListener(StateMachineEvent.TRANSITION_COMPLETE)) {
             e = new StateMachineEvent(StateMachineEvent.TRANSITION_COMPLETE, false, false);
             e.set(from.name, to.name, to.name, to.from);
@@ -72,19 +86,19 @@ public class StateMachine extends EventDispatcher {
     }
 
     public function hasState(name:String):Boolean {
-        return (states[name] != null && states[name] != undefined);
+        return (_states[name] != null && _states[name] != undefined);
     }
 
     public function canChangeTo(name:String):Boolean {
-        var state:State = states[name];
+        var state:State = _states[name];
         if(state == null) return false;
-        if(_currentName == null) return true;
-        return (name != _currentName) && (state.isOpen || state.from.indexOf(_currentName) != -1);
+        if(_currentStateName == null) return true;
+        return (name != _currentStateName) && (state.isOpen || state.from.indexOf(_currentStateName) != -1);
     }
 
-    public function getState(name:String):State {
-        return states[name];
-    }
+    public function get currentStateName():String { return _currentStateName; }
+    public function get currentState():State { return _states[_currentStateName]; }
+    public function getState(name:String):State { return _states[name]; }
 
 }
 }

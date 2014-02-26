@@ -34,6 +34,26 @@ public class ButtonManager {
     private static var _buttons:Dictionary = new Dictionary();
     private static var _focus:DisplayObject = null;
 
+    /**
+     * Adds a button to be managed via flash's MouseEvent.
+     * @param button The target DisplayObject
+     * @param parameters  priority:int(0),
+     *     useCapture       :Boolean(false),
+     *     useWeakReference :Boolean(false),
+     *     useDefault       :Boolean(true),
+     *     delay            :Number(0),
+     *     overColor        :uint(0xffbb0),
+     *     downColor        :uint(0x00000),
+     *     buttonMode       :uint(0000000),
+     *     onClick          :Function(null),
+     *     onDown           :Function(null),
+     *     onUp             :Function(null),
+     *     onOver           :Function(null),
+     *     onOut            :Function(null),
+     *     onEnable         :Function(null),
+     *     onDisable        :Function(null),
+     *     enable           :Boolean(true)
+     */
     public static function add(button:DisplayObject, parameters:Object):void {
         var p:ButtonProperty = _buttons[button];
 
@@ -44,30 +64,35 @@ public class ButtonManager {
 
         p                   = new ButtonProperty();
         p.reference         = button;
-        p.status            = STATUS_DISABLED;
         p.mode              = MODE_NONE;
 
         p.priority          = parameters.priority || 0;
         p.useCapture        = (parameters.useCapture == null)? false : parameters.useCapture;
         p.useWeakReference  = (parameters.useWeakReference == null)? false : parameters.useWeakReference;
 
-        p.useDefault    = parameters.useDefault == null ? true : parameters.useDefault;
-        p.delay         = parameters.delay != int.MIN_VALUE? parameters.delay : DEFAULT_DELAY_TIME;
-        p.overColor     = parameters.overColor  || DEFAULT_OVER_COLOR   ;
-        p.downColor     = parameters.downColor  || DEFAULT_DOWN_COLOR   ;
-        p.buttonMode    = parameters.buttonMode || DEFAULT_BUTTON_MODE  ;
+        p.useDefault        = parameters.useDefault == null ? true : parameters.useDefault;
+        p.delay             = parameters.delay != int.MIN_VALUE? parameters.delay : DEFAULT_DELAY_TIME;
+        p.overColor         = parameters.overColor  || DEFAULT_OVER_COLOR   ;
+        p.downColor         = parameters.downColor  || DEFAULT_DOWN_COLOR   ;
+        p.buttonMode        = parameters.buttonMode || DEFAULT_BUTTON_MODE  ;
 
-        p.onClick       = parameters.onClick;
-        p.onDown        = parameters.onDown     || (p.useDefault? defaultDown     : null);
-        p.onUp          = parameters.onUp       || (p.useDefault? defaultUp       : null);
-        p.onOver        = parameters.onOver     || (p.useDefault? defaultOver     : null);
-        p.onOut         = parameters.onOut      || (p.useDefault? defaultOut      : null);
-        p.onEnable      = parameters.onEnable   || (p.useDefault? defaultEnable   : null);
-        p.onDisable     = parameters.onDisable  || (p.useDefault? defaultDisable  : null);
+        p.onClick           = parameters.onClick;
+        p.onDown            = parameters.onDown     || (p.useDefault? defaultDown     : null);
+        p.onUp              = parameters.onUp       || (p.useDefault? defaultUp       : null);
+        p.onOver            = parameters.onOver     || (p.useDefault? defaultOver     : null);
+        p.onOut             = parameters.onOut      || (p.useDefault? defaultOut      : null);
+        p.onEnable          = parameters.onEnable   || (p.useDefault? defaultEnable   : null);
+        p.onDisable         = parameters.onDisable  || (p.useDefault? defaultDisable  : null);
 
         _buttons[button] = p;
 
-        enable(button);
+        if(parameters.enable == null || parameters.enable == true) {
+            p.status = STATUS_DISABLED;
+            enable(button);
+        } else {
+            p.status = STATUS_ENABLED;
+            disable(button);
+        }
     }
 
     public static function remove(button:DisplayObject):void {
@@ -115,8 +140,9 @@ public class ButtonManager {
 
         if(p.buttonMode && button.hasOwnProperty(BUTTON_MODE))
             button[BUTTON_MODE] = true;
-        button.addEventListener(MouseEvent.ROLL_OVER, onOver, p.useCapture, p.priority, p.useWeakReference);
-        button.addEventListener(MouseEvent.ROLL_OUT , onOut, p.useCapture, p.priority, p.useWeakReference);
+        button.addEventListener(MouseEvent.ROLL_OVER    , onOver, p.useCapture, p.priority, p.useWeakReference);
+        button.addEventListener(MouseEvent.ROLL_OUT     , onOut , p.useCapture, p.priority, p.useWeakReference);
+        button.addEventListener(MouseEvent.MOUSE_DOWN   , onDown, p.useCapture, p.priority, p.useWeakReference);
         p.callEnable();
     }
 

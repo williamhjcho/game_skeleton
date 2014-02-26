@@ -9,5 +9,26 @@
     "showStats"     : false,
 
     "preLoaderPath" : "data/assets/preloader.swf",
-    "assets"        : ["data/assets.xml"]
+    "assets"        : {
+        "___className": "flash.utils.Dictionary",
+        "value"       : [
+            {
+                "key"   : "MAIN_ASSETS",
+                "value" : [
+                    { "type":"SAVE"     , "name":"_gameSave"        , "url":"data/files/_gameSave.txt"      },
+                    { "type":"SAVE_DATA", "name":"_gameSave"        , "url":"data/files/_gameSave.txt"      },
+                    { "type":"VARIABLES", "name":"_gameVariables"   , "url":"data/files/_gameVariables.txt" },
+                    { "type":"TEXT"     , "name":"_gameText_PT"     , "url":"data/files/_gameText_PT.txt"   ,"acronym":"PT"},
+                    { "type":"CSS"      , "name":"_styles"          , "url":"data/files/_styles.css"        },
+                    { "type":"SOUND"    , "name":"click"            , "url":"data/sounds/click.mp3"         , "autoPlay":false },
+                    { "type":"SOUND"    , "name":"over"             , "url":"data/sounds/over.mp3"          , "autoPlay":false },
+                    { "type":"SOUND"    , "name":"popup"            , "url":"data/sounds/popup.mp3"         , "autoPlay":false },
+                    { "type":"SOUND"    , "name":"right"            , "url":"data/sounds/right.mp3"         , "autoPlay":false },
+                    { "type":"SOUND"    , "name":"track"            , "url":"data/sounds/track.mp3"         , "autoPlay":false },
+                    { "type":"SOUND"    , "name":"trilha"           , "url":"data/sounds/trilha.mp3"        , "autoPlay":false },
+                    { "type":"SOUND"    , "name":"wrong"            , "url":"data/sounds/wrong.mp3"         , "autoPlay":false }
+                ]
+            }
+        ]
+    }
 }

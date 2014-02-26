@@ -8,6 +8,7 @@
 package gameplataform {
 import com.demonsters.debugger.MonsterDebugger;
 
+import flash.display.Graphics;
 import flash.display.Sprite;
 import flash.display.Stage;
 import flash.errors.IllegalOperationError;
@@ -15,6 +16,7 @@ import flash.events.Event;
 import flash.system.Security;
 import flash.text.TextField;
 
+import gameplataform.constants.AssetKey;
 import gameplataform.controller.Game;
 import gameplataform.controller.GameData;
 import gameplataform.controller.data.DataController;
@@ -22,7 +24,6 @@ import gameplataform.model.Config;
 
 import utils.managers.DebuggerManager;
 import utils.managers.EnvironmentManager;
-import utils.managers.LoaderManager;
 
 import utilsDisplay.view.Stats;
 
@@ -38,7 +39,6 @@ public class Main extends Sprite {
     private static var _instance:Main = null;
     private static var _stage:Stage = null;
 
-    private var _baseSprite :Sprite;
     private var _mapLayer   :Sprite;
     private var _hudLayer   :Sprite;
     private var _popUpLayer :Sprite;
@@ -59,6 +59,8 @@ public class Main extends Sprite {
     private function onAdded(e:Event):void {
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 
+        GameData.stage = _stage;
+
         analyzeAssets();
         initializeControllers();
         initializeBases();
@@ -66,17 +68,15 @@ public class Main extends Sprite {
     }
 
     /**
-     * Runs through Config.assets for Loaders, and analyzes their content (see DataController)
+     * Runs through Config.assets and analyzes their content (see DataController)
      */
     private function analyzeAssets():void {
-        GameData.stage = _stage;
-
-        for each (var asset:String in Client.config.assets) {
-            var loader:* = LoaderManager.getLoader(asset);
-            DataController.analyzeLoader(loader);
-        }
+        DataController.analyzeAssets(Client.config.assets[AssetKey.MAIN_ASSETS]);
     }
 
+    /**
+     * Initializes any important OUTSIDE GAME controllers
+     */
     private function initializeControllers():void {
         var config:Config = Client.config;
 
@@ -89,13 +89,15 @@ public class Main extends Sprite {
         EnvironmentManager.initialize(loaderInfo.url, config.serverTest);
     }
 
+    /**
+     * Creating and adding the game layers and the game itself
+     */
     private function initializeBases():void {
-        //STARTING THE GAME STRUCTURE
-        _baseSprite = new Sprite();
-        _baseSprite.graphics.beginFill(0xff0000,0);
-        _baseSprite.graphics.drawRect(0,0,_stage.stageWidth, _stage.stageHeight);
-        _baseSprite.graphics.endFill();
-        this.addChild(_baseSprite);
+        //creating a background
+        var g:Graphics = super.graphics;
+        g.beginFill(0xffffff,0);
+        g.drawRect(0,0,_stage.stageWidth, _stage.stageHeight);
+        g.endFill();
 
         //MapLayer
         _mapLayer = new Sprite();

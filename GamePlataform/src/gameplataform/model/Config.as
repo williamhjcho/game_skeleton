@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package gameplataform.model {
+import flash.utils.Dictionary;
 
 /**
  * This class should contain OUTER-GAME variables only
@@ -17,7 +18,7 @@ public class Config {
     public var saveLink     :String;
     public var loadLink     :String;
 
-    public var assets       :Vector.<String>;
+    public var assets       :Dictionary;
 
     public var preLoaderPath:String;
     public var showStats    :Boolean;

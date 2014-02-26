@@ -9,9 +9,8 @@ package gameplataform.constants {
 
 public class AssetType {
 
-    public static const CONFIG      :String = "CONFIG";
     public static const VARIABLES   :String = "VARIABLES";
-    public static const MODEL       :String = "MODEL";
+    public static const SOUND       :String = "SOUND";
     public static const TEXT        :String = "TEXT";
     public static const SAVE        :String = "SAVE";
     public static const CSS         :String = "CSS";
