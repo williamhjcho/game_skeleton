@@ -15,7 +15,11 @@
             {
                 "key"   : "MAIN_ASSETS",
                 "value" : [
+<<<<<<< HEAD
                     { "type":"SAVE"     , "name":"_gameSave"        , "url":"data/files/_gameSave.txt"      },
+=======
+                    { "type":"SAVE_DATA", "name":"_gameSave"        , "url":"data/files/_gameSave.txt"      },
+>>>>>>> 833f685... big update on GamePlataform, changed the way it loads assets: there is no assets.xml anymore, instead, it uses a dictionary with keynames located inside model.Config, and in it, a vector or array of objects with name, url, and different needed parameters to load
                     { "type":"VARIABLES", "name":"_gameVariables"   , "url":"data/files/_gameVariables.txt" },
                     { "type":"TEXT"     , "name":"_gameText_PT"     , "url":"data/files/_gameText_PT.txt"   ,"acronym":"PT"},
                     { "type":"CSS"      , "name":"_styles"          , "url":"data/files/_styles.css"        },

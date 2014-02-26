@@ -64,7 +64,6 @@ public class ButtonManager {
 
         p                   = new ButtonProperty();
         p.reference         = button;
-        p.status            = STATUS_DISABLED;
         p.mode              = MODE_NONE;
 
         p.priority          = parameters.priority || 0;
@@ -87,10 +86,13 @@ public class ButtonManager {
 
         _buttons[button] = p;
 
-        if(parameters.enable == null || parameters.enable == true)
+        if(parameters.enable == null || parameters.enable == true) {
+            p.status = STATUS_DISABLED;
             enable(button);
-        else
+        } else {
+            p.status = STATUS_ENABLED;
             disable(button);
+        }
     }
 
     public static function remove(button:DisplayObject):void {
@@ -138,8 +140,9 @@ public class ButtonManager {
 
         if(p.buttonMode && button.hasOwnProperty(BUTTON_MODE))
             button[BUTTON_MODE] = true;
-        button.addEventListener(MouseEvent.ROLL_OVER, onOver, p.useCapture, p.priority, p.useWeakReference);
-        button.addEventListener(MouseEvent.ROLL_OUT , onOut, p.useCapture, p.priority, p.useWeakReference);
+        button.addEventListener(MouseEvent.ROLL_OVER    , onOver, p.useCapture, p.priority, p.useWeakReference);
+        button.addEventListener(MouseEvent.ROLL_OUT     , onOut , p.useCapture, p.priority, p.useWeakReference);
+        button.addEventListener(MouseEvent.MOUSE_DOWN   , onDown, p.useCapture, p.priority, p.useWeakReference);
         p.callEnable();
     }
 
