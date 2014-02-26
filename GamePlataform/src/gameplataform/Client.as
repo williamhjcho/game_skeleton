@@ -69,6 +69,7 @@ public class Client extends Sprite {
         }
     }
 
+
     /**
      * Loads an external SWF with the PreLoader class
      * @param path path indicating the location relative to main.swf to a file preloader.swf, see model.Config class
