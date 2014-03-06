@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib {
-public class SuperFormula {
+public final class SuperFormula {
 
     public var x:Number = 0, y:Number = 0, radius:Number = 100;
     public var a:Number, b:Number, m:Number, n1:Number, n2:Number, n3:Number;

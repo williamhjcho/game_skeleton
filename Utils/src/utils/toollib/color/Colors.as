@@ -21,5 +21,9 @@ public final class Colors {
     public static const FUCHSIA :uint = 0xffff00ff;
     public static const PURPLE  :uint = 0xff800080;
 
+    public static function random(alpha:uint = 0xff):uint {
+        return (alpha << 24) | Math.random() * 0xffffff;
+    }
+
 }
 }

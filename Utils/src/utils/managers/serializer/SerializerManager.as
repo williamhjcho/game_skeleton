@@ -18,6 +18,10 @@ import utils.managers.serializer.architecture.ClassArchitecture;
 import utils.managers.serializer.architecture.ArchitectureVariable;
 import utils.managers.serializer.json.JSON;
 
+/**
+ * This class is used to serialize a common object into a typed object, using it's own tools and methods
+ * All this requires is the correct classpath to be defined in the simple object property
+ */
 public class SerializerManager {
 
     private static const CLASS_NAME:String = "___className";
@@ -147,7 +151,7 @@ public class SerializerManager {
     }
 
     //==================================
-    //     Function to Type Methods
+    //     Function-to-Type Methods
     //==================================
     private static function srlz_Object     (obj:Object, path:String):Object {
         var result:Object = {};

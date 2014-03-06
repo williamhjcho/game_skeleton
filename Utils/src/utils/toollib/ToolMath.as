@@ -94,9 +94,6 @@ public final class ToolMath {
         return a*b / GCD(a,b);
     }
 
-
-
-
     //Trigonometry
     public static function sin(x:Number):Number {
         var sum:Number = 0, term:Number = x, fact:Number = 1, nextTerm:Number = x;
@@ -239,6 +236,30 @@ public final class ToolMath {
 
     public static function distributionBinomial(n:int,k:int,p:Number):Number {
         return Binomial.get(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
+    }
+
+    public static function gaussianKernel(sigma:Number, size:uint):Matrix {
+        var m:Matrix = new Matrix(size, size);
+        var A:Number = 1 / (2 * Math.PI * sigma * sigma);
+        var B:Number = (2 * sigma * sigma);
+        var radius:int = size / 2;
+        var sum:Number = 0;
+        for (var y:int = -radius; y <= radius; y++) {
+            for (var x:int = -radius; x <= radius; x++) {
+                var k:Number = A * Math.exp(- (x * x + y * y) / B);
+                sum += k;
+                m.setAt(y + radius, x + radius, k);
+            }
+        }
+
+        sum = 1 / sum;
+        for (y = 0; y < size; y++) {
+            for (x = 0; x < size; x++) {
+                m.setAt(y, x, m.getAt(y, x) * sum);
+            }
+        }
+
+        return m;
     }
 
     //Range

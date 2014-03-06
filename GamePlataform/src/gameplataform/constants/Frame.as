@@ -8,9 +8,13 @@
 package gameplataform.constants {
 public class Frame {
 
+    public static const NORMAL:String = "normal";
     public static const UP:String = "up";
     public static const DOWN:String = "down";
-    public static const OVER:String = "over";
+    public static const HOVER_IN:String = "hover_in";
+    public static const HOVER_OUT:String = "hover_out";
+
+    public static const RELEASE:String = "release";
 
     public static const ENABLED:String = "enabled";
     public static const DISABLED:String = "disabled";

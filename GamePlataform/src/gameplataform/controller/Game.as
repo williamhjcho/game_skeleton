@@ -15,7 +15,7 @@ import gameplataform.controller.layer.HudController;
 import gameplataform.controller.layer.MapController;
 import gameplataform.controller.layer.PopupController;
 import gameplataform.controller.state.Splash;
-import gameplataform.controller.state.StateA;
+import gameplataform.controller.state.StateGame;
 
 import utils.events.StateMachineEvent;
 import utils.managers.sounds.SoundManager;
@@ -62,7 +62,7 @@ public final class Game {
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_DENIED, onTransitionDenied);
 
         stateMachine.add(new Splash(this));
-        stateMachine.add(new StateA(this));
+        stateMachine.add(new StateGame(this));
 
         stateMachine.changeTo(GameStates.SPLASH);
     }

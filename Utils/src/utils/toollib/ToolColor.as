@@ -9,7 +9,9 @@ import utils.toollib.color.RGBA;
 
 public final class ToolColor {
 
-    /** Color Definition/Property **/
+    //==================================
+    //  Color Definition / Property
+    //==================================
     public static function getAlpha(color:uint):uint { return color >> 24 & 0xff; }
     public static function getR(color:uint):uint     { return color >> 16 & 0xff; }
     public static function getG(color:uint):uint     { return color >> 8  & 0xff; }
@@ -28,10 +30,6 @@ public final class ToolColor {
         return 1 - Math.max(r,g,b);
     }
 
-    public static function random(alpha:uint = 0xff):uint {
-        return (alpha << 24) | (Math.random() * 0xffffff);
-    }
-
     public static function decompose(color:uint):RGBA { return RGBA.fromInt(color); }
 
     public static function alphaPercentage(c:uint, c0:uint = 0, c1:uint = 0xffffffff):Number {
@@ -47,13 +45,15 @@ public final class ToolColor {
         return (c & 0xff) / ((c1 & 0xff) - (c0 & 0xff));
     }
 
-    /** Color Manipulation **/
+    //==================================
+    //  Color Manipulation
+    //==================================
     public static function brightness(color:uint, offset:int):uint {
         var r:int = (getR(color) + offset) & 0xff, g:int = (getG(color) + offset) & 0xff, b:int = (getB(color) + offset) & 0xff;
         return RGBtoInt(r,g,b,getAlpha(color));
     }
 
-    public static function toGray(color:uint):uint {
+    public static function grayScale(color:uint):uint {
         var avg:uint = (getR(color) + getG(color) + getB(color)) / 3;
         return RGBtoInt(avg, avg, avg, getAlpha(color));
     }
@@ -124,8 +124,18 @@ public final class ToolColor {
     public static function swapBG(color:uint):uint { return (0xffff0000 & color) | (ToolColor.getG(color)      ) | (ToolColor.getB(color) << 8 ); }
 
 
-    /** COLOR CREATION **/
-    public static function create(minRGB:uint = 0x000000, maxRGB:uint = 0xffffff, alpha:Number = 0xff):uint {
+    //==================================
+    //  Color Creation
+    //==================================
+    public static function random(alpha:uint = 0xff):uint {
+        return (alpha << 24) | (Math.random() * 0xffffff);
+    }
+
+    public static function randomGoldenRatio(alpha:uint = 0xff):uint {
+        return (alpha << 24) | (ToolMath.random() * 0xffffff);
+    }
+
+    public static function randomRange(minRGB:uint = 0x000000, maxRGB:uint = 0xffffff, alpha:Number = 0xff):uint {
         var rmax:uint = getR(minRGB), gmax:uint = getG(minRGB), bmax:uint = getB(minRGB),
             rmin:uint = getR(maxRGB), gmin:uint = getG(maxRGB), bmin:uint = getB(maxRGB);
         var r:uint = rmin + Math.random() * (rmax - rmin);
@@ -134,7 +144,7 @@ public final class ToolColor {
         return RGBtoInt(r, g, b, alpha);
     }
 
-    public static function createByGoldenRatio(minRGB:uint = 0x00000, maxRGB:uint = 0xffffff, alpha:Number = 0xff):uint {
+    public static function randomRangeGoldenRatio(minRGB:uint = 0x00000, maxRGB:uint = 0xffffff, alpha:Number = 0xff):uint {
         var rmax:uint = getR(minRGB), gmax:uint = getG(minRGB), bmax:uint = getB(minRGB),
             rmin:uint = getR(maxRGB), gmin:uint = getG(maxRGB), bmin:uint = getB(maxRGB);
 
@@ -144,21 +154,25 @@ public final class ToolColor {
         return RGBtoInt(r, g, b, alpha);
     }
 
-    public static function createRandomly(n:int, output:Vector.<uint> = null):Vector.<uint> {
+    public static function randomList(n:int, output:Vector.<uint> = null):Vector.<uint> {
         if(output == null) output = new Vector.<uint>();
-        for (var i:uint = 0; i < n; i++) { output.push(create()); }
+        for (var i:uint = 0; i < n; i++) { output.push(randomRange()); }
         return output;
     }
 
-    public static function createColorsGoldenRatio(n:int, output:Vector.<uint> = null):Vector.<uint> {
+    public static function randomList_GoldenRatio(n:int, output:Vector.<uint> = null):Vector.<uint> {
         if(output == null) output = new Vector.<uint>();
-        for (var i:int = 0; i < n; i++) { output.push(createByGoldenRatio()); }
+        for (var i:int = 0; i < n; i++) { output.push(randomRangeGoldenRatio()); }
         return output;
     }
 
 
-    /** HSL HSV RGB XYZ CMYK **/
-    public static function RGBtoInt(r:uint, g:uint, b:uint, a:uint = 0xff):uint { return (a<<24 | r<<16 | g<<8 | b); }
+    //==================================
+    //  HSL HSV RGB XYZ CMYK
+    //==================================
+    public static function RGBtoInt(r:uint, g:uint, b:uint, a:uint = 0xff):uint {
+        return (a<<24 | r<<16 | g<<8 | b);
+    }
 
     public static function RGBtoCMYK(r:int, g:int, b:int):CMYK {
         return CMYK.fromRGB(r,g,b);
@@ -211,9 +225,10 @@ public final class ToolColor {
         return [x, y];
     }
 
-    
 
-    /** MISC    **/
+    //==================================
+    //  Misc
+    //==================================
     public static function getDifference(lab1:Array, lab2:Array):Number {
         var c1:Number = Math.sqrt(lab1[1] * lab1[1] + lab1[2] * lab1[2]);
         var c2:Number = Math.sqrt(lab2[1] * lab2[1] + lab2[2] * lab2[2]);

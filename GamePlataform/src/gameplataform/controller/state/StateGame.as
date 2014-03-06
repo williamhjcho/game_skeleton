@@ -11,10 +11,10 @@ import gameplataform.controller.Game;
 
 import utilsDisplay.managers.buttons.ButtonManager;
 
-public class StateA extends BaseState {
+public class StateGame extends BaseState {
 
-    public function StateA(game:Game) {
-        super(game, GameStates.STATE_A, null, onEnter, onExit);
+    public function StateGame(game:Game) {
+        super(game, GameStates.GAME, null, onEnter, onExit);
     }
 
     private function onEnter():void {

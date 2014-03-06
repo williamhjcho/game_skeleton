@@ -54,6 +54,10 @@ public class LayerControllerBase {
         return child;
     }
 
+    public function contains(child:DisplayObject):Boolean {
+        return placeHolder.contains(child);
+    }
+
     public function removeAll():void {
         for each (var child:DisplayObject in instances) {
             removeChild(child);

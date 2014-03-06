@@ -26,6 +26,20 @@ public final class ToolString {
         return r;
     }
 
+    public static function addPrefix(text:String, maxLength:uint, pattern:String = " "):String {
+        while(text.length < maxLength) {
+            text = pattern + text;
+        }
+        return text;
+    }
+
+    public static function addPostfix(text:String, maxLength:uint, pattern:String = " "):String {
+        while(text.length < maxLength) {
+            text += pattern;
+        }
+        return text;
+    }
+
     public static function contains(s:String, match:String):Boolean {
         if(s == null) return false;
         return s.indexOf(match) != -1;

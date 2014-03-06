@@ -8,100 +8,96 @@
 package {
 import com.demonsters.debugger.MonsterDebugger;
 
+import flash.display.Graphics;
+import flash.display.MovieClip;
 import flash.display.Sprite;
+import flash.events.Event;
+import flash.events.MouseEvent;
 
-<<<<<<< HEAD
-import testing.ButtonTest;
+import utils.toollib.ToolMath;
+import utils.toollib.color.Colors;
+import utils.toollib.geometry.Triangle;
+import utils.toollib.vector.v2d;
 
-=======
-import testing.BinaryHeap;
+[SWF(width=960, height=600, backgroundColor=0x808080, frameRate=30)]
+public class Main extends MovieClip {
 
-import utils.toollib.Sorter;
-
->>>>>>> 833f685... big update on GamePlataform, changed the way it loads assets: there is no assets.xml anymore, instead, it uses a dictionary with keynames located inside model.Config, and in it, a vector or array of objects with name, url, and different needed parameters to load
-[SWF(width=1024, height=768, backgroundColor = 0x808080, frameRate=30)]
-public class Main extends Sprite {
+    [Embed(source="../output/mona_lisa.jpg")]
+    private static const MONA_LISA:Class;
 
     public function Main() {
         MonsterDebugger.initialize(this);
+        testTriangle();
+    }
 
-<<<<<<< HEAD
-        addChild(new ButtonTest());
+    private var data:Triangle;
+    private var vertices:Vector.<Sprite> = new Vector.<Sprite>();
+    private var g:Graphics;
+
+    private function testTriangle():void {
+        g = this.graphics;
+        data = new Triangle(new v2d(), new v2d(), new v2d());
+
+        for (var i:int = 0; i < 3; i++) {
+            vertices.push(new Sprite());
+            with(vertices[i].graphics) {
+                beginFill(Colors.random());
+                drawCircle(0, 0, 5);
+                endFill();
+            }
+            vertices[i].x = ToolMath.randomRadRange(100, 500);
+            vertices[i].y = ToolMath.randomRadRange(100, 500);
+            vertices[i].addEventListener(MouseEvent.MOUSE_DOWN, onDown);
+            vertices[i].addEventListener(MouseEvent.MOUSE_UP, onUp);
+            addChild(vertices[i]);
+        }
+
+        this.addEventListener(Event.ENTER_FRAME, update);
+    }
+
+    private function update(e:Event):void {
+        g.clear();
+        g.lineStyle(3, 0xff0000);
+
+        data.a.setTo(vertices[0].x, vertices[0].y);
+        data.b.setTo(vertices[1].x, vertices[1].y);
+        data.c.setTo(vertices[2].x, vertices[2].y);
+
+        g.moveTo(data.a.x, data.a.y);
+        g.lineTo(data.b.x, data.b.y);
+        g.lineTo(data.c.x, data.c.y);
+        g.lineTo(data.a.x, data.a.y);
+
+        var v:v2d;
+        //centroid
+        v = data.centroid;
+        g.lineStyle(0);
+        g.beginFill(0x550f00);
+        g.drawCircle(v.x, v.y, 5);
+
+        //median
+        g.beginFill(0x13f012);
+        v = data.medianAB;
+        g.drawCircle(v.x, v.y, 3);
+
+        v = data.medianBC;
+        g.drawCircle(v.x, v.y, 3);
+
+        v = data.medianCA;
+        g.drawCircle(v.x, v.y, 3);
+    }
+
+    private function onDown(e:MouseEvent):void {
+        var target:Sprite = e.currentTarget as Sprite;
+        target.startDrag(true);
+    }
+
+    private function onUp(e:MouseEvent):void {
+        var target:Sprite = e.currentTarget as Sprite;
+        target.stopDrag();
     }
 
 
 
-=======
-        var values:Array = Sorter.shuffle([0,1,2,3,4,5,6,7,8,9,10,11]);
-        trace(values);
-        var bp:BinaryHeap = new BinaryHeap();
-
-        //HuffmanCoding.compress("MISSISSIPI RIVER");
-    }
-
->>>>>>> 833f685... big update on GamePlataform, changed the way it loads assets: there is no assets.xml anymore, instead, it uses a dictionary with keynames located inside model.Config, and in it, a vector or array of objects with name, url, and different needed parameters to load
 }
-}
-
-import flash.utils.Dictionary;
-
-class HuffmanCoding {
-
-
-
-    public function HuffmanCoding() {
-
-    }
-
-    public static function compress(s:String):String {
-        var cps:String = "";
-        var tree:Vector.<Object> = analyze(s);
-
-
-        return "";
-    }
-
-    public static function decompress(s:String):String {
-        return "";
-    }
-
-
-    //==================================
-    //  Compressing
-    //==================================
-    private static function analyze(s:String):Vector.<Object> {
-        var len:int = s.length;
-        var frequencies:Dictionary = new Dictionary();
-        for (var i:int = 0; i < len; i++) {
-            var ch:String = s.charAt(i);
-            if(ch in frequencies)
-                frequencies[ch]++;
-            else
-                frequencies[ch] = 1;
-        }
-
-        var temp:Vector.<Object> = new Vector.<Object>();
-        for (var ch:String in frequencies) {
-            temp.push({value:ch, frequency:frequencies[ch]});
-        }
-        temp.sort(function(a:Object, b:Object):int {
-            if(a.frequency > b.frequency) return 1;
-            else if(a.frequency < b.frequency) return -1;
-            else return 0;
-        });
-        traceThis(temp);
-
-        var tree:Vector.<Object> = new Vector.<Object>();
-
-
-        return tree;
-    }
-
-    private static function traceThis(t:Vector.<Object>):void {
-        var s:String = "[";
-        for each (var o:Object in t) {
-            s += o.value + ":" + o.frequency + ","
-        }
-        trace(s + ']');
-    }
 }

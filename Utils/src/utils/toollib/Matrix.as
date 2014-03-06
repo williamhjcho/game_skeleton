@@ -39,7 +39,9 @@ public class Matrix {
         }
     }
 
-    /** Checking/Comparing **/
+    //==================================
+    //  Checking / Comparing
+    //==================================
     public function get isSquare    ()          :Boolean { return (_rows == _columns); }
     public function isCompatible    (m:Matrix) :Boolean { return (_columns == m._columns && _rows == m._rows); }
     public function isMultipliable  (m:Matrix) :Boolean { return (m._columns == _rows); }
@@ -95,7 +97,9 @@ public class Matrix {
     }
 
 
-    /** Transformations **/
+    //==================================
+    //  Transformations
+    //==================================
     public function identity():Matrix {
         for (var i:int = 0; i < _rows; i++) {
             for (var j:int = 0; j < i; j++)
@@ -158,13 +162,15 @@ public class Matrix {
     }
 
 
-    /** Get/Set/Copy **/
+    //==================================
+    //  Get / Set / Copy
+    //==================================
     public function get rows()      :int { return this._rows; }
     public function get columns()   :int { return this._columns; }
     public function get size()      :int { return _rows*_columns;   }
 
-    public function get(r:int, c:int)       :*      { return data[r][c]; }
-    public function set(r:int, c:int, v:*)  :void   { data[r][c] = v;    }
+    public function getAt(r:int, c:int)           :Number { return data[r][c]; }
+    public function setAt(r:int, c:int, v:Number) :void   { data[r][c] = v;    }
 
     public function getCopy():Matrix {
         var copy:Matrix = new Matrix(_rows,_columns);
@@ -189,7 +195,9 @@ public class Matrix {
     }
 
 
-    /** Operations **/
+    //==================================
+    //  Operations
+    //==================================
     public function add(m:Matrix):Matrix {
         var minR:int = Math.min(_rows, m._rows), minC:int = Math.min(_columns, m._columns);
         for (var i:int = 0; i < minR; i++) {
@@ -330,7 +338,9 @@ public class Matrix {
     }
 
 
-    /** Row/Column Operations **/
+    //==================================
+    //  Row / Column Operations
+    //==================================
     public function getRow(r:int, output:Vector.<Number> = null):Vector.<Number> {
         if(output == null) output = new Vector.<Number>();
         for (var c:int = 0; c < _columns; c++) { output[c] = data[r][c]; }
@@ -396,7 +406,9 @@ public class Matrix {
     }
 
 
-    /** Diagonals **/
+    //==================================
+    //  Diagonals
+    //==================================
     public function getPrimaryDiagonal():Vector.<Number> {
         var output:Vector.<Number> = new Vector.<Number>;
         var min:int = Math.min(_rows, _columns);
@@ -447,8 +459,9 @@ public class Matrix {
     }
 
 
-
-    /** Tools/Misc **/
+    //==================================
+    //  Tools / Misc
+    //==================================
     public function swap(r0:int, c0:int, r1:int, c1:int):void {
         var z:* = data[r0][c0];
         data[r0][c0] = data[r1][c1];
@@ -496,8 +509,9 @@ public class Matrix {
     }
 
 
-
-    /** Static **/
+    //==================================
+    //  Static
+    //==================================
     public static function Identity(r:int, c:int):Matrix {
         var idt:Matrix = new Matrix(r,c);
         for (var i:int = 0; i < r; i++) {

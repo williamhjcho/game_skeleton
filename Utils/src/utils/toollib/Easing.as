@@ -13,7 +13,7 @@ package utils.toollib {
  *  c = total change of movement
  *  d = total duration of movement
  */
-public class Easing {
+public final class Easing {
 
     public static function linear(t:Number, b:Number, c:Number, d:Number):Number {
         return c * t / d + b;
@@ -133,14 +133,14 @@ public class Easing {
         t /= d;
         t--;
         return c * Math.sqrt(1 - t*t) + b;
-    };
+    }
 
     public static function circularInOut(t:Number, b:Number, c:Number, d:Number):Number {
         t /= d/2;
         if (t < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
         t -= 2;
         return c/2 * (Math.sqrt(1 - t*t) + 1) + b;
-    };
+    }
 
 
 }

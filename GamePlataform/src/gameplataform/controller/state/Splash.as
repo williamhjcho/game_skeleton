@@ -13,7 +13,7 @@ public class Splash extends BaseState {
     }
 
     private function onEnter():void {
-        GameMechanics.addJob(super.machine.changeTo, GameStates.STATE_A);
+        GameMechanics.addJob(super.machine.changeTo, GameStates.GAME);
     }
 
     private function onExit():void {

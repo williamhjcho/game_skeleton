@@ -12,13 +12,10 @@ public final class FunctionObject {
     private var _function:Function;
     private var _parameters:Array;
 
-    public var destroyAfterExecution:Boolean;
-
-    public function FunctionObject(caller:* = null, f:Function = null, p:Array = null, destroyAfterExecution:Boolean = false) {
+    public function FunctionObject(caller:* = null, f:Function = null, p:Array = null) {
         this._caller = caller;
         this._function = f;
         this._parameters = p;
-        this.destroyAfterExecution = destroyAfterExecution;
     }
 
     public function get caller      ():* { return this._caller; }
@@ -29,7 +26,6 @@ public final class FunctionObject {
 
     public function execute(caller:* = null):void {
         if(_function != null) _function.apply(caller || _caller, _parameters);
-        if(destroyAfterExecution) destroy();
     }
 
     public function clear():void {

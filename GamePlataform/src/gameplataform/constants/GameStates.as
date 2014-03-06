@@ -9,7 +9,7 @@ package gameplataform.constants {
 public class GameStates {
 
     public static const SPLASH:String = "splash";
-    public static const STATE_A:String = "state.A";
+    public static const GAME:String = "game";
 
 }
 }

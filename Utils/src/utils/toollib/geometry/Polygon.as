@@ -10,10 +10,14 @@ import utils.toollib.vector.v2d;
 
 public class Polygon {
 
-    protected var vertices:Vector.<v2d>;
+    public var vertices:Vector.<v2d>;
 
     public function Polygon(numberOfVertices:int) {
-        vertices = new Vector.<v2d>(numberOfVertices);
+        vertices = new Vector.<v2d>();
+        for (var i:int = 0; i < numberOfVertices; i++) {
+            vertices.push(new v2d());
+        }
+        vertices.fixed = true;
     }
 
     public function setVertices(...vertices):Polygon {

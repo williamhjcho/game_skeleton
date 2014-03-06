@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.managers.crypto {
-public class CaesarCipher {
+public final class CaesarCipher {
 
     public static function encrypt(src:String, alphabet:String, shift:int):String {
         var msg:String = "";

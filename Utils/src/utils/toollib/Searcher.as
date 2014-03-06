@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib {
-public class Searcher {
+public final class Searcher {
 
     public static function compareASC(a:*, b:*):int {
         return (a > b)? 1 : (a < b)? -1 : 0;

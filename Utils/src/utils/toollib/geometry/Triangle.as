@@ -1,66 +1,47 @@
 /**
- * Created with IntelliJ IDEA.
- * User: William
- * Date: 3/9/13
- * Time: 5:47 PM
- * To change this template use File | Settings | File Templates.
+ * Created by William on 2/27/14.
  */
 package utils.toollib.geometry {
-import utils.toollib.ToolGeometry;
+import utils.toollib.ToolMath;
 import utils.toollib.vector.v2d;
 
-public class Triangle extends Polygon {
+public class Triangle {
 
-    public function Triangle(v0:v2d, v1:v2d, v2:v2d) {
-        var vertices:Vector.<v2d> = new <v2d>[v0, v1, v2];
-        super(3);
+    public var a:v2d;
+    public var b:v2d;
+    public var c:v2d;
+
+    public function Triangle(A:v2d = null, B:v2d = null, C:v2d = null) {
+        this.a = A || new v2d(0,0);
+        this.b = B || new v2d(0,0);
+        this.c = C || new v2d(0,0);
     }
 
-    override public function get centroid():v2d {
-        var a:v2d = vertices[0], b:v2d = vertices[1], c:v2d = vertices[2];
-        var cx:Number = (-(a.x* a.x) + b.x*b.x + 3*c.x*c.x) / (6 *c.x);
-        var cy:Number = Math.sqrt(a.y );
-        return new v2d(cx, cy);
+    public function get centroid():v2d { return new v2d((a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3 ); }
+
+    public function get medianAB():v2d { return new v2d((a.x + b.x) / 2, (a.y + b.y) / 2 ); }
+    public function get medianBC():v2d { return new v2d((b.x + c.x) / 2, (b.y + c.y) / 2 ); }
+    public function get medianCA():v2d { return new v2d((c.x + a.x) / 2, (c.y + a.y) / 2 ); }
+
+    public function get lengthAB():Number { return ToolMath.hypothenuse(b.x - a.x, b.y - a.x); }
+    public function get lengthBC():Number { return ToolMath.hypothenuse(c.x - b.x, c.y - b.y); }
+    public function get lengthCA():Number { return ToolMath.hypothenuse(a.x - c.x, a.y - c.y); }
+
+    public function get perimeter():Number { return lengthAB + lengthBC + lengthCA; }
+
+    public function get area():Number {
+        var lAB:Number = lengthAB, lBC:Number = lengthBC, lCA:Number = lengthCA;
+        var p:Number = (lAB + lBC + lCA) / 2;  //half perimeter
+        return Math.sqrt(p * (p - lAB) * (p - lBC) * (p - lCA));
     }
 
-    public function get circumcircle():Circle {
-        var center:v2d = circumcircleCenter;
-        return new Circle(center.x, center.y, circumcircleDiameter/2);
-    }
-
-    public function get circumcircleCenter():v2d {
-        /*  Matrices:
-         A:
-         |a.x, a.y, 1|
-         |b.x, b.y, 1|
-         |c.x, c.y, 1|
-
-         D:
-         |a.x² + a.y² , a.x , a.y , 1|
-         |b.x² + b.y² , b.x , b.y , 1|
-         |c.x² + c.y² , c.x , c.y , 1|
-         */
-        //equation form: a(x² + y²) + bx*x + by*y + c = 0
-        var a:v2d = vertices[0], b:v2d = vertices[1], c:v2d = vertices[2];
-        var _a:Number  = (a.x*b.y + b.x*c.y + c.x*a.y) - (c.x*b.y + b.x*a.y + a.x*c.y);
-        var bx:Number = -((b.y * (a.x*a.x + a.y*a.y) + a.y * (c.x*c.x + c.y*c.y) + c.y * (b.x*b.x + b.y*b.y)) -
-                (b.y * (c.x*c.x + c.y*c.y) + a.y * (b.x*b.x + b.y*b.y) + c.y * (a.x*a.x + a.y*a.y)));
-        var by:Number = (b.x * (a.x*a.x + a.y*a.y) + a.x * (c.x*c.x + c.y*c.y) + c.x * (b.x*b.x + b.y*b.y)) -
-                (b.x * (c.x*c.x + c.y*c.y) + a.x * (b.x*b.x + b.y*b.y) + c.x * (a.x*a.x + a.y*a.y));
-        var x0:Number = -bx / (2*_a);
-        var y0:Number = -by / (2*_a);
-        return new v2d(x0, y0);
-    }
-
-    public function get circumcircleRadius():Number {
-        var _a:Number = getSide(0,1);
-        var _b:Number = getSide(1,2);
-        var _c:Number = getSide(0,2);
-        return (_a*_b*_c) / Math.sqrt((_a+_b+_c)*(_b+_c-_a)*(_c+_a-_b)*(_a+_b-_c));
-    }
-
-    public function get circumcircleDiameter():Number {
-        return ToolGeometry.lawOfSines(getSide(0,1),getAngle(2));
+    public function setPosition(x:Number, y:Number):Triangle {
+        var c:v2d = centroid;
+        var dx:Number = x - c.x, dy:Number = y - c.y;
+        a.addXY(dx, dy);
+        b.addXY(dx, dy);
+        c.addXY(dx, dy);
+        return this;
     }
 
 }
