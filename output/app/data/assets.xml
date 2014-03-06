@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+    <LoaderMax name="assets" load="true">
+        <DataLoader url="data/files/_gameSave.txt"          name="_gameSave"        type="SAVE_DATA"/>
+        <DataLoader url="data/files/_gameVariables.txt"     name="_gameVariables"   type="VARIABLES"/>
+        <DataLoader url="data/files/_gameModels.txt"        name="_gameModels"      type="MODEL"   />
+        <DataLoader url="data/files/_gameText_PT.txt"       name="_gameText_PT"     type="TEXT"  acronym="PT"  />
+        <DataLoader url="data/files/_gameText_US.txt"       name="_gameText_US"     type="TEXT"  acronym="US"  />
+        <DataLoader url="data/files/_styles.css"            name="_styles"          type="CSS" />
+
+        <!--<SWFLoader  url="data/assets/IsometricAssets.swf"   name="IsometricAssets" autoPlay="false"/>-->
+
+        <MP3Loader url="data/sounds/click.mp3"      name="click"    autoPlay="false" />
+        <MP3Loader url="data/sounds/over.mp3"       name="over"     autoPlay="false" />
+        <MP3Loader url="data/sounds/popup.mp3"      name="popup"    autoPlay="false" />
+        <MP3Loader url="data/sounds/right.mp3"      name="right"    autoPlay="false" />
+        <MP3Loader url="data/sounds/track.mp3"      name="track"    autoPlay="false" />
+        <MP3Loader url="data/sounds/trilha.mp3"     name="trilha"   autoPlay="false" />
+        <MP3Loader url="data/sounds/wrong.mp3"      name="wrong"    autoPlay="false" />
+    </LoaderMax>
+
+    <LoaderMax name="assets2" load="false">
+
+    </LoaderMax>
+
+    <LoaderMax name="assets3" load="false">
+
+    </LoaderMax>
+</data>
