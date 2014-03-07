@@ -23,6 +23,7 @@ public class YUV {
         this.Y = y;
         this.U = u;
         this.V = v;
+        return this;
     }
 
     public function get Y():Number { return _Y; }

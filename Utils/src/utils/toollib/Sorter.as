@@ -45,7 +45,8 @@ public final class Sorter {
     //==================================
     public static function shuffle(target:*):* {
         for (var i:int = target.length - 1; i > 0; i--) {
-            swap(target, i, int(ToolMath.randomRadRange(0, i)));
+            var j:int = Math.random() * i;
+            swap(target, i, j);
         }
         return target;
     }
