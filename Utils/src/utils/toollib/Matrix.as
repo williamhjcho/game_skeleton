@@ -320,7 +320,9 @@ public class Matrix {
     }
 
 
-    /** EigenValues **/
+    //==================================
+    //  Eigen Values
+    //==================================
     // det(A - LI) = 0 --> At least 1 value on the main diagonal is 0
     public function eigenValues():Array {
         var values:Array = [];

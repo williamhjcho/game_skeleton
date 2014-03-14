@@ -62,7 +62,7 @@ public final class ToolString {
 
     public static function addQuotes(s:String, singleQuote:Boolean = false):String {
         var q:String = singleQuote ? "\'" : "\"";
-        return q + s.concat(s);
+        return q + s.concat(q);
     }
 
     public static function reverse(s:String):String {
@@ -73,7 +73,7 @@ public final class ToolString {
     public static function isPalindrome(txt:String):Boolean {
         if(txt.length <= 1) return true;
         var i:int = 0, j:int = txt.length - 1;
-        while(i < txt.length/2) {
+        while(i < j) {
             if(txt.charAt(i++) != txt.charAt(j--)) return false;
         }
         return true;
@@ -94,8 +94,8 @@ public final class ToolString {
         });
 
         for (var i:int = 0; i < max; i++) {
-            for (var j:int = 0; j < n; j++) {
-                output += (i < words[j].length)? words[j].charAt(i) : " ";
+            for each (var word:String in words) {
+                output += (i < word.length)? word.charAt(i) : " ";
             }
             output += "\n";
         }

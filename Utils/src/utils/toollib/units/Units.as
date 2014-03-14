@@ -5,10 +5,8 @@
  * Time: 15:39
  * To change this template use File | Settings | File Templates.
  */
-package utils.toollib {
+package utils.toollib.units {
 import flash.utils.Dictionary;
-
-import utils.errors.InstantiaitonError;
 
 public final class Units {
 
@@ -32,14 +30,11 @@ public final class Units {
     public static var CENTURY   :String = "CENTURY";
     public static var MILLENIUM :String = "MILLENIUM";
 
+    public static const HEX_CHARS      :Dictionary = initializeHexCharacters();
 
-    private static var unitGlossary     :Dictionary = initializeUnits();
-    private static var prefixGlossary   :Dictionary = initializePrefixes();
-    private static const HEX_CHARS      :Dictionary = initializeHexCharacters();
+    private static const unitGlossary     :Dictionary = initializeUnits();
+    private static const prefixGlossary   :Dictionary = initializePrefixes();
 
-    public function Units() {
-        throw new InstantiaitonError();
-    }
 
     private static function initializeUnits():Dictionary {
         var units:Dictionary = new Dictionary();
@@ -107,7 +102,9 @@ public final class Units {
         return hex;
     }
 
-    /** CORE    **/
+    //==================================
+    //  Core
+    //==================================
     public static function addUnit(unit:String, value:Number):void {
         unit = getUnitKey(unit);
         if(unitExists(unit)) {
@@ -125,8 +122,6 @@ public final class Units {
             unitGlossary[unit] = [minValue,maxValue];
         }
     }
-
-
 
     public static function convertTo(value:Number, from:String = "meter", to:String = "inch"):Number {
         from = getUnitKey(from);
@@ -170,8 +165,6 @@ public final class Units {
         return minT + ((value - minF) * (maxT - minT) / (maxF - minF));
     }
 
-
-
     public static function hasUnit(unit:String):Boolean {
         unit = getUnitKey(unit);
         return unitExists(unit);
@@ -183,214 +176,9 @@ public final class Units {
     }
 
 
-    //Radian / Degree
-    public static function toRadian(deg:Number):Number { return deg * Math.PI/180; }
-    public static function toDegree(rad:Number):Number { return rad * 180 / Math.PI; }
-
-
-    //Conversion
-    public static function pow8(n:uint):uint {
-        if(n == 0) return 0;
-        var p:uint = 0;
-        while(n>0) {
-            n >>= 3;
-            p++;
-        }
-        return p - 1;
-    }
-
-
-    public static function decToBin(n:uint):String {
-        var remainders:Vector.<uint> = new Vector.<uint>();
-        do {
-            remainders.push(n & 1); //modulo 2
-            n >>>= 1;
-        } while(n > 0);
-        return remainders.reverse().join("");
-    }
-
-    public static function decToHex(dec:uint):String {
-        var hx:String = "", pos:int;
-        for (var i:int = 0; i < 4; i++) {
-            pos = i * 8;
-            hx += HEX_CHARS[(dec >> (pos + 4)) & 0xf] + HEX_CHARS[(dec >> (pos)) & 0xf];
-        }
-        return hx;
-    }
-
-    public static function decToOct(dec:uint):uint {
-        var oct:int = 0, p:int = pow8(dec);
-        var p8:uint = 1 << (3*p), m:uint, power10:uint = Math.pow(10, p);
-        while(p8 != 0) {
-            m = dec / p8;
-            dec -= p8 * m;
-            p8 >>= 3;
-            oct += power10 * m;
-            power10 /= 10;
-        }
-        return oct;
-    }
-
-    public static function binToDec(bin:String):uint {
-        var dec:uint = 0, shift:uint = 0;
-        for (var i:int = bin.length - 1; i >= 0; i--) {
-            if(bin.charAt(i) == "1")
-                dec |= 1 << shift;
-            shift++;
-        }
-        return dec;
-    }
-
-    public static function binToHex(bin:String):String {
-        var hex:Vector.<String> = new Vector.<String>();
-        var idx:uint = 0, shift:uint = 0;
-        for (var i:int = bin.length-1; i >= 0; i--) {
-            if(bin.charAt(i) == "1")
-                idx |= 1 << shift;
-            shift++;
-
-            if(shift == 4) {
-                hex.push(HEX_CHARS[idx]);
-                idx = shift = 0;
-            }
-        }
-        hex.push(HEX_CHARS[idx]);
-        return hex.reverse().join("");
-    }
-
-    public static function binToOct(bin:String):uint {
-        var oct:uint = 0, shift:int = 0, decimalLength:int = 1, dec:uint = 0;
-
-        for (var i:int = bin.length - 1; i >= 0; i--) {
-            if(bin.charAt(i) == "1")
-                dec |= 1 << shift;
-            shift++;
-            if(shift == 3) {
-                oct += dec * decimalLength;
-                decimalLength *= 10;
-                dec = shift = 0;
-            }
-        }
-        oct += dec * decimalLength;
-        return oct;
-    }
-
-    public static function hexToDec(hex:String):uint {
-        var dec:uint = 0;
-        for (var i:int = hex.length - 1, b:uint = 0; i >= 0; i--, b+=4) {
-            dec |= HEX_CHARS[hex.charAt(i)] << (b);
-        }
-        return dec;
-    }
-
-    public static function hexToBin(hex:String):String {
-        var bin:Vector.<uint> = new Vector.<uint>(); //length = hex.length * 4
-        var idx:int = 0, j:int;
-        for (var i:int = 0; i < hex.length; i++) {
-            idx = HEX_CHARS[hex.charAt(i)];
-
-            j = (i+1) * 4 - 1;
-            //4 times --> 1 hex = 4 bits
-            bin[j--] = idx & 1; idx >>= 1;
-            bin[j--] = idx & 1; idx >>= 1;
-            bin[j--] = idx & 1; idx >>= 1;
-            bin[j--] = idx & 1;
-        }
-        return bin.join("");
-    }
-
-    public static function hexToOct(hex:String):uint {
-        //hex -> bin
-        var n:uint, bin:Vector.<uint> = new Vector.<uint>();
-        for (var i:int = hex.length - 1; i >= 0; i--) {
-            n = HEX_CHARS[hex.charAt(i)];
-
-            //4 times --> 1 hex = 4 bits
-            bin.push(n&1); n >>= 1;
-            bin.push(n&1); n >>= 1;
-            bin.push(n&1); n >>= 1;
-            bin.push(n&1);
-        }
-
-        //bin -> oct
-        var oct:uint = 0, shift:uint = 0, decimalLength:uint = 1;
-        n = 0;
-        for each (var bit:uint in bin) {
-            n |= bit << shift++;
-            if(shift == 3) {
-                oct += n * decimalLength;
-                decimalLength *= 10;
-                n = shift = 0;
-            }
-        }
-        oct += n * decimalLength;
-        return oct;
-    }
-
-    public static function octToDec(oct:uint):uint {
-        var dec:uint = 0, i:int = 0;
-        while(oct != 0) {
-            dec += (oct % 10) * Math.pow(8,i++);
-            oct /= 10;
-        }
-        return dec;
-    }
-
-    public static function octToBin(oct:uint):String {
-        var bin:Vector.<uint> = new Vector.<uint>();
-        var d:uint;
-        do {
-            d = oct % 10;
-            bin.push(d & 1); d >>= 1;
-            bin.push(d & 1); d >>= 1;
-            bin.push(d & 1);
-            oct /= 10;
-        } while(oct != 0);
-        return bin.reverse().join("");
-    }
-
-    public static function octToHex(oct:uint):String {
-        //oct -> bin
-        var bin:Vector.<uint> = new Vector.<uint>();
-        var n:uint;
-        do {
-            n = oct % 10;
-            bin.push(n & 1); n >>= 1;
-            bin.push(n & 1); n >>= 1;
-            bin.push(n & 1);
-            oct /= 10;
-        } while(oct != 0);
-
-        //bin -> hex
-        var hex:Vector.<String> = new Vector.<String>();
-        var shift:uint = 0;
-        n = 0;
-        for each (var bit:uint in bin) {
-            n |= bit << shift++;
-            if(shift == 4) {
-                hex.push(HEX_CHARS[n]);
-                n = shift = 0;
-            }
-        }
-        hex.push(HEX_CHARS[n]);
-        return hex.reverse().join("");
-    }
-
-    public static function toStringUnit(dec:int):String {
-        var d2b:String = decToBin(dec), b2d:uint   = binToDec(d2b);
-        var d2h:String = decToHex(dec), h2d:uint   = hexToDec(d2h);
-        var d2o:uint   = decToOct(dec), o2d:uint   = octToDec(d2o);
-
-        var o2b:String = octToBin(d2o), b2o:uint   = binToOct(o2b);
-        var b2h:String = binToHex(d2b), h2b:String = hexToBin(b2h);
-        var h2o:uint   = hexToOct(d2h), o2h:String = octToHex(h2o);
-
-        return "("+dec+") = bin("+d2b+","+b2d+") = hex("+d2h+","+h2d+") = oct("+d2o+","+o2d+") =-= bin-oct("+b2o+","+o2b+") = bin-hex("+h2b+","+b2h+") = hex-oct("+o2h+","+h2o+")";
-    }
-
-
-
-    /** INTERNAL TOOLS **/
+    //==================================
+    //  Private
+    //==================================
     private static function getUnitKey(unit:String):String {
         return unit.toUpperCase();
     }
@@ -409,8 +197,10 @@ public final class Units {
     }
 
 
-    /** CONSTANT UNITS **/
-    public static const BERNOULLI:Array = [
+    //==================================
+    //  Constants
+    //==================================
+    public static const BERNOULLI:Vector.<Number> = new <Number>[
         1
         ,-1/2
         ,1/6                                                                                        ,0
@@ -463,6 +253,6 @@ public final class Units {
         ,-211600449597266513097597728109824233673043954389060234150638733420050668349987259/4501770,0
         ,67908260672905495624051117546403605607342195728504487509073961249992947058239/6           ,0
         ,-94598037819122125295227433069493721872702841533066936133385696204311395415197247711/33330,0
-    ]
+    ];
 }
 }

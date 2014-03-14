@@ -14,7 +14,15 @@ public final class Factorial {
     private static var _memorized:Vector.<uint> = new <uint>[1,1,2];
 
     public static function get(n:uint):uint {
-        return _get(n, _memorized);
+        if(n < _memorized.length)
+            return _memorized[n];
+
+        var i:uint = _memorized.length;
+        var f:uint = _memorized[i-1];
+        for (; i <= n; i++) {
+            _memorized[i] = f = f * i;
+        }
+        return f;
     }
 
     public static function clear(length:uint = 0):void {

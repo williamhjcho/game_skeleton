@@ -34,8 +34,10 @@ public class Main extends MovieClip {
         stage.align = StageAlign.TOP_LEFT;
 
         MonsterDebugger.initialize(this);
-        testTriangle();
+        //testTriangle();
+
     }
+
 
     private var originalImage:Bitmap;
     private var outputImage:Bitmap;

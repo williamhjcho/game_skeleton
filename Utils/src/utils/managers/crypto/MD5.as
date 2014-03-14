@@ -4,11 +4,12 @@
 package utils.managers.crypto {
 import flash.utils.ByteArray;
 
-import utils.toollib.Bit;
+import utils.toollib.units.Bit;
 
 import utils.toollib.ToolMath;
 
-import utils.toollib.Units;
+import utils.toollib.units.Units;
+import utils.toollib.units.Hex;
 
 public class MD5 {
 
@@ -160,7 +161,7 @@ public class MD5 {
             d += dd;
         }
 
-        return Units.decToHex(a) + Units.decToHex(b) + Units.decToHex(c) + Units.decToHex(d);
+        return Hex.toHex(a) + Hex.toHex(b) + Hex.toHex(c) + Hex.toHex(d);
     }
 
     public static function createBlocks(s:ByteArray):Array {

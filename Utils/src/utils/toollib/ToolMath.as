@@ -2,6 +2,8 @@
  * william.cho
  */
 package utils.toollib {
+import utils.toollib.units.Units;
+
 public final class ToolMath {
 
     public static const PHI:Number = 1.61803398875; //(1 + Math.sqrt(5))/2;
@@ -18,7 +20,7 @@ public final class ToolMath {
 
     public static function middle(a:Number, b:Number):Number { return (a + b) / 2; }
 
-    public static function digitalRoot(n:uint):uint { return 1 + ((n - 1) % 9); }
+    public static function digitalRoot(n:uint, base:uint = 9):uint { return 1 + ((n - 1) % base); }
 
     public static function euler():Number {
         var sum:Number = 0, fact:Number = 1, nextTerm:Number = 1;

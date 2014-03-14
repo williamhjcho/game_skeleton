@@ -53,7 +53,7 @@ public final class Prime {
 
     public static function clear(length:uint = 0):void {
         if(length < 4)
-            primes = new <uint>[1,2,3,5];
+            primes = new <uint>[2,3,5,7];
         else
             primes.length = length;
     }

@@ -1,7 +1,7 @@
 /**
  * Created by aennova on 06/01/14.
  */
-package utils.toollib {
+package utils.toollib.units {
 public final class Bit {
 
     /**
@@ -72,7 +72,8 @@ public final class Bit {
      * @return bit 0 or 1
      */
     public static function getBit(x:uint, n:int):uint {
-        return (x >> n) & 0x1;
+        return (x >>> n) & 0x1;
     }
+
 }
 }
