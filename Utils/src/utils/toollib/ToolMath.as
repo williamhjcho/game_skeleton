@@ -348,6 +348,15 @@ public final class ToolMath {
         return i + 1 + (num < 0? 1 : 0);
     }
 
+    public static function sumDigits(num:uint):uint {
+        var sum:uint = 0;
+        while(num != 0) {
+            sum += num % 10;
+            num /= 10
+        }
+        return sum;
+    }
+
     //Interest
     public static function interest(initial:Number, tax:Number, time:Number):Number {
         return initial * tax * time;

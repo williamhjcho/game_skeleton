@@ -28,7 +28,7 @@ public class v2d {
     public function get length  ():Number { return Math.sqrt(x * x + y * y); }
     public function get length2 ():Number { return x * x + y * y;            }
 
-    public function get normalize():v2d {
+    public function normalize():v2d {
         var l:Number = this.length;
         if(l != 0) multiply(1/l);
         return this;

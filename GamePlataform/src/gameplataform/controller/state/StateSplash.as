@@ -6,9 +6,9 @@ import gameplataform.constants.GameStates;
 import gameplataform.controller.Game;
 import gameplataform.controller.GameMechanics;
 
-public class Splash extends BaseState {
+public class StateSplash extends BaseState {
 
-    public function Splash(game:Game) {
+    public function StateSplash(game:Game) {
         super(game, GameStates.SPLASH, null, onEnter, onExit);
     }
 

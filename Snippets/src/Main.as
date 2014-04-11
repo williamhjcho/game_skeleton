@@ -8,14 +8,20 @@
 package {
 import com.demonsters.debugger.MonsterDebugger;
 
-import flash.display.Bitmap;
-import flash.display.BitmapData;
+import flash.display.Graphics;
 import flash.display.MovieClip;
+import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
+import flash.events.MouseEvent;
 import flash.geom.Rectangle;
 
-import utils.toollib.Filter;
+import utils.commands.clamp;
+import utils.managers.event.MultipleSignal;
+
+import utils.toollib.color.Colors;
+
+import utilsDisplay.managers.Dragger;
 
 [SWF(width=960, height=600, backgroundColor=0x808080, frameRate=30)]
 public class Main extends MovieClip {
@@ -34,37 +40,11 @@ public class Main extends MovieClip {
         stage.align = StageAlign.TOP_LEFT;
 
         MonsterDebugger.initialize(this);
-        //testTriangle();
 
-    }
-
-
-    private var originalImage:Bitmap;
-    private var outputImage:Bitmap;
-
-    private var originalVector:Vector.<uint>;
-    private var rect:Rectangle;
-
-    private function testTriangle():void {
-        originalImage = new VALVE();
-        addChild(originalImage);
-
-        rect = new Rectangle(0,0,originalImage.width, originalImage.height);
-        originalVector = originalImage.bitmapData.getVector(rect);
-
-        outputImage = new Bitmap(new BitmapData(originalImage.width, originalImage.height));
-        outputImage.x = originalImage.width;
-        addChild(outputImage);
-
-
-        var output:Vector.<uint> = originalVector.concat();
-        //output = Filter.grayScale(output);
-        output = Filter.negative(output);
-        //output = Filter.sobel(output, rect.width, rect.height, null);
-        //output = Filter.sobelBW(output, rect.width, rect.height, 90);
-        //output = Filter.sobelHorizontal(output, rect.width, rect.height, null);
-        //output = Filter.sobelVertical(output, rect.width, rect.height, null);
-        outputImage.bitmapData.setVector(rect, output);
+        var REGEXP:RegExp = /.*_(\d+)_(\d+)$/;
+        var indexes:Array = "aesn_00123_00344".replace(REGEXP, "$1.$2").split(".");
+       trace(int(indexes[0]));
+       trace(int(indexes[1]));
     }
 
 

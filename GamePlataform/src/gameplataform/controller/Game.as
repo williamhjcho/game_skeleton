@@ -7,15 +7,14 @@
  */
 package gameplataform.controller {
 import flash.display.Sprite;
-import flash.events.Event;
 import flash.utils.getTimer;
 
 import gameplataform.constants.GameStates;
 import gameplataform.controller.layer.HudController;
 import gameplataform.controller.layer.MapController;
 import gameplataform.controller.layer.PopupController;
-import gameplataform.controller.state.Splash;
 import gameplataform.controller.state.StateGame;
+import gameplataform.controller.state.StateSplash;
 
 import utils.events.StateMachineEvent;
 import utils.managers.sounds.SoundManager;
@@ -53,18 +52,17 @@ public final class Game {
         initializeStates();
 
         _lastTimeStamp = getTimer() / 1000.0;
+        GameMechanics.startClock(1000 / GameData.stage.frameRate, onClockTick);
 
-        GameData.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+        stateMachine.changeTo(GameStates.SPLASH);
     }
 
     private function initializeStates():void {
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_COMPLETE, onTransitionComplete);
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_DENIED, onTransitionDenied);
 
-        stateMachine.add(new Splash(this));
+        stateMachine.add(new StateSplash(this));
         stateMachine.add(new StateGame(this));
-
-        stateMachine.changeTo(GameStates.SPLASH);
     }
 
     //==================================
@@ -77,7 +75,7 @@ public final class Game {
     //  Mechanics Management
     //==================================
     private static var _lastTimeStamp:Number = 0;
-    private static function onEnterFrame(e:Event):void {
+    private static function onClockTick():void {
         var t:Number = getTimer() / 1000.0;
         var dt:Number = t - _lastTimeStamp;
         _lastTimeStamp = t;
