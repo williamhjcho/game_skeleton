@@ -60,27 +60,27 @@ public class MultipleSignal {
 
     public function dispatch(type:String, ...args):void {
         var v:Vector.<Signal> = listeners[type];
-        if(v != null) {
-            _isDispatching = true;
-            var len:int = v.length;
-            for (var i:int = 0; i < len; i++) {
-                v[i].listener.apply(target, args);
-                if(v[i].repetition == ONCE || v[i].toRemove) {
-                    v[i] = null;
-                }
-            }
+        if(v == null) return;
 
-            //shifting down all positions
-            var j:int = 0;
-            for (i = 0; i < len; i++) {
-                if(v[i] != null) {
-                    v[j] = v[i];
-                    j++;
-                }
+        _isDispatching = true;
+        var len:int = v.length;
+        for (var i:int = 0; i < len; i++) {
+            v[i].listener.apply(target, args);
+            if(v[i].repetition == ONCE || v[i].toRemove) {
+                v[i] = null;
             }
-            if(i != j) {
-                v.splice(j, i - j);
+        }
+
+        //shifting down all positions
+        var j:int = 0;
+        for (i = 0; i < len; i++) {
+            if(v[i] != null) {
+                v[j] = v[i];
+                j++;
             }
+        }
+        if(i != j) {
+            v.splice(j, i - j);
         }
         _isDispatching = false;
     }
