@@ -144,7 +144,7 @@ public class SerializerManager {
 
             //Advanced Primitives
             case Array      : { return dsrlz_Array(obj as Array, imageClass, path); }
-            case Object     : { return dsrlz_Object(obj, path); }
+            case Object     : { return dsrlz_Object(obj, imageClass, path); }
         }
 
         return null;
@@ -234,9 +234,9 @@ public class SerializerManager {
         }
         return result;
     }
-    private static function dsrlz_Object        (obj:Object, path:String):Object {
+    private static function dsrlz_Object        (obj:Object, expectedClass:Class, path:String):Object {
         var result:Object;
-        var imageClass:Class = Object;
+        var imageClass:Class = expectedClass || Object;
 
         if(obj.hasOwnProperty(REFERENCE)) {
             return reference[obj[REFERENCE]];
@@ -262,7 +262,7 @@ public class SerializerManager {
             case XMLNode    : { reference[path] = new XMLNode(1,obj.value);                 return reference[path]; }
         }
 
-        reference[path] = dsrlz_Custom(obj,imageClass,path, result);
+        reference[path] = dsrlz_Custom(obj, imageClass, path, result);
         return reference[path];
     }
     private static function dsrlz_Simple_Object (obj:Object, path:String, result:Object = null):Object {

@@ -1,0 +1,41 @@
+{
+    "___className": "drawing.Class1",
+    "num1": 1,
+    "num2": 2,
+    "num3": -3,
+    "str": "testing string",
+    /*
+    "vec1": [20,40,60,80],
+    "vec2": [
+        [0,0,0,0],
+        [1,1,1,1],
+        [2,2,2,2]
+    ],
+    "vec3": ["wa","da","fu"],
+    */
+    "vec4": [
+        {
+            "name": null
+        },
+        {
+            "___className": "drawing.Class2",
+            "name": null,
+            "x": null,
+            "wat": null,
+            "y": null
+        }
+    ],
+
+    "v": {
+        "x": -1.25,
+        "y": 8
+    },
+    "c1": {
+        "wub": "wub"
+    },
+    "c2": {
+        "x": null,
+        "wat": null,        
+        "y": null
+    }    
+}

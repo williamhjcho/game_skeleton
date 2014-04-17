@@ -8,6 +8,8 @@
 package {
 import com.demonsters.debugger.MonsterDebugger;
 
+import drawing.Class1;
+
 import flash.display.Graphics;
 import flash.display.MovieClip;
 import flash.display.Sprite;
@@ -18,6 +20,7 @@ import flash.geom.Rectangle;
 
 import utils.commands.clamp;
 import utils.managers.event.MultipleSignal;
+import utils.managers.serializer.SerializerManager;
 
 import utils.toollib.color.Colors;
 
@@ -35,16 +38,21 @@ public class Main extends MovieClip {
     [Embed(source="../output/Bikesgray.jpg")]
     private static const BIKE:Class;
 
+    [Embed(source="../output/_textFile.json", mimeType = "application/octet-stream")]
+    private static const JSON:Class;
+
     public function Main() {
         stage.scaleMode = StageScaleMode.NO_SCALE;
         stage.align = StageAlign.TOP_LEFT;
 
         MonsterDebugger.initialize(this);
 
-        var REGEXP:RegExp = /.*_(\d+)_(\d+)$/;
-        var indexes:Array = "aesn_00123_00344".replace(REGEXP, "$1.$2").split(".");
-       trace(int(indexes[0]));
-       trace(int(indexes[1]));
+        trace(SerializerManager.encodeAndStringfy(Class1.getInstance()));
+        var s:String = new JSON();
+        var o:Class1 = SerializerManager.decodeFromString(s);
+        MonsterDebugger.trace(this, o);
+
+        trace(o.vec4);
     }
 
 
