@@ -52,6 +52,7 @@ public class ButtonManager {
      *     onOut            :Function(null),
      *     onEnable         :Function(null),
      *     onDisable        :Function(null),
+     *     onRemove         :Function(null),
      *     enable           :Boolean(true)
      */
     public static function add(button:DisplayObject, parameters:Object):void {
@@ -83,6 +84,7 @@ public class ButtonManager {
         p.onOut             = parameters.onOut      || (p.useDefault? defaultOut      : null);
         p.onEnable          = parameters.onEnable   || (p.useDefault? defaultEnable   : null);
         p.onDisable         = parameters.onDisable  || (p.useDefault? defaultDisable  : null);
+        p.onRemove          = parameters.onRemove   || (p.useDefault? defaultRemove   : null);
 
         _buttons[button] = p;
 
@@ -99,12 +101,13 @@ public class ButtonManager {
         var p:ButtonProperty = _buttons[button];
 
         if(p == null || button == null) return;
+        delete _buttons[button];
         button.removeEventListener(MouseEvent.MOUSE_DOWN, onDown);
         button.removeEventListener(MouseEvent.MOUSE_UP, onUp);
         button.removeEventListener(MouseEvent.ROLL_OVER, onOver);
         button.removeEventListener(MouseEvent.ROLL_OUT, onOut);
+        p.callRemove();
         p.destroy();
-        delete _buttons[button];
     }
 
     public static function change(button:DisplayObject, parameters:Object):void {
@@ -129,6 +132,7 @@ public class ButtonManager {
         p.onOut         = parameters.onOut     || p.onOut     || (p.useDefault? defaultOut      : null);
         p.onEnable      = parameters.onEnable  || p.onEnable  || (p.useDefault? defaultEnable   : null);
         p.onDisable     = parameters.onDisable || p.onDisable || (p.useDefault? defaultDisable  : null);
+        p.onRemove      = parameters.onRemove  || p.onRemove  || (p.useDefault? defaultRemove   : null);
     }
 
     public static function enable(button:DisplayObject):void {
@@ -281,6 +285,9 @@ public class ButtonManager {
         if(p.useDefault)
             TweenMax.to(p.reference, 0.3, {colorMatrixFilter: {colorize: 0x000000, amount: 0.5, saturation: 0}});
     }
+    private static function defaultRemove(button:DisplayObject):void {
+        defaultUp(button);
+    }
 }
 }
 
@@ -306,6 +313,7 @@ class ButtonProperty {
     public var onOut      :Function = null;
     public var onEnable   :Function = null;
     public var onDisable  :Function = null;
+    public var onRemove   :Function = null;
 
     public function callClick  ():void { if(onClick   != null) onClick  .call(this, reference); }
     public function callDown   ():void { if(onDown    != null) onDown   .call(this, reference); }
@@ -314,6 +322,7 @@ class ButtonProperty {
     public function callOut    ():void { if(onOut     != null) onOut    .call(this, reference); }
     public function callEnable ():void { if(onEnable  != null) onEnable .call(this, reference); }
     public function callDisable():void { if(onDisable != null) onDisable.call(this, reference); }
+    public function callRemove ():void { if(onRemove  != null) onRemove .call(this, reference); }
 
     public function destroy():void {
         this.onClick   = null;
@@ -323,5 +332,6 @@ class ButtonProperty {
         this.onOut     = null;
         this.onEnable  = null;
         this.onDisable = null;
+        this.onRemove  = null;
     }
 }

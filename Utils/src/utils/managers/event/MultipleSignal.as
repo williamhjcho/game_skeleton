@@ -41,7 +41,7 @@ public class MultipleSignal {
         var i:int = indexOf(v, listener);
         if(i == -1) return;
         //see dispatch() to understand what this does
-        if(_isDispatching)  v[i].toRemove = true;
+        if(_isDispatching)  v[i] = null;
         else                v.splice(i,1);
     }
 
@@ -65,8 +65,9 @@ public class MultipleSignal {
         _isDispatching = true;
         var len:int = v.length;
         for (var i:int = 0; i < len; i++) {
+            if(v[i] == null) continue;
             v[i].listener.apply(target, args);
-            if(v[i].repetition == ONCE || v[i].toRemove) {
+            if(v[i].repetition == ONCE) {
                 v[i] = null;
             }
         }
@@ -108,7 +109,6 @@ class Signal {
 
     public var repetition:int;
     public var listener:Function;
-    public var toRemove:Boolean = false;
 
     public function Signal(repetition:int, listener:Function) {
         this.repetition = repetition;

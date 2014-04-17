@@ -32,22 +32,6 @@ public final class Factorial {
             _memorized.length = length;
     }
 
-    //==================================
-    //  Internal
-    //==================================
-    private static function _get(n:uint, memory:Vector.<uint>):uint {
-        if(n < memory.length)
-            return memory[n];
-
-        var i:uint = memory.length;
-        var f:uint = memory[i-1];
-        for (; i <= n; i++) {
-            memory[i] = f = f * i;
-        }
-        return f;
-    }
-
-
 
 
 }
