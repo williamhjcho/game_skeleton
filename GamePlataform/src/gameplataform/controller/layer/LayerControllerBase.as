@@ -30,12 +30,13 @@ public class LayerControllerBase {
     //==================================
     //  Public
     //==================================
-    public function addChild(child:DisplayObject, childName:String, x:Number = Number.NaN, y:Number = Number.NaN):void {
+    public function addChild(child:DisplayObject, childName:String = null, x:Number = Number.NaN, y:Number = Number.NaN):void {
         if(!isNaN(x)) child.x = x;
         if(!isNaN(y)) child.y = y;
-        placeHolder.addChild(child);
+        childName ||= child.name;
         instances[childName] = child;
         counterInstances[child] = childName;
+        placeHolder.addChild(child);
     }
 
     public function removeChild(child:DisplayObject):DisplayObject {

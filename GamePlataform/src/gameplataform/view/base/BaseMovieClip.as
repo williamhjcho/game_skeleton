@@ -8,15 +8,13 @@ import flash.display.MovieClip;
 
 import utils.managers.event.MultipleSignal;
 
-public class BaseViewMovieClip extends MovieClip {
+public class BaseMovieClip extends MovieClip {
 
-    public var dispatcher:MultipleSignal;
     protected var _frameLabels:Array;
 
-    public function BaseViewMovieClip() {
+    public function BaseMovieClip() {
         super();
         this.gotoAndStop(0);
-        this.dispatcher = new MultipleSignal(this);
         this._frameLabels = this.currentLabels;
     }
 

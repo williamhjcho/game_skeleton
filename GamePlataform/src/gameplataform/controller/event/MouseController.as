@@ -1,7 +1,7 @@
 /**
  * Created by William on 4/14/2014.
  */
-package gameplataform.event {
+package gameplataform.controller.event {
 import flash.events.EventDispatcher;
 import flash.events.MouseEvent;
 import flash.utils.Dictionary;

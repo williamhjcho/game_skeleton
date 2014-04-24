@@ -6,16 +6,29 @@ import flash.display.MovieClip;
 
 import gameplataform.constants.Frame;
 
+import utils.commands.execute;
+
 import utilsDisplay.managers.buttons.ButtonManager;
 
 public class BaseButton extends MovieClip {
+
+    protected var _f:Function;
 
     public function BaseButton() {
         super();
         super.gotoAndStop(0);
 
+        addToManager();
+    }
+
+    //==================================
+    //  Public
+    //==================================
+    public function addToManager(enabled:Boolean = false):void {
         ButtonManager.add( this, {
+            enabled     : enabled   ,
             useDefault  : false     ,
+            onClick     : onClick   ,
             onDown      : onDown    ,
             onUp        : onUp      ,
             onOver      : onOver    ,
@@ -23,12 +36,8 @@ public class BaseButton extends MovieClip {
             onEnable    : onEnable  ,
             onDisable   : onDisable
         });
-        ButtonManager.disable(this);
     }
 
-    //==================================
-    //  Public
-    //==================================
     public function enable():void {
         ButtonManager.enable(this);
     }
@@ -41,8 +50,8 @@ public class BaseButton extends MovieClip {
         ButtonManager.remove(this);
     }
 
-    public function set onClick(f:Function):void {
-        ButtonManager.change(this, { onClick : f });
+    public function set click(f:Function):void {
+        this._f = f;
     }
 
 
@@ -50,17 +59,19 @@ public class BaseButton extends MovieClip {
     //==================================
     //  States
     //==================================
-    private function onOver(btn:BaseButton):void { super.gotoAndPlay(Frame.HOVER_IN); }
+    protected function onClick(btn:BaseButton):void { execute(_f, [this]); }
 
-    private function onOut(btn:BaseButton):void { super.gotoAndPlay(Frame.HOVER_OUT); }
+    protected function onOver(btn:BaseButton):void { super.gotoAndPlay(Frame.HOVER_IN); }
 
-    private function onDown(btn:BaseButton):void { super.gotoAndPlay(Frame.DOWN); }
+    protected function onOut(btn:BaseButton):void { super.gotoAndPlay(Frame.HOVER_OUT); }
 
-    private function onUp(btn:BaseButton):void { super.gotoAndPlay(Frame.RELEASE); }
+    protected function onDown(btn:BaseButton):void { super.gotoAndPlay(Frame.DOWN); }
 
-    private function onEnable(btn:BaseButton):void { super.gotoAndPlay(Frame.NORMAL); }
+    protected function onUp(btn:BaseButton):void { super.gotoAndPlay(Frame.RELEASE); }
 
-    private function onDisable(btn:BaseButton):void { super.gotoAndPlay(Frame.DISABLED); }
+    protected function onEnable(btn:BaseButton):void { super.gotoAndPlay(Frame.NORMAL); }
+
+    protected function onDisable(btn:BaseButton):void { super.gotoAndPlay(Frame.DISABLED); }
 
 }
 }
