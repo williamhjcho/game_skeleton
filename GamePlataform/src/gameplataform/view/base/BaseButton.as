@@ -62,15 +62,10 @@ public class BaseButton extends MovieClip {
     protected function onClick(btn:BaseButton):void { execute(_f, [this]); }
 
     protected function onOver(btn:BaseButton):void { super.gotoAndPlay(Frame.HOVER_IN); }
-
     protected function onOut(btn:BaseButton):void { super.gotoAndPlay(Frame.HOVER_OUT); }
-
     protected function onDown(btn:BaseButton):void { super.gotoAndPlay(Frame.DOWN); }
-
     protected function onUp(btn:BaseButton):void { super.gotoAndPlay(Frame.RELEASE); }
-
     protected function onEnable(btn:BaseButton):void { super.gotoAndPlay(Frame.NORMAL); }
-
     protected function onDisable(btn:BaseButton):void { super.gotoAndPlay(Frame.DISABLED); }
 
 }

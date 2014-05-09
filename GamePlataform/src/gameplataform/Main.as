@@ -18,8 +18,8 @@ import flash.text.TextField;
 
 import gameplataform.constants.AssetKey;
 import gameplataform.controller.Game;
-import gameplataform.controller.GameData;
-import gameplataform.controller.data.DataController;
+import gameplataform.controller.data.AssetDataController;
+import gameplataform.controller.data.GameData;
 import gameplataform.model.Config;
 
 import utils.managers.DebuggerManager;
@@ -35,6 +35,7 @@ import utilsDisplay.view.Stats;
  *  - initializes the game
  */
 public class Main extends Sprite {
+
 
     private static var _instance:Main = null;
     private static var _stage:Stage = null;
@@ -71,7 +72,7 @@ public class Main extends Sprite {
      * Runs through Config.assets and analyzes their content (see DataController)
      */
     private function analyzeAssets():void {
-        DataController.analyzeAssets(Client.config.assets[AssetKey.MAIN_ASSETS]);
+        AssetDataController.analyzeAssets(Client.config.assets[AssetKey.MAIN_ASSETS]);
     }
 
     /**
@@ -83,6 +84,7 @@ public class Main extends Sprite {
         Security.allowDomain(config.allowedDomain);
         Security.allowInsecureDomain(config.allowedDomain);
 
+        MonsterDebugger.initialize(this);
         DebuggerManager.initialize(MonsterDebugger.trace);
 
         //identifying the Environment of the game (wem, offline, scorm....)

@@ -10,6 +10,8 @@ import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.utils.Dictionary;
 
+import utils.base.interfaces.IDestructible;
+
 public class LayerControllerBase {
 
     private var _name:String;
@@ -39,7 +41,11 @@ public class LayerControllerBase {
         placeHolder.addChild(child);
     }
 
-    public function removeChild(child:DisplayObject):DisplayObject {
+    public function removeChild(child:DisplayObject, destroy:Boolean = true):DisplayObject {
+        if(child == null) return null;
+        if(child is IDestructible && destroy) {
+            IDestructible(child).destroy();
+        }
         if(placeHolder.contains(child)) {
             placeHolder.removeChild(child);
             delete instances[counterInstances[child]];
@@ -75,6 +81,16 @@ public class LayerControllerBase {
 
     public function getIndex(name:String):int {
         return placeHolder.getChildIndex(instances[name]);
+    }
+
+    public function sendChildBackward(child:DisplayObject):void {
+        if(!contains(child)) return;
+        placeHolder.setChildIndex(child, 0);
+    }
+
+    public function sendChildForward(child:DisplayObject):void {
+        if(!contains(child)) return;
+        placeHolder.setChildIndex(child, placeHolder.numChildren);
     }
 }
 }

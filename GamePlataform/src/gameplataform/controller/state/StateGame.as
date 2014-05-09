@@ -9,8 +9,6 @@ package gameplataform.controller.state {
 import gameplataform.constants.GameStates;
 import gameplataform.controller.Game;
 
-import utilsDisplay.managers.buttons.ButtonManager;
-
 public class StateGame extends BaseState {
 
     public function StateGame(game:Game) {

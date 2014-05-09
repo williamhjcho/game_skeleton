@@ -9,26 +9,15 @@ package gameplataform.controller.data {
 import flash.text.StyleSheet;
 
 import gameplataform.constants.AssetType;
-import gameplataform.controller.GameData;
 
 import utils.managers.LoaderManager;
-import utils.managers.event.MultipleSignal;
 import utils.managers.serializer.SerializerManager;
 import utils.managers.sounds.SoundManager;
 
 /**
  * This class contains methods for data analysis and processing, LOCAL DATA ONLY
  */
-public class DataController {
-
-    /**
-     * dispatcher functions as an EventDispatcher, but has an direct communication pipeline (without Event Objects)
-     * ex: dispatcher.add("type1", function1);
-     * dispatcher.dispatch("parameter1", true, 23);
-     * (note it doesn't dispatch any single objects, only the direct parameters)
-     */
-    public static var dispatcher:MultipleSignal = new MultipleSignal();
-
+public class AssetDataController {
 
     //==================================
     //     Public
@@ -43,8 +32,8 @@ public class DataController {
             var data:* = LoaderManager.getContent(dataName);
             switch(asset.type) {
                 case AssetType.SAVE: {
-                    GameData.defaultSaveData = data;
-                    GameData.saveData = SerializerManager.decodeFromString(data);
+                    SaveController.defaultSaveData = data;
+                    SaveController.saveData = SerializerManager.decodeFromString(data);
                     break;
                 }
                 case AssetType.CSS: {
@@ -53,8 +42,8 @@ public class DataController {
                     break;
                 }
                 case AssetType.TEXT: {
-                    GameData.addText(SerializerManager.decodeFromString(data), asset.acronym, true);
-                    GameData.currentLanguage ||= asset.acronym;
+                    TextController.addText(SerializerManager.decodeFromString(data), asset.acronym, true);
+                    TextController.currentLanguage ||= asset.acronym;
                     break;
                 }
                 case AssetType.SOUND: {

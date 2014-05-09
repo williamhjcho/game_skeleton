@@ -10,7 +10,6 @@ import gameplataform.controller.Game;
 
 import utils.managers.state.State;
 
-
 public class BaseState extends State {
 
     protected var game:Game;

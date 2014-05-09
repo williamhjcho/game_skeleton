@@ -25,7 +25,6 @@
                     { "type":"SOUND"    , "name":"popup"            , "url":"data/sounds/popup.mp3"         , "autoPlay":false },
                     { "type":"SOUND"    , "name":"right"            , "url":"data/sounds/right.mp3"         , "autoPlay":false },
                     { "type":"SOUND"    , "name":"track"            , "url":"data/sounds/track.mp3"         , "autoPlay":false },
-                    { "type":"SOUND"    , "name":"trilha"           , "url":"data/sounds/trilha.mp3"        , "autoPlay":false },
                     { "type":"SOUND"    , "name":"wrong"            , "url":"data/sounds/wrong.mp3"         , "autoPlay":false }
                 ]
             }

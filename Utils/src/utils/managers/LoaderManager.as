@@ -17,7 +17,7 @@ import flash.utils.Dictionary;
 
 import utils.commands.clamp;
 
-import utils.managers.event.MultipleSignal;
+import utils.managers.event.SignalDispatcher;
 
 /**
  * This class loads assets in order (not optimal for multi-threading)
@@ -53,7 +53,7 @@ public class LoaderManager {
      * Dispatches the events from the main queue for external listeners
      * The event names are from LoaderEvent
      */
-    public static var dispatcher:MultipleSignal = new MultipleSignal(null);
+    public static var dispatcher:SignalDispatcher = new SignalDispatcher(null);
 
     [ArrayElementType("LoadingGroup")]
     private static var waitingList:Array = []; //Vector.<LoadingGroup> = new Vector.<LoadingGroup>();

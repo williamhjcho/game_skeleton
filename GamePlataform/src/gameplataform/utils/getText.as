@@ -2,9 +2,9 @@
  * Created by William on 2/25/14.
  */
 package gameplataform.utils {
-import gameplataform.controller.GameData;
+import gameplataform.controller.data.TextController;
 
 public function getText(id:String):String {
-    return GameData.getText(id) || "[Invalid: \"" + id + "\"]";
+    return TextController.getText(id) || "[Invalid: \"" + id + "\"]";
 }
 }

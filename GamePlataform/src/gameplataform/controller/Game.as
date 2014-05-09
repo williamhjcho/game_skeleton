@@ -7,9 +7,9 @@
  */
 package gameplataform.controller {
 import flash.display.Sprite;
-import flash.utils.getTimer;
 
 import gameplataform.constants.GameStates;
+import gameplataform.controller.data.GameData;
 import gameplataform.controller.layer.HudController;
 import gameplataform.controller.layer.MapController;
 import gameplataform.controller.layer.PopupController;
@@ -51,7 +51,6 @@ public final class Game {
 
         initializeStates();
 
-        _lastTimeStamp = getTimer() / 1000.0;
         GameMechanics.startClock(1000 / GameData.stage.frameRate, onClockTick);
 
         stateMachine.changeTo(GameStates.SPLASH);
@@ -74,13 +73,9 @@ public final class Game {
     //==================================
     //  Mechanics Management
     //==================================
-    private static var _lastTimeStamp:Number = 0;
     private static function onClockTick():void {
-        var t:Number = getTimer() / 1000.0;
-        var dt:Number = t - _lastTimeStamp;
-        _lastTimeStamp = t;
         GameMechanics.checkJobList();
-        GameMechanics.checkClock(dt);
+        GameMechanics.checkClock();
     }
 }
 }

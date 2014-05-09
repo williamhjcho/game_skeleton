@@ -4,7 +4,7 @@
 package utils.managers.event {
 import flash.utils.Dictionary;
 
-public class MultipleSignal {
+public class SignalDispatcher {
 
     private static const ONCE       :int = 0;
     private static const MULTIPLE   :int = 1;
@@ -13,7 +13,7 @@ public class MultipleSignal {
     private var target:Object;
     private var _isDispatching:Boolean = false;
 
-    public function MultipleSignal(target:Object = null) {
+    public function SignalDispatcher(target:Object = null) {
         this.target = target || this;
     }
 

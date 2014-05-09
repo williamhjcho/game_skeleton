@@ -58,10 +58,13 @@ public class ButtonManager {
     public static function add(button:DisplayObject, parameters:Object):void {
         var p:ButtonProperty = _buttons[button];
 
-        if(p != null)
-            throw new ArgumentError("Already registered instance : \"" + button.name + "\".");
-
         parameters ||= {};
+
+        if(p != null) {
+            //throw new ArgumentError("Already registered instance : \"" + button.name + "\".");
+            change(button, parameters);
+            return;
+        }
 
         p                   = new ButtonProperty();
         p.reference         = button;
