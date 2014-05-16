@@ -57,6 +57,8 @@ public class BaseMovieClip extends MovieClip implements IDestructible {
     [ArrayElementType("flash.display.FrameLabel")]
     public function get frameLabels():Array { return this._frameLabels; }
 
+    public function hasFrameLabel(label:String):Boolean { return (_frameLabels.indexOf(label) != -1); }
+
     //==================================
     //  Callback
     //==================================

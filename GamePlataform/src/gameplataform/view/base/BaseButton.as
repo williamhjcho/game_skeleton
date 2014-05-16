@@ -2,15 +2,13 @@
  * Created by William on 2/20/14.
  */
 package gameplataform.view.base {
-import flash.display.MovieClip;
-
 import gameplataform.constants.Frame;
 
 import utils.commands.execute;
 
 import utilsDisplay.managers.buttons.ButtonManager;
 
-public class BaseButton extends MovieClip {
+public class BaseButton extends BaseMovieClip {
 
     protected var _f:Function;
 
@@ -46,12 +44,13 @@ public class BaseButton extends MovieClip {
         ButtonManager.disable(this);
     }
 
-    public function destroy():void {
-        ButtonManager.remove(this);
-    }
-
     public function set click(f:Function):void {
         this._f = f;
+    }
+
+    override public function destroy():void {
+        super.destroy();
+        ButtonManager.remove(this);
     }
 
 

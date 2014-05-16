@@ -8,8 +8,7 @@
 package utils.base.interfaces {
 public interface IRecyclable {
 
-    function reset():void;
-    function returnThis():void;
+    function recycle():void;
 
 }
 }

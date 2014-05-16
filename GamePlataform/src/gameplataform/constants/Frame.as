@@ -19,6 +19,12 @@ public class Frame {
     public static const ENABLED:String = "enabled";
     public static const DISABLED:String = "disabled";
 
+    public static const INTRO:String = "intro";
+    public static const OUTRO:String = "outro";
+
+    public static const IDLE:String = "idle";
+
+    public static const END:String = "end";
 
 
 }

@@ -104,13 +104,13 @@ public class ButtonManager {
         var p:ButtonProperty = _buttons[button];
 
         if(p == null || button == null) return;
-        delete _buttons[button];
         button.removeEventListener(MouseEvent.MOUSE_DOWN, onDown);
         button.removeEventListener(MouseEvent.MOUSE_UP, onUp);
         button.removeEventListener(MouseEvent.ROLL_OVER, onOver);
         button.removeEventListener(MouseEvent.ROLL_OUT, onOut);
         p.callRemove();
         p.destroy();
+        delete _buttons[button];
     }
 
     public static function change(button:DisplayObject, parameters:Object):void {

@@ -12,7 +12,7 @@ import flash.utils.Dictionary;
 
 import utils.base.interfaces.IDestructible;
 
-public class LayerControllerBase {
+public class BaseLayerController {
 
     private var _name:String;
     private var instances:Dictionary;
@@ -20,7 +20,7 @@ public class LayerControllerBase {
 
     public var placeHolder:DisplayObjectContainer;
 
-    public function LayerControllerBase(placeHolder:DisplayObjectContainer, name:String = null) {
+    public function BaseLayerController(placeHolder:DisplayObjectContainer, name:String = null) {
         this._name = name || placeHolder.name;
         this.placeHolder = placeHolder;
         this.instances = new Dictionary();

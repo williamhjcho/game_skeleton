@@ -8,27 +8,9 @@
 package {
 import com.demonsters.debugger.MonsterDebugger;
 
-import drawing.Class1;
-
-import flash.display.Graphics;
 import flash.display.MovieClip;
-import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
-import flash.events.Event;
-import flash.events.MouseEvent;
-import flash.events.TimerEvent;
-import flash.geom.Rectangle;
-import flash.utils.Timer;
-import flash.utils.getTimer;
-
-import utils.commands.clamp;
-import utils.managers.event.SignalDispatcher;
-import utils.managers.serializer.SerializerManager;
-
-import utils.toollib.color.Colors;
-
-import utilsDisplay.managers.Dragger;
 
 [SWF(width=960, height=600, backgroundColor=0x808080, frameRate=1)]
 public class Main extends MovieClip {

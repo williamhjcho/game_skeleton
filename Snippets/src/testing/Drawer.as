@@ -1,7 +1,7 @@
 /**
  * Created by William on 12/12/13.
  */
-package drawing {
+package testing {
 import flash.display.Graphics;
 
 public class Drawer {
