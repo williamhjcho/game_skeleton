@@ -284,10 +284,12 @@ public class SerializerManager {
             if(property == CLASS_NAME || property == PRIORITY) continue;
             cap = architecture.getVariable(property);
             if(cap == null) {
-                throwError("Variable :\"" + property + "\" not found in \"" + imageClass +"\".", SerializerError.VARIABLE_NOT_FOUND);
-                continue;
-            }
-            result[property] = deSerialize(obj[property], cap.type, path + "." + property);
+                if(architecture.isDynamic)
+                    result[property] = deSerialize(obj[property], null, path + "." + property);
+                else
+                    throwError("Variable :\"" + property + "\" not found in \"" + imageClass +"\".", SerializerError.VARIABLE_NOT_FOUND);
+            } else
+                result[property] = deSerialize(obj[property], cap.type, path + "." + property);
         }
 
         return result;

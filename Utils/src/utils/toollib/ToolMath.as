@@ -277,12 +277,16 @@ public final class ToolMath {
         return min1 + (max1 - min1) * ((n - min0) / (max0 - min0));
     }
 
-    public static function randomRadRange(minNum:Number, maxNum:Number):Number {
-        return minNum + Math.random() * (maxNum - minNum);
+    public static function randomRandInt(min:int, max:int):int {
+        return min + Math.round(Math.random() * (max - min));
     }
 
-    public static function randomRange(minNum:Number, range:Number):Number {
-        return  minNum + Math.random() * (range);
+    public static function randomRadRange(min:Number, max:Number):Number {
+        return min + Math.random() * (max - min);
+    }
+
+    public static function randomRange(start:Number, range:Number):Number {
+        return  start + Math.random() * (range);
     }
 
     public static function isInRange(n:Number, min:Number, max:Number):Boolean {
