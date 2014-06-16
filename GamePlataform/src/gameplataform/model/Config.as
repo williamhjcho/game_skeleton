@@ -15,12 +15,18 @@ public class Config {
 
     public var allowedDomain:String;
     public var serverTest   :String;
-    public var saveLink     :String;
-    public var loadLink     :String;
 
+    /**
+     * Dictionary where the key is a string referred in class AssetKey
+     */
     public var assets       :Dictionary;
 
+    /**
+     * Relative path to main.swf
+     */
     public var preLoaderPath:String;
+
+
     public var showStats    :Boolean;
 }
 }

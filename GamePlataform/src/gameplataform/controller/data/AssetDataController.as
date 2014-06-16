@@ -15,7 +15,7 @@ import utils.managers.serializer.SerializerManager;
 import utils.managers.sounds.SoundManager;
 
 /**
- * This class contains methods for data analysis and processing, LOCAL DATA ONLY
+ * This class contains methods for data analysis, processing and/or attribution
  */
 public class AssetDataController {
 

@@ -51,7 +51,7 @@ public final class Game {
 
         initializeStates();
 
-        GameMechanics.startClock(1000 / GameData.stage.frameRate, onClockTick);
+        GameMechanics.startClock(1000 / GameData.stage.frameRate);
 
         stateMachine.changeTo(GameStates.SPLASH);
     }
@@ -70,12 +70,5 @@ public final class Game {
     private static function onTransitionDenied    (e:StateMachineEvent):void { trace(e); }
     private static function onTransitionComplete  (e:StateMachineEvent):void { trace(e); }
 
-    //==================================
-    //  Mechanics Management
-    //==================================
-    private static function onClockTick():void {
-        GameMechanics.checkJobList();
-        GameMechanics.checkClock();
-    }
 }
 }

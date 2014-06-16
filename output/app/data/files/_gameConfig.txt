@@ -3,8 +3,6 @@
 
     "allowedDomain" : "*",
     "serverTest"    : "localhost",
-    "loadLink"      : "",
-    "saveLink"      : "",
 
     "showStats"     : false,
 

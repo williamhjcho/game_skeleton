@@ -9,97 +9,100 @@ package utils.managers {
 import flash.events.Event;
 import flash.events.HTTPStatusEvent;
 import flash.events.IOErrorEvent;
+import flash.events.ProgressEvent;
 import flash.events.SecurityErrorEvent;
 import flash.net.URLLoader;
 import flash.net.URLLoaderDataFormat;
 import flash.net.URLRequest;
 import flash.net.URLRequestMethod;
 import flash.net.URLVariables;
-import flash.utils.Dictionary;
+
+import utils.commands.clamp;
 
 public class HttpRequestManager {
 
-    private var ldr:URLLoader;
+    private var loader:URLLoader = new URLLoader();
 
-    private var onCompleteRequestFunction:Function;
-    private var onIOError:Function;
-    private var onSecurityError:Function;
+    private var _dataFormat :String = URLLoaderDataFormat.TEXT;
+    private var _method     :String = URLRequestMethod.POST;
+    private var _variables  :Object = null;
+
+    private var _onComplete :Function = null,
+            _onOpen         :Function = null,
+            _onProgress     :Function = null,
+            _onHttpStatus   :Function = null,
+            _onIOError      :Function = null,
+            _onSecurityError:Function = null;
 
     public function HttpRequestManager() {
-        ldr = new URLLoader();
-        ldr.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler, false, 0, true);
-        ldr.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler, false, 0, true);
-        ldr.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler, false, 0, true);
+
     }
+
+    //==================================
+    //  Get/Set
+    //==================================
+    public function get progress():Number   { return clamp(loader.bytesLoaded / loader.bytesTotal, 0.0, 1.0); }
+    public function get data():*            { return loader.data; }
+
+    //Chain methods
+    public function setDataFormat   (s:String = null):HttpRequestManager         { _dataFormat = s || URLLoaderDataFormat.TEXT; return this; }
+    public function setMethod       (method:String = null):HttpRequestManager    { _method = method || URLRequestMethod.POST; return this; }
+    public function setVariables    (o:Object):HttpRequestManager                { _variables = o; return this; }
+
+    public function setOnComplete     (f:Function):HttpRequestManager { removeThenAdd(Event.COMPLETE                     , _onComplete      , f); _onComplete      = f; return this; }
+    public function setOnOpen         (f:Function):HttpRequestManager { removeThenAdd(Event.OPEN                         , _onOpen          , f); _onOpen          = f; return this; }
+    public function setOnProgress     (f:Function):HttpRequestManager { removeThenAdd(ProgressEvent.PROGRESS             , _onProgress      , f); _onProgress      = f; return this; }
+    public function setOnHttpStatus   (f:Function):HttpRequestManager { removeThenAdd(HTTPStatusEvent.HTTP_STATUS        , _onHttpStatus    , f); _onHttpStatus    = f; return this; }
+    public function setOnIOError      (f:Function):HttpRequestManager { removeThenAdd(IOErrorEvent.IO_ERROR              , _onIOError       , f); _onIOError       = f; return this; }
+    public function setOnSecurityError(f:Function):HttpRequestManager { removeThenAdd(SecurityErrorEvent.SECURITY_ERROR  , _onSecurityError , f); _onSecurityError = f; return this; }
 
     //==================================
     //  Public
     //==================================
-    public function request(url:String, onComplete:Function, inVariables:Dictionary = null, method:String = "POST", onIOError:Function= null, onSecurityError:Function=null):void {
-        this.onIOError =   onIOError ;
-        this.onSecurityError =   onSecurityError ;
-        this.onCompleteRequestFunction = onComplete;
-        // var parametros:Object = LoaderInfo(Main.instance.getStage().root.loaderInfo).parameters;
-        var variables:URLVariables = new URLVariables();
-        var request:URLRequest = new URLRequest(url);
-        var k:String , key:String, value:*;
-        if (method == "POST") {
-            if (inVariables != null) {
-                for (k in inVariables) {
-                    key = String(k);
-                    value = inVariables[k];
-                    variables[key] = value;
-                    // do stuff
+    public function load(url:String):void {
+        var urlVars:URLVariables = new URLVariables();
+        var urlRequest:URLRequest = new URLRequest(url);
+        urlRequest.method = _method;
+
+        var property:String;
+        switch(_method) {
+            case URLRequestMethod.POST: {
+                //both classes are dynamic
+                for (property in _variables) {
+                    urlVars[property] = _variables[property];
                 }
+                urlRequest.data = urlVars;
+                break;
             }
-            request.method = URLRequestMethod.POST;
-            request.data = variables;
-        } else {
-            var URLadd:String = "?";
-            if (inVariables != null) {
-                for (k in inVariables) {
-                    key = String(k);
-                    value = inVariables[k];
-                    URLadd = URLadd.concat(key.toString() + "=" + value.toString() + "&");
-                    //variables[key]=value;
-                    // do stuff
+            case URLRequestMethod.GET: {
+                var suffixes:Vector.<String> = new Vector.<String>();
+                for (property in _variables) {
+                    suffixes.push(property + '=' + Object(_variables[property]).toString());
                 }
+                urlRequest.url += suffixes.join('&');
+                break;
             }
-            URLadd = URLadd.substring(0, URLadd.length - 1);
-            request.method = URLRequestMethod.GET;
-            url = url + URLadd;
-            //request.data = variables;
+            case URLRequestMethod.DELETE:
+            case URLRequestMethod.HEAD:
+            case URLRequestMethod.OPTIONS:
+            case URLRequestMethod.PUT:
+            case null: throw new ArgumentError("Method not recognized: \"" + _method + "\"."); break;
         }
 
-        ldr.dataFormat = URLLoaderDataFormat.TEXT;
-        ldr.addEventListener(Event.COMPLETE, onRequestComplete);
-        ldr.load(request);
+        loader.dataFormat = _dataFormat;
+        loader.load(urlRequest)
+    }
+
+    public function close():void {
+        loader.close();
     }
 
     //==================================
-    //  Events
+    //  Private
     //==================================
-    private function onRequestComplete(e:Event):void {
-        DebuggerManager.debug("[HttpRequestManager]saveCompleteHandler", String(e.target.data), "", "", 0xff0000);
-        ldr.removeEventListener(Event.COMPLETE, onRequestComplete);
-        var result:String = String(e.target.data);
-        onCompleteRequestFunction(result);
+    private function removeThenAdd(event:String, fPrev:Function, fNext:Function):void {
+        if(fPrev != null) loader.removeEventListener(event, fPrev);
+        if(fNext != null) loader.addEventListener(event, fNext);
     }
-
-    private function httpStatusHandler(e:HTTPStatusEvent):void {
-        DebuggerManager.debug("[HttpRequestManager]httpStatusHandler", e.toString(), "", "", 0xff0000);
-    }
-
-    private function securityErrorHandler(e:SecurityErrorEvent):void {
-        if(this.onSecurityError != null) onSecurityError(e.toString());
-        DebuggerManager.debug("[HttpRequestManager]securityErrorHandler", e.toString(), "", "", 0xff0000);
-        throw new SecurityError("[HttpRequestManager] " + e.toString());
-    }
-
-    private function ioErrorHandler(e:IOErrorEvent):void {
-        if(this.onIOError != null) onIOError(e.toString());
-        DebuggerManager.debug("[HttpRequestManager] ", e.toString(), "", "", 0xff0000);
-    }
-
 }
 }

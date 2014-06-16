@@ -15,6 +15,7 @@ public class Variables {
     public var volumeMain       :Number = 1.0;
     public var volumeSFX        :Number = 1.0;
     public var volumeBackground :Number = 1.0;
+    public var volumeAmbient    :Number = 1.0;
 
 }
 }

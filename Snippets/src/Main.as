@@ -33,42 +33,15 @@ public class Main extends MovieClip {
 
         MonsterDebugger.initialize(this);
 
-        var arr:Array = [0,1,null,3,4,null,6,null,null,9,10];
+        var arr:Array = [0,1,2];
+       trace(arr);
 
+        var len:int = arr.length;
+        arr.push(3,4,5);
         trace(arr);
-
-        execute(arr);
-        trace("------------");
-        execute(arr);
-    }
-
-    private function execute(arr:Array):void {
-        var l:int = arr.length;
-        var currentIndex:int = 0;
-        for (var i:int = 0; i < l; i++) {
-            if(arr[i] != null) {
-                if(currentIndex != i) {
-                    arr[currentIndex] = arr[i];
-                    arr[i] = null;
-                }
-
-                if(arr[currentIndex] == 9) arr.push(11);
-                if(arr[currentIndex] == 10) arr[currentIndex] = null;
-
-                currentIndex++;
-            }
-        }
-
-        trace(arr);
-
-        if(currentIndex != i) {
-            l = arr.length;
-            while(i < l) {
-                arr[currentIndex++] = arr[i++];
-            }
-            arr.length = currentIndex;
-        }
+        arr.splice(0, len);
         trace(arr);
     }
+
 }
 }

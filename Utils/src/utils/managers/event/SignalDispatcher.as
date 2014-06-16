@@ -11,7 +11,6 @@ public class SignalDispatcher {
 
     private var listeners:Dictionary = new Dictionary();
     private var target:Object;
-    private var _isDispatching:Boolean = false;
 
     public function SignalDispatcher(target:Object = null) {
         this.target = target || this;
@@ -39,10 +38,7 @@ public class SignalDispatcher {
         var v:Vector.<Signal> = listeners[type];
         if(v == null) return;
         var i:int = indexOf(v, listener);
-        if(i == -1) return;
-        //see dispatch() to understand what this does
-        if(_isDispatching)  v[i] = null;
-        else                v.splice(i,1);
+        if(i != -1) v[i] = null;
     }
 
     public function removeType(type:String):void {
@@ -62,28 +58,33 @@ public class SignalDispatcher {
         var v:Vector.<Signal> = listeners[type];
         if(v == null) return;
 
-        _isDispatching = true;
         var len:int = v.length;
+        var currentIndex:int = 0;
         for (var i:int = 0; i < len; i++) {
-            if(v[i] == null) continue;
-            v[i].listener.apply(target, args);
-            if(v[i].repetition == ONCE) {
-                v[i] = null;
+            var listener:Signal = v[i];
+            if(listener != null) {
+                //push down
+                if(currentIndex != i) {
+                    v[currentIndex] = v[i];
+                    v[i] = null;
+                }
+
+                if(listener.repetition == ONCE) {
+                    v[i] = null;
+                }
+                listener.listener.apply(target, args);
+
+                currentIndex++;
             }
         }
 
-        //shifting down all positions
-        var j:int = 0;
-        for (i = 0; i < len; i++) {
-            if(v[i] != null) {
-                v[j] = v[i];
-                j++;
+        if(currentIndex != i) {
+            len = v.length;
+            while(i < len) {
+                v[currentIndex++] = v[i++];
             }
+            v.length = len;
         }
-        if(i != j) {
-            v.splice(j, i - j);
-        }
-        _isDispatching = false;
     }
 
     //==================================
@@ -115,3 +116,4 @@ class Signal {
         this.listener = listener;
     }
 }
+

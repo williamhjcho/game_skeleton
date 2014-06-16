@@ -7,17 +7,17 @@ import flash.system.Capabilities;
  */
 public class EnvironmentManager {
 
-    public static var isLocal:Boolean = true;
-    public static var isLocalSWF:Boolean = true;
-    public static var isDebuggerPlayer:Boolean = true;
-    public static var isLocalServer:Boolean = false;
-    public static var isStandalone:Boolean = false;
-    public static var isPlugin:Boolean = false;
-    public static var isWeb:Boolean = false;
-    public static var isSCORM:Boolean = false;
-    public static var isMac:Boolean = false;
-    public static var isUnix:Boolean = false;
-    public static var isWin:Boolean = false;
+    public static var isLocal           :Boolean = true;
+    public static var isLocalSWF        :Boolean = true;
+    public static var isDebuggerPlayer  :Boolean = true;
+    public static var isLocalServer     :Boolean = false;
+    public static var isStandalone      :Boolean = false;
+    public static var isPlugin          :Boolean = false;
+    public static var isWeb             :Boolean = false;
+    public static var isSCORM           :Boolean = false;
+    public static var isMac             :Boolean = false;
+    public static var isUnix            :Boolean = false;
+    public static var isWin             :Boolean = false;
 
     public static var localServerDomainOrIp:String = "";
 
@@ -25,12 +25,12 @@ public class EnvironmentManager {
      * Detects various aspects of the enviroment in which the applicantion is held.<br/>
      * The <i>url</i> parameter, helps to detect some of these aspects.
      * @param url The url of the application. You may user the <b>LoaderInfo</b> class to retrieve this information.
-     * @LocalServerDomainOrIp local server domain or IP!
+     * @param LocalServerDomainOrIp local server domain or IP!
      * initialize(loaderInfo.url,"192.168.0.5");
      */
 
-    public static function initialize(url:String, LocalServerDomainOrIp:String = ""):void {
-        localServerDomainOrIp = LocalServerDomainOrIp == '' ? "localhost" : LocalServerDomainOrIp;
+    public static function initialize(url:String, LocalServerDomainOrIp:String = null):void {
+        localServerDomainOrIp = (LocalServerDomainOrIp == null || LocalServerDomainOrIp == "")? "localhost" : LocalServerDomainOrIp;
         var extension:String = url.substr(url.length - 3, 3);
 
         isLocal = (url.substr(0,4) == "file");
@@ -39,7 +39,6 @@ public class EnvironmentManager {
             isLocalServer = true;
         }
 
-        //if (Capabilities.playerType == "StandAlone" && (extension == "exe" || extension == "app")) {
         if (Capabilities.playerType == "StandAlone" && (extension != "swf")) {
             isLocalSWF = false;
             isStandalone = true;

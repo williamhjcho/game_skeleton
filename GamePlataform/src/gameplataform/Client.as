@@ -45,7 +45,7 @@ public class Client extends Sprite {
     private static var _preLoader:DisplayObject;
 
     public function Client() {
-        if(_instance != null) throw new IllegalOperationError("Singleton Class, cannot be instantiated twice.");
+        if(_instance != null) throw new IllegalOperationError("Singleton Class, cannot be instantiated more than once.");
         _instance = this;
 
         stage.align = StageAlign.TOP;

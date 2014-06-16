@@ -1,17 +1,13 @@
-package gameplataform.controller.layer {
-
-import flash.display.DisplayObjectContainer;
-
 /**
- * @author bona
+ * Created by William on 6/16/2014.
  */
+package gameplataform.controller.layer {
+import flash.display.DisplayObjectContainer;
 
 public class PopupController extends BaseLayerController {
 
-    public function PopupController(inPlaceHolder:DisplayObjectContainer) {
-        super(inPlaceHolder, "PopupController");
+    public function PopupController(placeHolder:DisplayObjectContainer) {
+        super(placeHolder, "PopupController");
     }
-
 }
-
 }

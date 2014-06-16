@@ -22,7 +22,6 @@ import gameplataform.controller.data.AssetDataController;
 import gameplataform.controller.data.GameData;
 import gameplataform.model.Config;
 
-import utils.managers.DebuggerManager;
 import utils.managers.EnvironmentManager;
 
 import utilsDisplay.view.Stats;
@@ -36,7 +35,6 @@ import utilsDisplay.view.Stats;
  */
 public class Main extends Sprite {
 
-
     private static var _instance:Main = null;
     private static var _stage:Stage = null;
 
@@ -47,10 +45,10 @@ public class Main extends Sprite {
     private var _stats      :Stats;
 
     public function Main(stage:Stage) {
-        if(stage == null)
-            throw new ArgumentError("Parameter stage cannot be null.");
         if(_instance != null)
             throw new IllegalOperationError("Singleton class Main, cannot be instantiated more than once.");
+        if(stage == null)
+            throw new ArgumentError("Parameter stage cannot be null.");
 
         _instance = this;
         _stage = stage;
@@ -85,7 +83,6 @@ public class Main extends Sprite {
         Security.allowInsecureDomain(config.allowedDomain);
 
         MonsterDebugger.initialize(this);
-        DebuggerManager.initialize(MonsterDebugger.trace);
 
         //identifying the Environment of the game (wem, offline, scorm....)
         EnvironmentManager.initialize(loaderInfo.url, config.serverTest);
@@ -132,37 +129,6 @@ public class Main extends Sprite {
     //==================================
     public static function get instance ():Main { return _instance; }
     public static function get stage    ():Stage { return _stage; }
-
-    //==================================
-    //
-    //==================================
-    public function showLoadError():void {
-        var container:Sprite = new Sprite();
-        container.x = 0;
-        container.y = 0;
-        var fundo:Sprite = new Sprite();
-        fundo.graphics.beginFill(0x0066ff, 1);
-        fundo.graphics.drawRect(0, 0, _stage.stageWidth, _stage.stageHeight);
-        fundo.graphics.endFill();
-        fundo.x = 0;
-        fundo.y = 0;
-        container.addChild(fundo);
-
-        var texto:TextField = new TextField();
-        texto.multiline = true;
-
-        texto.width = _stage.stageWidth;
-
-        texto.htmlText = "<p align='center'><font size='20' face='verdana,tahoma'> Atenção, erro de conexão, verifique sua conexão e reinicie o jogo." +
-                "<br>Se o erro persistir contacte o administrador de rede." +
-                "<br> Código:AssetsLoadingERROR" +
-                "</font></p>";
-
-        texto.y = _stage.stageWidth / 2 - texto.height / 2;
-        texto.x = _stage.stageWidth / 2 - texto.width / 2;
-        container.addChild(texto);
-        this.addChild(container);
-    }
 
 }
 }
