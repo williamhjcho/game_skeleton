@@ -11,7 +11,6 @@ import flash.net.registerClassAlias;
 import flash.utils.Dictionary;
 
 import utils.commands.getClassName;
-
 import utils.managers.serializer.Base64;
 import utils.toollib.ToolMath;
 

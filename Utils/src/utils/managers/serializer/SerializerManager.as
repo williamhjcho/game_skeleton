@@ -14,8 +14,8 @@ import utils.commands.getClass;
 import utils.commands.getClassByPath;
 import utils.commands.getClassName;
 import utils.errors.SerializerError;
-import utils.managers.serializer.architecture.ClassArchitecture;
 import utils.managers.serializer.architecture.ArchitectureVariable;
+import utils.managers.serializer.architecture.ClassArchitecture;
 import utils.managers.serializer.json.JSON;
 
 /**

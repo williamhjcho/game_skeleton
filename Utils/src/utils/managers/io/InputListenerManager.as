@@ -10,8 +10,6 @@ import flash.events.EventDispatcher;
 import flash.events.KeyboardEvent;
 import flash.utils.Dictionary;
 
-import utils.managers.io.InputShortcut;
-
 public class InputListenerManager extends EventDispatcher {
     public static const DIRECTION_DOWN:String = "down";
     public static const DIRECTION_UP:String = "up";

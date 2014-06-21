@@ -13,7 +13,8 @@ import utils.base.FunctionObject;
  */
 public class ServerDataController {
 
-    public static var user:String;
+    private static var _user:String;
+    private static var _hash:String;
 
     private static var _onComplete:FunctionObject = new FunctionObject(null,null,null);
 

@@ -1,15 +1,15 @@
 /**
  * Created by William on 6/6/2014.
  */
-package gameplataform.controller.utils {
-import flash.events.EventDispatcher;
+package utils.toollib {
 
-import gameplataform.events.JugglerEvent;
-import gameplataform.utils.game_internal;
-
+import utils.base.interfaces.IUpdatable;
 import utils.commands.execute;
+import utils.events.JugglerSignal;
+import utils.events.SignalDispatcher;
+import utils.utils_namespace;
 
-public class DelayedCall extends EventDispatcher implements IUpdatable {
+public class DelayedCall extends SignalDispatcher implements IUpdatable {
 
     private var _time:uint;
     private var _totalTime:uint;
@@ -35,7 +35,7 @@ public class DelayedCall extends EventDispatcher implements IUpdatable {
             var f:Function = _callback, p:Array = _params;
             _callback = null;
             _params = null;
-            super.dispatchEvent(new JugglerEvent(JugglerEvent.REMOVE));
+            super.dispatchSignalWith(JugglerSignal.REMOVE);
             execute(f, p);
         }
     }
@@ -50,7 +50,7 @@ public class DelayedCall extends EventDispatcher implements IUpdatable {
     //==================================
     private static var _pool:Vector.<DelayedCall> = new Vector.<DelayedCall>();
 
-    game_internal static function fromPool(callback:Function, delay:uint, params:Array = null):DelayedCall {
+    utils_namespace static function fromPool(callback:Function, delay:uint, params:Array = null):DelayedCall {
         var instance:DelayedCall;
         if(_pool.length > 0) {
             instance = _pool.pop();
@@ -61,8 +61,13 @@ public class DelayedCall extends EventDispatcher implements IUpdatable {
         return instance;
     }
 
-    game_internal static function toPool(instance:DelayedCall):void {
+    utils_namespace static function toPool(instance:DelayedCall):void {
         _pool.push(instance);
+    }
+
+    utils_namespace static function set poolLength(l:int):void {
+        if(_pool.length > l)
+            _pool.length = l;
     }
 }
 }

@@ -7,28 +7,28 @@ import utils.toollib.color.HSL;
 import utils.toollib.color.HSV;
 import utils.toollib.color.RGBA;
 
+/**
+ * This class is for manipulating/retrieving color(s) values
+ */
 public final class ToolColor {
 
     //==================================
     //  Color Definition / Property
     //==================================
-    public static function getAlpha(color:uint):uint { return color >> 24 & 0xff; }
-    public static function getR(color:uint):uint     { return color >> 16 & 0xff; }
-    public static function getG(color:uint):uint     { return color >> 8  & 0xff; }
-    public static function getB(color:uint):uint     { return color       & 0xff; }
+    public static function alpha(color:uint):uint { return color >> 24 & 0xff; }
+    public static function red  (color:uint):uint { return color >> 16 & 0xff; }
+    public static function green(color:uint):uint { return color >> 8  & 0xff; }
+    public static function blue (color:uint):uint { return color       & 0xff; }
 
-    public static function setA(color:int, A:int):uint { return (0x00ffffff & color) | ((A) << 24);    }
-    public static function setR(color:int, R:int):uint { return (0xff00ffff & color) | ((R) << 16);    }
-    public static function setG(color:int, G:int):uint { return (0xffff00ff & color) | ((G) << 8);     }
-    public static function setB(color:int, B:int):uint { return (0xffffff00 & color) | ((B));          }
+    public static function setAlpha (color:int, A:int):uint { return (0x00ffffff & color) | ((A) << 24);    }
+    public static function setRed   (color:int, R:int):uint { return (0xff00ffff & color) | ((R) << 16);    }
+    public static function setGreen (color:int, G:int):uint { return (0xffff00ff & color) | ((G) << 8);     }
+    public static function setBlue  (color:int, B:int):uint { return (0xffffff00 & color) | ((B));          }
 
-    public static function getC(color:uint):Number     { return (getG(color)<<8)  | (getB(color)) / 0xff; }
-    public static function getM(color:uint):Number     { return (getR(color)<<16) | (getB(color)) / 0xff; }
-    public static function getY(color:uint):Number     { return (getR(color)<<16) | (getG(color)<<8) / 0xff; }
-    public static function getK(color:uint):Number {
-        var r:Number = getR(color)/0xff, g:Number = getG(color)/0xff, b:Number = getB(color)/0xff;
-        return 1 - Math.max(r,g,b);
-    }
+    public static function cyan(color:uint):Number      { return (green(color)<<8) | (blue(color)) / 0xff; }
+    public static function magenta(color:uint):Number   { return (red(color)<<16) | (blue(color)) / 0xff; }
+    public static function yellow(color:uint):Number    { return (red(color)<<16) | (green(color)<<8) / 0xff; }
+    public static function black(color:uint):Number     { return 1 - Math.max(red(color)/0xff, green(color)/0xff, blue(color)/0xff); }
 
     public static function decompose(color:uint):RGBA { return RGBA.fromInt(color); }
 
@@ -49,45 +49,55 @@ public final class ToolColor {
     //  Color Manipulation
     //==================================
     public static function brightness(color:uint, offset:int):uint {
-        var r:int = (getR(color) + offset) & 0xff, g:int = (getG(color) + offset) & 0xff, b:int = (getB(color) + offset) & 0xff;
-        return RGBtoInt(r,g,b,getAlpha(color));
+        var r:int = (red(color) + offset) & 0xff, g:int = (green(color) + offset) & 0xff, b:int = (blue(color) + offset) & 0xff;
+        return RGBtoInt(r,g,b,alpha(color));
     }
 
     public static function grayScale(color:uint):uint {
-        var avg:uint = (getR(color) + getG(color) + getB(color)) / 3;
-        return RGBtoInt(avg, avg, avg, getAlpha(color));
+        var avg:uint = (red(color) + green(color) + blue(color)) / 3;
+        return RGBtoInt(avg, avg, avg, alpha(color));
     }
 
     public static function opposite(color:uint):uint {
-        return RGBtoInt(0xff - getR(color), 0xff - getG(color), 0xff - getB(color), getAlpha(color));
+        return RGBtoInt(0xff - red(color), 0xff - green(color), 0xff - blue(color), alpha(color));
     }
 
+    /**
+     * @param color current color
+     * @param amount Number range of [0,1]
+     */
     public static function contrast(color:uint, amount:Number = 0.5):uint {
-        //amount = [0,1]
-        var r:int = getR(color), g:int = getG(color), b:int = getB(color), a:int = getAlpha(color);
+        var r:int = red(color), g:int = green(color), b:int = blue(color), a:int = alpha(color);
         r += (r > 0x7f) ? (0xff-r) * amount : -r*amount;
         g += (g > 0x7f) ? (0xff-g) * amount : -g*amount;
         b += (b > 0x7f) ? (0xff-b) * amount : -b*amount;
         return RGBtoInt(r,g,b,a);
     }
 
+    /**
+     * @param color current color
+     * @param amount Number range of [0,1]
+     */
     public static function saturate(color:uint, amount:Number = 0.5):uint {
-        //amount = [0,1]
-        var r:uint = getR(color), g:uint = getG(color), b:uint = getB(color) , a:uint = getAlpha(color);
-        var rgbmax:uint = Math.max(r, g, b);
-        r += (rgbmax - r) * amount;
-        g += (rgbmax - g) * amount;
-        b += (rgbmax - b) * amount;
+        var r:uint = red(color), g:uint = green(color), b:uint = blue(color) , a:uint = alpha(color);
+        var rgbMax:uint = Math.max(r, g, b);
+        r += (rgbMax - r) * amount;
+        g += (rgbMax - g) * amount;
+        b += (rgbMax - b) * amount;
         return RGBtoInt(r,g,b,a);
     }
 
     public static function offset(color:uint, offsetRGB:uint):uint {
-        return ToolMath.clamp(color + (getAlpha(offsetRGB) << 24) + (getB(offsetRGB) << 16) + (getG(offsetRGB) << 8) + getB(offsetRGB),0,0xffffffff);
+        return ToolMath.clamp(color + (alpha(offsetRGB) << 24) + (blue(offsetRGB) << 16) + (green(offsetRGB) << 8) + blue(offsetRGB),0,0xffffffff);
     }
 
+    /**
+     * Shifts from one color to another by altering it's RGB values
+     * @param percent Number range of [0,1]
+     */
     public static function translate(start:uint, end:uint, percent:Number):uint {
-        var r0:uint = getR(start), g0:uint = getG(start), b0:uint = getB(start);
-        var r1:uint = getR(end)  , g1:uint = getG(end)  , b1:uint = getB(end);
+        var r0:uint = red(start), g0:uint = green(start), b0:uint = blue(start);
+        var r1:uint = red(end)  , g1:uint = green(end)  , b1:uint = blue(end);
 
         return RGBtoInt(
                 r0 + (r1 - r0) * percent,
@@ -96,32 +106,40 @@ public final class ToolColor {
         );
     }
 
+    /**
+     * Calculates by approximation the average color form a list
+     */
     public static function average(...colors):uint {
         var r:Number = 0, g:Number = 0, b:Number = 0, a:Number = 0;
         var n:int = colors.length;
         for each (var color:uint in colors) {
-            r += getR(color) / n;
-            g += getG(color) / n;
-            b += getB(color) / n;
-            a += getAlpha(color) / n;
+            r += red(color) / n;
+            g += green(color) / n;
+            b += blue(color) / n;
+            a += alpha(color) / n;
         }
         return RGBtoInt(r,g,b,a);
     }
 
+    /**
+     * Finds(approximates) the dominant color from a list
+     * @param colors list(Array or vector)
+     */
     public static function dominant(colors:*):uint {
-        var r:Number= 0, g:Number= 0, b:Number= 0, a:Number=0;
+        var r:Number = 0, g:Number = 0, b:Number = 0, a:Number = 0;
+        var len:int = colors.length;
         for each(var c:uint in colors) {
-            r += getR(c) / colors.length;
-            g += getG(c) / colors.length;
-            b += getB(c) / colors.length;
-            a += getAlpha(c) / colors.length;
+            r += red(c) / len;
+            g += green(c) / len;
+            b += blue(c) / len;
+            a += alpha(c) / len;
         }
         return RGBtoInt(r,g,b,a);
     }
 
-    public static function swapRG(color:uint):uint { return (0xff0000ff & color) | (ToolColor.getR(color) << 8 ) | (ToolColor.getG(color) << 16); }
-    public static function swapRB(color:uint):uint { return (0xff00ff00 & color) | (ToolColor.getR(color)      ) | (ToolColor.getB(color) << 16); }
-    public static function swapBG(color:uint):uint { return (0xffff0000 & color) | (ToolColor.getG(color)      ) | (ToolColor.getB(color) << 8 ); }
+    public static function swapRG(color:uint):uint { return (0xff0000ff & color) | (ToolColor.red(color) << 8 ) | (ToolColor.green(color) << 16); }
+    public static function swapRB(color:uint):uint { return (0xff00ff00 & color) | (ToolColor.red(color)      ) | (ToolColor.blue(color) << 16); }
+    public static function swapBG(color:uint):uint { return (0xffff0000 & color) | (ToolColor.green(color)    ) | (ToolColor.blue(color) << 8 ); }
 
 
     //==================================
@@ -136,17 +154,17 @@ public final class ToolColor {
     }
 
     public static function randomRange(minRGB:uint = 0x000000, maxRGB:uint = 0xffffff, alpha:Number = 0xff):uint {
-        var rmax:uint = getR(minRGB), gmax:uint = getG(minRGB), bmax:uint = getB(minRGB),
-            rmin:uint = getR(maxRGB), gmin:uint = getG(maxRGB), bmin:uint = getB(maxRGB);
-        var r:uint = rmin + Math.random() * (rmax - rmin);
-        var g:uint = gmin + Math.random() * (gmax - gmin);
-        var b:uint = bmin + Math.random() * (bmax - bmin);
+        var rMax:uint = red(minRGB), gMax:uint = green(minRGB), bMax:uint = blue(minRGB),
+            rMin:uint = red(maxRGB), gMin:uint = green(maxRGB), bMin:uint = blue(maxRGB);
+        var r:uint = rMin + Math.random() * (rMax - rMin);
+        var g:uint = gMin + Math.random() * (gMax - gMin);
+        var b:uint = bMin + Math.random() * (bMax - bMin);
         return RGBtoInt(r, g, b, alpha);
     }
 
     public static function randomRangeGoldenRatio(minRGB:uint = 0x00000, maxRGB:uint = 0xffffff, alpha:Number = 0xff):uint {
-        var rmax:uint = getR(minRGB), gmax:uint = getG(minRGB), bmax:uint = getB(minRGB),
-            rmin:uint = getR(maxRGB), gmin:uint = getG(maxRGB), bmin:uint = getB(maxRGB);
+        var rmax:uint = red(minRGB), gmax:uint = green(minRGB), bmax:uint = blue(minRGB),
+            rmin:uint = red(maxRGB), gmin:uint = green(maxRGB), bmin:uint = blue(maxRGB);
 
         var r:uint = rmin + ToolMath.random() * (rmax - rmin);
         var g:uint = gmin + ToolMath.random() * (gmax - gmin);
@@ -199,7 +217,7 @@ public final class ToolColor {
     }
 
     public static function RGBtoXYZ(color:uint):Array {
-        var r:Number = getR(color)/0xff, g:Number = getG(color)/0xff, b:Number = getB(color)/0xff;
+        var r:Number = red(color)/0xff, g:Number = green(color)/0xff, b:Number = blue(color)/0xff;
         r = (r <= 0.03928) ? r / 12.92 : Math.pow((r + 0.055)/ 1.055, 2.4);
         g = (g <= 0.03928) ? g / 12.92 : Math.pow((g + 0.055)/ 1.055, 2.4);
         b = (b <= 0.03928) ? b / 12.92 : Math.pow((b + 0.055)/ 1.055, 2.4);
@@ -243,7 +261,7 @@ public final class ToolColor {
     
     
     public static function toString(color:uint):String {
-        return "(r:"+getR(color)+", g:"+getG(color)+", b:"+getB(color)+", a:"+getAlpha(color)+") = " + color;
+        return "(r:"+red(color)+", g:"+green(color)+", b:"+blue(color)+", a:"+alpha(color)+") = " + color;
     }
 }
 }

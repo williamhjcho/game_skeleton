@@ -1,14 +1,16 @@
 /**
  * Created by William on 6/6/2014.
  */
-package gameplataform.controller.utils {
-import flash.events.Event;
-import flash.events.EventDispatcher;
+package utils.managers {
 
-import gameplataform.events.JugglerEvent;
-import gameplataform.utils.game_internal;
+import utils.base.interfaces.IUpdatable;
+import utils.events.JugglerSignal;
+import utils.events.Signal;
+import utils.events.SignalDispatcher;
+import utils.toollib.DelayedCall;
+import utils.utils_namespace;
 
-use namespace game_internal;
+use namespace utils_namespace;
 
 public class Juggler implements IUpdatable {
 
@@ -23,7 +25,7 @@ public class Juggler implements IUpdatable {
 
     public function add(element:IUpdatable):void {
         if(element != null && elements.indexOf(element) == -1) {
-            if(element is EventDispatcher) EventDispatcher(element).addEventListener(JugglerEvent.REMOVE, onRemove);
+            if(element is SignalDispatcher) SignalDispatcher(element).addSignalListener(JugglerSignal.REMOVE, onRemove);
             elements.push(element);
         }
     }
@@ -34,22 +36,21 @@ public class Juggler implements IUpdatable {
 
     public function remove(element:IUpdatable):void {
         if(element == null) return;
-        if(element is EventDispatcher) EventDispatcher(element).removeEventListener(JugglerEvent.REMOVE, onRemove);
+        if(element is SignalDispatcher) SignalDispatcher(element).removeSignalListener(JugglerSignal.REMOVE, onRemove);
         var idx:int = elements.indexOf(element);
         if(idx != -1) elements[idx] = null;
     }
 
     public function removeAll():void {
         for (var i:int = 0; i < elements.length; i++) {
-            if(elements[i] is EventDispatcher)
-                EventDispatcher(elements[i]).removeEventListener(JugglerEvent.REMOVE, onRemove);
+            if(elements[i] is SignalDispatcher) SignalDispatcher(elements[i]).removeSignalListener(JugglerSignal.REMOVE, onRemove);
             elements[i] = null;
         }
     }
 
     public function delayCall(callback:Function, delay:uint, params:Array = null):DelayedCall {
-        var call:DelayedCall = DelayedCall.game_internal::fromPool(callback, delay, params);
-        call.addEventListener(JugglerEvent.REMOVE, onRemoveDelayedCall);
+        var call:DelayedCall = DelayedCall.utils_namespace::fromPool(callback, delay, params);
+        call.addSignalListener(JugglerSignal.REMOVE, onRemoveDelayedCall);
         add(call);
         return call;
     }
@@ -99,14 +100,14 @@ public class Juggler implements IUpdatable {
     //==================================
     //  Events
     //==================================
-    private function onRemove(e:Event):void {
+    private function onRemove(e:Signal):void {
         remove(e.target as IUpdatable);
     }
 
-    private function onRemoveDelayedCall(e:Event):void {
+    private function onRemoveDelayedCall(e:Signal):void {
         var call:DelayedCall = e.target as DelayedCall;
-        call.removeEventListener(JugglerEvent.REMOVE, onRemoveDelayedCall);
-        DelayedCall.game_internal::toPool(call);
+        call.removeSignalListener(JugglerSignal.REMOVE, onRemoveDelayedCall);
+        DelayedCall.toPool(call);
     }
 
 }

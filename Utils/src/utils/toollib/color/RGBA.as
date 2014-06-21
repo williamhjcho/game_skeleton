@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib.color {
-import utils.toollib.units.Units;
 import utils.toollib.units.Hex;
 
 public class RGBA {

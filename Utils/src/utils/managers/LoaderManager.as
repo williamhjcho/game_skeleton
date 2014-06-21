@@ -16,8 +16,7 @@ import com.greensock.loading.core.LoaderCore;
 import flash.utils.Dictionary;
 
 import utils.commands.clamp;
-
-import utils.managers.event.SignalDispatcher;
+import utils.events.SignalDispatcher;
 
 /**
  * This class loads assets in order (not optimal for multi-threading)
@@ -277,18 +276,18 @@ public class LoaderManager {
     //==================================
     //  Main Queue Event Handlers
     //==================================
-    private static function onOpen                 (e:LoaderEvent):void { dispatcher.dispatch(LoaderEvent.OPEN); }
-    private static function onError                (e:LoaderEvent):void { dispatcher.dispatch(LoaderEvent.ERROR, e.text); }
-    private static function onCancel               (e:LoaderEvent):void { dispatcher.dispatch(LoaderEvent.CANCEL) }
-    private static function onIOError              (e:LoaderEvent):void { dispatcher.dispatch(LoaderEvent.IO_ERROR, e.text); }
-    private static function onHTTPStatus           (e:LoaderEvent):void { dispatcher.dispatch(LoaderEvent.HTTP_STATUS); }
-    private static function onScriptAccessDenied   (e:LoaderEvent):void { dispatcher.dispatch(LoaderEvent.SCRIPT_ACCESS_DENIED); }
+    private static function onOpen                 (e:LoaderEvent):void { dispatcher.dispatchSignalWith(LoaderEvent.OPEN                ); }
+    private static function onError                (e:LoaderEvent):void { dispatcher.dispatchSignalWith(LoaderEvent.ERROR               , e.text); }
+    private static function onCancel               (e:LoaderEvent):void { dispatcher.dispatchSignalWith(LoaderEvent.CANCEL              ) }
+    private static function onIOError              (e:LoaderEvent):void { dispatcher.dispatchSignalWith(LoaderEvent.IO_ERROR            , e.text); }
+    private static function onHTTPStatus           (e:LoaderEvent):void { dispatcher.dispatchSignalWith(LoaderEvent.HTTP_STATUS         ); }
+    private static function onScriptAccessDenied   (e:LoaderEvent):void { dispatcher.dispatchSignalWith(LoaderEvent.SCRIPT_ACCESS_DENIED); }
     private static function onProgress             (e:LoaderEvent):void {
         var progress:Number = queue.progress;
         if(currentLoadingGroup != null) {
             currentLoadingGroup.callProgress(progress);
         }
-        dispatcher.dispatch(LoaderEvent.PROGRESS, progress);
+        dispatcher.dispatchSignalWith(LoaderEvent.PROGRESS, progress);
     }
     private static function onComplete             (e:LoaderEvent):void {
         //add to finished groups (if it's not a default group) and callback
@@ -301,18 +300,18 @@ public class LoaderManager {
             currentLoadingGroup = loadNextGroup();
         } else {
             currentLoadingGroup = null;
-            dispatcher.dispatch(LoaderEvent.COMPLETE);
+            dispatcher.dispatchSignalWith(LoaderEvent.COMPLETE);
         }
     }
 
     //==================================
     //  Child Event Handlers
     //==================================
-    private static function onChildOpen            (e:LoaderEvent):void { dispatcher.dispatch(LoaderEvent.CHILD_OPEN, LoaderCore(e.target).name); }
-    private static function onChildProgress        (e:LoaderEvent):void { dispatcher.dispatch(LoaderEvent.CHILD_PROGRESS, LoaderCore(e.target).name); }
-    private static function onChildComplete        (e:LoaderEvent):void { dispatcher.dispatch(LoaderEvent.CHILD_COMPLETE, LoaderCore(e.target).name); }
-    private static function onChildCancel          (e:LoaderEvent):void { dispatcher.dispatch(LoaderEvent.CHILD_CANCEL, LoaderCore(e.target).name); }
-    private static function onChildFail            (e:LoaderEvent):void { dispatcher.dispatch(LoaderEvent.CHILD_FAIL, e.text); }
+    private static function onChildOpen            (e:LoaderEvent):void { dispatcher.dispatchSignalWith(LoaderEvent.CHILD_OPEN      , LoaderCore(e.target).name); }
+    private static function onChildProgress        (e:LoaderEvent):void { dispatcher.dispatchSignalWith(LoaderEvent.CHILD_PROGRESS  , LoaderCore(e.target).name); }
+    private static function onChildComplete        (e:LoaderEvent):void { dispatcher.dispatchSignalWith(LoaderEvent.CHILD_COMPLETE  , LoaderCore(e.target).name); }
+    private static function onChildCancel          (e:LoaderEvent):void { dispatcher.dispatchSignalWith(LoaderEvent.CHILD_CANCEL    , LoaderCore(e.target).name); }
+    private static function onChildFail            (e:LoaderEvent):void { dispatcher.dispatchSignalWith(LoaderEvent.CHILD_FAIL      , e.text); }
 }
 }
 

@@ -4,8 +4,6 @@
 package utils.toollib {
 import flash.geom.Point;
 
-import utils.errors.InstantiaitonError;
-
 import utils.toollib.vector.v2d;
 
 public final class ToolTrigo {

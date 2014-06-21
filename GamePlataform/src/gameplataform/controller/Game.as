@@ -15,10 +15,13 @@ import gameplataform.controller.layer.MapController;
 import gameplataform.controller.layer.PopupController;
 import gameplataform.controller.state.StateGame;
 import gameplataform.controller.state.StateSplash;
+import gameplataform.utils.game_internal;
 
 import utils.events.StateMachineEvent;
 import utils.managers.sounds.SoundManager;
 import utils.managers.state.StateMachine;
+
+use namespace game_internal;
 
 /**
  * This class:
@@ -43,25 +46,26 @@ public final class Game {
         mapController   = new MapController     (mapLayer);
         hudController   = new HudController     (hudLayer);
         popupController = new PopupController   (popupLayer);
-        stateMachine    = new StateMachine();
+
     }
 
     public function initialize():void {
         SoundManager.volume = GameData.variables.volumeMain;
 
-        initializeStates();
+        initializeMachine();
 
-        GameMechanics.startClock(1000 / GameData.stage.frameRate);
+        GameMechanics.game_internal::startClock(1000 / GameData.stage.frameRate);
 
         stateMachine.changeTo(GameStates.SPLASH);
     }
 
-    private function initializeStates():void {
+    private function initializeMachine():void {
+        stateMachine = new StateMachine();
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_COMPLETE, onTransitionComplete);
         stateMachine.addEventListener(StateMachineEvent.TRANSITION_DENIED, onTransitionDenied);
 
-        stateMachine.add(new StateSplash(this));
-        stateMachine.add(new StateGame(this));
+        stateMachine.add(new StateSplash(this, null));
+        stateMachine.add(new StateGame(this, null));
     }
 
     //==================================

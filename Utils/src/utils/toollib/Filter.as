@@ -60,9 +60,9 @@ public final class Filter {
                     for (var i:int = -kernelOffsetW; i < kernelOffsetW; i++) {
                         var color:uint = data[(x + i) + (y + j) * width];
                         var k:Number = kernel.getAt(j + kernelOffsetH, i + kernelOffsetW);
-                        rgb.r += (k * ToolColor.getR(color));
-                        rgb.g += (k * ToolColor.getG(color));
-                        rgb.b += (k * ToolColor.getB(color));
+                        rgb.r += (k * ToolColor.red(color));
+                        rgb.g += (k * ToolColor.green(color));
+                        rgb.b += (k * ToolColor.blue(color));
                     }
                 }
 

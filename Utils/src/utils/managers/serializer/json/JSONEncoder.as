@@ -32,10 +32,10 @@
 
 package utils.managers.serializer.json
 {
-	
-	import flash.utils.describeType;
-	
-	public class JSONEncoder
+
+import flash.utils.describeType;
+
+public class JSONEncoder
 	{
 		
 		/** The string that is going to represent the object we're encoding */

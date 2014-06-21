@@ -6,9 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.events {
-import utils.managers.sounds.*;
-
 import flash.events.Event;
+
+import utils.managers.sounds.*;
 
 public class SoundEvent extends Event {
     public static const SOUND_PLAY_COMPLETE :String = "sound.play.complete";

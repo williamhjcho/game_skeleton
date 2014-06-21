@@ -11,8 +11,8 @@ import gameplataform.controller.Game;
 
 public class StateGame extends BaseState {
 
-    public function StateGame(game:Game) {
-        super(game, GameStates.GAME, null, onEnter, onExit);
+    public function StateGame(game:Game, from:Array = null) {
+        super(game, GameStates.GAME, from, onEnter, onExit);
     }
 
     private function onEnter():void {

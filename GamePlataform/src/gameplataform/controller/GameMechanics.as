@@ -7,9 +7,10 @@ import flash.events.TimerEvent;
 import flash.utils.Timer;
 import flash.utils.getTimer;
 
-import gameplataform.controller.utils.IUpdatable;
+import utils.base.interfaces.IUpdatable;
 
-import gameplataform.controller.utils.Juggler;
+import utils.managers.Juggler;
+import gameplataform.utils.game_internal;
 
 import utils.base.FunctionObject;
 import utils.managers.Pool;
@@ -25,7 +26,7 @@ public final class GameMechanics {
     private static var _timer:Timer;
     private static var _lastTimeStamp:uint = 0;
 
-    internal static function startClock(millis:uint):void {
+    game_internal static function startClock(millis:uint):void {
         if(_timer != null) {
             _timer.removeEventListener(TimerEvent.TIMER, _onTick);
         }

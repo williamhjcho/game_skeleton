@@ -8,8 +8,8 @@ import gameplataform.controller.GameMechanics;
 
 public class StateSplash extends BaseState {
 
-    public function StateSplash(game:Game) {
-        super(game, GameStates.SPLASH, null, onEnter, onExit);
+    public function StateSplash(game:Game, from:Array = null) {
+        super(game, GameStates.SPLASH, from, onEnter, onExit);
     }
 
     private function onEnter():void {

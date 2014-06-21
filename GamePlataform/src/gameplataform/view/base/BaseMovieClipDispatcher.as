@@ -2,7 +2,7 @@
  * Created by William on 4/24/2014.
  */
 package gameplataform.view.base {
-import utils.managers.event.SignalDispatcher;
+import utils.events.SignalDispatcher;
 
 public class BaseMovieClipDispatcher extends BaseMovieClip {
 
@@ -15,25 +15,25 @@ public class BaseMovieClipDispatcher extends BaseMovieClip {
 
 
     public function addSignalListener(signal:String, listener:Function):void {
-        dispatcher.add(signal, listener);
+        dispatcher.addSignalListener(signal, listener);
     }
 
     public function addOnceSignalListener(signal:String, listener:Function):void {
-        dispatcher.addOnce(signal, listener);
+        dispatcher.addSignalListenerOnce(signal, listener);
     }
 
     public function removeSignalListener(signal:String, listener:Function):void {
-        dispatcher.remove(signal, listener);
+        dispatcher.removeSignalListener(signal, listener);
     }
 
     public function removeAll():void {
-        dispatcher.removeAll();
+        dispatcher.removeAllSignals();
     }
 
 
     override public function destroy():void {
         super.destroy();
-        dispatcher.removeAll();
+        dispatcher.removeAllSignals();
     }
 }
 }
