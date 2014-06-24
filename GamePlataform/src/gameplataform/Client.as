@@ -80,8 +80,8 @@ public class Client extends Sprite {
 
     private function onLoadPreLoader(e:LoaderEvent = null):void {
         _preLoader = (e == null)? new DefaultPreLoader() : new PreLoader();
-        _preLoader.x = (stage.stageWidth  - _preLoader.width ) >> 1;
-        _preLoader.y = (stage.stageHeight - _preLoader.height) >> 1;
+        _preLoader.x = (stage.stageWidth  - _preLoader.width ) / 2;
+        _preLoader.y = (stage.stageHeight - _preLoader.height) / 2;
         showPreLoader(0,1);
         loadMainAssets();
     }
