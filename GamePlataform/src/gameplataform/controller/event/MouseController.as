@@ -4,9 +4,6 @@
 package gameplataform.controller.event {
 import flash.events.EventDispatcher;
 import flash.events.MouseEvent;
-import flash.utils.Dictionary;
-
-import utils.commands.execute;
 
 public class MouseController extends EventController {
 

@@ -12,6 +12,12 @@ import flash.display.MovieClip;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 
+import testing.DispatcherTest;
+
+import utils.commands.toStringArgs;
+
+import utils.events.Signal;
+
 [SWF(width=960, height=600, backgroundColor=0x808080, frameRate=1)]
 public class Main extends MovieClip {
 
@@ -32,16 +38,8 @@ public class Main extends MovieClip {
         stage.align = StageAlign.TOP_LEFT;
 
         MonsterDebugger.initialize(this);
-
-        var arr:Array = [0,1,2];
-       trace(arr);
-
-        var len:int = arr.length;
-        arr.push(3,4,5);
-        trace(arr);
-        arr.splice(0, len);
-        trace(arr);
     }
+
 
 }
 }

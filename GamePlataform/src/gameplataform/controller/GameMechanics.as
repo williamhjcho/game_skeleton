@@ -7,12 +7,11 @@ import flash.events.TimerEvent;
 import flash.utils.Timer;
 import flash.utils.getTimer;
 
-import utils.base.interfaces.IUpdatable;
-
-import utils.managers.Juggler;
-import gameplataform.utils.game_internal;
+import gameplataform.game_internal;
 
 import utils.base.FunctionObject;
+import utils.base.interfaces.IUpdatable;
+import utils.managers.Juggler;
 import utils.managers.Pool;
 
 /**

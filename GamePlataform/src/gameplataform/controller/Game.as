@@ -13,9 +13,10 @@ import gameplataform.controller.data.GameData;
 import gameplataform.controller.layer.HudController;
 import gameplataform.controller.layer.MapController;
 import gameplataform.controller.layer.PopupController;
+import gameplataform.controller.sound.SoundPlayer;
 import gameplataform.controller.state.StateGame;
 import gameplataform.controller.state.StateSplash;
-import gameplataform.utils.game_internal;
+import gameplataform.game_internal;
 
 import utils.events.StateMachineEvent;
 import utils.managers.sounds.SoundManager;
@@ -33,9 +34,9 @@ public final class Game {
     /**
      * Layer controllers
      */
-    public var mapController    :MapController;
-    public var hudController    :HudController;
-    public var popupController  :PopupController;
+    public var map    :MapController;
+    public var hud    :HudController;
+    public var popup  :PopupController;
 
     /**
      * Controls the game flow
@@ -43,10 +44,9 @@ public final class Game {
     private var stateMachine:StateMachine;
 
     public function Game(mapLayer:Sprite, hudLayer:Sprite, popupLayer:Sprite) {
-        mapController   = new MapController     (mapLayer);
-        hudController   = new HudController     (hudLayer);
-        popupController = new PopupController   (popupLayer);
-
+        map   = new MapController     (mapLayer);
+        hud   = new HudController     (hudLayer);
+        popup = new PopupController   (popupLayer);
     }
 
     public function initialize():void {
@@ -55,6 +55,7 @@ public final class Game {
         initializeMachine();
 
         GameMechanics.game_internal::startClock(1000 / GameData.stage.frameRate);
+        GameMechanics.addToClock(updateGameInternalMechanics);
 
         stateMachine.changeTo(GameStates.SPLASH);
     }
@@ -66,6 +67,10 @@ public final class Game {
 
         stateMachine.add(new StateSplash(this, null));
         stateMachine.add(new StateGame(this, null));
+    }
+
+    private function updateGameInternalMechanics(dt:uint):void {
+        SoundPlayer.game_internal::updateSounds(dt)
     }
 
     //==================================

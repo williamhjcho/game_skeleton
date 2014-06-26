@@ -10,7 +10,7 @@ import flash.display.Stage;
 import flash.geom.Rectangle;
 import flash.text.StyleSheet;
 
-import gameplataform.model.*;
+import gameplataform.model.variable.Variables;
 
 /**
  * This class contains any kind of data that needs to be accessed from any point in the game

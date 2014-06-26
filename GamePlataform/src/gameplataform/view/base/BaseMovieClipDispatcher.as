@@ -13,7 +13,6 @@ public class BaseMovieClipDispatcher extends BaseMovieClip {
         this.dispatcher = new SignalDispatcher(this);
     }
 
-
     public function addSignalListener(signal:String, listener:Function):void {
         dispatcher.addSignalListener(signal, listener);
     }
@@ -30,10 +29,13 @@ public class BaseMovieClipDispatcher extends BaseMovieClip {
         dispatcher.removeAllSignals();
     }
 
+    public function dispatchSignal(signal:String, ...parameters):void {
+        dispatcher.dispatchSignalWith(signal, parameters);
+    }
 
     override public function destroy():void {
-        super.destroy();
         dispatcher.removeAllSignals();
+        super.destroy();
     }
 }
 }

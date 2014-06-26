@@ -8,6 +8,10 @@ import utils.utils_namespace;
 
 use namespace utils_namespace;
 
+/**
+ * Similar to an EventDispatcher, but this class dispatches Signals instantly(do not wait for a new event dispatching phase)
+ * This class does NOT bubble signals, for it's main purpose is for direct contact to other classes without any leakage of listeners
+ */
 public class SignalDispatcher {
 
     private static const ONCE       :int = 0;
@@ -58,6 +62,11 @@ public class SignalDispatcher {
         return (type in listeners);
     }
 
+    /**
+     * Dispatches a signal from pool
+     * @param type
+     * @param data
+     */
     public function dispatchSignalWith(type:String, data:* = null):void {
         var signal:Signal = Signal.fromPool(type, data);
         dispatchSignal(signal);

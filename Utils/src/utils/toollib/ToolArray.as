@@ -81,7 +81,7 @@ public final class ToolArray {
         return output;
     }
 
-    public static function swapIndex(arr:Array, idx1:int, idx2:int):void {
+    public static function swap(arr:Array, idx1:int, idx2:int):void {
         var o:* = arr[idx1];
         arr[idx1] = arr[idx2];
         arr[idx2] = o;

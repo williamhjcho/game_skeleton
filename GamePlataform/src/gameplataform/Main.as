@@ -14,7 +14,6 @@ import flash.display.Stage;
 import flash.errors.IllegalOperationError;
 import flash.events.Event;
 import flash.system.Security;
-import flash.text.TextField;
 
 import gameplataform.constants.AssetKey;
 import gameplataform.controller.Game;

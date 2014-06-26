@@ -13,6 +13,7 @@ public class BaseMovieClip extends MovieClip implements IDestructible {
 
     [ArrayElementType("flash.display.FrameLabel")]
     protected var _frameLabels:Array;
+    protected var _forceFrameLabel:Boolean = true;
     protected var _completion:FunctionObject = new FunctionObject();
 
     public function BaseMovieClip() {
@@ -58,6 +59,23 @@ public class BaseMovieClip extends MovieClip implements IDestructible {
     public function get frameLabels():Array { return this._frameLabels; }
 
     public function hasFrameLabel(label:String):Boolean { return (_frameLabels.indexOf(label) != -1); }
+
+    override public function gotoAndPlay(frame:Object, scene:String = null):void {
+        if(frame is String) {
+            if(_forceFrameLabel || hasFrameLabel(frame as String))
+                super.gotoAndPlay(frame, scene);
+        }
+        super.gotoAndPlay(frame, scene);
+    }
+
+
+    override public function gotoAndStop(frame:Object, scene:String = null):void {
+        if(frame is String) {
+            if(_forceFrameLabel || hasFrameLabel(frame as String))
+                super.gotoAndStop(frame, scene);
+        }
+        super.gotoAndStop(frame, scene);
+    }
 
     //==================================
     //  Callback

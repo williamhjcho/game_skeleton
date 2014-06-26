@@ -78,5 +78,14 @@ public class ManageableList {
     public function check(obj:Object):Boolean {
         return getClass(obj) is _classType;
     }
+
+    public function get first():Object {
+        return _list[0];
+    }
+
+    public function get last():Object {
+        var l:int = _list.length;
+        return (l == 0)? null : _list[l - 1];
+    }
 }
 }

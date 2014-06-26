@@ -12,10 +12,10 @@ public class BaseMovieClipAnimated extends BaseMovieClipDispatcher {
 
     public function BaseMovieClipAnimated() {
         super();
-        super.addFrameLabelScript(Frame.INTRO, scriptIntro);
-        super.addFrameLabelScript(Frame.OUTRO, scriptOutro);
-        super.addFrameLabelScript(Frame.IDLE, scriptIdle);
-        super.addFrameLabelScript(Frame.END, scriptEnd);
+        super.addFrameLabelScript(Frame.INTRO   , scriptIntro);
+        super.addFrameLabelScript(Frame.OUTRO   , scriptOutro);
+        super.addFrameLabelScript(Frame.IDLE    , scriptIdle);
+        super.addFrameLabelScript(Frame.END     , scriptEnd);
     }
 
     //==================================
@@ -40,15 +40,13 @@ public class BaseMovieClipAnimated extends BaseMovieClipDispatcher {
         This method is to guarantee the existence of an instantiated object on the NEXT updating frame(not necessarily the next timeline frame)
      */
     protected function onNextFrame(callback:Function = null, params:Array = null):void {
-        _nextFrameCallback.func = callback;
-        _nextFrameCallback.parameters = params;
+        _nextFrameCallback.reset(callback, params);
         super.addEventListener(Event.ENTER_FRAME, onEnterFrame);
     }
 
     private function onEnterFrame(e:Event):void {
         super.removeEventListener(Event.ENTER_FRAME, onEnterFrame);
-        _nextFrameCallback.execute(this);
-        _nextFrameCallback.destroy();
+        _nextFrameCallback.execute(this).destroy();
     }
 
     //==================================

@@ -5,7 +5,7 @@ package utils.toollib {
 
 import utils.base.interfaces.IUpdatable;
 import utils.commands.execute;
-import utils.events.JugglerSignal;
+import utils.events.Signal;
 import utils.events.SignalDispatcher;
 import utils.utils_namespace;
 
@@ -35,7 +35,7 @@ public class DelayedCall extends SignalDispatcher implements IUpdatable {
             var f:Function = _callback, p:Array = _params;
             _callback = null;
             _params = null;
-            super.dispatchSignalWith(JugglerSignal.REMOVE);
+            super.dispatchSignalWith(Signal.REMOVE_FROM_JUGGLER);
             execute(f, p);
         }
     }

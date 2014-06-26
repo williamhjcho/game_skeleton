@@ -2,7 +2,7 @@
  * Created by William on 5/9/2014.
  */
 package gameplataform.controller.data {
-import gameplataform.model.Save;
+import gameplataform.model.save.Save;
 
 /**
  * This class controls/holds save objects
@@ -10,7 +10,7 @@ import gameplataform.model.Save;
 public class SaveController {
 
     public static var defaultSaveData   :String;
-    public static var saveData          :Save;
+    public static var data              :Save;
 
 }
 }

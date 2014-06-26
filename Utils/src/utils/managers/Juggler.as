@@ -4,7 +4,6 @@
 package utils.managers {
 
 import utils.base.interfaces.IUpdatable;
-import utils.events.JugglerSignal;
 import utils.events.Signal;
 import utils.events.SignalDispatcher;
 import utils.toollib.DelayedCall;
@@ -25,7 +24,7 @@ public class Juggler implements IUpdatable {
 
     public function add(element:IUpdatable):void {
         if(element != null && elements.indexOf(element) == -1) {
-            if(element is SignalDispatcher) SignalDispatcher(element).addSignalListener(JugglerSignal.REMOVE, onRemove);
+            if(element is SignalDispatcher) SignalDispatcher(element).addSignalListener(Signal.REMOVE_FROM_JUGGLER, onRemove);
             elements.push(element);
         }
     }
@@ -36,21 +35,21 @@ public class Juggler implements IUpdatable {
 
     public function remove(element:IUpdatable):void {
         if(element == null) return;
-        if(element is SignalDispatcher) SignalDispatcher(element).removeSignalListener(JugglerSignal.REMOVE, onRemove);
+        if(element is SignalDispatcher) SignalDispatcher(element).removeSignalListener(Signal.REMOVE_FROM_JUGGLER, onRemove);
         var idx:int = elements.indexOf(element);
         if(idx != -1) elements[idx] = null;
     }
 
     public function removeAll():void {
         for (var i:int = 0; i < elements.length; i++) {
-            if(elements[i] is SignalDispatcher) SignalDispatcher(elements[i]).removeSignalListener(JugglerSignal.REMOVE, onRemove);
+            if(elements[i] is SignalDispatcher) SignalDispatcher(elements[i]).removeSignalListener(Signal.REMOVE_FROM_JUGGLER, onRemove);
             elements[i] = null;
         }
     }
 
     public function delayCall(callback:Function, delay:uint, params:Array = null):DelayedCall {
         var call:DelayedCall = DelayedCall.utils_namespace::fromPool(callback, delay, params);
-        call.addSignalListener(JugglerSignal.REMOVE, onRemoveDelayedCall);
+        call.addSignalListener(Signal.REMOVE_FROM_JUGGLER, onRemoveDelayedCall);
         add(call);
         return call;
     }
@@ -106,7 +105,7 @@ public class Juggler implements IUpdatable {
 
     private function onRemoveDelayedCall(e:Signal):void {
         var call:DelayedCall = e.target as DelayedCall;
-        call.removeSignalListener(JugglerSignal.REMOVE, onRemoveDelayedCall);
+        call.removeSignalListener(Signal.REMOVE_FROM_JUGGLER, onRemoveDelayedCall);
         DelayedCall.toPool(call);
     }
 

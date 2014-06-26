@@ -11,10 +11,10 @@ public class Triangle {
     public var b:v2d;
     public var c:v2d;
 
-    public function Triangle(A:v2d = null, B:v2d = null, C:v2d = null) {
-        this.a = A || new v2d(0,0);
-        this.b = B || new v2d(0,0);
-        this.c = C || new v2d(0,0);
+    public function Triangle(ax:Number, ay:Number, bx:Number, by:Number, cx:Number, cy:Number) {
+        this.a = new v2d(ax, ay);
+        this.b = new v2d(bx, by);
+        this.c = new v2d(cx, cy);
     }
 
     public function get centroid():v2d { return new v2d((a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3 ); }
@@ -35,7 +35,7 @@ public class Triangle {
         return Math.sqrt(p * (p - lAB) * (p - lBC) * (p - lCA));
     }
 
-    public function setPosition(x:Number, y:Number):Triangle {
+    public function setCenter(x:Number, y:Number):Triangle {
         var c:v2d = centroid;
         var dx:Number = x - c.x, dy:Number = y - c.y;
         a.addXY(dx, dy);

@@ -33,7 +33,7 @@ public class AssetDataController {
             switch(asset.type) {
                 case AssetType.SAVE: {
                     SaveController.defaultSaveData = data;
-                    SaveController.saveData = SerializerManager.decodeFromString(data);
+                    SaveController.data = SerializerManager.decodeFromString(data);
                     break;
                 }
                 case AssetType.CSS: {

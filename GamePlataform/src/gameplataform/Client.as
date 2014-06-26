@@ -8,7 +8,6 @@
 package gameplataform {
 import com.greensock.events.LoaderEvent;
 
-import flash.display.DisplayObject;
 import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
@@ -21,11 +20,9 @@ import gameplataform.constants.AssetKey;
 import gameplataform.model.Config;
 import gameplataform.view.PreLoader;
 
+import utils.commands.execute;
 import utils.managers.LoaderManager;
 import utils.managers.serializer.SerializerManager;
-
-import utilsDisplay.bases.interfaces.IPreLoader;
-import utilsDisplay.view.preloader.DefaultPreLoader;
 
 /**
  * This class:
@@ -33,7 +30,7 @@ import utilsDisplay.view.preloader.DefaultPreLoader;
  *  - manages the PreLoader
  *  - makes any SWF/security configuration
  */
-[SWF(width=800, height=600, backgroundColor=0x808080, frameRate=30, pageTitle="BLAHBLASDF")]
+[SWF(width=800, height=600, backgroundColor=0x808080, frameRate=30)]
 public class Client extends Sprite {
 
     //Pre-loaded external assets, embed onto main.swf
@@ -42,7 +39,7 @@ public class Client extends Sprite {
 
     private static var _instance:Client;
     private static var _config:Config;
-    private static var _preLoader:DisplayObject;
+    private static var _preLoader:PreLoader;
 
     public function Client() {
         if(_instance != null) throw new IllegalOperationError("Singleton Class, cannot be instantiated more than once.");
@@ -63,7 +60,7 @@ public class Client extends Sprite {
         _config = SerializerManager.decodeFromString(new CONFIG());
 
         if(_config.preLoaderPath == null || _config.preLoaderPath == "") {
-            onLoadPreLoader(null);
+            throw new Error("Pre loader path not found on configuration file.");
         } else {
             loadPreLoader(_config.preLoaderPath);
         }
@@ -79,11 +76,10 @@ public class Client extends Sprite {
     }
 
     private function onLoadPreLoader(e:LoaderEvent = null):void {
-        _preLoader = (e == null)? new DefaultPreLoader() : new PreLoader();
+        _preLoader = new PreLoader();
         _preLoader.x = (stage.stageWidth  - _preLoader.width ) / 2;
         _preLoader.y = (stage.stageHeight - _preLoader.height) / 2;
-        showPreLoader(0,1);
-        loadMainAssets();
+        showPreLoader(0,1, loadMainAssets);
     }
 
     /**
@@ -94,26 +90,34 @@ public class Client extends Sprite {
     }
 
     private function onLoadAssets(e:LoaderEvent):void {
-        hidePreLoader();
+        hidePreLoader(startGame);
+    }
+
+    private function startGame():void {
         this.addChild(new Main(this.stage));
     }
 
     //==================================
     //  Pre Loader
     //==================================
-    public static function showPreLoader(startingPercentage:Number = 0, alpha:Number = 1):void {
+    public static function showPreLoader(startingPercentage:Number = 0, alpha:Number = 1, callback:Function = null, parameters:Array = null):void {
         _preLoader.alpha = alpha;
-        IPreLoader(_preLoader).percentage = startingPercentage;
+        _preLoader.percentage = startingPercentage;
         _instance.addChild(_preLoader);
+        _preLoader.animateIn(callback, parameters);
     }
 
-    public static function hidePreLoader():void {
-        if(_instance.contains(_preLoader))
-            _instance.removeChild(_preLoader);
+    public static function hidePreLoader(callback:Function = null, parameters:Array = null):void {
+        if(_instance.contains(_preLoader)) {
+            _preLoader.animateOut(function():void {
+                _instance.removeChild(_preLoader);
+                execute(callback, parameters);
+            });
+        }
     }
 
     public static function updatePreLoader(p:Number):void {
-        IPreLoader(_preLoader).percentage = p;
+        _preLoader.percentage = p;
     }
 
     //==================================
