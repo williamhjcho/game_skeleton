@@ -8,10 +8,10 @@
 package utils.toollib {
 
 /**
- *  t = current time [0;d] (note: it has to be inside this interval to work properly)
- *  b = beginning of movement
- *  c = total change of movement
- *  d = total duration of movement
+ *  t = current time [0;d]
+ *  b = initial value
+ *  c = total change
+ *  d = total duration
  */
 public final class Easing {
 

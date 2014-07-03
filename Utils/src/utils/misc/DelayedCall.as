@@ -1,7 +1,7 @@
 /**
  * Created by William on 6/6/2014.
  */
-package utils.toollib {
+package utils.misc {
 
 import utils.base.interfaces.IUpdatable;
 import utils.commands.execute;

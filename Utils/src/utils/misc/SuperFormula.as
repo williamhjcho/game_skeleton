@@ -5,7 +5,7 @@
  * Time: 9:40 AM
  * To change this template use File | Settings | File Templates.
  */
-package utils.toollib {
+package utils.misc {
 public final class SuperFormula {
 
     public var x:Number = 0, y:Number = 0, radius:Number = 100;

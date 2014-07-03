@@ -1,8 +1,10 @@
 /**
  * william.cho
  */
-package utils.toollib {
+package utils.toollib.math {
 import flash.geom.Point;
+
+import utils.toollib.math.ToolMath;
 
 import utils.toollib.vector.v2d;
 

@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib.color {
-import utils.toollib.ToolMath;
+import utils.toollib.math.ToolMath;
 
 public class HSL {
 

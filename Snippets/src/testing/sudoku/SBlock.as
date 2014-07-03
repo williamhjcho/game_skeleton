@@ -6,7 +6,7 @@ import flash.display.Graphics;
 import flash.display.Sprite;
 import flash.text.TextField;
 
-import utils.toollib.ToolColor;
+import utils.toollib.color.ToolColor;
 
 public class SBlock extends Sprite {
 

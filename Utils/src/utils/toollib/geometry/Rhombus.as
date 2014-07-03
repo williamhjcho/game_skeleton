@@ -2,7 +2,7 @@
  * Created by William on 2/24/14.
  */
 package utils.toollib.geometry {
-import utils.toollib.ToolMath;
+import utils.toollib.math.ToolMath;
 import utils.toollib.vector.v2d;
 
 public class Rhombus {

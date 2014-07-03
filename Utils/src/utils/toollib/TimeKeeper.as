@@ -4,12 +4,12 @@
 package utils.toollib {
 import utils.base.interfaces.IUpdatable;
 
-public class TimeVariable implements IUpdatable {
+public class TimeKeeper implements IUpdatable {
 
     private var _t:uint = 0;
     private var _tt:uint = 0;
 
-    public function reset(total:uint):TimeVariable {
+    public function reset(total:uint):TimeKeeper {
         _t = 0;
         _tt = total;
         return this;

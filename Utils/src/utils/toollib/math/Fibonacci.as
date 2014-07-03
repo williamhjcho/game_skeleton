@@ -5,7 +5,7 @@
  * Time: 16:48
  * To change this template use File | Settings | File Templates.
  */
-package utils.toollib {
+package utils.toollib.math {
 
 /**
  * Computes the fibonacci sequence with the two starting numbers provided

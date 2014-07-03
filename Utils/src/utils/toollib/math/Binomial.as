@@ -5,7 +5,7 @@
  * Time: 10:30
  * To change this template use File | Settings | File Templates.
  */
-package utils.toollib {
+package utils.toollib.math {
 
 /**
  * Computes the Binomial Coefficient of (n,k)

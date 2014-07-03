@@ -1,7 +1,8 @@
 /**
  * william.cho
  */
-package utils.toollib {
+package utils.toollib.math {
+import utils.toollib.*;
 import utils.toollib.units.Units;
 
 public final class ToolMath {

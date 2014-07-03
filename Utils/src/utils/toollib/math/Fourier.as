@@ -1,7 +1,9 @@
 /**
  * Created by aennova on 06/01/14.
  */
-package utils.toollib {
+package utils.toollib.math {
+import utils.toollib.*;
+
 public final class Fourier {
 
     public static function DFT(XReal:Array, XImg:Array, outReal:Array, outImg:Array):void {

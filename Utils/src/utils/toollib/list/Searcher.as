@@ -5,7 +5,7 @@
  * Time: 15:34
  * To change this template use File | Settings | File Templates.
  */
-package utils.toollib {
+package utils.toollib.list {
 public final class Searcher {
 
     public static function compareASC(a:*, b:*):int {

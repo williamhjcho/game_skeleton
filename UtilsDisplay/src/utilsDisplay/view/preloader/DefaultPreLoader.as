@@ -13,7 +13,7 @@ import flash.text.TextField;
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
 
-import utils.toollib.ToolColor;
+import utils.toollib.color.ToolColor;
 
 import utilsDisplay.bases.interfaces.IPreLoader;
 import utilsDisplay.font.FontUbuntuRegular;

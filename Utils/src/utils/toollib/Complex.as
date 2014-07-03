@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib {
+import utils.toollib.math.Binomial;
+
 public class Complex {
 
     public var x:Number;

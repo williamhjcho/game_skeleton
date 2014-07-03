@@ -6,8 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.toollib.geometry {
-import utils.toollib.ToolGeometry;
-import utils.toollib.ToolMath;
+import utils.toollib.geometry.ToolGeometry;
+import utils.toollib.math.ToolMath;
 import utils.toollib.vector.v2d;
 
 public class Circle {

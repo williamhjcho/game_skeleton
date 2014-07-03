@@ -1,7 +1,7 @@
 /**
  * Created by William on 1/10/14.
  */
-package utils.toollib {
+package utils.toollib.math {
 public final class Mean {
 
     private var _numbers:Vector.<Number> = new Vector.<Number>();

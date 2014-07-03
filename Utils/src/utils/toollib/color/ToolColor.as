@@ -1,11 +1,13 @@
 /**
  * william.cho
  */
-package utils.toollib {
+package utils.toollib.color {
+import utils.toollib.*;
 import utils.toollib.color.CMYK;
 import utils.toollib.color.HSL;
 import utils.toollib.color.HSV;
 import utils.toollib.color.RGBA;
+import utils.toollib.math.ToolMath;
 
 /**
  * This class is for manipulating/retrieving color(s) values

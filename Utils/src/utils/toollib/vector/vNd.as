@@ -8,7 +8,7 @@
 package utils.toollib.vector {
 import flash.errors.IllegalOperationError;
 
-import utils.toollib.ToolMath;
+import utils.toollib.math.ToolMath;
 
 public class vNd {
 

@@ -5,7 +5,10 @@
  * Time: 09:41
  * To change this template use File | Settings | File Templates.
  */
-package utils.toollib {
+package utils.toollib.math {
+import utils.toollib.geometry.ToolGeometry;
+import utils.toollib.math.Binomial;
+import utils.toollib.math.ToolMath;
 import utils.toollib.vector.v2d;
 
 public final class Bezier {

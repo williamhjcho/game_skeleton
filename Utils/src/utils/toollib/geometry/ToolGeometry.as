@@ -5,7 +5,7 @@
  * Time: 13:10
  * To change this template use File | Settings | File Templates.
  */
-package utils.toollib {
+package utils.toollib.geometry {
 import utils.toollib.vector.v2d;
 
 public final class ToolGeometry {

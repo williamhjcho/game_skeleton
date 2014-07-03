@@ -1,7 +1,7 @@
 /**
  * Created by William on 1/7/14.
  */
-package utils.toollib {
+package utils.toollib.math {
 
 /**
  * Computes the prime numbers starting from 2 (1 is NOT a prime), and saves it's value for later use

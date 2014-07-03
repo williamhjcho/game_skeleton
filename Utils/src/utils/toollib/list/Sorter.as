@@ -5,7 +5,8 @@
  * Time: 10:19
  * To change this template use File | Settings | File Templates.
  */
-package utils.toollib {
+package utils.toollib.list {
+import utils.toollib.*;
 
 /**
  * Sorts the Array or Vector according to the parameters provided

@@ -2,7 +2,7 @@
  * Created by William on 4/1/14.
  */
 package utils.misc.creditCard {
-import utils.toollib.ToolMath;
+import utils.toollib.math.ToolMath;
 
 public class CreditCardValidator {
 

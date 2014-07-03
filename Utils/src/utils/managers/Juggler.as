@@ -6,7 +6,7 @@ package utils.managers {
 import utils.base.interfaces.IUpdatable;
 import utils.events.Signal;
 import utils.events.SignalDispatcher;
-import utils.toollib.DelayedCall;
+import utils.misc.DelayedCall;
 import utils.utils_namespace;
 
 use namespace utils_namespace;

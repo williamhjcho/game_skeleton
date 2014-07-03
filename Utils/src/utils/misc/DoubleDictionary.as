@@ -5,7 +5,7 @@
  * Time: 3:19 PM
  * To change this template use File | Settings | File Templates.
  */
-package utils.toollib {
+package utils.misc {
 import flash.errors.IllegalOperationError;
 import flash.utils.Dictionary;
 
