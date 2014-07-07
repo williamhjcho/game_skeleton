@@ -1,7 +1,0 @@
-{
-    "___className": "gameplataform.model.variable.Variables",
-
-    "volumeMain"      : 1,
-    "volumeSFX"       : 1,
-    "volumeBackground": 1    
-}
