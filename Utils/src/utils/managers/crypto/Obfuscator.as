@@ -12,7 +12,7 @@ import flash.utils.Dictionary;
 
 import utils.commands.getClassName;
 import utils.managers.serializer.Base64;
-import utils.toollib.math.ToolMath;
+import utils.math.ToolMath;
 
 /**
  * Simple Runtime Obfuscator

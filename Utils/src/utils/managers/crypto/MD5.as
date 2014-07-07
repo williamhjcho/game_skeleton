@@ -4,8 +4,8 @@
 package utils.managers.crypto {
 import flash.utils.ByteArray;
 
-import utils.toollib.units.Bit;
-import utils.toollib.units.Hex;
+import utils.units.Bit;
+import utils.units.Hex;
 
 public class MD5 {
 

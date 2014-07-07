@@ -12,10 +12,6 @@ import flash.display.MovieClip;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 
-import utils.toollib.StringBuilder;
-
-import utils.toollib.list.ArrayEx;
-
 [SWF(width=800, height=600, backgroundColor=0x808080, frameRate=30)]
 public class Main extends MovieClip {
 
@@ -37,13 +33,9 @@ public class Main extends MovieClip {
 
         MonsterDebugger.initialize(this);
 
-        var builder:StringBuilder = new StringBuilder("abc");
-        trace(builder.toString());
-        builder.append("wat", "de","fuk");
-        trace(builder.toString());
-        builder.prepend("0","11","222");
-        trace(builder.toString());
+
     }
+
 
 
 }

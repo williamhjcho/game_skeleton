@@ -1,0 +1,10 @@
+{
+    "___className": "game.model.save.Save",
+
+    "version" : "1.0",
+
+    "volumeMain"       : 1.0,
+    "volumeSFX"        : 1.0,
+    "volumeBackground" : 1.0,
+    "volumeAmbient"    : 1.0
+}

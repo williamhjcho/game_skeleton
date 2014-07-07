@@ -19,7 +19,7 @@ import flash.events.MouseEvent;
 import flash.geom.Rectangle;
 
 import utils.base.interfaces.IDestructible;
-import utils.toollib.Easing;
+import utils.misc.Easing;
 
 public class Scroll {
 
@@ -214,7 +214,7 @@ import flash.geom.Rectangle;
 
 import utils.base.interfaces.IDestructible;
 import utils.commands.clamp;
-import utils.toollib.vector.v2d;
+import utils.vector.v2d;
 
 import utilsDisplay.view.scroll.Scroll;
 import utilsDisplay.view.scroll.ScrollComponentParameters;

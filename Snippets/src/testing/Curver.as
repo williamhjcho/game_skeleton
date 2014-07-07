@@ -2,7 +2,7 @@
  * Created by William on 1/13/14.
  */
 package testing {
-import utils.toollib.vector.v2d;
+import utils.vector.v2d;
 
 public class Curver {
 

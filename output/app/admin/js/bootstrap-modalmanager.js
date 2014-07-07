@@ -378,7 +378,7 @@
 
 	// make sure the event target is the modal itself in order to prevent
 	// other components such as tabsfrom triggering the modal manager.
-	// if Boostsrap namespaced gameplataform.events, this would not be needed.
+	// if Boostsrap namespaced game.events, this would not be needed.
 	function targetIsSelf(callback){
 		return function (e) {
 			if (this === e.target){

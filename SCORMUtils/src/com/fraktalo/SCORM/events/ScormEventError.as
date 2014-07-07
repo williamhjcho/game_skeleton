@@ -5,7 +5,7 @@ package com.fraktalo.SCORM.events {
  */
 public class ScormEventError extends ScormEventCustom {
 
-    public static const TYPE:String = "com.aennova.agp.gameplataform.events.ErrorEvent";
+    public static const TYPE:String = "com.aennova.agp.game.events.ErrorEvent";
     private var _msg:String = "";
     private var _obj:Object = null;
 

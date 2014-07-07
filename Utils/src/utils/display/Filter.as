@@ -2,9 +2,9 @@
  * Created by William on 3/5/14.
  */
 package utils.display {
-import utils.toollib.*;
-import utils.toollib.color.ToolColor;
-import utils.toollib.math.ToolMath;
+import utils.color.ToolColor;
+import utils.math.Matrix;
+import utils.math.ToolMath;
 
 public final class Filter {
 
