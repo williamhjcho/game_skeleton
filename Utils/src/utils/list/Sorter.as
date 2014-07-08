@@ -15,7 +15,7 @@ public final class Sorter {
     //  Sorting Method      : Best          : Average       : Worst                 : Memory
     //  ------------------------------------------------------------------------------------------------
     //  Bubble              : n             : n*n           : n*n                   : 1
-    //  Odd Even            : : : :
+    //  Odd Even            : n             : n*n           : n*n                   : 1
     //  Quick               : n*log(n)      : n*log(n)      : n*n                   : log(n)
     //  Merge               : n*log(n)      : n*log(n)      : n*log(n)              : worst(n)
     //  Heap                : n*log(n)      : n*log(n)      : n*n                   : 1
@@ -40,9 +40,10 @@ public final class Sorter {
     }
 
     //==================================
-    //
+    //  Public
     //==================================
     public static function shuffle(target:*):* {
+        //Fisher-Yates method
         for (var i:int = target.length - 1; i > 0; i--) {
             var j:int = Math.random() * i;
             swap(target, i, j);
@@ -51,13 +52,55 @@ public final class Sorter {
     }
 
     public static function bubbleSort(target:*, compareFunction:Function = null):* {
-        if(compareFunction == null) compareFunction = ascending;
-        return bubbleCore(target, compareFunction);
+        //"bubbles" the element to the right until a bigger one is found (and bubbles that element) while i < length
+        //ex :[5,8,0,9,4,2,3,6,1,7]
+        //after 1º iteration: [5,0,8,4,2,3,6,1,7,9] bigger element found = 9
+        //after 2º iteration: [0,5,4,2,3,6,1,7,8,9] bigger element found = 8
+        //after 3º iteration: [0,4,2,3,5,1,6,7,8,9] bigger element found = 7
+        // ...
+        //[0,1,2,3,4,5,6,7,8,9]
+        compareFunction ||= ascending;
+        var swapped:Boolean = true;
+        while(swapped) {
+            swapped = false;
+            for (var i:int = 1; i < target.length; i++) {
+                if(compareFunction(target[i-1], target[i]) == 1) {
+                    swap(target,i-1,i);
+                    swapped = true;
+                }
+            }
+        }
+        return target;
     }
 
     public static function oddEven(target:*, compareFunction:Function = null):* {
-        if(compareFunction == null) compareFunction = ascending;
-        return oddEvenCore(target, compareFunction);
+        //runs through odd values of i, then even values of i,
+        //then swap the immediate value i+1 if it is smaller then the value at i
+        //ex  : [5,8,0,9,4,2,3,6,1,7]
+        //ODD : [5,0,8,4,9,2,3,1,6,7]
+        //EVEN: [0,5,4,8,2,9,1,3,6,7]
+        //      ...
+        //    : [0,1,2,3,4,5,6,7,8,9]
+        compareFunction ||= ascending;
+        var swapped:Boolean = true, i:int;
+        while(swapped) {
+            swapped = false;
+            //Odd values of i = 1,3,5,7...
+            for (i = 1; i < target.length - 1; i+=2) {
+                if(compareFunction(target[i],target[i+1]) == 1 ) {
+                    swap(target, i, i+1);
+                    swapped = true;
+                }
+            }
+            //Even values of i = 0,2,4,6...
+            for (i = 0; i < target.length - 1; i+=2) {
+                if(compareFunction(target[i],target[i+1]) == 1 ) {
+                    swap(target, i, i+1);
+                    swapped = true;
+                }
+            }
+        }
+        return target;
     }
 
     public static function quickSort(target:*, compareFunction:Function = null):* {
@@ -76,61 +119,79 @@ public final class Sorter {
     }
 
     public static function insertionSort(target:*, compareFunction:Function = null):* {
-        if(compareFunction == null) compareFunction = ascending;
-        return insertionCore(target, compareFunction);
+        compareFunction ||= ascending;
+        for (var i:int = 1; i < target.length; i++) {
+            var valueToInsert:* = target[i];
+            var holePos:int = i;
+
+            while(holePos > 0 && compareFunction(target[holePos-1], valueToInsert) == 1) {
+                target[holePos] = target[holePos-1];
+                holePos--;
+            }
+            target[holePos] = valueToInsert;
+        }
+        return target;
     }
 
     public static function selectionSort(target:*, compareFunction:Function = null):* {
-        if(compareFunction == null) compareFunction = ascending;
-        return selectionCore(target, compareFunction);
+        compareFunction ||= ascending;
+        for (var j:int = 0; j < target.length - 1; j++) {
+            var iMin:int = j;
+            for (var i:int = j+1; i < target.length; i++) {
+                if(compareFunction(target[iMin], target[i]) == 1)
+                    iMin = i;
+            }
+            if(iMin != j)
+                swap(target, j ,iMin);
+        }
+        return target;
     }
 
     public static function shellSort(target:*, compareFunction:Function = null):* {
-        var gaps:Array = [132,57,10,4,1];
         if(compareFunction == null) compareFunction = ascending;
-        return shellCore(target,compareFunction,gaps);
+        var gaps:Array = [132,57,10,4,1];
+        for each (var gap:int in gaps) {
+            for (var i:int = gap; i < target.length; i++) {
+                var temp:* = target[i];
+                for (var j:int = i; j >= gap && compareFunction(target[j - gap], temp) == 1; j-=gap) {
+                    target[j] = target[j-gap];
+                }
+                target[j] = temp;
+            }
+        }
+        return target;
     }
 
 
-    //Never use these sorts for any possible situation
+    //Never use these, they are here for learning purposes
     public static function combSort(target:*, compareFunction:Function = null):* {
         if(compareFunction == null) compareFunction = ascending;
-        return combCore(target, compareFunction);
+        var gap:int = target.length;
+        var shrink:Number = 1.3;
+        var swapped:Boolean = true;
+        while(gap != 1 && swapped) {
+            swapped = false;
+            gap = int(gap/shrink);
+            if(gap < 1) gap = 1;
+
+            for (var i:int = 0; i + gap < target.length; i++) {
+                if(compareFunction(target[i], target[i+gap]) == 1) {
+                    swap(target, i, i+gap);
+                    swapped = true;
+                }
+            }
+        }
+        return target;
     }
 
     public static function cocktailSort(target:*, compareFunction:Function = null):* {
         if(compareFunction == null) compareFunction = ascending;
-        return cocktailCore(target, compareFunction);
-    }
-
-    public static function gnomeSort(target:*, compareFunction:Function = null):* {
-        if(compareFunction == null) compareFunction = ascending;
-        return gnomeCore(target, compareFunction);
-    }
-
-    public static function bogoSort(target:*, compareFunction:Function = null):* {
-        if(compareFunction == null) compareFunction = ascending;
-        return bogoCore(target, compareFunction);
-    }
-
-
-    //==================================
-    //  Core Sorting Algorithms
-    //==================================
-    private static function bubbleCore(target:*, f:Function):* {
-        //"bubbles" the element to the right until a bigger one is found (and bubbles that element) while i < length
-        //ex :[5,8,0,9,4,2,3,6,1,7]
-        //after 1º iteration: [5,0,8,4,2,3,6,1,7,9] bigger element found = 9
-        //after 2º iteration: [0,5,4,2,3,6,1,7,8,9] bigger element found = 8
-        //after 3º iteration: [0,4,2,3,5,1,6,7,8,9] bigger element found = 7
-        // ...
-        //[0,1,2,3,4,5,6,7,8,9]
-
+        //2-way bubbleSort
         var swapped:Boolean = true;
         while(swapped) {
             swapped = false;
             for (var i:int = 1; i < target.length; i++) {
-                if(f(target[i-1],target[i]) == 1) {
+                if(compareFunction(target[i-1],target[i]) == 1) {
                     swap(target,i-1,i);
                     swapped = true;
                 }
@@ -139,35 +200,36 @@ public final class Sorter {
         return target;
     }
 
-    private static function oddEvenCore(target:*, f:Function):* {
-        //runs through odd values of i, then even values of i,
-        //then swap the immediate value i+1 if it is smaller then the value at i
-        //ex  : [5,8,0,9,4,2,3,6,1,7]
-        //ODD : [5,0,8,4,9,2,3,1,6,7]
-        //EVEN: [0,5,4,8,2,9,1,3,6,7]
-        //      ...
-        //    : [0,1,2,3,4,5,6,7,8,9]
-        var swapped:Boolean = true, i:int;
-        while(swapped) {
-            swapped = false;
-            //Odd values of i = 1,3,5,7...
-            for (i = 1; i < target.length - 1; i+=2) {
-                if( f(target[i],target[i+1]) == 1 ) {
-                    swap(target, i, i+1);
-                    swapped = true;
-                }
-            }
-            //Even values of i = 0,2,4,6...
-            for (i = 0; i < target.length - 1; i+=2) {
-                if( f(target[i],target[i+1]) == 1 ) {
-                    swap(target, i, i+1);
-                    swapped = true;
-                }
+    public static function gnomeSort(target:*, compareFunction:Function = null):* {
+        if(compareFunction == null) compareFunction = ascending;
+        var pos:int = 1;
+        while(pos < target.length) {
+            if(compareFunction(target[pos], target[pos-1]) != -1)
+                pos++;
+            else {
+                swap(target,pos,pos-1);
+                if(pos > 1)
+                    pos--;
             }
         }
         return target;
     }
 
+    public static function bogoSort(target:*, compareFunction:Function = null):* {
+        compareFunction ||= ascending;
+        for (var i:int = 0; i < target.length - 1; i++) {
+            if(compareFunction(target[i], target[i+1]) == -1) {
+                shuffle(target);
+                i = 0;
+            }
+        }
+        return target;
+    }
+
+
+    //==================================
+    //  Core Recursive Algorithms
+    //==================================
     private static function quickSortCore(target:*, f:Function, s:int, e:int):* {
         //find pivot = (start + end) / 2
         //partition the target as:
@@ -265,103 +327,6 @@ public final class Sorter {
         }
     }
 
-    private static function insertionCore(target:*, f:Function):* {
-        for (var i:int = 1; i < target.length; i++) {
-            var valueToInsert:* = target[i];
-            var holePos:int = i;
-
-            while(holePos > 0 && f(target[holePos-1], valueToInsert) == 1) {
-                target[holePos] = target[holePos-1];
-                holePos--;
-            }
-            target[holePos] = valueToInsert;
-        }
-        return target;
-    }
-
-    private static function selectionCore(target:*, f:Function):* {
-        for (var j:int = 0; j < target.length - 1; j++) {
-            var iMin:int = j;
-            for (var i:int = j+1; i < target.length; i++) {
-                if( f(target[iMin], target[i]) == 1)
-                    iMin = i;
-            }
-            if(iMin != j)
-                swap(target, j ,iMin);
-        }
-        return target;
-    }
-
-    private static function shellCore(target:*, f:Function, gaps:Array):* {
-        for each (var gap:int in gaps) {
-            for (var i:int = gap; i < target.length; i++) {
-                var temp:* = target[i];
-                for (var j:int = i; j >= gap && f(target[j - gap], temp) == 1; j-=gap) {
-                    target[j] = target[j-gap];
-                }
-                target[j] = temp;
-            }
-        }
-        return target;
-    }
-
-    private static function combCore(target:*, f:Function):* {
-        var gap:int = target.length;
-        var shrink:Number = 1.3;
-        var swapped:Boolean = true;
-        while(gap != 1 && swapped) {
-            swapped = false;
-            gap = int(gap/shrink);
-            if(gap < 1) gap = 1;
-
-            for (var i:int = 0; i + gap < target.length; i++) {
-                if( f(target[i], target[i+gap]) == 1) {
-                    swap(target, i, i+gap);
-                    swapped = true;
-                }
-            }
-        }
-        return target;
-    }
-
-    private static function cocktailCore(target:*, f:Function):* {
-        //2-way bubbleSort
-        var swapped:Boolean = true;
-        while(swapped) {
-            swapped = false;
-            for (var i:int = 1; i < target.length; i++) {
-                if(f(target[i-1],target[i]) == 1) {
-                    swap(target,i-1,i);
-                    swapped = true;
-                }
-            }
-        }
-        return target;
-    }
-
-    private static function gnomeCore(target:*, f:Function):* {
-        var pos:int = 1;
-        while(pos < target.length) {
-            if( f(target[pos], target[pos-1]) != -1)
-                pos++;
-            else {
-                swap(target,pos,pos-1);
-                if(pos > 1)
-                    pos--;
-            }
-        }
-        return target;
-    }
-
-    private static function bogoCore(target:*, f:Function):* {
-        for (var i:int = 0; i < target.length - 1; i++) {
-            if(f(target[i], target[i+1]) == -1) {
-                shuffle(target);
-                i = 0;
-            }
-        }
-        return target;
-    }
 
     //==================================
     //  Private Tools

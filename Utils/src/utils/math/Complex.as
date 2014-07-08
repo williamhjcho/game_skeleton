@@ -87,7 +87,9 @@ public class Complex {
     }
 
 
-    /** STATICS **/
+    //==================================
+    //  Static
+    //==================================
     public static function add(z1:Complex, z2:Complex):Complex {
         return new Complex(z1.x + z2.x, z1.y + z2.y);
     }

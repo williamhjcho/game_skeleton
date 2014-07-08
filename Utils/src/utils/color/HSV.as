@@ -6,118 +6,118 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.color {
-import utils.math.ToolMath;
+import utils.commands.clamp;
+import utils.commands.toStringArgs;
 
+/**
+ * Hue Saturation Value (HSV)
+ *
+ * H = decimal[0,360)
+ * S = decimal[0,1]
+ * V = decimal[0,1]
+ *
+ * Calculation:
+ * M = max(r,g,b), m = min(r,g,b)
+ * C = M - m
+ *
+ * H = if(C == 0) 0
+ *     if(M == R) 60 * ((green - blue) / C)
+ *     if(M == G) 60 * (2 + (blue - red) / C)
+ *     if(M == B) 60 * (4 + (red - green) / C)
+ * S = C / V
+ * V = M
+ */
 public class HSV {
 
-    private var h:Number, s:Number, v:Number;
+    private static const TO_STRING:String = "(H:{0}, S:{1}, V:{2})";
+
+    private var H:Number, S:Number, V:Number;
 
     public function HSV(h:Number = 0, s:Number = 0, v:Number = 0) {
-        this.H = h;
-        this.S = s;
-        this.V = v;
+        set(h,s,v);
     }
 
-    public function get H():Number { return h; }
-    public function get S():Number { return s; }
-    public function get V():Number { return v; }
+    //==================================
+    //  Public
+    //==================================
+    public function get h():Number { return H; }
+    public function get s():Number { return S; }
+    public function get v():Number { return V; }
 
-    public function set H(v:Number):void { this.h = ToolMath.clamp(v,0, 360); }
-    public function set S(v:Number):void { this.s = ToolMath.clamp(v,0, 1); }
-    public function set V(v:Number):void { this.v = ToolMath.clamp(v,0, 1); }
+    public function set h(v:Number):void { H = clamp(v,0, 360); }
+    public function set s(v:Number):void { S = clamp(v,0, 1); }
+    public function set v(v:Number):void { V = clamp(v,0, 1); }
 
-    public function setTo(h:Number, s:Number, v:Number):HSV {
-        this.H = h;
-        this.S = s;
-        this.V = v;
+    public function set(h:Number = NaN, s:Number = NaN, v:Number = NaN):HSV {
+        if(!isNaN(h)) this.h = h;
+        if(!isNaN(s)) this.s = s;
+        if(!isNaN(v)) this.v = v;
         return this;
     }
 
-    public function fromRGB(red:int, green:int, blue:int):HSV {
-        var r:Number = red / 0xff, g:Number = green / 0xff, b:Number = blue / 0xff;
-        var max:Number = Math.max(r,g,b), min:Number = Math.min(r,g,b);
-        var d:Number = max - min;
+    public function fromInt(color:uint):HSV {
+        var r:Number = ((color>>16) & 0xff) / 0xff, g:Number = ((color>>8) & 0xff) / 0xff, b:Number = (color & 0xff) / 0xff;
+        var max:Number = Math.max(r,g,b), min:Number = Math.min(r,g,b), c:Number = max - min;
 
-        v = max;
+        V = max;
 
-        if(d == 0) {
-            h = 0;
-            s = 0;
+        if(c == 0) {
+            H = 0;
+            S = 0;
             return this;
         }
 
-        s = d / max;
+        S = c / max;
 
-        if(max == r)
-            h = 60 * (((g - b) / d) % 6);
-        else if(max == g)
-            h = 60 * (((b - r) / d) + 2);
-        else
-            h = 60 * (((r - g) / d) + 4);
-
+        if(max == r)        H = 60 * (((g - b) / c) % 6);
+        else if(max == g)   H = 60 * (((b - r) / c) + 2);
+        else                H = 60 * (((r - g) / c) + 4);
         return this;
     }
 
-    public function toRGB(alpha:int = 0xff):uint {
-        var C:Number = v * s;
-        var X:Number = C * (1 - Math.abs(((h/60)%2)) - 1);
-        var m:Number = v - C;
-        var r:Number, g:Number, b:Number;
-        var h:int = h / 60;
-        if(h == 0)  { r = C; g = X; b = 0; } else
-        if(h == 1)  { r = X; g = C; b = 0; } else
-        if(h == 2)  { r = 0; g = C; b = X; } else
-        if(h == 3)  { r = 0; g = X; b = C; } else
-        if(h == 4)  { r = X; g = 0; b = C; } else
-                    { r = C; g = 0; b = X; }
-        return alpha << 24 | (0xff*(r+m)) << 16 | (0xff*(g+m)) << 8 | (0xff*(b+m));
+    public function toInt(alpha:int = 0xff):uint {
+        return HSV.toInt(H,S,V,alpha);
     }
 
-    public function copy(model:HSV):HSV {
-        return setTo(model.h,model.s,model.v);
-    }
-
-    public function getCopy(output:HSV = null):HSV {
-        if(output == null) return new HSV(h,s,v);
-        return output.setTo(h,s,v);
+    public function get copy():HSV {
+        return new HSV(H,S,V);
     }
 
     public function toString():String {
-        return "(H:"+h+", S:"+s+", V:"+v+")";
+        return toStringArgs(TO_STRING, [H,S,V]);
     }
 
-    /** Static **/
-    public static function fromRGB(red:int, green:int, blue:int):HSV {
-        var hsv:HSV = new HSV();
-        var r:Number = red / 0xff, g:Number = green / 0xff, b:Number = blue / 0xff;
-        var max:Number = Math.max(r,g,b), min:Number = Math.min(r,g,b);
-        var d:Number = max - min;
-
-        hsv.v = max;
-
-        if(d == 0) {
-            hsv.h = 0;
-            hsv.s = 0;
-            return hsv;
-        }
-
-        hsv.s = d / max;
-
-        if(max == r)
-            hsv.h = 60 * (((g - b) / d) % 6);
-        else if(max == g)
-            hsv.h = 60 * (((b - r) / d) + 2);
-        else
-            hsv.h = 60 * (((r - g) / d) + 4);
-
-        return hsv;
+    //==================================
+    //  Static
+    //==================================
+    public static function getH(r:Number, g:Number, b:Number):Number {
+        var M:Number = Math.max(r,g,b), m:Number = Math.min(r,g,b), c:Number = M - m;
+        if(c == 0)      return 0;
+        else if(M == r) return 60 * (((g - b) / c) % 6);
+        else if(M == g) return 60 * (((b - r) / c) + 2);
+        else            return 60 * (((r - g) / c) + 4);
+    }
+    public static function getS(r:Number, g:Number, b:Number):Number {
+        var M:Number = Math.max(r,g,b), m:Number = Math.min(r,g,b), c:Number = M - m;
+        return (c == 0)? 0 : c / M;
+    }
+    public static function getV(r:Number, g:Number, b:Number):Number {
+        return Math.max(r,g,b);
     }
 
-    public static function toRGB(h:Number, s:Number, v:Number , alpha:int = 0xff):uint {
+    public static function setH(r:Number, g:Number, b:Number, v:Number, alpha:uint = 0xff):int { return toInt(clamp(v,0,360), getS(r,g,b)   , getV(r,g,b)   , alpha); }
+    public static function setS(r:Number, g:Number, b:Number, v:Number, alpha:uint = 0xff):int { return toInt(getH(r,g,b)   , clamp(v,0,1)  , getV(r,g,b)   , alpha); }
+    public static function setV(r:Number, g:Number, b:Number, v:Number, alpha:uint = 0xff):int { return toInt(getH(r,g,b)   , getS(r,g,b)   , clamp(v,0,1)  , alpha); }
+
+    public static function fromRGB(color:uint):HSV {
+        return new HSV().fromInt(color);
+    }
+
+    public static function toInt(h:Number, s:Number, v:Number , alpha:int = 0xff):uint {
         var C:Number = v * s;
-        var X:Number = C * (1 - Math.abs(((h/60)%2)) - 1);
+        var X:Number = C * (1 - Math.abs((h/60)%2 - 1));
         var m:Number = v - C;
-        var r:Number, g:Number, b:Number;
+        var r:Number = 0, g:Number = 0, b:Number = 0;
         var hh:int = h / 60;
         if(hh == 0)  { r = C; g = X; b = 0; } else
         if(hh == 1)  { r = X; g = C; b = 0; } else
@@ -125,8 +125,7 @@ public class HSV {
         if(hh == 3)  { r = 0; g = X; b = C; } else
         if(hh == 4)  { r = X; g = 0; b = C; } else
         { r = C; g = 0; b = X; }
-        return alpha << 24 | (0xff*(r+m)) << 16 | (0xff*(g+m)) << 8 | (0xff*(b+m));
+        return (alpha << 24) | (0xff*(r+m)) << 16 | (0xff*(g+m)) << 8 | (0xff*(b+m));
     }
-
 }
 }

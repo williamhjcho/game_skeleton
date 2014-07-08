@@ -12,6 +12,7 @@ package utils.commands {
  * @return value in radians
  */
 public function toRad(deg:Number):Number {
-    return Math.PI * deg / 180;
+    const p:Number = Math.PI / 180;
+    return p * deg;
 }
 }

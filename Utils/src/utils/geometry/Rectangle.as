@@ -6,59 +6,58 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils.geometry {
+import utils.commands.toStringArgs;
+
 public class Rectangle {
 
-    public var xMin:Number;
-    public var xMax:Number;
-    public var yMin:Number;
-    public var yMax:Number;
+    public var x1:Number, y1:Number;
+    public var x2:Number, y2:Number;
 
-    public function Rectangle(xMin:Number = 0,xMax:Number = 0,yMin:Number = 0,yMax:Number = 0) {
-        this.xMin = Math.min(xMin, xMax);
-        this.xMax = Math.max(xMin, xMax);
-        this.yMin = Math.min(yMin, yMax);
-        this.yMax = Math.max(yMin, yMax);
+    public function Rectangle(x1:Number = 0, y1:Number = 0, x2:Number = 0, y2:Number = 0) {
+        this.x1 = x1; this.y1 = y1;
+        this.x2 = x2; this.y2 = y2;
     }
 
-    public function get centerX():Number { return (xMax + xMin)/2; }
-    public function get centerY():Number { return (yMax + yMin)/2; }
+    public function get centerX():Number { return (x1 + x2) / 2; }
+    public function get centerY():Number { return (y1 + y2) / 2; }
+
     public function setCenter(x:Number,y:Number):Rectangle {
         var cx:Number = centerX;
         var cy:Number = centerY;
-        return setTo(x - (cx - xMin) , x + (xMax - cx), y - (cy - yMin), y + (yMax - cy));
+        return setTo(x - (cx - x1) , x + (x2 - cx), y - (cy - y1), y + (y2 - cy));
     }
 
     public function scale(factor:Number):Rectangle {
         var cx:Number = centerX;
         var cy:Number = centerY;
-        return setTo(cx - factor*(cx - xMin), cx + factor*(xMax - cx), cy - factor*(cy - yMin), cy + factor*(yMax - cy));
+        return setTo(cx - factor*(cx - x1), cx + factor*(x2 - cx), cy - factor*(cy - y1), cy + factor*(y2 - cy));
     }
 
     public function get area()              :Number { return width * height; }
 
-    public function get width()             :Number { return xMax - xMin; }
-    public function set width(val:Number)   :void   { xMax = val - xMin;  }
+    public function get width()             :Number { return Math.abs(x2 - x1); }
+    public function set width(val:Number)   :void   { x2 = val - x1;  }
 
-    public function get height()            :Number { return yMax - yMin; }
-    public function set height(val:Number)  :void   { yMax = val - yMin;  }
+    public function get height()            :Number { return Math.abs(y2 - y1); }
+    public function set height(val:Number)  :void   { y2 = val - y1;  }
 
-    public function setTo(xMin:Number, xMax:Number, yMin:Number, yMax:Number):Rectangle {
-        this.xMin = Math.min(xMin, xMax);
-        this.xMax = Math.max(xMin, xMax);
-        this.yMin = Math.min(yMin, yMax);
-        this.yMax = Math.max(yMin, yMax);
+    public function setTo(x1:Number = 0, y1:Number = 0, x2:Number = 0, y2:Number = 0):Rectangle {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
         return this;
     }
 
-    public function addBy(scalar:Number)        :Rectangle {   return setTo(xMin+scalar,xMax+scalar,yMin+scalar,yMax+scalar);    }
-    public function subtractBy(scalar:Number)   :Rectangle {   return setTo(xMin-scalar,xMax-scalar,yMin-scalar,yMax-scalar);    }
-    public function multiplyBy(scalar:Number)   :Rectangle {   return setTo(xMin*scalar,xMax*scalar,yMin*scalar,yMax*scalar);    }
-    public function divideBy(scalar:Number)     :Rectangle {   return setTo(xMin/scalar,xMax/scalar,yMin/scalar,yMax/scalar);    }
+    public function addBy(scalar:Number)        :Rectangle {   return setTo(x1 + scalar,x2 + scalar,y1 + scalar,y2 + scalar);    }
+    public function subtractBy(scalar:Number)   :Rectangle {   return setTo(x1 - scalar,x2 - scalar,y1 - scalar,y2 - scalar);    }
+    public function multiplyBy(scalar:Number)   :Rectangle {   return setTo(x1 * scalar,x2 * scalar,y1 * scalar,y2 * scalar);    }
+    public function divideBy(scalar:Number)     :Rectangle {   return setTo(x1 / scalar,x2 / scalar,y1 / scalar,y2 / scalar);    }
     public function setToZero()                 :Rectangle {   return setTo(0,0,0,0);    }
 
 
     public function toString():String {
-        return "(xMin:" + xMin + ", xMax:" + xMax + ", yMin:" + yMin + ", yMax:" + yMax + ")";
+        return toStringArgs("(x1:{0}, y1:{1}, x2:{2}, y2:{3})", [x1,y1,x2,y2]);
     }
 
 }

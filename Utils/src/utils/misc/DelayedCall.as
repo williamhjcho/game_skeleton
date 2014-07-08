@@ -11,8 +11,7 @@ import utils.utils_namespace;
 
 public class DelayedCall extends SignalDispatcher implements IUpdatable {
 
-    private var _time:uint;
-    private var _totalTime:uint;
+    private var time:TimeKeeper = new TimeKeeper();
     private var _callback:Function;
     private var _params:Array;
 
@@ -22,16 +21,15 @@ public class DelayedCall extends SignalDispatcher implements IUpdatable {
     }
 
     public function reset(callback:Function, delay:uint, params:Array = null):void {
-        _time = 0;
-        _totalTime = delay;
+        time.reset(delay);
         _callback = callback;
         _params = params;
     }
 
 
     public function update(dt:uint):void {
-        _time += dt;
-        if(_time >= _totalTime) {
+        time.update(dt);
+        if(time.isFinished) {
             var f:Function = _callback, p:Array = _params;
             _callback = null;
             _params = null;
@@ -40,9 +38,8 @@ public class DelayedCall extends SignalDispatcher implements IUpdatable {
         }
     }
 
-    public function get isComplete():Boolean {
-        return _time >= _totalTime;
-    }
+    public function get isComplete():Boolean { return time.isFinished; }
+    public function get progress():Number { return time.progress; }
 
 
     //==================================

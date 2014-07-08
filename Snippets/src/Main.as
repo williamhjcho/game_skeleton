@@ -11,6 +11,9 @@ import com.demonsters.debugger.MonsterDebugger;
 import flash.display.MovieClip;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
+import flash.geom.Rectangle;
+
+import utils.color.RGBA;
 
 [SWF(width=800, height=600, backgroundColor=0x808080, frameRate=30)]
 public class Main extends MovieClip {
@@ -32,7 +35,6 @@ public class Main extends MovieClip {
         stage.align = StageAlign.TOP_LEFT;
 
         MonsterDebugger.initialize(this);
-
 
     }
 

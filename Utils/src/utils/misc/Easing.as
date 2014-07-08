@@ -15,11 +15,16 @@ package utils.misc {
  */
 public final class Easing {
 
+    //==================================
+    //  Linear
+    //==================================
     public static function linear(t:Number, b:Number, c:Number, d:Number):Number {
         return c * t / d + b;
     }
 
-    //Quadratic
+    //==================================
+    //  Quadratic
+    //==================================
     public static function quadIn(t:Number, b:Number, c:Number, d:Number):Number {
         t /= d;
         return c * t * t + b;
@@ -37,7 +42,9 @@ public final class Easing {
         return -c/2 * (t*(t-2) - 1) + b;
     }
 
-    //Cubic
+    //==================================
+    //  Cubic
+    //==================================
     public static function cubicIn(t:Number, b:Number, c:Number, d:Number):Number {
         t /= d;
         return c*t*t*t + b;
@@ -56,7 +63,9 @@ public final class Easing {
         return c/2*(t*t*t + 2) + b;
     }
 
-    //Quartic
+    //==================================
+    //  Quartic
+    //==================================
     public static function quartIn(t:Number, b:Number, c:Number, d:Number):Number {
         t /= d;
         return c*t*t*t*t + b;
@@ -75,7 +84,9 @@ public final class Easing {
         return -c/2 * (t*t*t*t - 2) + b;
     }
 
-    //Quintic
+    //==================================
+    //  Quintic
+    //==================================
     public static function quintIn(t:Number, b:Number, c:Number, d:Number):Number {
         t /= d;
         return c*t*t*t*t*t + b;
@@ -94,7 +105,9 @@ public final class Easing {
         return c/2*(t*t*t*t*t + 2) + b;
     }
 
-    //Sinusoidal
+    //==================================
+    //  Sinusoidal
+    //==================================
     public static function sineIn(t:Number, b:Number, c:Number, d:Number):Number {
         return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
     }
@@ -107,7 +120,9 @@ public final class Easing {
         return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
     }
 
-    //Exponential
+    //==================================
+    //  Exponential
+    //==================================
     public static function expIn(t:Number, b:Number, c:Number, d:Number):Number {
         return c * Math.pow( 2, 10 * (t/d - 1) ) + b;
     }
@@ -123,7 +138,9 @@ public final class Easing {
         return c/2 * ( -Math.pow( 2, -10 * t) + 2 ) + b;
     }
 
-    //Circular
+    //==================================
+    //  Circular
+    //==================================
     public static function circularIn(t:Number, b:Number, c:Number, d:Number):Number {
         t /= d;
         return -c * (Math.sqrt(1 - t*t) - 1) + b;

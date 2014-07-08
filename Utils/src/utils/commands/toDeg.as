@@ -12,6 +12,7 @@ package utils.commands {
  * @return value in degrees
  */
 public function toDeg(rad:Number):Number {
-    return 180 * rad / Math.PI;
+    const p:Number = 180 / Math.PI;
+    return p * rad;
 }
 }

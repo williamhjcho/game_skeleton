@@ -17,7 +17,5 @@ public class Variables {
     public var volumeBackground :Number = 1.0;
     public var volumeAmbient    :Number = 1.0;
 
-    public var sound_time_fade:Number = 1.0;
-
 }
 }
