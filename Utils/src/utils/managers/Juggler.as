@@ -4,8 +4,8 @@
 package utils.managers {
 
 import utils.base.interfaces.IUpdatable;
-import utils.events.Signal;
-import utils.events.SignalDispatcher;
+import utils.event.Signal;
+import utils.event.SignalDispatcher;
 import utils.misc.DelayedCall;
 import utils.utils_namespace;
 

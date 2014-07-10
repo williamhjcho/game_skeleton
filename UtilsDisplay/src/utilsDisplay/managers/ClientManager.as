@@ -18,7 +18,7 @@ import flash.events.KeyboardEvent;
 import utils.managers.EnvironmentManager;
 
 import utilsDisplay.UtilsDisplay;
-import utilsDisplay.managers.buttons.ButtonManager;
+import utilsDisplay.managers.ButtonManager;
 
 public class ClientManager {
     private static var stage:Stage;

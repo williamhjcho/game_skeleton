@@ -18,7 +18,7 @@ import game.controller.state.StateGame;
 import game.controller.state.StateSplash;
 import game.game_internal;
 
-import utils.events.StateMachineEvent;
+import utils.event.StateMachineEvent;
 import utils.managers.sounds.SoundManager;
 import utils.managers.state.StateMachine;
 

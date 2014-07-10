@@ -16,7 +16,7 @@ import com.greensock.loading.core.LoaderCore;
 import flash.utils.Dictionary;
 
 import utils.commands.clamp;
-import utils.events.SignalDispatcher;
+import utils.event.SignalDispatcher;
 
 /**
  * This class loads assets in order (not optimal for multi-threading)
@@ -49,7 +49,7 @@ public class LoaderManager {
     });
 
     /**
-     * Dispatches the events from the main queue for external listeners
+     * Dispatches the event from the main queue for external listeners
      * The event names are from LoaderEvent
      */
     public static var dispatcher:SignalDispatcher = new SignalDispatcher(null);

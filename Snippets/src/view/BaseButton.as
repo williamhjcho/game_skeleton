@@ -1,14 +1,16 @@
 /**
- * Created by William on 2/20/14.
+ * Created by William on 7/10/2014.
  */
-package game.view.base {
-import game.constants.Frame;
+package view {
+import constant.Frame;
+
+import flash.display.MovieClip;
 
 import utils.commands.execute;
 
 import utilsDisplay.managers.ButtonManager;
 
-public class BaseButton extends BaseMovieClip {
+public class BaseButton extends MovieClip {
 
     private var _instanced:Array;
 
@@ -66,7 +68,7 @@ public class BaseButton extends BaseMovieClip {
     public function set up      (f:Function):void { this._up      = f; }
     public function set remove  (f:Function):void { this._remove  = f; }
 
-    override public function destroy():void {
+    public function destroy():void {
         super.destroy();
         _click  = null;
         _over   = null;
@@ -88,7 +90,6 @@ public class BaseButton extends BaseMovieClip {
     protected function onRemove (btn:BaseButton):void { super.gotoAndPlay(Frame.NORMAL);    /*SoundPlayer.playTableElement(GameData.sounds.base_button, SoundLinkID.REMOVE );*/ execute(_remove, _instanced);   }
     protected function onEnable (btn:BaseButton):void { super.gotoAndPlay(Frame.NORMAL);    /*SoundPlayer.playTableElement(GameData.sounds.base_button, SoundLinkID.ENABLE );*/                                 }
     protected function onDisable(btn:BaseButton):void { super.gotoAndPlay(Frame.DISABLED);  /*SoundPlayer.playTableElement(GameData.sounds.base_button, SoundLinkID.DISABLE);*/                                 }
-
 
 }
 }

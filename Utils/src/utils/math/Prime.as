@@ -11,17 +11,19 @@ public final class Prime {
     //==================================
     //  Static
     //==================================
-    private static var primes:Vector.<uint> = new <uint>[2,3,5];
+    private static var primes:Vector.<uint> = new <uint>[2,3,5,7];
 
     public static function isPrime(n:uint):Boolean {
         if(n < 2) return false;
 
+        //checking if is divisible by any previously known prime
         for each (var p:uint in primes) {
             if(p == n || p * p > n) return true;
             if(n % p == 0) return false;
         }
 
-        //primes can only be odd(except 2)
+        //finding new primes
+        //primes can only be odd(except for 2)
         for (var i:uint = primes[primes.length-1] + 2; i * i <= n; i+=2) {
             if(n % i == 0) return false;
         }
@@ -40,12 +42,17 @@ public final class Prime {
     }
 
     //ex: n = 63 -> returns [3,3,7]
-    public static function factors(n:int):Vector.<uint> {
+    public static function factors(n:uint):Vector.<uint> {
+        if(n == 0 || n == 1) return new <uint>[1];
         var factors:Vector.<uint> = new Vector.<uint>();
-        for (var i:int = 2; i <= n; i++) {
-            while(n % i == 0) {
-                factors.push(i);
-                n /= i;
+
+        //finding from known primes
+        var prime:uint, i:int = 0;
+        while(n > 1) {
+            prime = get(i++);
+            while(n % prime == 0) {
+                factors.push(prime);
+                n /= prime;
             }
         }
         return factors;

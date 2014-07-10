@@ -5,8 +5,8 @@ package utils.misc {
 
 import utils.base.interfaces.IUpdatable;
 import utils.commands.execute;
-import utils.events.Signal;
-import utils.events.SignalDispatcher;
+import utils.event.Signal;
+import utils.event.SignalDispatcher;
 import utils.utils_namespace;
 
 public class DelayedCall extends SignalDispatcher implements IUpdatable {

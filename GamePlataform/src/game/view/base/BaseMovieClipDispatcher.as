@@ -2,7 +2,7 @@
  * Created by William on 4/24/2014.
  */
 package game.view.base {
-import utils.events.SignalDispatcher;
+import utils.event.SignalDispatcher;
 
 public class BaseMovieClipDispatcher extends BaseMovieClip {
 

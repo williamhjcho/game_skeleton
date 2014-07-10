@@ -9,7 +9,7 @@ package utils.managers.state {
 import flash.events.EventDispatcher;
 import flash.utils.Dictionary;
 
-import utils.events.StateMachineEvent;
+import utils.event.StateMachineEvent;
 
 /**
  * Simple State Machine

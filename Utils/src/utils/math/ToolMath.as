@@ -104,18 +104,17 @@ public final class ToolMath {
     //==================================
     //  Rounding
     //==================================
-    public static function round(num:Number, precision:int = 1):Number {
+    public static function round(n:Number, precision:int = 1):Number {
         var pow:Number = Math.pow(10, precision);
-        return Math.round(num * pow) / pow;
+        return Math.round(n * pow) / pow;
     }
 
-    public static function roundMult(num:Number, mult:int):Number {
+    public static function roundMult(n:Number, mult:int):Number {
         //example: num = 41, mult = 3  --> 42
         //         num = 55, mult = 10 --> 60
-        var div:Number = num % mult;
-        if (div >= mult / 2)    num += mult - div;
-        else                    num -= div;
-        return num;
+        var div:Number = n % mult;
+        if (div >= mult / 2) return n + mult - div;
+        else                 return n - div;
     }
 
     public static function floorMult(n:Number, mult:int):Number {
@@ -126,9 +125,9 @@ public final class ToolMath {
         return n + mult - (n % mult);
     }
 
-    public static function clamp(a:Number, min:Number, max:Number):Number {
+    public static function clamp(n:Number, min:Number, max:Number):Number {
         //returns a number between [min,max], included
-        return (a < min)? min : (a > max)? max : a;
+        return (n < min)? min : (n > max)? max : n;
     }
 
     //==================================

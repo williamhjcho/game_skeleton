@@ -113,10 +113,6 @@ public class RGBA {
         return new RGBA(R,G,B,A);
     }
 
-    public function get color():uint {
-        return (A << 24) | (R << 16) | (G << 8) | (B);
-    }
-
     public function toString():String {
         return toStringArgs(TO_STRING, [R,G,B,A]);
     }

@@ -113,6 +113,11 @@ public dynamic class ArrayEx extends Array {
         return currentValue;
     }
 
+    public function random():* {
+        var l:int = super.length;
+        return (l == 0)? null : this[int(Math.random() * l)];
+    }
+
     public function copy():ArrayEx {
         var c:ArrayEx = new ArrayEx();
         var len:int = super.length;

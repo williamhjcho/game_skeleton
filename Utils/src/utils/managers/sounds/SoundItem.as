@@ -14,7 +14,7 @@ import flash.media.SoundTransform;
 import flash.utils.Dictionary;
 
 import utils.commands.clamp;
-import utils.events.SoundEvent;
+import utils.event.SoundEvent;
 import utils.managers.Pool;
 
 public class SoundItem extends EventDispatcher {
