@@ -2,17 +2,15 @@
  * Created by William on 1/10/14.
  */
 package utils.math {
+/**
+ * Class to calculate the mean/average of a list of numbers
+ */
 public final class Mean {
 
     private var _numbers:Vector.<Number> = new Vector.<Number>();
 
     public function Mean(numbers:Vector.<Number>) {
         this._numbers = numbers;
-    }
-
-    public function add(...numbers):void {
-        for each (var n:Number in numbers)
-            _numbers.push(n);
     }
 
     public function push(numbers:*):void {
@@ -26,6 +24,9 @@ public final class Mean {
     public function rootSquare  ():Number { return Mean.rootSquare(_numbers); }
 
 
+    //==================================
+    //  Static
+    //==================================
     public static function arithmetic(numbers:*):Number {
         var sum:Number = 0;
         for each (var n:Number in numbers) { sum += n; }

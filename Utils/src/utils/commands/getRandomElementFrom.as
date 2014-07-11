@@ -8,8 +8,7 @@ package utils.commands {
  * @return random element
  */
 public function getRandomElementFrom(arr:Object, splice:Boolean = false):* {
-    if(arr.length == 0) return null;
-    var index:int = Math.round(Math.random() * (arr.length - 1));
+    var index:int = Math.random() * arr.length;
     if(splice)  return arr.splice(index, 1)[0];
     else        return arr[index];
 }

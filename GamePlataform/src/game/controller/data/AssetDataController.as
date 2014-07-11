@@ -11,8 +11,8 @@ import flash.text.StyleSheet;
 import game.constants.AssetType;
 
 import utils.managers.LoaderManager;
-import utils.managers.serializer.SerializerManager;
-import utils.managers.sounds.SoundManager;
+import utils.serializer.SerializerManager;
+import utils.sound.SoundManager;
 
 /**
  * This class contains methods for data analysis, processing and/or attribution

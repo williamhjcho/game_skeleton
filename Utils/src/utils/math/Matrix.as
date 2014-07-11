@@ -13,12 +13,12 @@ import utils.string.ToolString;
 
 public class Matrix {
 
-    private var _columns:int, _rows:int;
+    private var c:int, r:int;
     protected var data:Vector.<Vector.<Number>>;
 
     public function Matrix(rows:int, columns:int) {
-        this._rows = rows;
-        this._columns = columns;
+        this.r = rows;
+        this.c = columns;
 
         data = new Vector.<Vector.<Number>>();
         data.length = rows;
@@ -32,9 +32,9 @@ public class Matrix {
 
     public function setAs(value:*):void {
         //value can be Array or Vector.<Vector.<Number>>
-        var minRow:int = Math.min(_rows, value.length);
+        var minRow:int = Math.min(r, value.length);
         for (var i:int = 0; i < minRow; i++) {
-            var minCol:int = Math.min(_columns, value[i].length);
+            var minCol:int = Math.min(c, value[i].length);
             for (var j:int = 0; j < minCol; j++) {
                 data[i][j] = value[i][j];
             }
@@ -44,43 +44,43 @@ public class Matrix {
     //==================================
     //  Checking / Comparing
     //==================================
-    public function get isSquare    ()          :Boolean { return (_rows == _columns); }
-    public function isCompatible    (m:Matrix) :Boolean { return (_columns == m._columns && _rows == m._rows); }
-    public function isMultipliable  (m:Matrix) :Boolean { return (m._columns == _rows); }
+    public function get isSquare    ()          :Boolean { return (r == c); }
+    public function isCompatible    (m:Matrix) :Boolean { return (c == m.c && r == m.r); }
+    public function isMultipliable  (m:Matrix) :Boolean { return (m.c == r); }
 
-    public function isLeftMultipliable(m:Matrix):Boolean  { return (m._columns == _rows);  }
-    public function isRightMultipliable(m:Matrix):Boolean { return (_columns == m._rows);  }
-    public function hasSameDimensions(m:Matrix):Boolean { return (_rows == m._rows && _columns == m._columns);    }
+    public function isLeftMultipliable(m:Matrix):Boolean  { return (m.c == r);  }
+    public function isRightMultipliable(m:Matrix):Boolean { return (c == m.r);  }
+    public function hasSameDimensions(m:Matrix):Boolean { return (r == m.r && c == m.c);    }
 
     public function isTriangularUpper():Boolean {
-        for (var j:int = 0; j < _columns - 1; j++)
-            for (var i:int = j + 1; i < _rows; i++)
+        for (var j:int = 0; j < c - 1; j++)
+            for (var i:int = j + 1; i < r; i++)
                 if(data[i][j] != 0) return false;
         return true;
     }
 
     public function isTriangularLower():Boolean {
-        for (var i:int = 0; i < _rows - 1; i++)
-            for (var j:int = i + 1; j < _columns; j++)
+        for (var i:int = 0; i < r - 1; i++)
+            for (var j:int = i + 1; j < c; j++)
                 if(data[i][j] != 0) return false;
         return true;
     }
 
     public function isZero():Boolean {
-        for (var i:int = 0; i < _rows; i++)
-            for (var j:int = 0; j < _columns; j++)
+        for (var i:int = 0; i < r; i++)
+            for (var j:int = 0; j < c; j++)
                 if(data[i][j] != 0) return false;
         return true;
     }
 
     public function isDiagonal():Boolean {
         var i:int, j:int;
-        for (i = 0; i < _rows; i++) {
+        for (i = 0; i < r; i++) {
             for (j = 0; j < i; j++) {
                 if(data[i][j] != 0) return false;
             }
             if(data[i][i] == 0) return false;
-            for (j = i + 1; j < _columns; j++) {
+            for (j = i + 1; j < c; j++) {
                 if(data[i][j] != 0) return false;
             }
         }
@@ -90,8 +90,8 @@ public class Matrix {
     public function equals(m:Matrix):Boolean {
         if(!hasSameDimensions(m)) return false;
 
-        for (var i:int = 0; i < _rows; i++) {
-            for (var j:int = 0; j < _columns; j++) {
+        for (var i:int = 0; i < r; i++) {
+            for (var j:int = 0; j < c; j++) {
                 if(data[i][j] != m.data[i][j]) return false;
             }
         }
@@ -103,19 +103,19 @@ public class Matrix {
     //  Transformations
     //==================================
     public function identity():Matrix {
-        for (var i:int = 0; i < _rows; i++) {
+        for (var i:int = 0; i < r; i++) {
             for (var j:int = 0; j < i; j++)
                 data[i][j] = 0;
             data[i][i] = 1;
-            for (j = i + 1; j < _columns; j++)
+            for (j = i + 1; j < c; j++)
                 data[i][j] = 0;
         }
         return this;
     }
 
     public function zero():Matrix {
-        for (var i:int = 0; i < _rows; i++) {
-            for (var j:int = 0; j < _columns; j++) {
+        for (var i:int = 0; i < r; i++) {
+            for (var j:int = 0; j < c; j++) {
                 data[i][j] = 0;
             }
         }
@@ -123,8 +123,8 @@ public class Matrix {
     }
 
     public function transpose():Matrix {
-        for (var i:int = 0; i < this._rows; i++)
-            for (var j:int = i + 1; j < this._columns; j++)
+        for (var i:int = 0; i < this.r; i++)
+            for (var j:int = i + 1; j < this.c; j++)
                 swap(i,j,j,i);
         return this;
     }
@@ -132,9 +132,9 @@ public class Matrix {
     public function rotateClockWise():Matrix {
         if(!isSquare) throw new IllegalOperationError("Must be square matrix.");
 
-        var r:int = _rows - 1, c:int = _columns - 1, temp:*;
-        for (var i:int = 0; i < _rows / 2; i++) {
-            for (var j:int = i; j < _columns - i - 1; j++) {
+        var r:int = r - 1, c:int = c - 1, temp:*;
+        for (var i:int = 0; i < r / 2; i++) {
+            for (var j:int = i; j < c - i - 1; j++) {
                 temp = data[i][j];
                 data[i][j] = data[r-j][i];
                 data[r-j][i] = data[r-i][c-j];
@@ -148,10 +148,10 @@ public class Matrix {
     public function rotateCounterClockWise():Matrix {
         if(!isSquare) throw new IllegalOperationError("Must be square matrix.");
 
-        var r:int = _rows - 1, c:int = _columns - 1, temp:*;
+        var r:int = r - 1, c:int = c - 1, temp:*;
 
-        for (var i:int = 0; i < _rows/2; i++) {
-            for (var j:int = i; j < _columns - i - 1; j++) {
+        for (var i:int = 0; i < r/2; i++) {
+            for (var j:int = i; j < c - i - 1; j++) {
                 temp = data[i][j];
                 data[i][j] = data[j][c-i];
                 data[j][c-i] = data[r-i][c-j];
@@ -167,17 +167,17 @@ public class Matrix {
     //==================================
     //  Get / Set / Copy
     //==================================
-    public function get rows()      :int { return this._rows; }
-    public function get columns()   :int { return this._columns; }
-    public function get size()      :int { return _rows*_columns;   }
+    public function get rows()      :int { return this.r; }
+    public function get columns()   :int { return this.c; }
+    public function get size()      :int { return r*c;   }
 
     public function getAt(r:int, c:int)           :Number { return data[r][c]; }
     public function setAt(r:int, c:int, v:Number) :void   { data[r][c] = v;    }
 
     public function getCopy():Matrix {
-        var copy:Matrix = new Matrix(_rows,_columns);
-        for (var i:int = 0; i < _rows; i++) {
-            for (var j:int = 0; j < _columns; j++) {
+        var copy:Matrix = new Matrix(r,c);
+        for (var i:int = 0; i < r; i++) {
+            for (var j:int = 0; j < c; j++) {
                 copy.data[i][j] = data[i][j];
             }
         }
@@ -185,12 +185,12 @@ public class Matrix {
     }
 
     public function copy(m:Matrix, copyCoordinates:Rectangle = null, applyI:uint = 0, applyJ:uint = 0):void {
-        if(copyCoordinates == null) copyCoordinates = new Rectangle(0,0, m._columns, m._rows);
+        if(copyCoordinates == null) copyCoordinates = new Rectangle(0,0, m.c, m.r);
 
-        var minI:int = Math.min(copyCoordinates.y + copyCoordinates.height, _rows);
-        var minJ:int = Math.min(copyCoordinates.x + copyCoordinates.width , _columns);
-        for (var i:int = copyCoordinates.y, ii:int = applyJ; i < m._rows && ii < minI; i++, ii++) {
-            for (var j:int = copyCoordinates.x, jj:int = applyI; j < m._columns && jj < minJ; j++, jj++) {
+        var minI:int = Math.min(copyCoordinates.y + copyCoordinates.height, r);
+        var minJ:int = Math.min(copyCoordinates.x + copyCoordinates.width , c);
+        for (var i:int = copyCoordinates.y, ii:int = applyJ; i < m.r && ii < minI; i++, ii++) {
+            for (var j:int = copyCoordinates.x, jj:int = applyI; j < m.c && jj < minJ; j++, jj++) {
                 this.data[ii][jj] = m.data[i][j];
             }
         }
@@ -201,7 +201,7 @@ public class Matrix {
     //  Operations
     //==================================
     public function add(m:Matrix):Matrix {
-        var minR:int = Math.min(_rows, m._rows), minC:int = Math.min(_columns, m._columns);
+        var minR:int = Math.min(r, m.r), minC:int = Math.min(c, m.c);
         for (var i:int = 0; i < minR; i++) {
             for (var j:int = 0; j < minC; j++) {
                 data[i][j] += m.data[i][j];
@@ -211,7 +211,7 @@ public class Matrix {
     }
 
     public function subtract(m:Matrix):Matrix {
-        var minR:int = Math.min(_rows, m._rows), minC:int = Math.min(_columns, m._columns);
+        var minR:int = Math.min(r, m.r), minC:int = Math.min(c, m.c);
         for (var i:int = 0; i < minR; i++) {
             for (var j:int = 0; j < minC; j++) {
                 data[i][j] -= m.data[i][j];
@@ -223,12 +223,12 @@ public class Matrix {
     public function multiplyLeft(m:Matrix):Matrix {
         if(!isLeftMultipliable(m)) return null;
 
-        var result:Matrix = new Matrix(m._rows, this._columns);
+        var result:Matrix = new Matrix(m.r, this.c);
 
-        for (var i:int = 0; i < result._rows; i++) {
-            for (var j:int = 0; j < result._columns; j++) {
+        for (var i:int = 0; i < result.r; i++) {
+            for (var j:int = 0; j < result.c; j++) {
                 result.data[i][j] = 0;
-                for (var k:int = 0; k < m._columns; k++) {
+                for (var k:int = 0; k < m.c; k++) {
                     result.data[i][j] += m.data[i][k] * this.data[k][j];
                 }
             }
@@ -239,11 +239,11 @@ public class Matrix {
     public function multiplyRight(m:Matrix):Matrix {
         if(!isRightMultipliable(m)) return null;
 
-        var result:Matrix = new Matrix(this._rows, m._columns);
-        for (var i:int = 0; i < this._rows; i++) {
-            for (var j:int = 0; j < m._columns; j++) {
+        var result:Matrix = new Matrix(this.r, m.c);
+        for (var i:int = 0; i < this.r; i++) {
+            for (var j:int = 0; j < m.c; j++) {
                 result.data[i][j] = 0;
-                for (var k:int = 0; k < this._columns; k++) {
+                for (var k:int = 0; k < this.c; k++) {
                     result.data[i][j] += this.data[i][k] * m.data[k][j];
                 }
             }
@@ -252,8 +252,8 @@ public class Matrix {
     }
 
     public function multiplyBy(c:Number):Matrix {
-        for (var i:int = 0; i < _rows; i++) {
-            for (var j:int = 0; j < _columns; j++) {
+        for (var i:int = 0; i < r; i++) {
+            for (var j:int = 0; j < c; j++) {
                 data[i][j] *= c;
             }
         }
@@ -262,9 +262,9 @@ public class Matrix {
 
     public function reduce():Matrix {
         var i:int, j:int, k:int;
-        for (i = 0; i < _rows; i++) {
+        for (i = 0; i < r; i++) {
             //finding first non-zero row (in column col)
-            for (k = i; k < _rows; k++) {
+            for (k = i; k < r; k++) {
                 if(data[k][i] != 0)
                     break;
             }
@@ -273,14 +273,14 @@ public class Matrix {
 
             //divide whole row for the first element so the first column will be 1
             if(data[i][i] != 1) {
-                for (j = i + 1; j < _columns; j++) {
+                for (j = i + 1; j < c; j++) {
                     data[i][j] /= data[i][i];
                 }
                 data[i][i] = 1; //make it 1 AFTER the operation
             }
 
-            for (k = i + 1; k < _rows; k++) {
-                for (j = i + 1; j < _columns; j++) {
+            for (k = i + 1; k < r; k++) {
+                for (j = i + 1; j < c; j++) {
                     data[k][j] -= data[i][j] * data[k][i];
                 }
                 data[k][i] = 0;
@@ -302,7 +302,7 @@ public class Matrix {
         var sum:Number;
         L.setPrimaryDiagonalAs(1);
 
-        for (r = 0; r < _rows; r++) {
+        for (r = 0; r < r; r++) {
             for (c = 0; c < r ; c++) {
                 sum = 0;
                 for (k = 0; k < r; k++) {
@@ -311,7 +311,7 @@ public class Matrix {
                 L.data[r][c] = (this.data[r][c] - sum) / U.data[c][c];
             }
 
-            for (c = r; c < _columns; c++) {
+            for (c = r; c < c; c++) {
                 sum = 0;
                 for (k = 0; k < r; k++) {
                     sum += L.data[r][k] * U.data[k][c];
@@ -328,7 +328,7 @@ public class Matrix {
     // det(A - LI) = 0 --> At least 1 value on the main diagonal is 0
     public function eigenValues():Array {
         var values:Array = [];
-        for (var ij:int = 0; ij < Math.min(_rows, _columns); ij++) {
+        for (var ij:int = 0; ij < Math.min(r, c); ij++) {
             var add:Boolean = true;
             for (var k:int = 0; k < values.length; k++) {
                 if(values[k] == data[ij][ij]) {
@@ -347,35 +347,35 @@ public class Matrix {
     //==================================
     public function getRow(r:int, output:Vector.<Number> = null):Vector.<Number> {
         if(output == null) output = new Vector.<Number>();
-        for (var c:int = 0; c < _columns; c++) { output[c] = data[r][c]; }
+        for (var c:int = 0; c < c; c++) { output[c] = data[r][c]; }
         return output;
     }
 
     public function getColumn(c:int, output:Vector.<Number> = null):Vector.<Number> {
         if(output == null) output = new Vector.<Number>;
-        for (var r:int = 0; r < _rows; r++) { output[r] = data[r][c]; }
+        for (var r:int = 0; r < r; r++) { output[r] = data[r][c]; }
         return output;
     }
 
     public function setRow(r:int, model:Array):Matrix {
-        var min:int = Math.min(model.length, _columns);
+        var min:int = Math.min(model.length, c);
         for (var c:int = 0; c < min; c++) { data[r][c] = model[c]; }
         return this;
     }
 
     public function setColumn(c:int, model:Array):Matrix {
-        var min:int = Math.min(model.length, _rows);
+        var min:int = Math.min(model.length, r);
         for (var r:int = 0; r < min; r++) { data[r][c] = model[r]; }
         return this;
     }
 
     public function setRowAs(r:int, model:Number):Matrix {
-        for (var c:int = 0; c < _columns; c++) { data[r][c] = model; }
+        for (var c:int = 0; c < c; c++) { data[r][c] = model; }
         return this;
     }
 
     public function setColumnAs(c:int, model:Number):Matrix {
-        for (var r:int = 0; r < _rows; r++) { data[r][c] = model; }
+        for (var r:int = 0; r < r; r++) { data[r][c] = model; }
         return this;
     }
 
@@ -387,7 +387,7 @@ public class Matrix {
     }
 
     public function swapColumns(c0:int, c1:int):Matrix {
-        for (var r:int = 0; r < _rows; r++) {
+        for (var r:int = 0; r < r; r++) {
             var aux:Number = data[r][c0];
             data[r][c0] = data[r][c1];
             data[r][c1] = aux;
@@ -397,15 +397,15 @@ public class Matrix {
 
     public function removeRow(r:int):Matrix {
         data.splice(r,1);
-        _rows--;
+        r--;
         return this;
     }
 
     public function removeColumn(c:int):Matrix {
-        for (var r:int = 0; r < _rows; r++) {
+        for (var r:int = 0; r < r; r++) {
             data[r].splice(c,1);
         }
-        _columns--;
+        c--;
         return this;
     }
 
@@ -415,7 +415,7 @@ public class Matrix {
     //==================================
     public function getPrimaryDiagonal():Vector.<Number> {
         var output:Vector.<Number> = new Vector.<Number>;
-        var min:int = Math.min(_rows, _columns);
+        var min:int = Math.min(r, c);
         for (var i:int = 0; i < min; i++) {
             output[i] = data[i][i];
         }
@@ -424,8 +424,8 @@ public class Matrix {
 
     public function getSecondaryDiagonal():Vector.<Number> {
         var output:Vector.<Number> = new Vector.<Number>;
-        var i:int = 0, j:int = _columns-1;
-        while(i < _rows && j >= 0) {
+        var i:int = 0, j:int = c-1;
+        while(i < r && j >= 0) {
             output[i] = data[i][j];
             i++;
             j--;
@@ -434,15 +434,15 @@ public class Matrix {
     }
 
     public function setPrimaryDiagonal(model:Vector.<Number>):void {
-        var min:int = Math.min(_rows, _columns, model.length);
+        var min:int = Math.min(r, c, model.length);
         for (var i:int = 0; i < min; i++) {
             data[i][i] = model[i];
         }
     }
 
     public function setSecundaryDiagonal(model:Vector.<Number>):void {
-        var i:int = 0, j:int = _columns-1;
-        while(i < _rows && j >= 0) {
+        var i:int = 0, j:int = c-1;
+        while(i < r && j >= 0) {
             data[i][j] = model[i];
             i++;
             j--;
@@ -450,14 +450,14 @@ public class Matrix {
     }
 
     public function setPrimaryDiagonalAs(value:Number):void {
-        var min:int = Math.min(_rows, _columns);
+        var min:int = Math.min(r, c);
         for (var i:int = 0; i < min; i++)
             data[i][i] = value;
     }
 
     public function setSecundaryDiagonalAs(value:Number):void {
-        var i:int = 0, j:int = _columns-1;
-        while(i < _rows && j >= 0) {
+        var i:int = 0, j:int = c-1;
+        while(i < r && j >= 0) {
             data[i++][j--] = value;
         }
     }
@@ -473,42 +473,42 @@ public class Matrix {
     }
 
     public function toString():String {
-        var s:String = "[Matrix("+_rows+", "+_columns+")]";
+        var s:String = "[Matrix("+r+", "+c+")]";
         var maxLength:int = 0;
-        for (var i:int = 0; i < _rows; i++) {
-            for (var j:int = 0; j < _columns; j++) {
+        for (var i:int = 0; i < r; i++) {
+            for (var j:int = 0; j < c; j++) {
                 var l:int = String(data[i][j].toString()).length;
                 if(maxLength < l)
                     maxLength = l;
             }
         }
 
-        for (i = 0; i < _rows; i++) {
+        for (i = 0; i < r; i++) {
             s += "\n\t";
-            for (j = 0; j < _columns; j++) {
+            for (j = 0; j < c; j++) {
                 var v:String = String(data[i][j]);
                 v = ToolString.repeatPattern(" ", maxLength - v.length) + v;
-                s += v + (j != _columns-1 ? ", " : "");
+                s += v + (j != c-1 ? ", " : "");
             }
         }
         return s;
     }
 
     public function forEach(f:Function):void {
-        for (var i:int = 0; i < _rows; i++) {
-            for (var j:int = 0; j < _columns; j++) {
+        for (var i:int = 0; i < r; i++) {
+            for (var j:int = 0; j < c; j++) {
                 f.call(this, i, j, data[i][j]);
             }
         }
     }
 
     public function forEachRow(r:int, f:Function):void {
-        for (var i:int = 0; i < _columns; i++)
+        for (var i:int = 0; i < c; i++)
             f.call(this, r, i, data[r][i]);
     }
 
     public function forEachColumn(c:int, f:Function):void {
-        for (var i:int = 0; i < _rows; i++)
+        for (var i:int = 0; i < r; i++)
             f.call(this, i, c, data[i][c]);
     }
 

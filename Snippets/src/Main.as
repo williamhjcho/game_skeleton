@@ -14,24 +14,14 @@ import flash.display.Shape;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 
+
 import utils.managers.LoaderManager;
 
-import view.Buttons;
+import view.SliderH;
+import view.SliderV;
 
 [SWF(width=800, height=600, backgroundColor=0x808080, frameRate=30)]
 public class Main extends MovieClip {
-
-    //[Embed(source="../output/mona_lisa.jpg")]
-    //private static const MONA_LISA:Class;
-    //
-    //[Embed(source="../output/valve.PNG")]
-    //private static const VALVE:Class;
-    //
-    //[Embed(source="../output/Bikesgray.jpg")]
-    //private static const BIKE:Class;
-    //
-    //[Embed(source="../output/_textFile.json", mimeType = "application/octet-stream")]
-    //private static const JSON:Class;
 
     private static var background:Shape;
 
@@ -54,7 +44,7 @@ public class Main extends MovieClip {
     //==================================
     private function loadAssets():void {
         LoaderManager.loadList("main_assets", [
-            {"type": "SWF" , "name":"basicElements", "url":"../fla/basicElements.swf"}
+            {"type": "SWF" , "name":"basicElements", "url":"basicElements.swf"}
         ], {onComplete:onLoadAssets});
     }
 
@@ -65,11 +55,13 @@ public class Main extends MovieClip {
     //==================================
     //
     //==================================
-    private var buttons:Buttons;
+    private var slH:SliderH, slV:SliderV;
 
     private function init():void { trace("init");
-        buttons = new Buttons();
-        addChild(buttons);
+        slH = new SliderH(); addChild(slH); slH.x = 50; slH.y = 550;
+        slV = new SliderV(); addChild(slV); slV.x = 700; slV.y = 50;
+
+
     }
 
 }

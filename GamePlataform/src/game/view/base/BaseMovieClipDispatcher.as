@@ -4,6 +4,8 @@
 package game.view.base {
 import utils.event.SignalDispatcher;
 
+import utilsDisplay.view.BaseMovieClip;
+
 public class BaseMovieClipDispatcher extends BaseMovieClip {
 
     protected var dispatcher:SignalDispatcher;

@@ -79,8 +79,8 @@ public final class Bezier {
             } else {
                 c = points[i + 1];
 
-                tb.x = (c.x - a.x) * K ;
-                tb.y = (c.y - a.y) * K ;
+                tb.x = (c.x - a.x) * K;
+                tb.y = (c.y - a.y) * K;
             }
 
             for(var t:Number = 0; t <= 1.0; t+=step) {

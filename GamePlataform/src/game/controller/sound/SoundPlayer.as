@@ -11,7 +11,7 @@ import game.model.sound.SoundConfig;
 
 import utils.commands.lerp;
 import utils.commands.toStringArgs;
-import utils.managers.sounds.SoundManager;
+import utils.sound.SoundManager;
 
 public class SoundPlayer {
 

@@ -18,15 +18,13 @@ public class ButtonManager {
     private static const STATUS_ENABLED :uint = 1;
     private static const STATUS_DELAY   :uint = 2;
 
-    public static var DEFAULT_OVER_COLOR:uint = 0xffbb00;
-    public static var DEFAULT_DOWN_COLOR:uint = 0x000000;
     public static var DEFAULT_DELAY_TIME:uint = 0;
     public static var DEFAULT_BUTTON_MODE:Boolean = true;
 
     private static const MODE_UP    :uint = 0;
     private static const MODE_DOWN  :uint = 1;
 
-    private static const BUTTON_MODE:String = "buttonMode";
+    private static const PROPERTY_BUTTON_MODE:String = "buttonMode";
 
     private static var _buttons:Dictionary = new Dictionary();
     private static var _focus:EventDispatcher = null;
@@ -38,8 +36,6 @@ public class ButtonManager {
      *     useCapture       :Boolean(false),
      *     useWeakReference :Boolean(false),
      *     delay            :Number(0),
-     *     overColor        :uint(0xffbb0),
-     *     downColor        :uint(0x00000),
      *     buttonMode       :uint(0000000),
      *     onClick          :Function(null),
      *     onDown           :Function(null),
@@ -70,8 +66,6 @@ public class ButtonManager {
         p.useWeakReference  = (parameters.useWeakReference == null)? false : parameters.useWeakReference;
 
         p.delay             = parameters.delay != int.MIN_VALUE? parameters.delay : DEFAULT_DELAY_TIME;
-        p.overColor         = parameters.overColor  || DEFAULT_OVER_COLOR   ;
-        p.downColor         = parameters.downColor  || DEFAULT_DOWN_COLOR   ;
         p.buttonMode        = parameters.buttonMode || DEFAULT_BUTTON_MODE  ;
 
         p.onClick           = parameters.onClick    ;
@@ -90,8 +84,8 @@ public class ButtonManager {
         button.addEventListener(MouseEvent.MOUSE_DOWN   , onDown, p.useCapture, p.priority, p.useWeakReference);
         button.addEventListener(MouseEvent.MOUSE_UP     , onUp  , p.useCapture, p.priority, p.useWeakReference);
 
-        if(p.buttonMode && button.hasOwnProperty(BUTTON_MODE))
-            button[BUTTON_MODE] = true;
+        if(p.buttonMode && button.hasOwnProperty(PROPERTY_BUTTON_MODE))
+            button[PROPERTY_BUTTON_MODE] = true;
 
         if(parameters.enable == null || parameters.enable == true) {
             p.status = STATUS_DISABLED;
@@ -138,8 +132,8 @@ public class ButtonManager {
         p.onDisable     = parameters.onDisable || p.onDisable   ;
         p.onRemove      = parameters.onRemove  || p.onRemove    ;
 
-        if(p.buttonMode && button.hasOwnProperty(BUTTON_MODE))
-            button[BUTTON_MODE] = true;
+        if(p.buttonMode && button.hasOwnProperty(PROPERTY_BUTTON_MODE))
+            button[PROPERTY_BUTTON_MODE] = true;
     }
 
     public static function enable(button:EventDispatcher):void {

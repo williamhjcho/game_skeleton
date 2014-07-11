@@ -2,6 +2,11 @@
  * Created by William on 7/3/2014.
  */
 package utils.list {
+import utils.commands.getClass;
+import utils.commands.getClassByPath;
+import utils.commands.getClassName;
+import utils.commands.isPrimitive;
+
 use namespace AS3;
 
 public dynamic class ArrayEx extends Array {
@@ -126,6 +131,28 @@ public dynamic class ArrayEx extends Array {
         }
         return c;
     }
+
+    public function toVector(c:Class = null):* {
+        c ||= getClass(this[0]);
+        var vectorClass:Class = getClassByPath("__AS3__.vec::Vector.<" + getClassName(c) + ">");
+        var v:* = new vectorClass();
+        var i:int, len:int = super.length;
+
+        if(isPrimitive(c)) {
+            for (i = 0; i < len; i++) {
+                v[i] = this[i];
+            }
+        } else {
+            for (i = 0; i < len; i++) {
+
+            }
+        }
+
+        return v;
+    }
+
+
+
 
     //==================================
     //  Override

@@ -8,7 +8,7 @@
 package utils.event {
 import flash.events.Event;
 
-import utils.managers.sounds.*;
+import utils.sound.*;
 
 public class SoundEvent extends Event {
     public static const SOUND_PLAY_COMPLETE :String = "sound.play.complete";

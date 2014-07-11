@@ -8,7 +8,7 @@
 package game.controller.state {
 import game.controller.Game;
 
-import utils.managers.state.State;
+import utils.state.State;
 
 public class BaseState extends State {
 

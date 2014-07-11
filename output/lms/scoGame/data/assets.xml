@@ -10,7 +10,7 @@
         <SWFLoader  url="data/assets/test.swf"              name="test"            autoPlay="false"/>
         <SWFLoader  url="data/assets/assets.swf"            name="assets"          autoPlay="false"/>
 
-          <!-- <ImageLoader url="data/sounds/lea.jpg" name="lea" width="400" height="316"/> -->
+          <!-- <ImageLoader url="data/sound/lea.jpg" name="lea" width="400" height="316"/> -->
 
         <MP3Loader url="data/sounds/trilha.mp3" name="trilha" autoPlay="false" />
     </LoaderMax>
