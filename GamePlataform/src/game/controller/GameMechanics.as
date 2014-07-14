@@ -10,7 +10,7 @@ import flash.utils.getTimer;
 import game.game_internal;
 
 import utils.base.FunctionObject;
-import utils.base.interfaces.IUpdatable;
+import utils.base.I.IUpdatable;
 import utils.managers.Juggler;
 import utils.managers.Pool;
 

@@ -10,7 +10,8 @@ import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.utils.Dictionary;
 
-import utils.base.interfaces.IDestructible;
+import utils.base.I.IDestructible;
+
 
 public class BaseLayerController {
 

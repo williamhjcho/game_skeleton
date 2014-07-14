@@ -2,7 +2,7 @@
  * Created by William on 6/4/2014.
  */
 package utils.misc {
-import utils.base.interfaces.IUpdatable;
+import utils.base.I.IUpdatable;
 
 public class TimeKeeper implements IUpdatable {
 
@@ -16,7 +16,10 @@ public class TimeKeeper implements IUpdatable {
     }
 
     public function update(dt:uint):void {
-        _t += dt;
+        if(_t + dt > _tt)
+            _t = _tt;
+        else
+            _t += dt;
     }
 
     public function get time():uint { return _t; }

@@ -6,6 +6,8 @@ import flash.display.Sprite;
 import flash.events.MouseEvent;
 import flash.geom.Rectangle;
 
+import utils.commands.execute;
+
 import utilsDisplay.view.BaseMovieClip;
 
 internal class Slider extends BaseMovieClip {
@@ -13,74 +15,89 @@ internal class Slider extends BaseMovieClip {
     protected var _track    :Sprite;
     protected var _tracker  :Sprite;
 
-    protected var _enabled      :Boolean = true;
-    protected var _dragging     :Boolean = false;
-    protected var _clamp        :Boolean = false;
-    protected var _area         :Rectangle = new Rectangle();
-    protected var _dragArea     :Rectangle = new Rectangle();
-    protected var _scrollSpeed  :Number = 10;
+    private var _onDown :Function,
+                _onUp   :Function,
+                _onOut  :Function;
 
-    public function Slider() {
+    private var _isEnabled    :Boolean = true;
+    private var _isDragging   :Boolean = false;
+    private var _scrollSpeed  :Number = 10;
+    private var _dragRect     :Rectangle = new Rectangle();
+
+    protected var pDragArea     :Rectangle = new Rectangle();
+
+    public function Slider(parameters:Object = null) {
         super();
+        setParameters(parameters);
     }
 
     //==================================
     //  Public
     //==================================
     public function enable():void {
-        _enabled = true;
+        _isEnabled = true;
     }
 
     public function disable():void {
-        _enabled = false;
-        if(_dragging && hasElements) stopTrackerDrag();
+        _isEnabled = false;
+        if(_isDragging && hasElements) stopTrackerDrag();
     }
 
     public function setElements(track:Sprite, tracker:Sprite):void {
+        if(track == null) throw new ArgumentError("Track cannot be null.");
+        if(tracker == null) throw new ArgumentError("Tracker cannot be null.");
+
+        //removing old ones
+        if(_track != null && _tracker != null) {
+            this._track  .removeEventListener(MouseEvent.MOUSE_WHEEL , onTrackerWheel);
+            this._tracker.removeEventListener(MouseEvent.MOUSE_DOWN  , onTrackerDown);
+            this._tracker.removeEventListener(MouseEvent.MOUSE_UP    , onTrackerUp);
+            this._tracker.removeEventListener(MouseEvent.ROLL_OUT    , onTrackerOut);
+            this._tracker.removeEventListener(MouseEvent.MOUSE_WHEEL , onTrackerWheel);
+        }
+
+        //adding new ones
+        track  .addEventListener(MouseEvent.MOUSE_WHEEL , onTrackerWheel);
+        tracker.addEventListener(MouseEvent.MOUSE_DOWN  , onTrackerDown);
+        tracker.addEventListener(MouseEvent.MOUSE_UP    , onTrackerUp);
+        tracker.addEventListener(MouseEvent.ROLL_OUT    , onTrackerOut);
+        tracker.addEventListener(MouseEvent.MOUSE_WHEEL , onTrackerWheel);
+
         this._track = track;
         this._tracker = tracker;
-
-        if(track != null) {
-            track.addEventListener(MouseEvent.MOUSE_WHEEL , onTrackerWheel);
-        }
-        if(tracker != null) {
-            tracker.addEventListener(MouseEvent.MOUSE_DOWN  , onTrackerDown);
-            tracker.addEventListener(MouseEvent.MOUSE_UP    , onTrackerUp);
-            tracker.addEventListener(MouseEvent.ROLL_OUT    , onTrackerOut);
-            tracker.addEventListener(MouseEvent.MOUSE_WHEEL , onTrackerWheel);
-        }
     }
 
-    public function moveTracker         (p:Number):void { }
-    public function movePercentage      (p:Number):void { }
-    public function setTrackerPosition  (p:Number):void { }
-    public function setTrackerPercentage(p:Number):void { }
-
+    public function setParameters(parameters:Object):void {
+        parameters ||= {};
+        _onDown  = parameters.onDown;
+        _onUp    = parameters.onUp;
+        _onOut   = parameters.onOut;
+    }
 
     //==================================
     //  Get / Set
     //==================================
-    public function get hasElements():Boolean {
-        return _track != null && _tracker != null;
+    public function get isEnabled():Boolean { return _isEnabled; }
+    public function set isEnabled(b:Boolean):void {
+        if(b) this.enable();
+        else  this.disable();
     }
 
-    public function set clamp(b:Boolean):void {
-        _clamp = b;
-    }
+    public function get hasElements():Boolean { return _track != null && _tracker != null; }
 
-    public function setDragArea(x:Number, y:Number, length:Number):void { }
+    public function setDragArea(x:Number, y:Number, width:Number, height:Number):void { pDragArea.setTo(x, y, width, height); }
+    public function getDragArea():Rectangle { return new Rectangle(pDragArea.x,pDragArea.y,pDragArea.width,pDragArea.height); }
 
-    public function get dragArea():Rectangle {
-        return new Rectangle(_area.x,_area.y,_area.width,_area.height);
-    }
+    public function get scrollSpeed():Number { return _scrollSpeed; }
+    public function set scrollSpeed(value:Number):void { _scrollSpeed = value; }
 
-    public function get percentage():Number {
-        return 0;
-    }
+    //Override
+    public function get percentage():Number { return 0; }
+    public function set percentage(p:Number):void { }
 
-    public function get position():Number {
-        return 0;
-    }
+    //Override
+    public function get position():Number { return 0; }
+    public function set position(p:Number):void { }
 
     override public function destroy():void {
         if(_track != null) {
@@ -100,20 +117,22 @@ internal class Slider extends BaseMovieClip {
     //==================================
     //  Protected
     //==================================
-    protected function setDraggableArea(x:Number, y:Number, length:Number):void {
-
+    protected function setDragRect(x:Number, y:Number, width:Number, height:Number):void {
+        _dragRect.setTo(x, y, width, height);
     }
 
     protected function startTrackerDrag():void {
-        if(_enabled) {
-            _tracker.startDrag(false, _area);
-            _dragging = true;
+        if(hasElements && _isEnabled) {
+            _tracker.startDrag(false, _dragRect);
+            _isDragging = true;
         }
     }
 
     protected function stopTrackerDrag():void {
-        _tracker.stopDrag();
-        _dragging = false;
+        if(hasElements && _isDragging) {
+            _tracker.stopDrag();
+        }
+        _isDragging = false;
     }
 
     //==================================
@@ -121,18 +140,21 @@ internal class Slider extends BaseMovieClip {
     //==================================
     private function onTrackerDown(e:MouseEvent):void {
         startTrackerDrag();
+        execute(_onDown, [this]);
     }
 
     private function onTrackerUp(e:MouseEvent):void {
         stopTrackerDrag();
+        execute(_onUp, [this]);
     }
 
     public function onTrackerOut(e:MouseEvent):void {
         stopTrackerDrag();
+        execute(_onOut, [this]);
     }
 
     private function onTrackerWheel(e:MouseEvent):void {
-        moveTracker((e.delta > 0? -1 : 1) * _scrollSpeed);
+        position += (e.delta > 0? -1 : 1) * _scrollSpeed;
     }
 }
 }

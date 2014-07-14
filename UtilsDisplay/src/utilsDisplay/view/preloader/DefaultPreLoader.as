@@ -15,7 +15,8 @@ import flash.text.TextFormat;
 
 import utils.color.ToolColor;
 
-import utilsDisplay.bases.interfaces.IPreLoader;
+import utilsDisplay.base.I.IPreLoader;
+
 import utilsDisplay.font.FontUbuntuRegular;
 
 public class DefaultPreLoader extends Sprite implements IPreLoader {

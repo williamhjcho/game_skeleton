@@ -14,9 +14,9 @@ import flash.display.Shape;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 
-
 import utils.managers.LoaderManager;
 
+import view.Scroll;
 import view.SliderH;
 import view.SliderV;
 
@@ -55,13 +55,11 @@ public class Main extends MovieClip {
     //==================================
     //
     //==================================
-    private var slH:SliderH, slV:SliderV;
+    private var scroll:Scroll;
 
     private function init():void { trace("init");
-        slH = new SliderH(); addChild(slH); slH.x = 50; slH.y = 550;
-        slV = new SliderV(); addChild(slV); slV.x = 700; slV.y = 50;
-
-
+        scroll = new Scroll();
+        addChild(scroll);
     }
 
 }

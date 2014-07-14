@@ -9,7 +9,6 @@ import utilsDisplay.view.slider.SliderHorizontal;
 public class SliderH extends SliderHorizontal {
 
     public var track:MovieClip, tracker:MovieClip;
-    public var btnDown:MovieClip, btnUp:MovieClip;
 
     public function SliderH() {
         super();

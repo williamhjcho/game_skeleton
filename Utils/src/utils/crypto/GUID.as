@@ -5,7 +5,7 @@
  * Time: 17:57
  * To change this template use File | Settings | File Templates.
  */
-package utils.misc {
+package utils.crypto {
 import flash.system.Capabilities;
 
 public class GUID extends Object {

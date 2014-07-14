@@ -5,7 +5,7 @@
  * Time: 12:49 PM
  * To change this template use File | Settings | File Templates.
  */
-package utils.base.interfaces {
+package utils.base.I {
 public interface IValidatable {
     function validate():void;
 }

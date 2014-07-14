@@ -3,7 +3,7 @@
  */
 package utils.misc {
 
-import utils.base.interfaces.IUpdatable;
+import utils.base.I.IUpdatable;
 import utils.commands.execute;
 import utils.event.Signal;
 import utils.event.SignalDispatcher;

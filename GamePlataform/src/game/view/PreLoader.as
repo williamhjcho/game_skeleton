@@ -6,7 +6,9 @@ import flash.text.TextField;
 
 import game.view.base.BaseMovieClipAnimated;
 
-import utilsDisplay.bases.interfaces.IPreLoader;
+import utilsDisplay.base.I.IPreLoader;
+
+import utilsDisplay.base.I.IPreLoader;
 
 public class PreLoader extends BaseMovieClipAnimated implements IPreLoader {
 

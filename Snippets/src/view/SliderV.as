@@ -9,7 +9,6 @@ import utilsDisplay.view.slider.SliderVertical;
 public class SliderV extends SliderVertical {
 
     public var track:MovieClip, tracker:MovieClip;
-    public var btnDown:MovieClip, btnUp:MovieClip;
 
     public function SliderV() {
         super();

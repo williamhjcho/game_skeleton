@@ -2,11 +2,11 @@
  * Created with IntelliJ IDEA.
  * User: William
  * Date: 10/18/13
- * Time: 3:31 PM
+ * Time: 2:29 PM
  * To change this template use File | Settings | File Templates.
  */
-package utils.base.interfaces {
-public interface ICloneable {
-    function clone():ICloneable;
+package utils.base.I {
+public interface IDestructible {
+    function destroy():void;
 }
 }

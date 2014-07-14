@@ -21,45 +21,42 @@ public class SliderHorizontal extends Slider {
     //==================================
     override public function setElements(track:Sprite, tracker:Sprite):void {
         super.setElements(track, tracker);
-        if(track != null)
-            setDragArea(track.x, track.y, track.width);
-    }
-
-    override public function moveTracker(p:Number):void {
-        _tracker.x = clamp(_tracker.x + p, _area.x, _area.x + _area.width);
-    }
-
-    override public function movePercentage(p:Number):void {
-        _tracker.x = _area.x + clamp(percentage + p, 0, 1) * (_area.width);
-    }
-
-    override public function setTrackerPosition(p:Number):void {
-        _tracker.x = clamp(p, _area.x, _area.x + _area.width);
-    }
-
-    override public function setTrackerPercentage(p:Number):void {
-        _tracker.x = _area.x + clamp(p,0,1) * (_area.width);
+        if(track != null) {
+            super.setDragArea(track.x, track.y, track.width, 0);
+        }
     }
 
     //==================================
     //  Get / Set
     //==================================
-    override public function setDragArea(x:Number, y:Number, length:Number):void {
-        _area.setTo(x, y, length - _tracker.width, 0);
+    override public function get percentage():Number {
+        if(hasElements)
+            return clamp((_tracker.x - pDragArea.x) / (pDragArea.width - _tracker.width), 0, 1.0);
+        return 0;
     }
 
-    override public function get percentage():Number {
-        var p:Number = 0;
-        if(hasElements) {
-            p = (_tracker.x - _area.x) / (_area.width);
-        }
-        return _clamp? clamp(p, 0.0, 1.0) : p;
+    override public function set percentage(p:Number):void {
+        if(hasElements)
+            _tracker.x = pDragArea.x + clamp(p,0,1) * (pDragArea.width - _tracker.width);
     }
 
     override public function get position():Number {
         if(hasElements)
-            return _tracker.x - _area.x;
+            return _tracker.x - pDragArea.x;
         return 0;
+    }
+
+    override public function set position(p:Number):void {
+        if(hasElements)
+            _tracker.x = pDragArea.x + clamp(p, 0, pDragArea.width - _tracker.width);
+    }
+
+    //==================================
+    //  Protected
+    //==================================
+    override protected function startTrackerDrag():void {
+        super.setDragRect(pDragArea.x, pDragArea.y, pDragArea.width - _tracker.width, pDragArea.height);
+        super.startTrackerDrag();
     }
 
     //==================================

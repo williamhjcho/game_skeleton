@@ -7,7 +7,7 @@ import flash.display.FrameLabel;
 import flash.display.MovieClip;
 
 import utils.base.FunctionObject;
-import utils.base.interfaces.IDestructible;
+import utils.base.I.IDestructible;
 
 public class BaseMovieClip extends MovieClip implements IDestructible {
 

@@ -3,7 +3,7 @@
  */
 package utils.managers {
 
-import utils.base.interfaces.IUpdatable;
+import utils.base.I.IUpdatable;
 import utils.event.Signal;
 import utils.event.SignalDispatcher;
 import utils.misc.DelayedCall;

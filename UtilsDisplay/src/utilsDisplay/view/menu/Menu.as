@@ -10,7 +10,6 @@ import flash.display.Sprite;
 
 import utilsDisplay.view.BaseMovieClip;
 
-
 public class Menu extends BaseMovieClip {
 
     private var items:Vector.<Sprite> = new Vector.<Sprite>();
