@@ -6,12 +6,12 @@ import game.constants.Frame;
 
 import utils.commands.execute;
 
+import utilsDisplay.base.BaseMovieClip;
 import utilsDisplay.managers.ButtonManager;
-import utilsDisplay.view.BaseMovieClip;
 
 public class BaseButton extends BaseMovieClip {
 
-    private var _instanced:Array;
+    private var _thisInstance:Array;
 
     protected var _click  :Function,
             _over   :Function,
@@ -23,14 +23,14 @@ public class BaseButton extends BaseMovieClip {
     public function BaseButton() {
         super();
         super.gotoAndStop(0);
-        _instanced = [this];
+        _thisInstance = [this];
         addToManager(false);
     }
 
     //==================================
     //  Public
     //==================================
-    public function addToManager(enabled:Boolean = false):void {
+    public function addToManager(enabled:Boolean = false):BaseButton {
         ButtonManager.add( this, {
             enable      : enabled   ,
             useDefault  : false     ,
@@ -43,6 +43,7 @@ public class BaseButton extends BaseMovieClip {
             onDisable   : onDisable ,
             onRemove    : onRemove
         });
+        return this;
     }
 
     public function enable():void {
@@ -81,14 +82,14 @@ public class BaseButton extends BaseMovieClip {
     //==================================
     //  States
     //==================================
-    protected function onClick  (btn:BaseButton):void {                                     /*SoundPlayer.playTableElement(GameData.sound.base_button, SoundLinkID.CLICK  );*/ execute(_click , _instanced);   }
-    protected function onOver   (btn:BaseButton):void { super.gotoAndPlay(Frame.HOVER_IN);  /*SoundPlayer.playTableElement(GameData.sound.base_button, SoundLinkID.OVER   );*/ execute(_over  , _instanced);   }
-    protected function onOut    (btn:BaseButton):void { super.gotoAndPlay(Frame.HOVER_OUT); /*SoundPlayer.playTableElement(GameData.sound.base_button, SoundLinkID.OUT    );*/ execute(_out   , _instanced);   }
-    protected function onDown   (btn:BaseButton):void { super.gotoAndPlay(Frame.DOWN);      /*SoundPlayer.playTableElement(GameData.sound.base_button, SoundLinkID.DOWN   );*/ execute(_down  , _instanced);   }
-    protected function onUp     (btn:BaseButton):void { super.gotoAndPlay(Frame.RELEASE);   /*SoundPlayer.playTableElement(GameData.sound.base_button, SoundLinkID.UP     );*/ execute(_up    , _instanced);   }
-    protected function onRemove (btn:BaseButton):void { super.gotoAndPlay(Frame.NORMAL);    /*SoundPlayer.playTableElement(GameData.sound.base_button, SoundLinkID.REMOVE );*/ execute(_remove, _instanced);   }
-    protected function onEnable (btn:BaseButton):void { super.gotoAndPlay(Frame.NORMAL);    /*SoundPlayer.playTableElement(GameData.sound.base_button, SoundLinkID.ENABLE );*/                                 }
-    protected function onDisable(btn:BaseButton):void { super.gotoAndPlay(Frame.DISABLED);  /*SoundPlayer.playTableElement(GameData.sound.base_button, SoundLinkID.DISABLE);*/                                 }
+    protected function onClick  (btn:BaseButton):void {                                     execute(_click , _thisInstance);   }
+    protected function onOver   (btn:BaseButton):void { super.gotoAndPlay(Frame.IN);        execute(_over  , _thisInstance);   }
+    protected function onOut    (btn:BaseButton):void { super.gotoAndPlay(Frame.OUT);       execute(_out   , _thisInstance);   }
+    protected function onDown   (btn:BaseButton):void { super.gotoAndPlay(Frame.DOWN);      execute(_down  , _thisInstance);   }
+    protected function onUp     (btn:BaseButton):void { super.gotoAndPlay(Frame.RELEASE);   execute(_up    , _thisInstance);   }
+    protected function onRemove (btn:BaseButton):void { super.gotoAndPlay(Frame.NORMAL);    execute(_remove, _thisInstance);   }
+    protected function onEnable (btn:BaseButton):void { super.gotoAndPlay(Frame.NORMAL);    }
+    protected function onDisable(btn:BaseButton):void { super.gotoAndPlay(Frame.DISABLED);  }
 
 
 }

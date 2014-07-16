@@ -8,12 +8,9 @@
 package utils.crypto {
 import flash.system.Capabilities;
 
-public class GUID extends Object {
+public final class GUID extends Object {
+
     private static var counter:Number = 0;
-
-    function GUID() {
-
-    }
 
     public static function create():String {
         var dt:Date = new Date();

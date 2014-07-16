@@ -19,8 +19,6 @@ public class Curver {
         v.x = q.x - u.x;
         v.y = q.y - u.y;
 
-
-
         return r;
     }
 

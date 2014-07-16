@@ -5,7 +5,7 @@
  * Time: 15:03
  * To change this template use File | Settings | File Templates.
  */
-package utilsDisplay.view.console {
+package utilsDisplay.console {
 import flash.display.MovieClip;
 import flash.events.Event;
 import flash.events.KeyboardEvent;

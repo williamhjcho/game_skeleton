@@ -11,8 +11,8 @@ import flash.net.registerClassAlias;
 import flash.utils.Dictionary;
 
 import utils.commands.getClassName;
-import utils.serializer.Base64;
 import utils.math.ToolMath;
+import utils.serializer.Base64;
 
 /**
  * Simple Runtime Obfuscator
@@ -41,7 +41,7 @@ public class Obfuscator {
     //==================================
     public static function add(key:String, value:*):void {
         if(key in dictionary) {
-            throw new ArgumentError("Key already in use: \"" + key + "\".")
+            throw new ArgumentError("Key already in use: \"" + key + "\".");
         }
 
         //regClassAlias(value);

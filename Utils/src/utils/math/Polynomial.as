@@ -27,7 +27,9 @@ public class Polynomial {
     }
 
 
-    /** OPERATIONS **/
+    //==================================
+    //  Operations
+    //==================================
     public function equals(q:Polynomial):Boolean {
         var p:Polynomial = this;
         if(p.deg != q.deg) return false;
@@ -108,7 +110,9 @@ public class Polynomial {
     }
 
 
-    /** GET/SET/MISC **/
+    //==================================
+    //  Get / Set
+    //==================================
     public function get degree():int {
         for (var i:int = cff.length-1; i >= 0; i--)
             if(cff[i] != 0) return i;

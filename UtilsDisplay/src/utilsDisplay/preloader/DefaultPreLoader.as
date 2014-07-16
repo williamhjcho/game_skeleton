@@ -5,7 +5,7 @@
  * Time: 21:20
  * To change this template use File | Settings | File Templates.
  */
-package utilsDisplay.view.preloader {
+package utilsDisplay.preloader {
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.geom.Rectangle;
@@ -16,7 +16,6 @@ import flash.text.TextFormat;
 import utils.color.ToolColor;
 
 import utilsDisplay.base.I.IPreLoader;
-
 import utilsDisplay.font.FontUbuntuRegular;
 
 public class DefaultPreLoader extends Sprite implements IPreLoader {

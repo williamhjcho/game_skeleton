@@ -7,7 +7,7 @@
  */
 package game.constants {
 
-public class AssetType {
+public final class AssetType {
 
     public static const VARIABLES   :String = "VARIABLES";
     public static const SOUND       :String = "SOUND";

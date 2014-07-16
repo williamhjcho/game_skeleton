@@ -8,7 +8,7 @@
 package game.controller {
 import flash.display.Sprite;
 
-import game.constants.GameStates;
+import game.constants.GameState;
 import game.controller.data.GameData;
 import game.controller.layer.HudController;
 import game.controller.layer.MapController;
@@ -57,7 +57,7 @@ public final class Game {
         GameMechanics.game_internal::startClock(1000 / GameData.stage.frameRate);
         GameMechanics.addToClock(updateGameInternalMechanics);
 
-        stateMachine.changeTo(GameStates.SPLASH);
+        stateMachine.changeTo(GameState.SPLASH);
     }
 
     private function initializeMachine():void {

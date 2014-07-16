@@ -6,13 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 package game.controller.state {
-import game.constants.GameStates;
+import game.constants.GameState;
 import game.controller.Game;
 
 public class StateGame extends BaseState {
 
     public function StateGame(game:Game, from:Array = null) {
-        super(game, GameStates.GAME, from, onEnter, onExit);
+        super(game, GameState.GAME, from, onEnter, onExit);
     }
 
     private function onEnter():void {

@@ -1,7 +1,7 @@
 /**
  * Created by William on 1/16/14.
  */
-package utilsDisplay.view {
+package utilsDisplay.base {
 import flash.display.DisplayObject;
 import flash.display.FrameLabel;
 import flash.display.MovieClip;

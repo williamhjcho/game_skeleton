@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package game.constants {
-public class GameStates {
+public final class GameState {
 
     public static const SPLASH:String = "splash";
     public static const GAME:String = "game";

@@ -12,6 +12,7 @@ package game.model.variable {
  */
 public class Variables {
 
+    //see game.controller.sound.SoundPlayer for reference
     public var volumeMain       :Number = 1.0;
     public var volumeSFX        :Number = 1.0;
     public var volumeBackground :Number = 1.0;

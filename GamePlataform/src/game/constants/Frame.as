@@ -6,25 +6,27 @@
  * To change this template use File | Settings | File Templates.
  */
 package game.constants {
-public class Frame {
+public final class Frame {
 
-    public static const NORMAL:String = "normal";
-    public static const UP:String = "up";
-    public static const DOWN:String = "down";
-    public static const HOVER_IN:String = "hover_in";
-    public static const HOVER_OUT:String = "hover_out";
+    public static const NORMAL  :String = "normal";
+    public static const UP      :String = "up";
+    public static const DOWN    :String = "down";
+    public static const IN      :String = "in";
+    public static const OUT     :String = "out";
 
-    public static const RELEASE:String = "release";
+    public static const CATCH   :String = "catch";
+    public static const RELEASE :String = "release";
 
-    public static const ENABLED:String = "enabled";
+    public static const ENABLED :String = "enabled";
     public static const DISABLED:String = "disabled";
 
-    public static const INTRO:String = "intro";
-    public static const OUTRO:String = "outro";
+    public static const INTRO   :String = "intro";
+    public static const OUTRO   :String = "outro";
 
-    public static const IDLE:String = "idle";
+    public static const IDLE    :String = "idle";
 
-    public static const END:String = "end";
+    public static const START   :String = "start";
+    public static const END     :String = "end";
 
 
 }

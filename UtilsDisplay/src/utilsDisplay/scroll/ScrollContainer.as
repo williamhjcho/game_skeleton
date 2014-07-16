@@ -1,7 +1,7 @@
 /**
  * Created by William on 7/11/2014.
  */
-package utilsDisplay.view.scroll {
+package utilsDisplay.scroll {
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;
@@ -9,18 +9,19 @@ import flash.geom.Rectangle;
 
 import utils.commands.clamp;
 
-import utilsDisplay.view.BaseMovieClip;
+import utilsDisplay.base.BaseMovieClip;
 
 public class ScrollContainer extends BaseMovieClip {
 
-    private var container:DisplayObjectContainer;
-    private var content:Sprite = new Sprite();
+    private var container   :DisplayObjectContainer;
+    private var content     :Sprite = new Sprite();
 
-    private var rect:Rectangle = new Rectangle();
+    private var rect    :Rectangle = new Rectangle();
     private var _enabled:Boolean = true;
 
-    public function ScrollContainer() {
+    public function ScrollContainer(container:DisplayObjectContainer = null) {
         super();
+        setContainer(container);
         enable();
     }
 
@@ -36,10 +37,11 @@ public class ScrollContainer extends BaseMovieClip {
     }
 
     public function setContainer(c:DisplayObjectContainer):void {
+        //removing old
         if(container != null) {
-            c.removeChild(content);
+            container.removeChild(content);
         }
-
+        //adding new
         this.container = c;
         if(c != null) {
             c.addChild(content);
@@ -48,6 +50,7 @@ public class ScrollContainer extends BaseMovieClip {
     }
 
     public function add(child:DisplayObject, x:Number = NaN, y:Number = NaN):void {
+        if(container == null) throw new Error("Container is null, set a container first.");
         if(!isNaN(x)) child.x = x;
         if(!isNaN(y)) child.y = y;
         content.addChild(child);
@@ -67,6 +70,12 @@ public class ScrollContainer extends BaseMovieClip {
     //==================================
     //  Get / Set
     //==================================
+    public function get contentWidth():Number { return content.width; }
+    public function get contentHeight():Number { return content.height; }
+
+    public function get containerWidth():Number { return container.width; }
+    public function get containerHeight():Number { return container.height; }
+
     public function setPosition(x:Number, y:Number):void {
         if(!_enabled) return;
         var w:Number = container.width, ww:Number = content.width,

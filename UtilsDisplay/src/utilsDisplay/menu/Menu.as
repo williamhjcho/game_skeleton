@@ -5,10 +5,10 @@
  * Time: 11:04 AM
  * To change this template use File | Settings | File Templates.
  */
-package utilsDisplay.view.menu {
+package utilsDisplay.menu {
 import flash.display.Sprite;
 
-import utilsDisplay.view.BaseMovieClip;
+import utilsDisplay.base.BaseMovieClip;
 
 public class Menu extends BaseMovieClip {
 

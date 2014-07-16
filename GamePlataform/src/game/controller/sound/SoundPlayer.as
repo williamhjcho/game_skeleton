@@ -2,7 +2,7 @@
  * Created by William on 5/9/2014.
  */
 package game.controller.sound {
-import game.constants.SoundConfigType;
+import game.constants.SoundType;
 import game.controller.GameMechanics;
 import game.controller.data.GameData;
 import game.controller.data.SaveController;
@@ -86,7 +86,7 @@ public class SoundPlayer {
         if(config == null || config.name == null || config.type == null) return;
 
         switch(config.type) {
-            case SoundConfigType.BACKGROUND: {
+            case SoundType.BACKGROUND: {
                 if(config.stop) {
                     if(config.delay <= 0)   stopBackground(config.name, config.fade, config.fadeTime);
                     else                    GameMechanics.addDelay(config.delay, stopBackground, [config.name, config.fade, config.fadeTime]);
@@ -96,7 +96,7 @@ public class SoundPlayer {
                 }
                 break;
             }
-            case SoundConfigType.AMBIENT: {
+            case SoundType.AMBIENT: {
                 if(config.stop) {
                     if(config.delay <= 0)   stopAmbient(config.name, config.id);
                     else                    GameMechanics.addDelay(config.delay, stopAmbient, [config.name, config.id]);
@@ -106,7 +106,7 @@ public class SoundPlayer {
                 }
                 break;
             }
-            case SoundConfigType.SFX: {
+            case SoundType.SFX: {
                 if(config.stop) {
                     //do nothing
                 } else {

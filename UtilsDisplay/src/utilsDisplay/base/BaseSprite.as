@@ -5,7 +5,7 @@
  * Time: 11:01 AM
  * To change this template use File | Settings | File Templates.
  */
-package game.view.base {
+package utilsDisplay.base {
 import flash.display.DisplayObject;
 import flash.display.Sprite;
 

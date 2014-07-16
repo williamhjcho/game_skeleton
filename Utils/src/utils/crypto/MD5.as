@@ -7,7 +7,7 @@ import flash.utils.ByteArray;
 import utils.units.Bit;
 import utils.units.Hex;
 
-public class MD5 {
+public final class MD5 {
 
     public static function hash(src:String):String {
         var ba:ByteArray = new ByteArray();

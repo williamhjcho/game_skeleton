@@ -8,11 +8,11 @@
 package constant {
 public class Frame {
 
-    public static const NORMAL:String = "normal";
-    public static const UP:String = "up";
-    public static const DOWN:String = "down";
-    public static const HOVER_IN:String = "hover_in";
-    public static const HOVER_OUT:String = "hover_out";
+    public static const NORMAL  :String = "normal";
+    public static const UP      :String = "up";
+    public static const DOWN    :String = "down";
+    public static const IN      :String = "in";
+    public static const OUT     :String = "out";
 
     public static const RELEASE:String = "release";
 

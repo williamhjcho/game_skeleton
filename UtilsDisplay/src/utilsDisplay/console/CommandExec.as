@@ -5,7 +5,7 @@
  * Time: 15:35
  * To change this template use File | Settings | File Templates.
  */
-package utilsDisplay.view.console {
+package utilsDisplay.console {
 import flash.utils.Dictionary;
 
 public class CommandExec {

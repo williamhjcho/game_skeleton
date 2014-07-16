@@ -16,10 +16,6 @@ import flash.display.StageScaleMode;
 
 import utils.managers.LoaderManager;
 
-import view.Scroll;
-import view.SliderH;
-import view.SliderV;
-
 [SWF(width=800, height=600, backgroundColor=0x808080, frameRate=30)]
 public class Main extends MovieClip {
 
@@ -55,12 +51,13 @@ public class Main extends MovieClip {
     //==================================
     //
     //==================================
-    private var scroll:Scroll;
-
     private function init():void { trace("init");
-        scroll = new Scroll();
-        addChild(scroll);
+
+
     }
+
+
+
 
 }
 }

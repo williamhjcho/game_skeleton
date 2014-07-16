@@ -143,15 +143,11 @@ public dynamic class ArrayEx extends Array {
                 v[i] = this[i];
             }
         } else {
-            for (i = 0; i < len; i++) {
-
-            }
+            //todo not-primitive toVector class
         }
 
         return v;
     }
-
-
 
 
     //==================================
