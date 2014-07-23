@@ -55,15 +55,6 @@ public dynamic class ArrayEx extends Array {
         return this;
     }
 
-    public function from(enumerableObject:*, map:Function = null, thisArg:Object = null):ArrayEx {
-        var arr:ArrayEx = new ArrayEx(), index:int = 0;
-        for each (var element:* in enumerableObject) {
-            arr.push((map == null)? element : map.call(thisArg, element, index, enumerableObject));
-            index++;
-        }
-        return arr;
-    }
-
     public function fill(value:*, start:int = 0, end:int = -1):ArrayEx {
         if(start < 0) start = 0;
         if(end < 0) end = super.length;
@@ -78,7 +69,7 @@ public dynamic class ArrayEx extends Array {
     public function find(callback:Function, thisArg:Object = null):* {
         var len:int = this.length;
         for (var i:int = 0; i < len; i++) {
-            if(callback.call(thisArg, len[i], i, this))
+            if(callback.call(thisArg, this[i], i, this))
                 return this[i];
         }
         return null;
@@ -118,6 +109,11 @@ public dynamic class ArrayEx extends Array {
         return currentValue;
     }
 
+    public function insert(index:int, value:*):ArrayEx {
+        this.splice(index, 0, value);
+        return this;
+    }
+
     public function random():* {
         var l:int = super.length;
         return (l == 0)? null : this[int(Math.random() * l)];
@@ -130,6 +126,21 @@ public dynamic class ArrayEx extends Array {
             c[i] = this[i];
         }
         return c;
+    }
+
+    /**
+     * Copies to this ArrayEx from an object
+     * @param o iterable object to be copied from (must be of Array or Vector type)
+     * @param from starting index
+     * @param to ending index(exclusive)
+     * @return this
+     */
+    public function from(o:*, from:int = 0, to:int = -1):ArrayEx {
+        if(to == -1) to = o.length;
+        for (var i:int = from; i < to; i++) {
+            this[i] = o[i];
+        }
+        return this;
     }
 
     public function toVector(c:Class = null):* {
@@ -183,7 +194,7 @@ public dynamic class ArrayEx extends Array {
 
     /**
      * Removes elements from this instance and adds them in a new ArrayEx
-     * @param rest [0] = start index, [1] = length, ...elements to be added from start
+     * @param rest start index, length, ...elements to be added from start
      * @return new ArrayEx
      */
     override AS3 function splice(...rest):* {
@@ -197,6 +208,38 @@ public dynamic class ArrayEx extends Array {
 
     override AS3 function map(callback:Function, thisObject:* = null):Array {
         return new ArrayEx(super.map(callback, thisObject));
+    }
+
+    //==================================
+    //  Static
+    //==================================
+    /**
+     * Creates an ArrayEx from an enumerable object, using map function as a filter
+     * @param enumerableObject
+     * @param map function(thisArg, element, index, enumerableObject)
+     * @param thisArg argument passed to map function when called
+     * @return new ArrayEx
+     */
+    public static function from(enumerableObject:*, map:Function = null, thisArg:Object = null):ArrayEx {
+        var arr:ArrayEx = new ArrayEx(), index:int = 0;
+        for each (var element:* in enumerableObject) {
+            arr.push((map == null)? element : map.call(thisArg, element, index, enumerableObject));
+            index++;
+        }
+        return arr;
+    }
+
+    /**
+     * Creates an ArrayEx with elements from ...args
+     * @param args elements to be added to the new ArrayEx
+     * @return new ArrayEx
+     */
+    public static function of(...args):ArrayEx {
+        var arr:ArrayEx = new ArrayEx();
+        var n:uint = args.length;
+        for (var i:int = 0; i < n; i++)
+            arr[i] = args[i];
+        return arr;
     }
 }
 }
