@@ -4,7 +4,6 @@
 package graph {
 import utils.list.PriorityQueue;
 import utils.list.PriorityQueueDict;
-import utils.list.Queue;
 
 public class AStar {
 
@@ -22,8 +21,11 @@ public class AStar {
     }
 
     public function find(start:int, end:int):Vector.<int> {
-        //var queue:PriorityQueue = new PriorityQueue();
+        //*
+        var queue:PriorityQueue = new PriorityQueue();
+        /*/
         var queue:PriorityQueueDict = new PriorityQueueDict();
+        //*/
         queue.put(start, 0);
         came_from = {};
         came_from[start] = null;
@@ -44,7 +46,7 @@ public class AStar {
 
             if(current == end) {  trace("found")
                 found = true;
-                //break;
+                break;
             }
 
             for each (var neighbor:int in neighbors) {

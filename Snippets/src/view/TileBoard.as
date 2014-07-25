@@ -159,7 +159,14 @@ public class TileBoard extends BaseSprite implements IGraph {
         //heuristic
         var xa:int = a % mWidth, ya:int = a / mWidth;
         var xb:int = b % mWidth, yb:int = b / mWidth;
-        return Math.abs(xa - xb) + Math.abs(ya - yb);
+
+        var dx1:int = xb - xa, dy1:int = yb - ya;
+        var dx2:int = tStart.px - tEnd.px, dy2:int = tStart.py - tEnd.py;
+
+        var cross:Number = 0.001 * Math.abs(dx1 * dy2 + dx2 * dy1);
+        //this constant is for tie breakers, if > 1 it will prefer for nodes closer to the end
+        //var p:Number = (1 + 1.0 / 1000);
+        return (Math.abs(xa - xb) + Math.abs(ya - yb)) + cross;
     }
 
 

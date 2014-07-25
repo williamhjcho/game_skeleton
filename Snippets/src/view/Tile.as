@@ -57,7 +57,6 @@ public class Tile extends MovieClip {
     public function get distance():String { return txtDistance.text; }
 
 
-
     public function setDirection(d:int):void {
         switch(d) {
             case 0: /*up    */ arrow.rotation = -90; break;

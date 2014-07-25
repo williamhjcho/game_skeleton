@@ -18,7 +18,7 @@ public class PriorityQueue {
         return isEmpty? null : _list.shift()[0];
     }
 
-    public function put(e:*, priority:int):void {
+    public function put(e:*, priority:Number):void {
         var len:int = _list.length;
         for (var i:int = 0; i < len; i++) {
             if(_list[i][1] > priority) {

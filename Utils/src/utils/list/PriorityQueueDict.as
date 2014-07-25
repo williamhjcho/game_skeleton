@@ -14,14 +14,14 @@ public class PriorityQueueDict {
         _length = 0;
     }
 
-    public function put(o:*, priority:int):void {
+    public function put(o:*, priority:Number):void {
         if(!(o in list))
             _length++;
         list[o] = priority;
     }
 
     public function get():* {
-        var bestItem:* = null, bestPriority:int = 0;
+        var bestItem:* = null, bestPriority:Number = 0;
         for (var item:* in list) {
             var priority:int = list[item];
             if(bestItem == null || priority < bestPriority) {
