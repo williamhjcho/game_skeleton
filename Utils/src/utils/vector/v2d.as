@@ -72,16 +72,19 @@ public class v2d {
         var y:Number = v.y - this.y;
         return Math.sqrt(x*x + y*y);
     }
+
     public function distanceToXY(x:Number, y:Number):Number {
         x -= this.x;
         y -= this.y;
         return Math.sqrt(x*x + y*y);
     }
+
     public function distanceTo2(v:Object):Number {
         var x:Number = v.x - this.x;
         var y:Number = v.y - this.y;
         return x*x + y*y;
     }
+
     public function distanceToXY2(x:Number, y:Number):Number {
         x -= this.x;
         y -= this.y;

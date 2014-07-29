@@ -4,11 +4,11 @@
 package utils.list {
 public class Graph1D {
 
-    private var mLength:uint;
+    private var mSize:uint;
     private var mElements:ArrayEx;
 
     public function Graph1D(length:uint, ...elements) {
-        mLength = length;
+        mSize = length;
         mElements = ArrayEx.from(elements);
         mElements.length = length;
     }
@@ -27,8 +27,8 @@ public class Graph1D {
     //==================================
     //  Get / Set
     //==================================
-    public function get length():uint {
-        return mLength;
+    public function get size():uint {
+        return mSize;
     }
 
 

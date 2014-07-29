@@ -4,15 +4,15 @@
 package utils.list {
 public class Graph2D {
 
-    private var mWidth:uint, mHeight:uint, mLength:uint;
+    private var mWidth:uint, mHeight:uint, mSize:uint;
     private var mElements:ArrayEx;
 
     public function Graph2D(width:uint, height:uint, ...elements) {
         mWidth = width;
         mHeight = height;
-        mLength = width * height;
+        mSize = width * height;
         mElements = ArrayEx.from(elements);
-        mElements.length = mLength;
+        mElements.length = mSize;
     }
 
     //==================================
@@ -75,8 +75,8 @@ public class Graph2D {
         return mHeight;
     }
 
-    public function get length():uint {
-        return mLength;
+    public function get size():uint {
+        return mSize;
     }
 }
 }

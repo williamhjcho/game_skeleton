@@ -16,12 +16,12 @@ public dynamic class CustomObject {
 
     public function add(o:Object):CustomObject {
         //add another object's properties to this one (copy & overwrite)
-        for(var p:String in o) { this[p] = o[p]; }
+        for (var p:String in o) { this[p] = o[p]; }
         return this;
     }
 
     public function remove(o:Object):CustomObject {
-        for(var p:String in o) { delete this[p]; }
+        for (var p:String in o) { delete this[p]; }
         return this;
     }
 
@@ -31,13 +31,13 @@ public dynamic class CustomObject {
     }
 
     public function clean():void {
-        for(var p:String in this) { delete this[p]; }
+        for (var p:String in this) { delete this[p]; }
     }
 
     public function toString():String {
-        var values:String = "[Custom Object] : {\n";
-        for(var p:String in this) {
-            values += "\t" + p + " = " + this[p] + "\n";
+        var values:String = "{\n";
+        for (var p:String in this) {
+            values += "\t" + p + " : " + this[p].toString() + "\n";
         }
         values += "}";
         return values;
