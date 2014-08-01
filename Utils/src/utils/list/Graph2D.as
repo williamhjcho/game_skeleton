@@ -29,10 +29,8 @@ public class Graph2D {
     //clockwise
     public function getNeighborIndexes(i:uint, j:uint, allowDiagonals:Boolean = false):Vector.<int> {
         var p:uint = i + j * mWidth;
-        var wLower:Boolean = i > 0,
-            wUpper:Boolean = i < mWidth - 1,
-            hLower:Boolean = j > 0,
-            hUpper:Boolean = j < mHeight - 1;
+        var wLower:Boolean = i > 0, wUpper:Boolean = i < mWidth - 1,
+            hLower:Boolean = j > 0, hUpper:Boolean = j < mHeight - 1;
         var neighbors:Vector.<int> = new Vector.<int>();
         //top-left, top, top-right
         if(hLower) {

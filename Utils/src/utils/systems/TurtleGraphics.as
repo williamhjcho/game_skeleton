@@ -76,6 +76,7 @@ public class TurtleGraphics {
     public function setPosition(x:Number, y:Number):TurtleGraphics  {
         this._x = x;
         this._y = y;
+        return this;
     }
 
     public function get x():Number          { return _x; }

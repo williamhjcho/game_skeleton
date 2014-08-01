@@ -46,8 +46,9 @@ public class StateMachine extends EventDispatcher {
      */
     public function remove(name:String):State {
         var state:State = _states[name];
-        if(state == null)
-            return null;
+        if(state != null) {
+            state.setMachine(null);
+        }
         delete _states[name];
         return state;
     }
@@ -59,17 +60,17 @@ public class StateMachine extends EventDispatcher {
      * @param parametersEnter Parameters for the to.enter() function
      * @return The next state if successful else the last state
      */
-    public function changeTo(name:String, parametersExit:Array = null, parametersEnter:Array = null):State {
+    public function changeTo(name:String, parametersExit:Array = null, parametersEnter:Array = null):Boolean {
         var from:State = _states[_currentStateName], to:State = _states[name];
         var e:StateMachineEvent;
 
-        if(!hasState(name) || !canChangeTo(name)) {
+        if(!canChangeTo(name)) {
             if(hasEventListener(StateMachineEvent.TRANSITION_DENIED)) {
                 e = new StateMachineEvent(StateMachineEvent.TRANSITION_DENIED, false, false);
                 e.set(from.name, name, from.name, from.from);
                 dispatchEvent(e);
             }
-            return from;
+            return false;
         }
 
         from.callExit(parametersExit);
@@ -82,7 +83,7 @@ public class StateMachine extends EventDispatcher {
             dispatchEvent(e);
         }
 
-        return to;
+        return true;
     }
 
     public function hasState(name:String):Boolean {
@@ -90,10 +91,8 @@ public class StateMachine extends EventDispatcher {
     }
 
     public function canChangeTo(name:String):Boolean {
-        var state:State = _states[name];
-        if(state == null) return false;
-        if(_currentStateName == null) return true;
-        return (name != _currentStateName) && (state.isOpen || state.from.indexOf(_currentStateName) != -1);
+        return hasState(name) &&
+                (_currentStateName == null || (name != _currentStateName && State(_states[name]).canComeFrom(_currentStateName)));
     }
 
     public function get currentStateName():String { return _currentStateName; }

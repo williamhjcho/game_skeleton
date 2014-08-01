@@ -5,6 +5,7 @@ package utils.list {
 
 
 public class PriorityQueue {
+
     private var _list:ArrayEx;
 
     public function PriorityQueue() {

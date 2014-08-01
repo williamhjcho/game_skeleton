@@ -34,9 +34,7 @@ public class State {
     public function get from():Array { return _from; }
 
     public function set from(f:Array):void {
-        clearFrom();
-
-        if(f == null || f.length == 0 || f.indexOf("*") != -1) {
+        if(f == null || f.length == 0) {
             _isOpen = true;
         } else {
             _isOpen = false;
@@ -49,9 +47,8 @@ public class State {
     public function callEnter    (parameters:Array = null):void { if(_onEnter != null) _onEnter.apply(this, parameters); }
     public function callExit     (parameters:Array = null):void { if(_onExit != null) _onExit.apply(this, parameters); }
 
-    public function clearFrom():void {
-        _isOpen = true;
-        _from.splice(0, _from.length);
+    public function canComeFrom(name:String):Boolean {
+        return _isOpen || (_from.indexOf(name) != -1);
     }
 
     //==================================

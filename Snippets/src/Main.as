@@ -16,6 +16,8 @@ import flash.display.StageScaleMode;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 
+import utils.list.BinaryHeap;
+
 import utils.commands.getRandomElementFrom;
 
 import utils.list.ArrayEx;
@@ -60,30 +62,22 @@ public class Main extends MovieClip {
     //==================================
     //
     //==================================
-    private var board:TileBoard;
+    private var heap:BinaryHeap;
 
     private function init():void { trace("init");
-        //var alphabet:Array = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","y","x","z"];
-        //var p:PriorityQueue = new PriorityQueue();
-        //var i:int;
-        //i = 0; p.put(alphabet[i], i); trace(p);
-        //i = 1; p.put(alphabet[i], i); trace(p);
-        //i = 5; p.put(alphabet[i], i); trace(p);
-        //i = 4; p.put(alphabet[i], i); trace(p);
-        //i = 9; p.put(alphabet[i], i); trace(p);
-        //i = 5; p.put(alphabet[i], i); trace(p);
-        //i = 9; p.put(alphabet[i], i); trace(p);
-        //i = 5; p.put(alphabet[i], i); trace(p);
-        //i = 2; p.put(alphabet[i], i); trace(p);
-        //i = 9; p.put("gg", i);        trace(p);
+        heap = new BinaryHeap(compare, [0,1,2,3,4,5,6]);
+        trace(heap);
 
-        var w:Number = 40;
-        //board = new TileBoard(stage.stageWidth / w, stage.stageHeight / w, w, w);
-        board = new TileBoard(10, 10, w, w);
-        addChild(board);
-
-        board.find(0,0, 9,9);
+        heap.insert(1);
+        trace(heap);
     }
+
+
+    private function compare(a:int, b:int):int {
+        return a - b;
+    }
+
+
 
 }
 }

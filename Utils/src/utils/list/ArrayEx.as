@@ -31,6 +31,12 @@ public dynamic class ArrayEx extends Array {
         return (l == 0)? null : this[l - 1];
     }
 
+    public function swap(a:int, b:int):void {
+        var temp:* = this[a];
+        this[a] = this[b];
+        this[b] = temp;
+    }
+
     public function removeNulls():ArrayEx {
         var len:int = super.length;
         var currentIndex:int = 0;

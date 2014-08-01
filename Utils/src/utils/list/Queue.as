@@ -43,7 +43,7 @@ public class Queue {
     public function set maxLength(l:uint):void {
         mMaxLength = l;
         var len:int = mList.length;
-        if(len > l) {
+        if(l != 0 && len > l) {
             mList.splice(0, len - l);
         }
     }
