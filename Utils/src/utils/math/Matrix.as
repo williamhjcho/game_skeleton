@@ -73,16 +73,15 @@ public class Matrix {
         return true;
     }
 
-    public function isDiagonal():Boolean {
+    public function isDiagonal(canDiagonalBeZero:Boolean = false):Boolean {
         var i:int, j:int;
         for (i = 0; i < r; i++) {
-            for (j = 0; j < i; j++) {
+            for (j = 0; j < i; j++)
                 if(data[i][j] != 0) return false;
-            }
-            if(data[i][i] == 0) return false;
-            for (j = i + 1; j < c; j++) {
+            if(!canDiagonalBeZero && data[i][i] == 0)
+                return false;
+            for (j = i + 1; j < c; j++)
                 if(data[i][j] != 0) return false;
-            }
         }
         return true;
     }
@@ -423,12 +422,10 @@ public class Matrix {
     }
 
     public function getSecondaryDiagonal():Vector.<Number> {
-        var output:Vector.<Number> = new Vector.<Number>;
-        var i:int = 0, j:int = c-1;
-        while(i < r && j >= 0) {
-            output[i] = data[i][j];
-            i++;
-            j--;
+        var output:Vector.<Number> = new Vector.<Number>();
+        var min:int = Math.min(r, c);
+        for (var i:int = 0; i < min; i++) {
+            output[i] = data[r - 1 - i][i];
         }
         return output;
     }

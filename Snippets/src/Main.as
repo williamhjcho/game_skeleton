@@ -16,6 +16,8 @@ import flash.display.StageScaleMode;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 
+import utils.commands.addPrefix;
+
 import utils.list.BinaryHeap;
 
 import utils.commands.getRandomElementFrom;
@@ -62,19 +64,18 @@ public class Main extends MovieClip {
     //==================================
     //
     //==================================
-    private var heap:BinaryHeap;
-
-    private function init():void { trace("init");
-        heap = new BinaryHeap(compare, [0,1,2,3,4,5,6]);
-        trace(heap);
-
-        heap.insert(1);
-        trace(heap);
-    }
 
 
-    private function compare(a:int, b:int):int {
-        return a - b;
+    private function init():void {
+        trace("init");
+        var s:String = "";
+        for (var i:int = 0; i < 10; i++) {
+            for (var j:int = 0; j < 10; j++) {
+                s += i + "" + j + " ";
+            }
+            s += "\n"
+        }
+        trace(s);
     }
 
 

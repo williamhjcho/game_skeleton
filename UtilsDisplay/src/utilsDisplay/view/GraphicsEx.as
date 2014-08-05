@@ -14,9 +14,19 @@ public class GraphicsEx {
         this.graphics = graphics;
     }
 
-
+    //==================================
+    //
+    //==================================
     public function clear():GraphicsEx {
         g.clear();
+        return this;
+    }
+
+    public function copyFrom(source:*):GraphicsEx {
+        var gg:Graphics;
+        if(source is GraphicsEx)    gg = GraphicsEx(source).g;
+        if(source is Graphics)      gg = source;
+        g.copyFrom(gg);
         return this;
     }
 
@@ -26,7 +36,7 @@ public class GraphicsEx {
     }
 
     //==================================
-    //  Public
+    //  Lines / Curves
     //==================================
     public function moveTo(x:Number, y:Number):GraphicsEx {
         g.moveTo(x, y);
