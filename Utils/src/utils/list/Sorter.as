@@ -64,7 +64,7 @@ public final class Sorter {
         while(swapped) {
             swapped = false;
             for (var i:int = 1; i < target.length; i++) {
-                if(compareFunction(target[i-1], target[i]) == 1) {
+                if(compareFunction(target[i-1], target[i]) > 0) {
                     swap(target,i-1,i);
                     swapped = true;
                 }
@@ -236,15 +236,15 @@ public final class Sorter {
         //[7,3,4,9,0,6,2,5,1,8] pivot = (0+10)/2 = 5 --> element = [6]
         //partition = if(element[i] < element[pivot]) put on left else put on right
         if(s < e) {
-            var pIndex:int = (s + e)>>1;
-            var npIndex:int = quickSortPartition(target,f,s,e,pIndex);
+            var npIndex:int = quickSortPartition(target,f,s,e);
             quickSortCore(target,f, s, npIndex-1); //left
             quickSortCore(target,f, npIndex+1, e); //right
         }
         return target;
     }
 
-    private static function quickSortPartition(target:*, f:Function, s:int, e:int, p:int):int {
+    private static function quickSortPartition(target:*, f:Function, s:int, e:int):int {
+        var p:int = (s + e) >> 1;
         var pivot:* = target[p];
         swap(target,p,e);
         var storeIdx:int = s;

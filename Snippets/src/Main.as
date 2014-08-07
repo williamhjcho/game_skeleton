@@ -6,6 +6,12 @@
  * To change this template use File | Settings | File Templates.
  */
 package {
+import Box2D.Collision.Shapes.b2PolygonShape;
+import Box2D.Common.Math.b2Vec2;
+import Box2D.Dynamics.b2Body;
+import Box2D.Dynamics.b2BodyDef;
+import Box2D.Dynamics.b2World;
+
 import com.demonsters.debugger.MonsterDebugger;
 import com.greensock.events.LoaderEvent;
 
@@ -68,14 +74,7 @@ public class Main extends MovieClip {
 
     private function init():void {
         trace("init");
-        var s:String = "";
-        for (var i:int = 0; i < 10; i++) {
-            for (var j:int = 0; j < 10; j++) {
-                s += i + "" + j + " ";
-            }
-            s += "\n"
-        }
-        trace(s);
+
     }
 
 
