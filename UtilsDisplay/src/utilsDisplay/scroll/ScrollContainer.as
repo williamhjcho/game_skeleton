@@ -45,7 +45,7 @@ public class ScrollContainer extends BaseMovieClip {
         this.container = c;
         if(c != null) {
             c.addChild(content);
-            setPosition(0,0);
+            setContentPosition(0,0);
         }
     }
 
@@ -76,7 +76,7 @@ public class ScrollContainer extends BaseMovieClip {
     public function get containerWidth():Number { return container.width; }
     public function get containerHeight():Number { return container.height; }
 
-    public function setPosition(x:Number, y:Number):void {
+    public function setContentPosition(x:Number, y:Number):void {
         if(!_enabled) return;
         var w:Number = container.width, ww:Number = content.width,
             h:Number = container.height, hh:Number = content.height;

@@ -25,6 +25,12 @@ public class BaseMovieClip extends MovieClip implements IDestructible {
     //==================================
     //
     //==================================
+    public function setPosition(x:Number, y:Number):BaseMovieClip {
+        super.x = x;
+        super.y = y;
+        return this;
+    }
+
     public function addChildTo(child:DisplayObject, x:Number = 0, y:Number = 0):void {
         child.x = x;
         child.y = y;

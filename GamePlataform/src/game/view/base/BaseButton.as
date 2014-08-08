@@ -86,7 +86,7 @@ public class BaseButton extends BaseMovieClip {
     protected function onOver   (btn:BaseButton):void { super.gotoAndPlay(Frame.IN);        execute(_over  , _thisInstance);   }
     protected function onOut    (btn:BaseButton):void { super.gotoAndPlay(Frame.OUT);       execute(_out   , _thisInstance);   }
     protected function onDown   (btn:BaseButton):void { super.gotoAndPlay(Frame.DOWN);      execute(_down  , _thisInstance);   }
-    protected function onUp     (btn:BaseButton):void { super.gotoAndPlay(Frame.RELEASE);   execute(_up    , _thisInstance);   }
+    protected function onUp     (btn:BaseButton):void { super.gotoAndPlay(Frame.UP);        execute(_up    , _thisInstance);   }
     protected function onRemove (btn:BaseButton):void { super.gotoAndPlay(Frame.NORMAL);    execute(_remove, _thisInstance);   }
     protected function onEnable (btn:BaseButton):void { super.gotoAndPlay(Frame.NORMAL);    }
     protected function onDisable(btn:BaseButton):void { super.gotoAndPlay(Frame.DISABLED);  }

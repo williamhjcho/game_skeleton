@@ -6,78 +6,62 @@
  * To change this template use File | Settings | File Templates.
  */
 package {
-import Box2D.Collision.Shapes.b2PolygonShape;
-import Box2D.Common.Math.b2Vec2;
-import Box2D.Dynamics.b2Body;
-import Box2D.Dynamics.b2BodyDef;
-import Box2D.Dynamics.b2World;
 
-import com.demonsters.debugger.MonsterDebugger;
-import com.greensock.events.LoaderEvent;
-
-import flash.display.MovieClip;
-import flash.display.Shape;
-import flash.display.StageAlign;
-import flash.display.StageScaleMode;
-import flash.events.KeyboardEvent;
+import flash.display.Sprite;
+import flash.events.Event;
 import flash.events.MouseEvent;
+import flash.utils.setTimeout;
 
-import utils.commands.addPrefix;
+import starling.core.Starling;
 
-import utils.list.BinaryHeap;
+public class Main extends Sprite {
 
-import utils.commands.getRandomElementFrom;
+    public static var starling:Starling;
 
-import utils.list.ArrayEx;
-import utils.list.PriorityQueue;
-
-import utils.managers.LoaderManager;
-
-import view.TileBoard;
-
-[SWF(width=800, height=800, backgroundColor=0x808080, frameRate=30)]
-public class Main extends MovieClip {
-
-    private static var background:Shape;
+    private var obj:Sprite;
 
     public function Main() {
-       stage.scaleMode = StageScaleMode.NO_SCALE;
-       stage.align = StageAlign.TOP_LEFT;
-
-       MonsterDebugger.initialize(this);
-
-        background = new Shape();
-        background.graphics.beginFill(0x808080);
-        background.graphics.drawRect(0,0,stage.stageWidth, stage.stageHeight);
-        addChild(background);
-
-        loadAssets();
+        super();
+        this.addEventListener(Event.ADDED_TO_STAGE, initialize);
     }
 
-    //==================================
-    //  Load
-    //==================================
-    private function loadAssets():void {
-        LoaderManager.loadList("main_assets", [
-            {"type": "SWF" , "name":"basicElements", "url":"basicElements.swf"}
-        ], {onComplete:onLoadAssets});
-    }
+    public function initialize(e:Event):void {
+        this.removeEventListener(Event.ADDED_TO_STAGE, initialize);
+        trace("init Main");
 
-    private function onLoadAssets(e:LoaderEvent):void {
-        init();
-    }
+        obj = new Sprite();
+        obj.addChild(new Client.CHAR_EMBED());
+        obj.x = 300;
+        obj.addEventListener(MouseEvent.MOUSE_DOWN, onDown);
+        obj.addEventListener(MouseEvent.MOUSE_UP, onUp);
+        addChild(obj);
 
-    //==================================
-    //
-    //==================================
+        starling = new Starling(MainStarling, this.stage);
+        starling.antiAliasing = 1;
+        starling.showStats = true;
+        starling.start();
 
+        setTimeout(function():void {
+            trace("STOP");
+            starling.stop(true);
+            starling.root.visible = false;
+        }, 5 * 1000);
 
-    private function init():void {
-        trace("init");
-
+        setTimeout(function():void {
+            trace("BACK");
+            starling.start();
+            starling.root.visible = true;
+        }, 10 * 1000);
     }
 
 
+    private function onDown(e:MouseEvent):void {
+        obj.startDrag();
+    }
+
+    private function onUp(e:MouseEvent):void {
+        obj.stopDrag();
+    }
 
 }
 }

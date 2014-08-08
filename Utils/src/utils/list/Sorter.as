@@ -249,7 +249,7 @@ public final class Sorter {
         swap(target,p,e);
         var storeIdx:int = s;
         for (var i:int = s; i < e; i++) {
-            if( f(target[i],pivot) == -1 ) {
+            if( f(target[i],pivot) < 0 ) {
                 swap(target,i,storeIdx);
                 storeIdx++;
             }
