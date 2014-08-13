@@ -7,8 +7,8 @@ import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.geom.Rectangle;
 
-import graph.AStar;
-import graph.IGraph;
+import utils.graph.AStar;
+import utils.graph.IGraph;
 
 import utils.commands.clamp;
 

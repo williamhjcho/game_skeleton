@@ -43,7 +43,7 @@ public class Circle {
 
     public function overlaps(c:Circle):Boolean {
         var totalRadius:Number = radius + c.radius;
-        return ToolMath.squareSum(c.x - x, c.y - y) < totalRadius * totalRadius;
+        return ToolMath.squareSum(c.x - x, c.y - y) <= totalRadius * totalRadius;
     }
 
     public function sagitta(x0:Number, y0:Number, x1:Number, y1:Number):Number {
@@ -57,7 +57,7 @@ public class Circle {
     public static function random(x:Number, y:Number, radius:Number, output:v2d = null):v2d {
         var theta:Number = Math.random() * 2 * Math.PI;
         radius = Math.random() * radius;
-        (output ||= new v2d()).setTo(radius * Math.cos(theta), radius * Math.sin(theta));
+        (output ||= new v2d()).setTo(x + radius * Math.cos(theta), y + radius * Math.sin(theta));
         return output;
     }
 
