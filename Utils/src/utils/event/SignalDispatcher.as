@@ -88,12 +88,12 @@ public class SignalDispatcher {
                     v[currentIndex] = v[i];
                     v[i] = null;
                 }
+                if(listener.repetition == ONCE) {
+                    v[i] = null;
+                }
+                listener.listener.call(target, signal);
+                currentIndex++;
             }
-            if(listener.repetition == ONCE) {
-                v[i] = null;
-            }
-            listener.listener.call(target, signal);
-            currentIndex++;
         }
 
         if(currentIndex != i) {
@@ -112,13 +112,17 @@ public class SignalDispatcher {
     private static function indexOf(v:Vector.<Listener>, listener:Function):int {
         var len:int = v.length;
         for (var i:int = 0; i < len; i++) {
-            if(v[i].listener == listener) return i;
+            //v[i] can be a null value
+            if(v[i] != null && v[i].listener == listener)
+                return i;
         }
         return -1;
     }
     private static function contains(v:Vector.<Listener>, listener:Function):Boolean {
         for each (var l:Listener in v) {
-            if(l.listener == listener) return true;
+            //l can be a null value
+            if(l != null && l.listener == listener)
+                return true;
         }
         return false;
     }

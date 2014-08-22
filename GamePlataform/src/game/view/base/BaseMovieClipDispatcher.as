@@ -31,8 +31,8 @@ public class BaseMovieClipDispatcher extends BaseMovieClip {
         dispatcher.removeAllSignals();
     }
 
-    public function dispatchSignal(signal:String, ...parameters):void {
-        dispatcher.dispatchSignalWith(signal, parameters);
+    public function dispatchSignal(signal:String, data:* = null):void {
+        dispatcher.dispatchSignalWith(signal, data);
     }
 
     override public function destroy():void {

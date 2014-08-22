@@ -19,6 +19,10 @@ public class Signal {
     public static const START           :String = "start";
     public static const END             :String = "end";
     public static const PAUSE           :String = "pause";
+    public static const NEXT            :String = "next";
+    public static const PREV            :String = "prev";
+    public static const BACK            :String = "back";
+    public static const STOP            :String = "stop";
 
     public static const ACTIVATE        :String = "activate";
     public static const ADDED           :String = "added";
@@ -46,7 +50,6 @@ public class Signal {
     public static const SOUND           :String = "sound";
 
     public static const REMOVE_FROM_JUGGLER:String = "remove.from.juggler";
-
 
     private static var _pool:Vector.<Signal> = new Vector.<Signal>();
 

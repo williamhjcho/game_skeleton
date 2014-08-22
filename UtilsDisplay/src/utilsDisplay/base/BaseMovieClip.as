@@ -8,8 +8,11 @@ import flash.display.MovieClip;
 
 import utils.base.FunctionObject;
 import utils.base.I.IDestructible;
+import utils.commands.getClassName;
 
 public class BaseMovieClip extends MovieClip implements IDestructible {
+
+    private var _className:String;
 
     [ArrayElementType("flash.display.FrameLabel")]
     protected var _frameLabels:Array;
@@ -19,6 +22,7 @@ public class BaseMovieClip extends MovieClip implements IDestructible {
     public function BaseMovieClip() {
         super();
         super.gotoAndStop(0);
+        this._className = getClassName(this);
         this._frameLabels = super.currentLabels;
     }
 
@@ -48,6 +52,10 @@ public class BaseMovieClip extends MovieClip implements IDestructible {
 
     public function destroy():void {
         _completion.destroy();
+    }
+
+    public function get className():String {
+        return _className;
     }
 
     //==================================

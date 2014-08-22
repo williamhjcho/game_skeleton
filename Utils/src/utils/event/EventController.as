@@ -105,7 +105,7 @@ public class EventController {
         var etp:EventTargetProperty = pProperties[target];
         if(etp == null) return; //target was never added before
         var v:Vector.<Function> = etp.getFunctions(type);
-        if(v.length <= 1) { //removing the event only if there is no other listener to it
+        if(v != null && v.length <= 1) { //removing the event only if there is no other listener to it
             target.removeEventListener(type, onEvent);
         }
         etp.remove(type, listener);
