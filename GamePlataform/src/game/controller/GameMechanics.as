@@ -11,8 +11,8 @@ import game.game_internal;
 
 import utils.base.FunctionObject;
 import utils.base.I.IUpdatable;
+import utils.data.ResourcePool;
 import utils.managers.Juggler;
-import utils.managers.Pool;
 
 /**
  * Has mechanics accessible to the whole game, controlled by Game
@@ -47,10 +47,11 @@ public final class GameMechanics {
     //==================================
     //  Job
     //==================================
+    private static const pool_job:ResourcePool = new ResourcePool(FunctionObject);
     private static var _jobs:Vector.<FunctionObject> = new Vector.<FunctionObject>();
 
     public static function addJob(f:Function, ...params):void {
-        var job:FunctionObject = Pool.getItem(FunctionObject);
+        var job:FunctionObject = pool_job.getElement();
         job.reset(f, params);
         _jobs.push(job);
     }
@@ -65,7 +66,7 @@ public final class GameMechanics {
         for (var i:int = 0; i < len; i++) {
             if(_jobs[i] != null) {
                 _jobs[i].execute().destroy();
-                Pool.returnItem(_jobs[i]);
+                pool_job.returnElement(_jobs[i]);
                 _jobs[i] = null;
             }
         }

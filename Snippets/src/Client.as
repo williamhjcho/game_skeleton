@@ -33,7 +33,7 @@ public class Client extends Sprite {
         background = new Shape();
         background.graphics.beginFill(0x808080);
         background.graphics.drawRect(0,0,stage.stageWidth, stage.stageHeight);
-        //addChild(background);
+        addChild(background);
 
         loadAssets();
     }

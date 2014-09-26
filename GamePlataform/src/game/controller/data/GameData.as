@@ -10,6 +10,8 @@ import flash.display.Stage;
 import flash.geom.Rectangle;
 import flash.text.StyleSheet;
 
+import game.model.sound.SoundTable;
+
 import game.model.variable.Variables;
 
 /**
@@ -22,6 +24,7 @@ public class GameData {
 
     public static var variables         :Variables;
     public static var styleSheet        :StyleSheet;
+    public static var soundTable        :SoundTable;
 
     public static function get stage():Stage            { return _stage; }
     public static function set stage(stg:Stage):void    { _stage = stg; _stageRect = new Rectangle(0,0,_stage.stageWidth, _stage.stageHeight); }

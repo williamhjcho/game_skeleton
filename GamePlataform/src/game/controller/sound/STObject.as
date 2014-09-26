@@ -7,9 +7,10 @@ package game.controller.sound {
 //  Sound Track Object
 //==================================
 internal class STObject {
+
     public var sound        :String = null;
-    public var timeElapsed  :uint = 0, timeTotal  :uint = 0;
-    public var volumeStart:Number = 0, volumeEnd:Number = 0;
+    public var timeElapsed  :uint = 0   , timeTotal  :uint = 0;
+    public var volumeStart  :Number = 0 , volumeEnd :Number = 0;
 
     public function STObject() {
 

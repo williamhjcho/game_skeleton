@@ -14,12 +14,12 @@ import flash.media.SoundTransform;
 import flash.utils.Dictionary;
 
 import utils.commands.clamp;
+import utils.data.ResourcePool;
 import utils.event.SoundEvent;
-import utils.managers.Pool;
 
 public class SoundItem extends EventDispatcher {
 
-    private static const ERROR_PREFIX:String = "[SoundItem] ";
+    private static const pool:ResourcePool = new ResourcePool(SoundTransform);
 
     private var _paused             :Boolean        = true;
     private var _volume             :Number         = 1;
@@ -52,7 +52,7 @@ public class SoundItem extends EventDispatcher {
             if(ins == null) {
                 if(ID == null)
                     ID = name + "_" + counter++;
-                ins = _instances[ID] = new SoundInstance(ID, Pool.getItem(SoundTransform));
+                ins = _instances[ID] = new SoundInstance(ID, pool.getElement());
             } else {
                 if(!ins.paused) return ins.ID; //already playing
                 ins.channel = null; //removing reference to old channel (no need to remove eventListener, at this point it is already removed, see 'onSoundComplete')
@@ -68,7 +68,7 @@ public class SoundItem extends EventDispatcher {
             ins.channel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete);
             _counterInstance[ins.channel] = ins;
         } catch(e:Error) {
-            trace(ERROR_PREFIX, e.errorID, e.message);
+            trace(e.errorID, e.message);
         }
 
         return ins.ID;
@@ -167,7 +167,7 @@ public class SoundItem extends EventDispatcher {
             play(ins.ID, 0, ins.volume, ins.pan, ins.loops - 1);
         } else {
             channel.removeEventListener(Event.SOUND_COMPLETE, onSoundComplete);
-            Pool.returnItem(ins.soundTransform);
+            pool.returnElement(ins.soundTransform);
             ins.destroy();
             delete _instances[ins.ID];
             delete _counterInstance[channel];

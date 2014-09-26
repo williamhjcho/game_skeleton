@@ -1,7 +1,12 @@
 {
     "___className": "game.model.variable.Variables",
 
-    "volumeMain"      : 1,
-    "volumeSFX"       : 1,
-    "volumeBackground": 1    
+    "volume_main"      : 1.0,
+    "volume_SFX"       : 1.0,
+    "volume_background": 1.0,
+    "volume_ambient"   : 1.0,
+
+    "enable_debug": true,
+
+    "show_stats": false
 }

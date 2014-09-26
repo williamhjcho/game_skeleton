@@ -11,6 +11,7 @@ import game.model.sound.SoundConfig;
 
 import utils.commands.lerp;
 import utils.commands.toStringArgs;
+import utils.list.ArrayEx;
 import utils.sound.SoundManager;
 
 public class SoundPlayer {
@@ -20,7 +21,7 @@ public class SoundPlayer {
     //==================================
     //  Background
     //==================================
-    private static var _FADING:Vector.<STObject> = new Vector.<STObject>();
+    private static var _FADING:ArrayEx = new ArrayEx();
 
     public static function playBackground(sound:String, loops:int, fade:Boolean = false, fadeTime:Number = 0, volumePercentage:Number = 1.0):void {
         if(fade) {
@@ -54,14 +55,21 @@ public class SoundPlayer {
     //==================================
     //  SFX
     //==================================
-    public static function playSFX(sound:String, id:String = null, loops:uint = 0, volume:Number = 1.0):String  { return SoundManager.play(sound, id, volumeSFX * volume, 0, 0, loops); }
-    public static function stopSFX(sound:String, id:String = null):void                                         { SoundManager.stop(sound, id); }
+    public static function playSFX(sound:String, id:String = null, loops:uint = 0, volume:Number = 1.0, pan:Number = 0, start:Number = 0):String  {
+        return SoundManager.play(sound, id, volumeSFX * volume, pan, start, loops);
+    }
+    public static function stopSFX(sound:String, id:String = null):void {
+        SoundManager.stop(sound, id);
+    }
 
     //==================================
     //  AMBIENT
     //==================================
-    public static function playAmbient(sound:String, id:String = null, loops:uint = 0, volume:Number = 1.0):String  { return SoundManager.play(sound, id, volumeAmbient * volume, 0, 0, loops); }
-    public static function stopAmbient(sound:String, id:String = null):void                                         { SoundManager.stop(sound, id); }
+    public static function playAmbient(sound:String, id:String = null, loops:uint = 0, volume:Number = 1.0, pan:Number = 0, start:Number = 0):String {
+        return SoundManager.play(sound, id, volumeAmbient * volume, pan, start, loops); }
+    public static function stopAmbient(sound:String, id:String = null):void  {
+        SoundManager.stop(sound, id);
+    }
 
     //==================================
     //  Public
@@ -75,9 +83,9 @@ public class SoundPlayer {
         return SoundManager.isMuted;
     }
 
-    public static function get volumeBackground ():Number { return GameData.variables.volumeMain * GameData.variables.volumeBackground * SaveController.data.volumeMain * SaveController.data.volumeBackground; }
-    public static function get volumeAmbient    ():Number { return GameData.variables.volumeMain * GameData.variables.volumeAmbient    * SaveController.data.volumeMain * SaveController.data.volumeAmbient; }
-    public static function get volumeSFX        ():Number { return GameData.variables.volumeMain * GameData.variables.volumeSFX        * SaveController.data.volumeMain * SaveController.data.volumeSFX; }
+    public static function get volumeBackground ():Number { return GameData.variables.volume_main * GameData.variables.volume_background * SaveController.data.volumeMain * SaveController.data.volumeBackground; }
+    public static function get volumeAmbient    ():Number { return GameData.variables.volume_main * GameData.variables.volume_ambient    * SaveController.data.volumeMain * SaveController.data.volumeAmbient; }
+    public static function get volumeSFX        ():Number { return GameData.variables.volume_main * GameData.variables.volume_SFX        * SaveController.data.volumeMain * SaveController.data.volumeSFX; }
 
     //==================================
     //  Specific
@@ -101,8 +109,8 @@ public class SoundPlayer {
                     if(config.delay <= 0)   stopAmbient(config.name, config.id);
                     else                    GameMechanics.addDelay(config.delay, stopAmbient, [config.name, config.id]);
                 } else {
-                    if(config.delay <= 0)   playAmbient(config.name, null, config.loops, config.volume);
-                    else                    GameMechanics.addDelay(config.delay, playAmbient, [config.name, config.id, config.loops, config.volume]);
+                    if(config.delay <= 0)   playAmbient(config.name, null, config.loops, config.volume, config.pan, config.start);
+                    else                    GameMechanics.addDelay(config.delay, playAmbient, [config.name, config.id, config.loops, config.volume, config.pan, config.start]);
                 }
                 break;
             }
@@ -110,8 +118,8 @@ public class SoundPlayer {
                 if(config.stop) {
                     //do nothing
                 } else {
-                    if(config.delay <= 0)   playSFX(config.name, null, config.loops, config.volume);
-                    else                    GameMechanics.addDelay(config.delay, playSFX, [config.name, null, config.loops, config.volume]);
+                    if(config.delay <= 0)   playSFX(config.name, null, config.loops, config.volume, config.pan, config.start);
+                    else                    GameMechanics.addDelay(config.delay, playSFX, [config.name, null, config.loops, config.volume, config.pan, config.start]);
                 }
                 break;
             }
@@ -120,40 +128,18 @@ public class SoundPlayer {
     }
 
     game_internal static function updateSounds(dt:uint):void {
-        var len:int = _FADING.length, currentIndex:int = 0;
-        for (var i:int = 0; i < len; i++) {
-            var o:STObject = _FADING[i];
-            if(o != null) {
-                //pushing down through gaps
-                if(currentIndex != i) {
-                    _FADING[currentIndex] = _FADING[i];
-                    _FADING[i] = null;
+        const f:Function = function(e:STObject, i:int, father:ArrayEx):void {
+            e.timeElapsed += dt;
+            SoundManager.setVolume(e.sound, lerp(e.volumeStart, e.volumeEnd, e.timeProgress));
+            if(e.isTimeComplete) {
+                if(e.volumeEnd == 0) {
+                    SoundManager.stop(e.sound, UNIQUE);
                 }
-
-                //execution
-                o.timeElapsed += dt;
-                SoundManager.setVolume(o.sound, lerp(o.volumeStart, o.volumeEnd, o.timeProgress));
-                if(o.isTimeComplete) {
-                    if(o.volumeEnd == 0) {
-                        SoundManager.stop(o.sound, UNIQUE);
-                    }
-                    _FADING[currentIndex] = null;
-                    STObject.toPool(o);
-                }
-
-                //incrementation
-                currentIndex++;
+                _FADING[i] = null;
+                STObject.toPool(e);
             }
-        }
-
-        //adjustment if there was change in size
-        if(currentIndex != i) {
-            len = _FADING.length;
-            while(i < len) {
-                _FADING[currentIndex++] = _FADING[i++];
-            }
-            _FADING.length = currentIndex;
-        }
+        };
+        _FADING.removeNulls(f);
     }
 }
 }

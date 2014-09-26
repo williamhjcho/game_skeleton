@@ -1,0 +1,24 @@
+{
+    "___className":"flash.utils.Dictionary",
+    "value":[
+        {
+            "key"   : "MAIN_ASSETS",
+            "value" : [
+                { "type":"SAVE"         , "name":"save"         , "url":"data/files/save.json"       },
+                { "type":"VARIABLES"    , "name":"variables"    , "url":"data/files/variables.json"  },
+                { "type":"TEXT"         , "name":"text_PT"      , "url":"data/files/text_PT.json"    ,"acronym":"PT"},
+                { "type":"CSS"          , "name":"styles"       , "url":"data/files/styles.css"     },
+                { "type":"SOUND_TABLE"  , "name":"sound_table"  , "url":"data/files/sounds.json"    },
+
+                { "type": "SWF"         , "name":""             , "url":""  },
+
+                { "type":"SOUND", "autoPlay":false, "name":"click"    , "url":"data/sounds/click.mp3"},
+                { "type":"SOUND", "autoPlay":false, "name":"over"     , "url":"data/sounds/over.mp3" },
+                { "type":"SOUND", "autoPlay":false, "name":"popup"    , "url":"data/sounds/popup.mp3"},
+                { "type":"SOUND", "autoPlay":false, "name":"right"    , "url":"data/sounds/right.mp3"},
+                { "type":"SOUND", "autoPlay":false, "name":"track"    , "url":"data/sounds/track.mp3"},
+                { "type":"SOUND", "autoPlay":false, "name":"wrong"    , "url":"data/sounds/wrong.mp3"}
+            ]
+        }
+    ]
+}

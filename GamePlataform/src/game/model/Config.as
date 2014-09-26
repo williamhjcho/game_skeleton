@@ -6,27 +6,23 @@
  * To change this template use File | Settings | File Templates.
  */
 package game.model {
-import flash.utils.Dictionary;
 
 /**
  * This class should contain OUTER-GAME variables only
  */
 public class Config {
 
-    public var allowedDomain:String;
-    public var serverTest   :String;
+    public var allowed_domain:String;
+    public var server_test   :String;
 
     /**
      * Dictionary where the key is a string referred in class AssetKey
      */
-    public var assets       :Dictionary;
+    public var assets_path:String;
 
     /**
      * Relative path to main.swf
      */
-    public var preLoaderPath:String;
-
-
-    public var showStats    :Boolean;
+    public var preloader_path:String;
 }
 }

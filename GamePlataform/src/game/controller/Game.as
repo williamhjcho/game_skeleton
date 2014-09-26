@@ -50,7 +50,7 @@ public final class Game {
     }
 
     public function initialize():void {
-        SoundManager.volume = GameData.variables.volumeMain;
+        SoundManager.volume = GameData.variables.volume_main;
 
         initializeMachine();
 

@@ -7,18 +7,20 @@
  */
 package {
 
-import flash.display.Sprite;
 import flash.events.Event;
-import flash.events.MouseEvent;
-import flash.utils.setTimeout;
+import flash.events.IOErrorEvent;
 
-import starling.core.Starling;
+import snd.Snd;
 
-public class Main extends Sprite {
+import utils.event.Signal;
 
-    public static var starling:Starling;
+import utilsDisplay.base.BaseSprite;
 
-    private var obj:Sprite;
+import view.Panel;
+
+public class Main extends BaseSprite {
+
+    private var panel:Panel;
 
     public function Main() {
         super();
@@ -27,40 +29,28 @@ public class Main extends Sprite {
 
     public function initialize(e:Event):void {
         this.removeEventListener(Event.ADDED_TO_STAGE, initialize);
-        trace("init Main");
 
-        obj = new Sprite();
-        obj.addChild(new Client.CHAR_EMBED());
-        obj.x = 300;
-        obj.addEventListener(MouseEvent.MOUSE_DOWN, onDown);
-        obj.addEventListener(MouseEvent.MOUSE_UP, onUp);
-        addChild(obj);
+        Snd.addSignalListener(IOErrorEvent.IO_ERROR, onLoadError);
+        Snd.addSignalListener(Event.COMPLETE, onLoadComplete);
+        Snd.load("sounds/click.mp3", "click", false, true);
+        Snd.load("sounds/over.mp3" , "over" , true, true);
+        Snd.load("sounds/popup.mp3", "popup", true, true);
 
-        starling = new Starling(MainStarling, this.stage);
-        starling.antiAliasing = 1;
-        starling.showStats = true;
-        starling.start();
-
-        setTimeout(function():void {
-            trace("STOP");
-            starling.stop(true);
-            starling.root.visible = false;
-        }, 5 * 1000);
-
-        setTimeout(function():void {
-            trace("BACK");
-            starling.start();
-            starling.root.visible = true;
-        }, 10 * 1000);
+        createPanel();
     }
 
-
-    private function onDown(e:MouseEvent):void {
-        obj.startDrag();
+    private function createPanel():void {
+        panel = new Panel();
+        addChildTo(panel, 0,0);
+        panel.setup();
     }
 
-    private function onUp(e:MouseEvent):void {
-        obj.stopDrag();
+    private function onLoadError(e:Signal):void {
+        trace("load Error", e.data);
+    }
+
+    private function onLoadComplete(e:Signal):void {
+        trace("load Complete", e.data);
     }
 
 }

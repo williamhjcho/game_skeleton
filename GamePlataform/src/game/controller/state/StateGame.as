@@ -11,6 +11,7 @@ import game.controller.Game;
 
 public class StateGame extends BaseState {
 
+
     public function StateGame(game:Game, from:Array = null) {
         super(game, GameState.GAME, from, onEnter, onExit);
     }

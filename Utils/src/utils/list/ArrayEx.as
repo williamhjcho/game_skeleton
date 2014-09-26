@@ -2,6 +2,7 @@
  * Created by William on 7/3/2014.
  */
 package utils.list {
+import utils.commands.execute;
 import utils.commands.getClass;
 import utils.commands.getClassByPath;
 import utils.commands.getClassName;
@@ -37,7 +38,12 @@ public dynamic class ArrayEx extends Array {
         this[b] = temp;
     }
 
-    public function removeNulls():ArrayEx {
+    /**
+     * Runs through the list and removes any null slots, while pushing down the elements
+     * @param f function to be called AFTER the push-down as f(element, elementIndex, list)
+     * @return this
+     */
+    public function removeNulls(f:Function = null):ArrayEx {
         var len:int = super.length;
         var currentIndex:int = 0;
         for (var i:int = 0; i < len; i++) {
@@ -47,6 +53,9 @@ public dynamic class ArrayEx extends Array {
                     this[currentIndex] = this[i];
                     this[i] = null;
                 }
+                //executing
+                if(f != null)
+                    f.call(this, this[currentIndex], currentIndex, this);
                 currentIndex++;
             }
         }

@@ -17,7 +17,7 @@ import flash.system.Security;
 
 import game.constants.AssetKey;
 import game.controller.Game;
-import game.controller.data.AssetDataController;
+import game.controller.data.AssetController;
 import game.controller.data.GameData;
 import game.model.Config;
 
@@ -66,10 +66,10 @@ public class Main extends Sprite {
     }
 
     /**
-     * Runs through Config.assets and analyzes their content (see DataController)
+     * Runs through the main asset list and analyzes their content
      */
     private function analyzeAssets():void {
-        AssetDataController.analyzeAssets(Client.config.assets[AssetKey.MAIN_ASSETS]);
+        AssetController.analyzeAssets(Client.assetList[AssetKey.MAIN_ASSETS]);
     }
 
     /**
@@ -78,13 +78,15 @@ public class Main extends Sprite {
     private function initializeControllers():void {
         var config:Config = Client.config;
 
-        Security.allowDomain(config.allowedDomain);
-        Security.allowInsecureDomain(config.allowedDomain);
+        Security.allowDomain(config.allowed_domain);
+        Security.allowInsecureDomain(config.allowed_domain);
 
-        MonsterDebugger.initialize(this);
+        if(GameData.variables.enable_debug) {
+            MonsterDebugger.initialize(this);
+        }
 
         //identifying the Environment of the game (wem, offline, scorm....)
-        EnvironmentManager.initialize(loaderInfo.url, config.serverTest);
+        EnvironmentManager.initialize(loaderInfo.url, config.server_test);
     }
 
     /**
@@ -109,7 +111,7 @@ public class Main extends Sprite {
         _popUpLayer = new Sprite();
         this.addChild(_popUpLayer);
 
-        if(Client.config.showStats) {
+        if(GameData.variables.show_stats) {
             _stats = new Stats();
             _stats.alpha = 0.75;
             addChild(_stats);

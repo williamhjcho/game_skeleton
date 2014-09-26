@@ -46,8 +46,8 @@ public final class SoundManager {
             soundItem.sound = new customSoundClass();
         }
 
-        soundItem.name          = name;
-        soundItem.muted         = _muted;
+        soundItem.name  = name;
+        soundItem.muted = _muted;
         if(params != null) {
             soundItem.onLoad                ||= params.onLoad          ;
             soundItem.onLoadParams          ||= params.onLoadParams    ;
@@ -88,7 +88,6 @@ public final class SoundManager {
         }
         soundItemLibrary = new Dictionary();
     }
-
 
     //==================================
     //  Public
@@ -162,7 +161,7 @@ public final class SoundManager {
     //==================================
     //  Get / Set
     //==================================
-    public static function isRegistered(name:String):Boolean { return (soundItemLibrary[name] != null && soundItemLibrary[name] != undefined); }
+    public static function isRegistered(name:String):Boolean { return (name in soundItemLibrary) || (name in loadingSounds); }
 
     public static function getDuration(name:String):Number                              { return SoundItem(soundItemLibrary[name]).sound.length;       }
     public static function getPosition(name:String,ID:String):Number                    { return SoundItem(soundItemLibrary[name]).getPosition(ID);    }
@@ -175,7 +174,6 @@ public final class SoundManager {
     public static function isPaused(name:String):Boolean                                { return SoundItem(soundItemLibrary[name]).paused;             }
     public static function getSound(name:String):Sound                                  { return SoundItem(soundItemLibrary[name]).sound;              }
     public static function getSoundItem(name:String):SoundItem                          { return SoundItem(soundItemLibrary[name]);                    }
-
 
     //==================================
     //  Internal Tools

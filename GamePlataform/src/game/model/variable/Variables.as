@@ -13,10 +13,13 @@ package game.model.variable {
 public class Variables {
 
     //see game.controller.sound.SoundPlayer for reference
-    public var volumeMain       :Number = 1.0;
-    public var volumeSFX        :Number = 1.0;
-    public var volumeBackground :Number = 1.0;
-    public var volumeAmbient    :Number = 1.0;
+    public var volume_main       :Number = 1.0;
+    public var volume_SFX        :Number = 1.0;
+    public var volume_background :Number = 1.0;
+    public var volume_ambient    :Number = 1.0;
+
+    public var show_stats   :Boolean = false;
+    public var enable_debug :Boolean = false;
 
 }
 }

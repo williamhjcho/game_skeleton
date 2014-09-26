@@ -15,6 +15,7 @@ import flash.errors.IllegalOperationError;
 import flash.events.Event;
 import flash.ui.ContextMenu;
 import flash.ui.ContextMenuItem;
+import flash.utils.Dictionary;
 
 import game.constants.AssetKey;
 import game.model.Config;
@@ -40,6 +41,7 @@ public class Client extends Sprite {
     private static var _instance:Client;
     private static var _config:Config;
     private static var _preLoader:PreLoader;
+    private static var _assetList:Dictionary;
 
     public function Client() {
         if(_instance != null) throw new IllegalOperationError("Singleton Class, cannot be instantiated more than once.");
@@ -59,10 +61,10 @@ public class Client extends Sprite {
         //Config
         _config = SerializerManager.decodeFromString(new CONFIG());
 
-        if(_config.preLoaderPath == null || _config.preLoaderPath == "") {
+        if(_config.preloader_path == null || _config.preloader_path == "") {
             throw new Error("Pre loader path not found on configuration file.");
         } else {
-            loadPreLoader(_config.preLoaderPath);
+            loadPreLoader(_config.preloader_path);
         }
     }
 
@@ -75,21 +77,26 @@ public class Client extends Sprite {
         LoaderManager.loadSWF(path, {onComplete:onLoadPreLoader});
     }
 
-    private function onLoadPreLoader(e:LoaderEvent = null):void {
+    private function onLoadPreLoader(e:LoaderEvent):void {
         _preLoader = new PreLoader();
         _preLoader.x = (stage.stageWidth  - _preLoader.width ) / 2;
         _preLoader.y = (stage.stageHeight - _preLoader.height) / 2;
-        showPreLoader(0,1, loadMainAssets);
+        showPreLoader(0, loadAssetList, [_config.assets_path]);
     }
 
     /**
      * Loads any necessary assets inside Config
      */
-    private function loadMainAssets():void {
-        LoaderManager.loadList(AssetKey.MAIN_ASSETS, _config.assets[AssetKey.MAIN_ASSETS], {onComplete:onLoadAssets, onProgress:updatePreLoader});
+    private function loadAssetList(path:String):void {
+        LoaderManager.loadData(path, {onComplete:onLoadAssetList});
     }
 
-    private function onLoadAssets(e:LoaderEvent):void {
+    private function onLoadAssetList(e:LoaderEvent):void {
+        _assetList = SerializerManager.decodeFromString(LoaderManager.getContent(_config.assets_path));
+        LoaderManager.loadList(AssetKey.MAIN_ASSETS, _assetList[AssetKey.MAIN_ASSETS], {onComplete:onAssetsLoaded, onProgress:updatePreLoader});
+    }
+
+    private function onAssetsLoaded(e:LoaderEvent):void {
         hidePreLoader(startGame);
     }
 
@@ -100,10 +107,9 @@ public class Client extends Sprite {
     //==================================
     //  Pre Loader
     //==================================
-    public static function showPreLoader(startingPercentage:Number = 0, alpha:Number = 1, callback:Function = null, parameters:Array = null):void {
-        _preLoader.alpha = alpha;
-        _preLoader.percentage = startingPercentage;
+    public static function showPreLoader(startingPercentage:Number = 0, callback:Function = null, parameters:Array = null):void {
         _instance.addChild(_preLoader);
+        _preLoader.percentage = startingPercentage;
         _preLoader.animateIn(callback, parameters);
     }
 
@@ -125,6 +131,10 @@ public class Client extends Sprite {
     //==================================
     public static function get config():Config {
         return _config;
+    }
+
+    public static function get assetList():Dictionary {
+        return _assetList;
     }
 
     //==================================

@@ -14,6 +14,8 @@ public class SoundConfig {
     public var delay    :Number = 0;        //in seconds
     public var fade     :Boolean = false;
     public var fadeTime :Number = 1.0;      //in seconds
+    public var pan      :Number = 0;        //[-1.0, 1.0]
+    public var start    :Number = 0;        //in milliseconds
 
     public var loops    :uint = 0;
     public var volume   :Number = 1.0;

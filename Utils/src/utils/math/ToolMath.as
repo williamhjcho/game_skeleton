@@ -18,7 +18,7 @@ public final class ToolMath {
     //==================================
     public static function abs(n:Number):Number { return (n >> 31)? -n : n; }
     public static function isOdd(n:Number):Boolean { return (n & 1) == 1; }
-    public static function sign(n:Number):int { return (n < 0) ? -1 : 1; }
+    public static function sign(n:Number):int { return (n < 0) ? -1 : (n > 0? 1 : 0); }
 
     public static function middle(a:Number, b:Number):Number { return (a + b) / 2; }
 

@@ -14,5 +14,6 @@ public final class AssetType {
     public static const TEXT        :String = "TEXT";
     public static const SAVE        :String = "SAVE";
     public static const CSS         :String = "CSS";
+    public static const SOUND_TABLE :String = "SOUND_TABLE";
 }
 }
