@@ -1,9 +1,5 @@
 /**
- * Created with IntelliJ IDEA.
- * User: williamwc
- * Date: 2/5/13
- * Time: 10:41 PM
- * To change this template use File | Settings | File Templates.
+ * Created by William on 9/22/2014.
  */
 package utils.sound {
 import flash.events.Event;
@@ -12,181 +8,222 @@ import flash.media.Sound;
 import flash.media.SoundLoaderContext;
 import flash.net.URLRequest;
 import flash.utils.Dictionary;
+import flash.utils.clearInterval;
+import flash.utils.getTimer;
+import flash.utils.setInterval;
 
 import utils.commands.clamp;
 
-public final class SoundManager {
+import utils.event.SignalDispatcher;
 
-    private static var soundItemLibrary :Dictionary = new Dictionary();
-    private static var loadingSounds    :Dictionary = new Dictionary();
-    private static var _muted           :Boolean = false;
-    private static var _volume          :Number = 1;
+public class SoundManager extends SignalDispatcher {
 
-    public function SoundManager() {}
+    protected var items:Vector.<SoundItem>;
+    protected var itemByName:Dictionary;
+    protected var registeredSounds:Vector.<Sound>;
+
+    private var _updateRate :uint;
+    private var _volume     :Number = 1.0;
+    private var _muted      :Boolean = false;
+
+    private var _intervalID:uint;
+    private var _lastTimeStamp:uint;
+
+    public function SoundManager(updateRate:uint = 1000 / 30) {
+        items = new Vector.<SoundItem>();
+        itemByName = new Dictionary();
+        registeredSounds = new Vector.<Sound>();
+        _lastTimeStamp = getTimer();
+        this.updateRate = updateRate;
+    }
 
     //==================================
-    //  Sound Management
+    //  Add / Load
     //==================================
-    private static function add(name:String, customSoundClass:Class, preloadedSound:Sound, path:String, buffer:Number = 1000, checkPolicyFile:Boolean = false, params:Object=null):void {
-        if(isRegistered(name))
-            throw new ArgumentError("Already registered name: \""+name+"\".");
-
-        var soundItem:SoundItem = new SoundItem();
-
-        if(customSoundClass == null) {
-            if(preloadedSound == null) {
-                soundItem.sound = new Sound(new URLRequest(path), new SoundLoaderContext(buffer, checkPolicyFile));
-                soundItem.sound.addEventListener(IOErrorEvent.IO_ERROR  , onSoundLoadError      );
-                soundItem.sound.addEventListener(Event.COMPLETE         , onSoundLoadComplete   );
-                loadingSounds[soundItem.sound] = soundItem;
-            } else {
-                soundItem.sound = preloadedSound;
-            }
+    public function add(name:String, sound:Sound, allowMultiple:Boolean = true, allowInterruption:Boolean = true):void {
+        var item:SoundItem;
+        if(isNameRegistered(name)) {
+            //overwriting new Sound to already existing instance
+            item = getItem(name);
+            item.setSound(sound);
+            item.allowMultiple = allowMultiple;
+            item.allowInterruption = allowInterruption;
         } else {
-            soundItem.sound = new customSoundClass();
+            //if the sound has already been added, it will create a new instance with the same sound
+            item = new SoundItem(name, sound, null, allowMultiple, allowInterruption);
         }
-
-        soundItem.name  = name;
-        soundItem.muted = _muted;
-        if(params != null) {
-            soundItem.onLoad                ||= params.onLoad          ;
-            soundItem.onLoadParams          ||= params.onLoadParams    ;
-            soundItem.onPlayComplete        ||= params.onComplete      ;
-            soundItem.onPlayCompleteParams  ||= params.onCompleteParams;
-        }
-        soundItemLibrary[name] = soundItem;
+        addInstance(item);
     }
 
-    public static function addCustom(name:String, customSoundClass:Class, params:Object = null):void {
-        add(name, customSoundClass, null, "",1000, false, params);
-    }
-
-    public static function addPreloaded(name:String, sound:Sound, params:Object = null):void {
-        add(name, null, sound, "", 1000, false, params);
-    }
-
-    public static function addExternal(name:String, path:String, buffer:Number = 1000, checkPolicyFile:Boolean = false, params:Object = null):void {
-        add(name, null, null, path,buffer,checkPolicyFile,params);
-    }
-
-    public static function remove(name:String):void {
-        if(isRegistered(name)) {
-            var soundItem:SoundItem = soundItemLibrary[name] as SoundItem;
-            soundItem.sound.removeEventListener(IOErrorEvent.IO_ERROR, onSoundLoadError     );
-            soundItem.sound.removeEventListener(Event.COMPLETE       , onSoundLoadComplete  );
-            soundItem.destroy();
-            delete soundItemLibrary[name];
-        }
-    }
-
-    public static function removeAll():void {
-        for each(var soundItem:SoundItem in soundItemLibrary) {
-            soundItem.sound.removeEventListener(IOErrorEvent.IO_ERROR, onSoundLoadError     );
-            soundItem.sound.removeEventListener(Event.COMPLETE       , onSoundLoadComplete  );
-            soundItem.destroy();
-            delete soundItemLibrary[soundItem.name];
-        }
-        soundItemLibrary = new Dictionary();
+    public function load(url:String, name:String, allowMultiple:Boolean = true, allowInterruption:Boolean = true, buffer:int = 1000, checkPolicyFile:Boolean = false):void {
+        if(isNameRegistered(name)) return;
+        var sound:Sound = new Sound(new URLRequest(url), new SoundLoaderContext(buffer, checkPolicyFile));
+        sound.addEventListener(IOErrorEvent.IO_ERROR, onSoundLoadError);
+        sound.addEventListener(Event.COMPLETE, onSoundLoadComplete);
+        var item:SoundItem = new SoundItem(name, sound, url, allowMultiple, allowInterruption);
+        addInstance(item);
     }
 
     //==================================
-    //  Public
+    //  Play / Pause / Resume / Mute / UnMute
     //==================================
-    public static function play(name:String, ID:String = null, volume:Number = 1, pan:Number = 0, startTime:Number = 0, loops:int = 0):String {
-        var soundItem:SoundItem = soundItemLibrary[name] as SoundItem;
-        ID = soundItem.play(ID, startTime, volume * _volume, pan, loops);
-        if(_muted) soundItem.mute(ID);
-        return ID;
+    public function play(name:String, id:String = null, volume:Number = 1.0, pan:Number = 0.0, startTime:Number = 0, loops:int = 0, fadeTo:Number = -1, duration:Number = 0.5, stopAtZero:Boolean = true):String {
+        if(!isNameRegistered(name))
+            return null;
+
+        var item:SoundItem = getItem(name);
+        item.play(id, volume, pan, startTime, loops, fadeTo, duration, stopAtZero);
+        item.setMute(_muted);
+        return id;
     }
 
-    public static function pause(name:String, ID:String = null):void {
-        var soundItem:SoundItem = soundItemLibrary[name] as SoundItem;
-        if(ID == null)  soundItem.pauseAll();
-        else            soundItem.pause(ID);
+    public function pause(name:String, id:String):SoundItem {
+        return isNameRegistered(name)? getItem(name).pause(id) : null;
     }
 
-    public static function resume(name:String, ID:String = null):void {
-        var soundItem:SoundItem = soundItemLibrary[name] as SoundItem;
-        if(ID == null)  soundItem.resumeAll();
-        else            soundItem.resume(ID);
-    }
-
-    public static function stop(name:String, ID:String = null):void {
-        var soundItem:SoundItem = soundItemLibrary[name] as SoundItem;
-        if(ID == null)  soundItem.stopAll();
-        else            soundItem.stop(ID);
-    }
-
-    public static function get volume()         :Number { return _volume; }
-    public static function set volume(v:Number) :void   {
-        if(_muted) return;
-        v = clamp(v,0,1);
-        for each (var item:SoundItem in soundItemLibrary) {
-            item.volume = v * item.volume / _volume;
+    public function pauseAll():void {
+        for each (var item:SoundItem in items) {
+            item.pauseAll();
         }
-        _volume = v;
     }
 
-    public static function mute(name:String, ID:String = null):void {
-        var soundItem:SoundItem = soundItemLibrary[name];
-        if(soundItem == null) return;
-        if(ID == null)  soundItem.muteAll();
-        else            soundItem.mute(ID);
+    public function resume(name:String, id:String):SoundItem {
+        return isNameRegistered(name)? getItem(name).resume(id) : null;
     }
 
-    public static function unmute(name:String, ID:String = null):void {
-        var soundItem:SoundItem = soundItemLibrary[name];
-        if(soundItem == null) return;
-        if(ID == null)  soundItem.unMuteAll();
-        else            soundItem.unMute(ID);
+    public function resumeAll():void {
+        for each (var item:SoundItem in items) {
+            item.resumeAll();
+        }
     }
 
-    public static function muteAll():void {
+    public function mute(name:String, id:String):SoundItem {
+        return isNameRegistered(name)? getItem(name).mute(id) : null;
+    }
+
+    public function muteAll():void {
         _muted = true;
-        for each(var soundItem:SoundItem in soundItemLibrary) {
-            soundItem.muteAll();
+        for each (var item:SoundItem in items) {
+            item.muteAll();
         }
     }
 
-    public static function unmuteAll():void {
+    public function unMute(name:String, id:String):SoundItem {
+        return isNameRegistered(name)? getItem(name).unMute(id) : null;
+    }
+
+    public function unMuteAll():void {
         _muted = false;
-        for each(var soundItem:SoundItem in soundItemLibrary) {
-            soundItem.unMuteAll();
+        for each (var item:SoundItem in items) {
+            item.unMuteAll();
         }
     }
 
-    public static function get isMuted():Boolean { return _muted; }
+    public function fadeTo(name:String, id:String, end:Number, duration:Number = 0.5, stopAtZero:Boolean = true):SoundManager {
+        if(isNameRegistered(name))
+            getItem(name).fadeTo(id, end * _volume, duration, stopAtZero);
+        return this;
+    }
+
+    public function fadeAllFromItemTo(name:String, end:Number, duration:Number = 0.5, stopAtZero:Boolean = true):SoundManager {
+        if(isNameRegistered(name))
+            getItem(name).fadeAllTo(end * _volume, duration, stopAtZero);
+        return this;
+    }
+
+    public function fadeAllTo(end:Number, duration:Number = 0.5, stopAtZero:Boolean = true):SoundManager {
+        for each (var item:SoundItem in items) {
+            item.fadeAllTo(end * _volume, duration, stopAtZero);
+        }
+        return this;
+    }
 
 
     //==================================
     //  Get / Set
     //==================================
-    public static function isRegistered(name:String):Boolean { return (name in soundItemLibrary) || (name in loadingSounds); }
+    public function isNameRegistered(name:String):Boolean { return name in itemByName; }
+    public function isSoundRegistered(sound:Sound):Boolean { return registeredSounds.indexOf(sound) != -1; }
 
-    public static function getDuration(name:String):Number                              { return SoundItem(soundItemLibrary[name]).sound.length;       }
-    public static function getPosition(name:String,ID:String):Number                    { return SoundItem(soundItemLibrary[name]).getPosition(ID);    }
-    public static function setPosition(name:String,ID:String,position:Number):void      { SoundItem(soundItemLibrary[name]).setPosition(ID, position); }
-    public static function getVolume(name:String):Number                                { return SoundItem(soundItemLibrary[name]).volume/_volume      }
-    public static function setVolume(name:String, volume:Number):void                   { SoundItem(soundItemLibrary[name]).volume = (_muted) ? 0 : clamp(volume,0,1) * _volume;   }
-    public static function getPan(name:String):Number                                   { return SoundItem(soundItemLibrary[name]).pan; }
-    public static function setPan(name:String, pan:Number):void                         { SoundItem(soundItemLibrary[name]).pan = pan; }
+    public function getItem(name:String):SoundItem { return itemByName[name]; }
 
-    public static function isPaused(name:String):Boolean                                { return SoundItem(soundItemLibrary[name]).paused;             }
-    public static function getSound(name:String):Sound                                  { return SoundItem(soundItemLibrary[name]).sound;              }
-    public static function getSoundItem(name:String):SoundItem                          { return SoundItem(soundItemLibrary[name]);                    }
-
-    //==================================
-    //  Internal Tools
-    //==================================
-    private static function onSoundLoadError(e:IOErrorEvent):void {
-        throw new Error("[SoundManager] " + e.text);
+    public function get updateRate():uint { return _updateRate; }
+    public function set updateRate(p:uint):void {
+        _updateRate = p;
+        clearInterval(_intervalID);
+        _intervalID = setInterval(update, _updateRate);
     }
 
-    private static function onSoundLoadComplete(e:Event):void {
+    public function get volume():Number { return _volume; }
+    public function set volume(v:Number):void {
+        v = clamp(v, 0.0, 1.0);
+        var k:Number = v / _volume;
+        _volume = v;
+        for each (var item:SoundItem in items) {
+            item.volume *= k;
+        }
+    }
+
+    public function get isMuted():Boolean { return _muted; }
+    public function setMute(m:Boolean):void {
+        if(m)   muteAll();
+        else    unMuteAll();
+    }
+
+    public function isItemMuted(name:String):Boolean { return isNameRegistered(name)? getItem(name).isMuted : false; }
+    public function setItemMute(name:String, v:Boolean):void {
+        if(isNameRegistered(name))
+            getItem(name).setMute(v);
+    }
+
+    public function toString():String {
+        var debug:String = "{ MANAGER items:[";
+        var count:int = 0;
+        for each (var item:SoundItem in items) {
+            debug += "\n\t" + item.toString("\t");
+            count++;
+        }
+        debug += (count > 0? '\n' : "") + "] }";
+        return debug;
+    }
+
+    //==================================
+    //  Private
+    //==================================
+    private function addInstance(si:SoundItem):void {
+        if(items.indexOf(si) == -1)
+            items.push(si);
+        if(registeredSounds.indexOf(si.sound) == -1)
+            registeredSounds.push(si.sound);
+        itemByName[si.name] = si;
+    }
+
+    private function update():void {
+        var t:uint = getTimer(),
+            dt:uint = t - _lastTimeStamp;
+        _lastTimeStamp = t;
+        for each (var item:SoundItem in items) {
+            item.update(dt);
+        }
+    }
+
+    //==================================
+    //  Events
+    //==================================
+    private function onSoundLoadError(e:IOErrorEvent):void {
         var sound:Sound = e.target as Sound;
-        var soundItem:SoundItem = loadingSounds[sound];
-        delete loadingSounds[sound];
-        soundItem.executeOnLoad();
+        sound.removeEventListener(IOErrorEvent.IO_ERROR, onSoundLoadError);
+        sound.removeEventListener(Event.COMPLETE, onSoundLoadComplete);
+        super.dispatchSignalWith(IOErrorEvent.IO_ERROR, e);
     }
+
+    private function onSoundLoadComplete(e:Event):void {
+        var sound:Sound = e.target as Sound;
+        sound.removeEventListener(IOErrorEvent.IO_ERROR, onSoundLoadError);
+        sound.removeEventListener(Event.COMPLETE, onSoundLoadComplete);
+        super.dispatchSignalWith(Event.COMPLETE, sound);
+
+    }
+
 }
 }

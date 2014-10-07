@@ -15,7 +15,7 @@ public class Variables {
     //see game.controller.sound.SoundPlayer for reference
     public var volume_main       :Number = 1.0;
     public var volume_SFX        :Number = 1.0;
-    public var volume_background :Number = 1.0;
+    public var volume_BGM :Number = 1.0;
     public var volume_ambient    :Number = 1.0;
 
     public var show_stats   :Boolean = false;

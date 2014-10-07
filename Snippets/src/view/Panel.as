@@ -5,9 +5,11 @@ package view {
 import flash.text.TextField;
 import flash.utils.setInterval;
 
-import snd.Snd;
+import utils.sound.SoundUtil;
 
 import utilsDisplay.base.BaseMovieClip;
+
+use namespace SoundUtil;
 
 public class Panel extends BaseMovieClip {
 
@@ -36,7 +38,7 @@ public class Panel extends BaseMovieClip {
     }
 
     private function update():void {
-        var debug:String = Snd.toString();
+        var debug:String = SoundUtil.toString();
         //trace("========== DEBUG ==========");
         //trace(debug);
         txtDebug.text = debug;
@@ -47,17 +49,19 @@ public class Panel extends BaseMovieClip {
     //==================================
     private function onClick(btn:BaseButton):void {
         switch(btn) {
-            case btn1: Snd.play("click", "unique", 1.0, 0.0, 0, 5); break;
-            case btn2: Snd.play("click"); break;
-            case btn3: Snd.play("click"); break;
+            case btn1: SoundUtil.play("right", "MY_ID", 0, 0, 0, 0, 1, 0.5, false);
+                //Snd.play("right", null, 1.0, 0.0, 0, 0);
+                break;
+            case btn2: SoundUtil.play("click"); break;
+            case btn3: SoundUtil.play("click"); break;
         }
     }
 
     private function onOver(btn:BaseButton):void {
         switch(btn) {
-            case btn1: Snd.play("over"); break;
-            case btn2: Snd.play("over"); break;
-            case btn3: Snd.play("over"); break;
+            case btn1: SoundUtil.play("over"); break;
+            case btn2: SoundUtil.play("over"); break;
+            case btn3: SoundUtil.play("over"); break;
         }
     }
 

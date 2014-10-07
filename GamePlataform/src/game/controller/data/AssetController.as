@@ -12,6 +12,7 @@ import game.constants.AssetType;
 
 import utils.managers.LoaderManager;
 import utils.serializer.SerializerManager;
+import utils.sound.SoundUtil;
 import utils.sound.SoundManager;
 
 /**
@@ -47,7 +48,9 @@ public class AssetController {
                     break;
                 }
                 case AssetType.SOUND: {
-                    SoundManager.addPreloaded(dataName, data);
+                    SoundUtil.add(dataName, data,
+                            asset.allowMultiple == null? true : asset.allowMultiple,
+                            asset.allowInterruption == null? true : asset.allowInterruption);
                     break;
                 }
                 case AssetType.VARIABLES: {

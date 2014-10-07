@@ -1,0 +1,12 @@
+{
+    "___className": "game.model.variable.Variables",
+
+    "volume_main"   : 1.0,
+    "volume_SFX"    : 1.0,
+    "volume_BGM"    : 1.0,
+    "volume_ambient": 1.0,
+
+    "enable_debug": true,
+
+    "show_stats": false
+}

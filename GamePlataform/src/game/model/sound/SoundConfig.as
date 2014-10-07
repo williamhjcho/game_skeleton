@@ -12,16 +12,17 @@ public class SoundConfig {
 
     public var stop     :Boolean = false;
     public var delay    :Number = 0;        //in seconds
-    public var fade     :Boolean = false;
-    public var fadeTime :Number = 1.0;      //in seconds
     public var pan      :Number = 0;        //[-1.0, 1.0]
     public var start    :Number = 0;        //in milliseconds
-
     public var loops    :uint = 0;
     public var volume   :Number = 1.0;
 
+    public var fadeTo       :Number = -1.0;     //in seconds
+    public var fadeDuration :Number = 1.0;   //in seconds
+    public var stopAtZero   :Boolean = true;
+
     public function toString():String {
-        return toStringArgs("{SoundConfig name:$0, type:$1, stop:$2, delay:$3, fade:$4, fadeTime:$5, loops:$6, volume:$7}", [name, type, stop, delay, fade, fadeTime, loops, volume], "$", null);
+        return toStringArgs("{SoundConfig name:$0, type:$1, stop:$2, delay:$3, fadeTo:$4, fadeDuration:$5, loops:$6, volume:$7}", [name, type, stop, delay, fadeTo, fadeDuration, loops, volume], "$", null);
     }
 }
 }

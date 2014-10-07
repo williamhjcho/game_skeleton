@@ -19,8 +19,11 @@ import game.controller.state.StateSplash;
 import game.game_internal;
 
 import utils.event.StateMachineEvent;
+import utils.sound.SoundUtil;
 import utils.sound.SoundManager;
 import utils.state.StateMachine;
+
+use namespace SoundUtil;
 
 use namespace game_internal;
 
@@ -50,12 +53,11 @@ public final class Game {
     }
 
     public function initialize():void {
-        SoundManager.volume = GameData.variables.volume_main;
+        SoundUtil.volume = GameData.variables.volume_main;
 
         initializeMachine();
 
         GameMechanics.game_internal::startClock(1000 / GameData.stage.frameRate);
-        GameMechanics.addToClock(updateGameInternalMechanics);
 
         stateMachine.changeTo(GameState.SPLASH);
     }
@@ -67,10 +69,6 @@ public final class Game {
 
         stateMachine.add(new StateSplash(this, null));
         stateMachine.add(new StateGame(this, null));
-    }
-
-    private function updateGameInternalMechanics(dt:uint):void {
-        SoundPlayer.game_internal::updateSounds(dt)
     }
 
     //==================================

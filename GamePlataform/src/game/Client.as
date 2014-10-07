@@ -35,7 +35,7 @@ import utils.serializer.SerializerManager;
 public class Client extends Sprite {
 
     //Pre-loaded external assets, embed onto main.swf
-    [Embed(source="../../../output/app/data/files/config.json", mimeType="application/octet-stream")]
+    [Embed(source="../../output/app/data/files/config.json", mimeType="application/octet-stream")]
     private static const CONFIG:Class;
 
     private static var _instance:Client;

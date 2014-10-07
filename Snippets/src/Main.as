@@ -10,9 +10,8 @@ package {
 import flash.events.Event;
 import flash.events.IOErrorEvent;
 
-import snd.Snd;
-
 import utils.event.Signal;
+import utils.sound.SoundUtil;
 
 import utilsDisplay.base.BaseSprite;
 
@@ -30,11 +29,12 @@ public class Main extends BaseSprite {
     public function initialize(e:Event):void {
         this.removeEventListener(Event.ADDED_TO_STAGE, initialize);
 
-        Snd.addSignalListener(IOErrorEvent.IO_ERROR, onLoadError);
-        Snd.addSignalListener(Event.COMPLETE, onLoadComplete);
-        Snd.load("sounds/click.mp3", "click", false, true);
-        Snd.load("sounds/over.mp3" , "over" , true, true);
-        Snd.load("sounds/popup.mp3", "popup", true, true);
+        SoundUtil.addSignalListener(IOErrorEvent.IO_ERROR, onLoadError);
+        SoundUtil.addSignalListener(Event.COMPLETE, onLoadComplete);
+        SoundUtil.load("sounds/click.mp3", "click", false, true);
+        SoundUtil.load("sounds/over.mp3" , "over" , true, true);
+        SoundUtil.load("sounds/right.mp3", "right", true, false);
+        SoundUtil.load("sounds/popup.mp3", "popup", true, true);
 
         createPanel();
     }

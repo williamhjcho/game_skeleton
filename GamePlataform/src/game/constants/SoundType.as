@@ -4,9 +4,9 @@
 package game.constants {
 public final class SoundType {
 
-    public static const BACKGROUND  :String = "background";
-    public static const AMBIENT     :String = "ambient";
-    public static const SFX         :String = "sfx";
+    public static const BGM     :String = "bgm";
+    public static const AMBIENT :String = "ambient";
+    public static const SFX     :String = "sfx";
 
 }
 }
