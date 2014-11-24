@@ -5,7 +5,7 @@
  * Time: 11:48
  * To change this template use File | Settings | File Templates.
  */
-package serializer {
+package utils.serializer {
 import flash.utils.ByteArray;
 
 public class Base64 {
