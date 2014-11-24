@@ -5,7 +5,7 @@
  * Time: 11:48
  * To change this template use File | Settings | File Templates.
  */
-package utils.serializer {
+package serializer {
 import flash.utils.ByteArray;
 
 public class Base64 {
@@ -20,7 +20,10 @@ public class Base64 {
         var bytes:ByteArray = new ByteArray();
         bytes.writeObject(value);
         bytes.position = 0;
-        return _base64Encode(bytes, isSCORM? encodeCharsSCORM : encodeChars);
+        
+        var res =  _base64Encode(bytes);
+        if(isSCORM)res = res.replace(/\//g,'@').replace(/\+/g,'#');
+        return res;
     }
 
     public static function decodeObject(value:String):Object {
@@ -32,7 +35,10 @@ public class Base64 {
     public static function encodeString(string:String, isSCORM:Boolean = false):String {
         var bytes:ByteArray = new ByteArray();
         bytes.writeUTFBytes(string);
-        return _base64Encode(bytes, isSCORM? encodeCharsSCORM : encodeChars);
+        
+        var res =  _base64Encode(bytes);
+        if(isSCORM)res = res.replace(/\//g,'@').replace(/\+/g,'#');
+        return res;
     }
 
     public static function decodeString(string:String):String {
@@ -47,12 +53,14 @@ public class Base64 {
         var bytes:ByteArray = new ByteArray();
         bytes.writeUTFBytes(str);
         bytes.compress();
-        return _base64Encode(bytes, isSCORM? encodeCharsSCORM : encodeChars);
+        var res =  _base64Encode(bytes);
+        if(isSCORM)res = res.replace(/\//g,'@').replace(/\+/g,'#');
+        return res;
 
     }
 
     public static function decompress(str:String):String {
-        var decode:ByteArray = _base64Decode(str);
+        var decode:ByteArray = _base64Decode(str.replace(/@/g,"/").replace(/#/g,"+"));
         decode.uncompress();
         return decode.toString();
     }
@@ -72,17 +80,7 @@ public class Base64 {
                 '4', '5', '6', '7', '8', '9', '+', '/'
             ];
 
-    private static const encodeCharsSCORM:Array =
-            [
-                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-                'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
-                'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-                'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
-                'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-                'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-                'w', 'x', 'y', 'z', '0', '1', '2', '3',
-                '4', '5', '6', '7', '8', '9', '#', '@'
-            ];
+
 
     private static const decodeChars:Array =
             [
@@ -104,7 +102,7 @@ public class Base64 {
                 49, 50, 51, -1, -1, -1, -1, -1
             ];
 
-    private static function _base64Encode(data:ByteArray, encodingChars:Array):String {
+    private static function _base64Encode(data:ByteArray):String {
         var out:Array = [];
         var c:int;
         var i:int = 0, j:int = 0;
@@ -112,14 +110,14 @@ public class Base64 {
         var len:int = data.length - r;
         while (i < len) {
             c = data[i++] << 16 | data[i++] << 8 | data[i++];
-            out[j++] = encodingChars[c >> 18] + encodingChars[c >> 12 & 0x3f] + encodingChars[c >> 6 & 0x3f] + encodingChars[c & 0x3f];
+            out[j++] = encodeChars[c >> 18] + encodeChars[c >> 12 & 0x3f] + encodeChars[c >> 6 & 0x3f] + encodeChars[c & 0x3f];
         }
         if (r == 1) {
             c = data[i++];
-            out[j++] = encodingChars[c >> 2] + encodingChars[(c & 0x03) << 4] + "==";
+            out[j++] = encodeChars[c >> 2] + encodeChars[(c & 0x03) << 4] + "==";
         } else if (r == 2) {
             c = data[i++] << 8 | data[i++];
-            out[j++] = encodingChars[c >> 10] + encodingChars[c >> 4 & 0x3f] + encodingChars[(c & 0x0f) << 2] + "=";
+            out[j++] = encodeChars[c >> 10] + encodeChars[c >> 4 & 0x3f] + encodeChars[(c & 0x0f) << 2] + "=";
         }
         return out.join('');
     }
