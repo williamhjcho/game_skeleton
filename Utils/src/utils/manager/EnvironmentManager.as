@@ -1,4 +1,4 @@
-package utils.managers {
+package utils.manager {
 import flash.external.ExternalInterface;
 import flash.system.Capabilities;
 

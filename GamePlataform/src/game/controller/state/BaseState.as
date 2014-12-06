@@ -14,8 +14,8 @@ public class BaseState extends State {
 
     protected var game:Game;
 
-    public function BaseState(game:Game, type:String, from:Array = null, onEnter:Function = null, onExit:Function = null) {
-        super(type, from, onEnter, onExit);
+    public function BaseState(game:Game, type:String, from:Array = null) {
+        super(type, from);
         this.game = game;
     }
 }

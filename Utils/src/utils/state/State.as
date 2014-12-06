@@ -10,19 +10,22 @@ package utils.state {
 public class State {
 
     private var _name   :String;
-    private var _onEnter:Function;
-    private var _onExit :Function;
     private var _isOpen :Boolean = false;
     private var _from   :Array = [];
 
     protected var machine:StateMachine;
 
-    public function State(type:String, from:Array = null, onEnter:Function = null, onExit:Function = null) {
-        this._name = type;
-        this._onEnter = onEnter;
-        this._onExit = onExit;
+    public function State(name:String, from:Array = null) {
+        this._name = name;
         this.from = from;
     }
+
+    //==================================
+    //  Overridden Methods
+    //==================================
+    public function onEnter(args:Object = null):void { }
+
+    public function onExit(args:Object = null):void { }
 
     //==================================
     //  State Control
@@ -44,9 +47,6 @@ public class State {
         }
     }
 
-    public function callEnter    (parameters:Array = null):void { if(_onEnter != null) _onEnter.apply(this, parameters); }
-    public function callExit     (parameters:Array = null):void { if(_onExit != null) _onExit.apply(this, parameters); }
-
     public function canComeFrom(name:String):Boolean {
         return _isOpen || (_from.indexOf(name) != -1);
     }
@@ -60,8 +60,6 @@ public class State {
     //  Misc
     //==================================
     public function destroy():void {
-        this._onEnter = null;
-        this._onExit = null;
         this._from = null;
     }
 

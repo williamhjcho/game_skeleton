@@ -13,10 +13,10 @@ public class StateMachineEvent extends Event {
     public static const TRANSITION_DENIED:String = "transition.denied";
     public static const TRANSITION_COMPLETE:String = "transition.complete";
 
-    public var from:String;
-    public var to:String;
-    public var currentState:String;
-    public var allowed:Array;
+    public var from         :String;
+    public var to           :String;
+    public var currentState :String;
+    public var allowed      :Array;
 
     public function StateMachineEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
         super(type,bubbles,cancelable);

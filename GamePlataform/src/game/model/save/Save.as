@@ -12,7 +12,7 @@ public class Save {
 
     public var volumeMain       :Number = 1.0;
     public var volumeSFX        :Number = 1.0;
-    public var volumeBGM :Number = 1.0;
+    public var volumeBGM        :Number = 1.0;
     public var volumeAmbient    :Number = 1.0;
 
 }

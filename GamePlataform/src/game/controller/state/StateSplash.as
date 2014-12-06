@@ -9,15 +9,15 @@ import game.controller.GameMechanics;
 public class StateSplash extends BaseState {
 
     public function StateSplash(game:Game, from:Array = null) {
-        super(game, GameState.SPLASH, from, onEnter, onExit);
+        super(game, GameState.SPLASH, from);
     }
 
-    private function onEnter():void {
-        GameMechanics.addJob(super.machine.changeTo, GameState.GAME);
+    override public function onEnter(args:Object = null):void {
+        super.onEnter(args);
     }
 
-    private function onExit():void {
-
+    override public function onExit(args:Object = null):void {
+        super.onExit(args);
     }
 }
 }

@@ -13,15 +13,16 @@ public class StateGame extends BaseState {
 
 
     public function StateGame(game:Game, from:Array = null) {
-        super(game, GameState.GAME, from, onEnter, onExit);
+        super(game, GameState.GAME, from);
     }
 
-    private function onEnter():void {
 
+    override public function onEnter(args:Object = null):void {
+        super.onEnter(args);
     }
 
-    private function onExit():void {
-
+    override public function onExit(args:Object = null):void {
+        super.onExit(args);
     }
 }
 }

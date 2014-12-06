@@ -64,8 +64,8 @@ public final class Game {
 
     private function initializeMachine():void {
         stateMachine = new StateMachine();
-        stateMachine.addEventListener(StateMachineEvent.TRANSITION_COMPLETE, onTransitionComplete);
-        stateMachine.addEventListener(StateMachineEvent.TRANSITION_DENIED, onTransitionDenied);
+        stateMachine.addEventListener(StateMachineEvent.TRANSITION_COMPLETE , onTransitionComplete);
+        stateMachine.addEventListener(StateMachineEvent.TRANSITION_DENIED   , onTransitionDenied);
 
         stateMachine.add(new StateSplash(this, null));
         stateMachine.add(new StateGame(this, null));

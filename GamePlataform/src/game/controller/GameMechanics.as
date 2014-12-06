@@ -12,7 +12,7 @@ import game.game_internal;
 import utils.base.FunctionObject;
 import utils.base.I.IUpdatable;
 import utils.data.ResourcePool;
-import utils.managers.Juggler;
+import utils.manager.Juggler;
 
 /**
  * Has mechanics accessible to the whole game, controlled by Game

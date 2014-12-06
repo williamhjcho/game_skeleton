@@ -23,7 +23,7 @@ public class StateMachine extends EventDispatcher {
     private var _currentStateName:String;
 
     public function StateMachine() {
-        _states[null] = new State(null,null,null,null);
+        _states[null] = new State(null,null);
         _currentStateName = null;
     }
 
@@ -60,7 +60,7 @@ public class StateMachine extends EventDispatcher {
      * @param parametersEnter Parameters for the to.enter() function
      * @return The next state if successful else the last state
      */
-    public function changeTo(name:String, parametersExit:Array = null, parametersEnter:Array = null):Boolean {
+    public function changeTo(name:String, parametersExit:Object = null, parametersEnter:Object = null):Boolean {
         var from:State = _states[_currentStateName], to:State = _states[name];
         var e:StateMachineEvent;
 
@@ -73,8 +73,8 @@ public class StateMachine extends EventDispatcher {
             return false;
         }
 
-        from.callExit(parametersExit);
-        to.callEnter(parametersEnter);
+        from.onExit(parametersExit);
+        to.onEnter(parametersEnter);
 
         _currentStateName = name;
         if(hasEventListener(StateMachineEvent.TRANSITION_COMPLETE)) {
@@ -96,7 +96,9 @@ public class StateMachine extends EventDispatcher {
     }
 
     public function get currentStateName():String { return _currentStateName; }
+
     public function get currentState():State { return _states[_currentStateName]; }
+
     public function getState(name:String):State { return _states[name]; }
 
 }

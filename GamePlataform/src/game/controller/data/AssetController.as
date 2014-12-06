@@ -10,7 +10,7 @@ import flash.text.StyleSheet;
 
 import game.constants.AssetType;
 
-import utils.managers.LoaderManager;
+import utils.manager.LoaderManager;
 import utils.serializer.SerializerManager;
 import utils.sound.SoundUtil;
 import utils.sound.SoundManager;

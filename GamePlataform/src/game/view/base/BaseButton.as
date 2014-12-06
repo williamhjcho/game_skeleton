@@ -14,15 +14,14 @@ public class BaseButton extends BaseMovieClip {
     private var _thisInstance:Array;
 
     protected var _click  :Function,
-            _over   :Function,
-            _out    :Function,
-            _down   :Function,
-            _up     :Function,
-            _remove :Function;
+                  _over   :Function,
+                  _out    :Function,
+                  _down   :Function,
+                  _up     :Function,
+                  _remove :Function;
 
     public function BaseButton() {
         super();
-        super.gotoAndStop(0);
         _thisInstance = [this];
         addToManager(false);
     }
@@ -61,12 +60,12 @@ public class BaseButton extends BaseMovieClip {
     public function get isEnabled():Boolean { return ButtonManager.isEnabled(this); }
     public function set isEnabled(b:Boolean):void { ButtonManager.setStatus(this, b); }
 
-    public function set click   (f:Function):void { this._click   = f; }
-    public function set over    (f:Function):void { this._over    = f; }
-    public function set out     (f:Function):void { this._out     = f; }
-    public function set down    (f:Function):void { this._down    = f; }
-    public function set up      (f:Function):void { this._up      = f; }
-    public function set remove  (f:Function):void { this._remove  = f; }
+    public function setClick   (f:Function):void { this._click   = f; }
+    public function setOver    (f:Function):void { this._over    = f; }
+    public function setOut     (f:Function):void { this._out     = f; }
+    public function setDown    (f:Function):void { this._down    = f; }
+    public function setUp      (f:Function):void { this._up      = f; }
+    public function setRemove  (f:Function):void { this._remove  = f; }
 
     override public function destroy():void {
         super.destroy();

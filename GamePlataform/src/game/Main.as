@@ -21,7 +21,7 @@ import game.controller.data.AssetController;
 import game.controller.data.GameData;
 import game.model.Config;
 
-import utils.managers.EnvironmentManager;
+import utils.manager.EnvironmentManager;
 
 import utilsDisplay.view.Stats;
 

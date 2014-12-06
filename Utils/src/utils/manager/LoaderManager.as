@@ -1,7 +1,7 @@
 /**
  * Created by William on 2/18/14.
  */
-package utils.managers {
+package utils.manager {
 import com.greensock.events.LoaderEvent;
 import com.greensock.loading.DataLoader;
 import com.greensock.loading.ImageLoader;

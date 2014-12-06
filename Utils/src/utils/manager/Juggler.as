@@ -1,7 +1,7 @@
 /**
  * Created by William on 6/6/2014.
  */
-package utils.managers {
+package utils.manager {
 
 import utils.base.I.IUpdatable;
 import utils.event.Signal;
@@ -11,6 +11,9 @@ import utils.utils_namespace;
 
 use namespace utils_namespace;
 
+/**
+ * Controls IUpdatable elements by running through them and update() them.
+ */
 public class Juggler implements IUpdatable {
 
     private var _locked:Boolean = false;

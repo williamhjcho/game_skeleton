@@ -22,7 +22,7 @@ import game.model.Config;
 import game.view.PreLoader;
 
 import utils.commands.execute;
-import utils.managers.LoaderManager;
+import utils.manager.LoaderManager;
 import utils.serializer.SerializerManager;
 
 /**
